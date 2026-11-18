@@ -134,6 +134,15 @@ nav.tabs button.on svg{stroke:var(--ac)}
 .item .d small{display:block;font-family:Geist;font-weight:400;font-size:11.5px;color:var(--mu)}
 .spark{width:64px;height:26px;flex:0 0 auto}
 .vacio{color:var(--mu);font-size:14px;padding:22px 14px;text-align:center}
+.heroe .grande-p{font-family:var(--mono);font-size:44px;font-weight:600;letter-spacing:-.03em;color:var(--ac);line-height:1.05;margin:6px 0 6px}
+.musculos{display:grid;gap:4px}
+.mus{display:grid;grid-template-columns:72px 1fr 64px;grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;padding:8px 4px;border-radius:10px}
+.mus:active{background:var(--s2)}
+.mus .n{font-weight:600;font-size:14px}
+.mus .barra-m{height:10px;border-radius:6px;background:var(--s2);overflow:hidden}
+.mus .barra-m i{display:block;height:100%;border-radius:6px;background:var(--ac)}
+.mus .v{text-align:right;font-weight:600;font-size:14px}
+.mus small{grid-column:2/4;color:var(--mu);font-size:11.5px;margin-top:3px}
 .semanas{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:10px}
 .semanas div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
 .semanas i{display:block;width:100%;border-radius:5px;background:var(--s3);min-height:4px}
@@ -576,14 +585,14 @@ $('#velo').onclick = cerrarHoja;
 })();
 
 // ================= gráficos =================
-function linea(vals, w = 320, h = 150, conEjes = true) {
+function linea(vals, w = 320, h = 150, conEjes = true, fmt = (v) => f(v, 0)) {
   if (vals.length < 2) return `<svg class="${conEjes ? 'grafico' : 'spark'}" viewBox="0 0 ${w} ${h}"></svg>`;
   const ys = vals.map((v) => v.y); let mn = Math.min(...ys), mx = Math.max(...ys); if (mx - mn < 1) { mx += 1; mn -= 1; }
   const p = conEjes ? 18 : 3; const X = (i) => p + (w - 2 * p) * i / (vals.length - 1); const Y = (v) => h - p - (h - 2 * p) * (v - mn) / (mx - mn);
   const d = vals.map((v, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)},${Y(v.y).toFixed(1)}`).join('');
   const area = `${d}L${X(vals.length - 1).toFixed(1)},${h - p}L${p},${h - p}Z`;
   let ejes = '';
-  if (conEjes) ejes = `<text x="${p}" y="11" fill="#6F6C64" font-size="10" font-family="Geist Mono">${f(mx, 0)}</text><text x="${p}" y="${h - 4}" fill="#6F6C64" font-size="10" font-family="Geist Mono">${f(mn, 0)}</text>
+  if (conEjes) ejes = `<text x="${p}" y="11" fill="#6F6C64" font-size="10" font-family="Geist Mono">${fmt(mx)}</text><text x="${p}" y="${h - 4}" fill="#6F6C64" font-size="10" font-family="Geist Mono">${fmt(mn)}</text>
     <text x="${w - p}" y="${h - 4}" fill="#6F6C64" font-size="10" text-anchor="end" font-family="Geist Mono">${esc(vals[vals.length - 1].x || '')}</text>`;
   const ul = vals[vals.length - 1];
   return `<svg class="${conEjes ? 'grafico' : 'spark'}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="g${w}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6CB4FF" stop-opacity=".22"/><stop offset="1" stop-color="#6CB4FF" stop-opacity="0"/></linearGradient></defs>
@@ -594,6 +603,62 @@ function linea(vals, w = 320, h = 150, conEjes = true) {
 function serieE1(ej) { const m = new Map(); for (const r of regsDe(ej)) { const v = Math.max(...r.series.map((s) => e1rm(s.kg, s.reps))); m.set(r.fecha, Math.max(m.get(r.fecha) || 0, v)); } return [...m].sort().map(([x, y]) => ({ x: fCorta(x), y, fecha: x })); }
 
 // ================= PROGRESO =================
+const sinTilde = (t) => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const GRUPOS = [
+  ['core', 'Core', /abs|abdominal|plancha|crunch/],
+  ['pierna', 'Pierna', /prensa|femoral|cuadriceps|sentadilla|gemel|aductor|abductor|abducc|culete|peso muerto|zancada|hip thrust|gluteo/],
+  ['triceps', 'Tríceps', /triceps|frances|fondos/],
+  ['biceps', 'Bíceps', /curl|biceps|antebrazo/],
+  ['hombro', 'Hombro', /militar|lateral|posterior|pajaros|face pull|rear delt|hombro/],
+  ['espalda', 'Espalda', /remo|jalon|dominad|esquiador|pull|espalda/],
+  ['pecho', 'Pecho', /pecho|inclinado|peck|pec |aperturas|flexiones|banca|cruce|contractor/],
+];
+const grupoDe = (id, nombre) => { const n = sinTilde(nombre + ' ' + String(id).replace(/_/g, ' ')); const g = GRUPOS.find((x) => x[2].test(n)); return g ? g[0] : 'otro'; };
+const nombreGrupo = (g) => (GRUPOS.find((x) => x[0] === g) || [0, 'Otros'])[1];
+const pct = (v) => (v >= 0 ? '+' : '') + f(v, 0) + ' %';
+const dias_ = (a, b) => Math.round((new Date(b + 'T12:00') - new Date(a + 'T12:00')) / 864e5);
+// Para cada ejercicio: su 1RM estimado de cada día (sin series a peso corporal) y cuánto ha subido desde el primer día.
+function analisis() {
+  const porEj = new Map();
+  for (const r of D.regs) { const vs = r.series.filter((x) => x.kg > 0); if (!vs.length) continue; const v = Math.max(...vs.map((x) => e1rm(x.kg, x.reps))), kg = Math.max(...vs.map((x) => x.kg));
+    const e = porEj.get(r.ej) || { id: r.ej, nombre: r.nombre, dias: new Map() }; e.nombre = r.nombre; const d = e.dias.get(r.fecha) || { v: 0, kg: 0 }; e.dias.set(r.fecha, { v: Math.max(d.v, v), kg: Math.max(d.kg, kg) }); porEj.set(r.ej, e); }
+  const ejs = [];
+  for (const e of porEj.values()) {
+    const ds = [...e.dias].sort((a, b) => a[0].localeCompare(b[0])).map(([fecha, x]) => ({ fecha, ...x })); if (ds.length < 2 || dias_(ds[0].fecha, ds[ds.length - 1].fecha) < 6) continue;
+    const base = ds[0].v, ahora = Math.max(...ds.slice(-2).map((x) => x.v));
+    ejs.push({ id: e.id, nombre: e.nombre, grupo: grupoDe(e.id, e.nombre), ds, base, ahora, sube: (ahora / base - 1) * 100, kg0: ds[0].kg, kgMax: Math.max(...ds.map((x) => x.kg)), desde: ds[0].fecha });
+  }
+  // índice semanal: media de (1RM de esa semana / 1RM del primer día) de los ejercicios ya empezados
+  const todas = ejs.flatMap((e) => e.ds.map((x) => x.fecha)).sort();
+  const semanas = []; if (todas.length) { let l = lunes(todas[0]); const fin = lunes(hoy()); while (l <= fin) { semanas.push(l); const d = new Date(l + 'T12:00'); d.setDate(d.getDate() + 7); l = fechaDe(d); } }
+  const indice = (lista) => semanas.map((l) => { const d = new Date(l + 'T12:00'); d.setDate(d.getDate() + 6); const finS = fechaDe(d); const vals = [];
+    for (const e of lista) { const hasta = e.ds.filter((x) => x.fecha <= finS); if (!hasta.length) continue; vals.push(Math.max(...hasta.slice(-2).map((x) => x.v)) / e.base - 1); }
+    return vals.length ? { x: `${new Date(l + 'T12:00').getDate()}/${new Date(l + 'T12:00').getMonth() + 1}`, y: 100 * vals.reduce((a, b) => a + b, 0) / vals.length } : null; }).filter(Boolean);
+  const grupos = GRUPOS.map(([g]) => { const l = ejs.filter((e) => e.grupo === g); if (!l.length) return null; const serie = indice(l), sube = l.reduce((a, e) => a + e.sube, 0) / l.length;
+    const desde = l.map((e) => e.desde).sort()[0], meses = Math.max(0.5, dias_(desde, hoy()) / 30.4); return { g, nombre: nombreGrupo(g), ejs: l.sort((a, b) => b.sube - a.sube), serie, sube, mes: sube / meses }; }).filter(Boolean).sort((a, b) => b.sube - a.sube);
+  const general = indice(ejs), desde = todas[0], meses = desde ? Math.max(0.5, dias_(desde, hoy()) / 30.4) : 1, sube = general.length ? general[general.length - 1].y : 0;
+  return { ejs, grupos, general, sube, mes: sube / meses, desde };
+}
+function vProgresoFuerza(A) {
+  if (!A.ejs.length) return `<div class="card"><p class="texto">Cuando lleves un par de semanas apuntando, aquí verás cuánto subes en general, por músculo y por ejercicio.</p></div>`;
+  const mx = Math.max(1, ...A.grupos.map((g) => Math.abs(g.sube))), top = A.grupos[0], bot = A.grupos[A.grupos.length - 1];
+  const saltos = [...A.ejs].filter((e) => e.kgMax > e.kg0).sort((a, b) => (b.kgMax / b.kg0) - (a.kgMax / a.kg0)).slice(0, 3);
+  return `<div class="card heroe"><div class="eyebrow">Tu fuerza desde el ${fCorta(A.desde)}</div><div class="grande-p">${pct(A.sube)}</div>
+     <p class="texto">De media, tus ejercicios han subido un <b>${pct(A.sube)}</b> en lo que puedes levantar (1RM estimado). A este ritmo, <b>${pct(A.mes)} al mes</b>.</p>
+     ${A.general.length >= 2 ? linea(A.general, 320, 150, true, (v) => pct(v)) : ''}</div>
+   <h2>Por músculo</h2>
+   <div class="card"><p class="texto" style="margin-bottom:10px">${A.grupos.length > 1 ? `Lo que más sube: <b>${esc(top.nombre.toLowerCase())}</b> (${pct(top.sube)}). Lo que va más lento: <b>${esc(bot.nombre.toLowerCase())}</b> (${pct(bot.sube)}).` : `Toca un músculo para ver sus ejercicios.`}</p>
+    <div class="musculos">${A.grupos.map((g) => `<button class="mus" data-grupo="${g.g}"><span class="n">${esc(g.nombre)}</span><span class="barra-m"><i style="width:${Math.max(3, 100 * Math.max(0, g.sube) / mx)}%"></i></span><span class="v num">${pct(g.sube)}</span><small>${pct(g.mes)}/mes · ${g.ejs.length} ejerc.</small></button>`).join('')}</div></div>
+   ${saltos.length ? `<h2>Tus mayores saltos</h2><div class="lista">${saltos.map((e) => `<button class="item" data-ejh="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">de ${f(e.kg0)} a ${f(e.kgMax)} kg desde el ${fCorta(e.desde)}</small></div><div class="d" style="color:var(--ac)">${pct((e.kgMax / e.kg0 - 1) * 100)}</div></button>`).join('')}</div>` : ''}`;
+}
+function hojaGrupo(g) {
+  const A = analisis(), G = A.grupos.find((x) => x.g === g); if (!G) return;
+  abrirHoja(`<div class="eyebrow">Músculo</div><h1>${esc(G.nombre)}</h1>
+   <p class="texto" style="margin:6px 0 12px">Ha subido un <b>${pct(G.sube)}</b> de media, unos <b>${pct(G.mes)} al mes</b>.</p>
+   <div class="card">${G.serie.length >= 2 ? linea(G.serie, 320, 150, true, (v) => pct(v)) : '<p class="texto">Con unas semanas más sale la gráfica.</p>'}</div>
+   <h2>Sus ejercicios</h2><div class="lista">${G.ejs.map((e) => `<button class="item" data-ejh2="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">1RM ${f(e.base, 0)} → ${f(e.ahora, 0)} kg · ${e.ds.length} días</small></div>${linea(e.ds.map((x) => ({ x: '', y: x.v })), 64, 26, false)}<div class="d" style="color:${e.sube >= 0 ? 'var(--ac)' : 'var(--mu)'}">${pct(e.sube)}</div></button>`).join('')}</div>`);
+  document.querySelectorAll('[data-ejh2]').forEach((b) => b.onclick = () => hojaEjercicio(b.dataset.ejh2, b.dataset.nom));
+}
 function vProgreso() {
   const fechas = fechasEntreno(); const sem = semanaActual(); const obj = D.rutina.objetivo || 4;
   const l = lunes(hoy()); const seriesSem = D.regs.filter((r) => r.fecha >= l).reduce((a, r) => a + r.series.length, 0);
@@ -605,13 +670,16 @@ function vProgreso() {
   const ejs = ids.map((id) => { const rs = regsDe(id); const m = mejor(id); return { id, nombre: rs[rs.length - 1].nombre, m, serie: serieE1(id), ult: rs[rs.length - 1].fecha }; }).sort((a, b) => b.ult.localeCompare(a.ult));
   const ses = [...D.sesiones].sort((a, b) => b.fecha.localeCompare(a.fecha));
   const peso = [...D.peso].sort((a, b) => a.fecha.localeCompare(b.fecha));
+  const A = analisis(), subeDe = new Map(A.ejs.map((e) => [e.id, e.sube]));
   return `<header class="top"><div><div class="eyebrow">Progreso</div><h1>Cómo vas</h1></div></header>
+  ${vProgresoFuerza(A)}
+  <h2>Constancia</h2>
   <div class="kpis"><div class="card kpi"><div class="v">${sem}<small>/${obj}</small></div><div class="l">Esta semana</div></div>
    <div class="card kpi"><div class="v">${fechas.length}</div><div class="l">Entrenos</div></div>
    <div class="card kpi"><div class="v">${seriesSem}</div><div class="l">Series semana</div></div></div>
   <div class="card" style="margin-top:8px"><div class="eyebrow">Últimas 8 semanas</div><div class="semanas">${sems.map((s) => `<div><i class="${s.n >= obj ? 'ok' : ''}" style="height:${Math.max(6, 100 * s.n / mxS)}%"></i><span>${s.et}</span></div>`).join('')}</div></div>
   <h2>Récords y 1RM</h2>
-  <div class="lista">${ejs.length ? ejs.map((e) => `<button class="item" data-ejh="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">Mejor ${f(e.m.kg)} kg × ${e.m.reps}</small></div>${linea(e.serie, 64, 26, false)}<div class="d">${f(e.m.e1, 0)}<small>1RM est.</small></div></button>`).join('') : `<div class="vacio">Cuando apuntes tu primer entreno, aquí verás tus récords y cómo suben.</div>`}</div>
+  <div class="lista">${ejs.length ? ejs.map((e) => `<button class="item" data-ejh="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">Mejor ${f(e.m.kg)} kg × ${e.m.reps}${subeDe.has(e.id) ? ` · <span style="color:var(--ac)">${pct(subeDe.get(e.id))}</span>` : ''}</small></div>${linea(e.serie, 64, 26, false)}<div class="d">${f(e.m.e1, 0)}<small>1RM est.</small></div></button>`).join('') : `<div class="vacio">Cuando apuntes tu primer entreno, aquí verás tus récords y cómo suben.</div>`}</div>
   <h2>Logros · ${Object.keys(D.logros || {}).length}/${LOGROS.length}</h2><div class="logros">${LOGROS.map((l) => { const h = (D.logros || {})[l.id]; return `<div class="card lg ${h ? '' : 'no'}"><div class="med">${ICONO[l.i]}</div><div><b>${esc(l.t)}</b><small>${h ? 'Conseguido el ' + fCorta(h) : esc(l.d)}</small></div></div>`; }).join('')}</div>
   <h2>Peso corporal</h2>
   <div class="card">${peso.length >= 2 ? linea(peso.map((p) => ({ x: fCorta(p.fecha), y: p.kg }))) : ''}
@@ -622,6 +690,7 @@ function vProgreso() {
 }
 function aProgreso() {
   document.querySelectorAll('[data-ejh]').forEach((b) => b.onclick = () => hojaEjercicio(b.dataset.ejh, b.dataset.nom));
+  document.querySelectorAll('[data-grupo]').forEach((b) => b.onclick = () => hojaGrupo(b.dataset.grupo));
   document.querySelectorAll('[data-ses]').forEach((b) => b.onclick = () => hojaSesion(b.dataset.ses));
   $('#pesoOk').onclick = () => { const v = num($('#pesoIn').value); if (!v || v < 25 || v > 300) { toast('Pon tu peso en kg'); return; } D.peso = D.peso.filter((p) => p.fecha !== hoy()); D.peso.push({ fecha: hoy(), kg: v }); guardar(); pintar(); toast('Peso apuntado'); revisarLogros(); };
 }
@@ -682,6 +751,8 @@ function vMas() {
    <div><label>Subir peso de</label><select id="ainc">${[1, 1.25, 2, 2.5, 5].map((s) => `<option value="${s}" ${s === D.aj.inc ? 'selected' : ''}>${f(s, 2)} kg</option>`).join('')}</select></div></div>
    <p class="texto" style="margin-top:10px">Cuando haces todas las series al tope de reps, la app te sugiere subir ese peso. Si no, el mismo peso y una rep más.</p></div>
   <h2>Avisos</h2><div class="card stack"><p class="texto">Te aviso cuando consigues un logro y cuando acaba el descanso si estás en otra app. En iPhone solo funciona con la app <b>añadida a la pantalla de inicio</b>.</p><button class="btn" id="avisos">${'Notification' in window && Notification.permission === 'granted' ? 'Avisos activados ✓' : 'Activar avisos'}</button></div>
+  <h2>Cargar mis datos</h2><div class="card stack"><p class="texto">Si te han pasado un enlace con tus entrenos y la app está vacía, pégalo aquí.</p>
+   <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk">Cargar</button></div></div>
   <h2>Copia de seguridad</h2><div class="card stack"><p class="texto">Todo se guarda <b>solo en este móvil</b>, sin cuentas. Si cambias de móvil o borras el navegador, se pierde: saca una copia de vez en cuando.</p>
    <div class="fila-btn"><button class="btn" id="exp">Guardar copia</button><button class="btn" id="imp">Recuperar copia</button></div><input type="file" id="impf" accept="application/json,.json" hidden>
    <button class="btn peligro" id="reset">Borrar todo y empezar de cero</button></div>
@@ -701,6 +772,7 @@ function aMas() {
   $('#exp').onclick = () => { const b = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
   $('#avisos').onclick = async () => { if (!('Notification' in window)) { toast('En iPhone, añádela antes a la pantalla de inicio'); return; }
     const p = await Notification.requestPermission(); if (p === 'granted') { toast('Avisos activados'); notificar('Avisos activados', 'Así te aviso de tus logros.'); } else toast('Sin permiso para avisar'); pintar(); };
+  $('#codOk').onclick = () => { const v = $('#codIn').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); };
   $('#imp').onclick = () => $('#impf').click();
   $('#impf').onchange = async (e) => { const fl = e.target.files[0]; if (!fl) return; try { const o = JSON.parse(await fl.text()); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0; if (!confirm('Esto cambia todo lo de ahora por la copia. ¿Seguro?')) return; D = { ...nuevo(), ...o }; if (!o.logros) revisarLogros(true); guardar(); toast(`Copia recuperada: ${fechasEntreno().length} entrenos`); pintar(); } catch { toast('Ese archivo no es una copia de la app'); } };
   $('#reset').onclick = () => { if (!confirm('¿Borrar todos tus entrenos, pesos y la rutina?')) return; if (!confirm('Seguro seguro? No se puede deshacer.')) return; D = nuevo(); guardar(); pintar(); };
@@ -794,6 +866,20 @@ setTimeout(() => { if (pestana === 'entreno' && window.bichoDecir) window.bichoD
 // cada ~6 min, si sigues por aquí, el bicho te dice algo
 setInterval(() => { if (!document.hidden && window.bichoDecir && !$('#hoja').classList.contains('on') && Math.random() < 0.6) window.bichoDecir(consejo(), 6); }, 360000);
 
+// ================= ENLACE CON TUS DATOS (?cargar=código) =================
+// Carga la copia d/<código>.json una sola vez y limpia el enlace.
+async function cargarCodigo(cod, manual = false) {
+  if (!cod || !/^[a-z0-9]{6,20}$/.test(cod)) { if (manual) toast('Ese enlace no vale'); return; }
+  const limpiar = () => { try { history.replaceState(null, '', location.pathname); } catch {} };
+  if (D.cargado === cod && !manual) { limpiar(); return; }
+  try {
+    const r = await fetch(`d/${cod}.json`, { cache: 'no-store' }); if (!r.ok) throw 0; const o = await r.json(); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0;
+    if (D.regs.length && !confirm(`Este enlace trae tus entrenos (${new Set(o.regs.map((x) => x.fecha)).size} días). ¿Cambio lo que hay ahora por ellos?`)) { limpiar(); return; }
+    D = { ...nuevo(), ...o, cargado: cod }; revisarLogros(true); guardar(); limpiar(); pintar();
+    toast(`Cargados tus ${fechasEntreno().length} entrenos`); setTimeout(() => window.bichoDecir && window.bichoDecir('¡Ya tengo todo tu historial! Mira en Progreso cuánto has subido.', 7), 2500);
+  } catch { limpiar(); toast('No he podido cargar los datos de este enlace'); }
+}
+cargarCodigo(new URLSearchParams(location.search).get('cargar'));
 if (!D.logros) revisarLogros(true);
 pintar();
 if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
