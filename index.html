@@ -468,6 +468,8 @@ function vEntreno() {
   let html = `<header class="top"><div><div class="eyebrow">${esc(fecha)}</div><h1>${esc(dia.nombre)}</h1></div></header>
   <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>`;
   if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. Abajo tienes el siguiente día.</small></div></div>`;
+  if (!D.regs.length) html += `<div class="card stack" style="margin-bottom:16px;border-color:var(--ac)"><b>¿Ya llevabas tiempo apuntando?</b><p class="texto">Si te han pasado un enlace con tus entrenos, pégalo aquí y los cargo todos.</p>
+    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk2">Cargar</button></div></div>`;
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
   html += `<div class="stack">` + dia.ejercicios.map((e) => tarjeta(e, salt.includes(e.id))).join('') + `</div>`;
   html += `<div style="margin-top:18px">${hechas ? `<button class="btn pri" id="terminar">Terminar entreno · ${hechas} series</button>` : `<p class="texto" style="text-align:center">Apunta kilos y reps y dale al ✓. Si no escribes nada, se guarda lo que sale en gris.</p>`}</div>`;
@@ -511,6 +513,7 @@ function aEntreno() {
     card.querySelector('[data-saltar]').onclick = () => { const h = hoy(); const l = new Set(D.saltados[h] || []); l.has(id) ? l.delete(id) : l.add(id); D.saltados = { [h]: [...l] }; guardar(); pintar(); };
   });
   const t = $('#terminar'); if (t) t.onclick = terminar;
+  const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); };
   reloj();
 }
 // "+ Serie" cuando ya están todas: añade una fila más pidiendo una serie extra
@@ -867,15 +870,20 @@ setTimeout(() => { if (pestana === 'entreno' && window.bichoDecir) window.bichoD
 setInterval(() => { if (!document.hidden && window.bichoDecir && !$('#hoja').classList.contains('on') && Math.random() < 0.6) window.bichoDecir(consejo(), 6); }, 360000);
 
 // ================= ENLACE CON TUS DATOS (?cargar=código) =================
-// Carga la copia d/<código>.json una sola vez y limpia el enlace.
+// Carga la copia d/<código>.json una sola vez. El enlace NO se limpia: así, al añadir la app a la pantalla
+// de inicio del iPhone (que tiene su propia memoria, aparte de Safari), la app instalada también lo lee.
+// Los datos se SUMAN: lo que ya hayas apuntado en días que no vienen en el archivo (p. ej. hoy) se queda.
 async function cargarCodigo(cod, manual = false) {
   if (!cod || !/^[a-z0-9]{6,20}$/.test(cod)) { if (manual) toast('Ese enlace no vale'); return; }
-  const limpiar = () => { try { history.replaceState(null, '', location.pathname); } catch {} };
-  if (D.cargado === cod && !manual) { limpiar(); return; }
+  const limpiar = () => {};
+  if (D.cargado === cod && !manual) return;
   try {
     const r = await fetch(`d/${cod}.json`, { cache: 'no-store' }); if (!r.ok) throw 0; const o = await r.json(); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0;
-    if (D.regs.length && !confirm(`Este enlace trae tus entrenos (${new Set(o.regs.map((x) => x.fecha)).size} días). ¿Cambio lo que hay ahora por ellos?`)) { limpiar(); return; }
-    D = { ...nuevo(), ...o, cargado: cod }; revisarLogros(true); guardar(); limpiar(); pintar();
+    const enArchivo = new Set(o.regs.map((x) => x.fecha)), propios = D.regs.filter((x) => !enArchivo.has(x.fecha));
+    const regs = [...o.regs, ...propios].sort((a, b) => a.fecha.localeCompare(b.fecha));
+    const sesiones = [...(o.sesiones || []), ...D.sesiones.filter((x) => !enArchivo.has(x.fecha))].sort((a, b) => a.fecha.localeCompare(b.fecha));
+    const pesos = [...(o.peso || []), ...D.peso.filter((x) => !(o.peso || []).some((y) => y.fecha === x.fecha))].sort((a, b) => a.fecha.localeCompare(b.fecha));
+    D = { ...nuevo(), ...D, rutina: o.rutina, regs, sesiones, peso: pesos, cargado: cod }; revisarLogros(true); guardar(); pintar();
     toast(`Cargados tus ${fechasEntreno().length} entrenos`); setTimeout(() => window.bichoDecir && window.bichoDecir('¡Ya tengo todo tu historial! Mira en Progreso cuánto has subido.', 7), 2500);
   } catch { limpiar(); toast('No he podido cargar los datos de este enlace'); }
 }
