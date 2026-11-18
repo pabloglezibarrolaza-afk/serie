@@ -470,6 +470,10 @@ function pintar() {
   ({ entreno: aEntreno, progreso: aProgreso, rutina: aRutina, mas: aMas })[pestana]();
 }
 
+// tarjeta para pegar el enlace con tus entrenos (sale cuando la app está vacía)
+const tarjetaCargar = () => `<div class="card stack" style="margin-bottom:16px;border-color:var(--ac)"><b>¿Ya llevabas tiempo apuntando?</b><p class="texto">Pega aquí el enlace con tus entrenos y los cargo todos. Lo que hayas apuntado aquí no se borra.</p>
+    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk2">Cargar</button></div></div>`;
+const atarCargar = () => { const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); }; };
 // ================= ENTRENO =================
 function vEntreno() {
   if (!dias().length) return `<header class="top"><div><div class="eyebrow">Sin rutina</div><h1>Monta tu rutina</h1></div></header><button class="btn pri" onclick="pestana='rutina';pintar()">Ir a Rutina</button>`;
@@ -481,8 +485,7 @@ function vEntreno() {
   let html = `<header class="top"><div><div class="eyebrow">${esc(fecha)}</div><h1>${esc(dia.nombre)}</h1></div></header>
   <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>`;
   if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. Abajo tienes el siguiente día.</small></div></div>`;
-  if (!D.regs.length) html += `<div class="card stack" style="margin-bottom:16px;border-color:var(--ac)"><b>¿Ya llevabas tiempo apuntando?</b><p class="texto">Si te han pasado un enlace con tus entrenos, pégalo aquí y los cargo todos.</p>
-    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk2">Cargar</button></div></div>`;
+  if (!D.regs.length) html += tarjetaCargar();
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
   html += `<div class="stack">` + dia.ejercicios.map((e) => tarjeta(e, salt.includes(e.id))).join('') + `</div>`;
   html += `<div style="margin-top:18px">${hechas ? `<button class="btn pri" id="terminar">Terminar entreno · ${hechas} series</button>` : `<p class="texto" style="text-align:center">Apunta kilos y reps y dale al ✓. Si no escribes nada, se guarda lo que sale en gris.</p>`}</div>`;
@@ -526,7 +529,7 @@ function aEntreno() {
     card.querySelector('[data-saltar]').onclick = () => { const h = hoy(); const l = new Set(D.saltados[h] || []); l.has(id) ? l.delete(id) : l.add(id); D.saltados = { [h]: [...l] }; guardar(); pintar(); };
   });
   const t = $('#terminar'); if (t) t.onclick = terminar;
-  const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); };
+  atarCargar();
   reloj();
 }
 // "+ Serie" cuando ya están todas: añade una fila más pidiendo una serie extra
@@ -688,7 +691,7 @@ function vProgreso() {
   const peso = [...D.peso].sort((a, b) => a.fecha.localeCompare(b.fecha));
   const A = analisis(), subeDe = new Map(A.ejs.map((e) => [e.id, e.sube]));
   return `<header class="top"><div><div class="eyebrow">Progreso</div><h1>Cómo vas</h1></div></header>
-  ${vProgresoFuerza(A)}
+  ${D.regs.length ? '' : tarjetaCargar()}${vProgresoFuerza(A)}
   <h2>Constancia</h2>
   <div class="kpis"><div class="card kpi"><div class="v">${sem}<small>/${obj}</small></div><div class="l">Esta semana</div></div>
    <div class="card kpi"><div class="v">${fechas.length}</div><div class="l">Entrenos</div></div>
@@ -721,6 +724,7 @@ function vCalendario() {
 }
 const moverMes = (k) => { const [y, m] = (calMes || hoy().slice(0, 7)).split('-').map(Number), d = new Date(y, m - 1 + k, 1); calMes = `${d.getFullYear()}-${pad(d.getMonth() + 1)}`; pintar(); };
 function aProgreso() {
+  atarCargar();
   document.querySelectorAll('[data-cal]').forEach((b) => b.onclick = () => hojaSesion(b.dataset.cal));
   const cp = $('#calPrev'), cn = $('#calNext'); if (cp) cp.onclick = () => moverMes(-1); if (cn) cn.onclick = () => moverMes(1);
   document.querySelectorAll('[data-ejh]').forEach((b) => b.onclick = () => hojaEjercicio(b.dataset.ejh, b.dataset.nom));
