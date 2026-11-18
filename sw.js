@@ -1,4 +1,4 @@
-const VERSION = 'serie-v3';
+const VERSION = 'serie-v4';
 const ARCHIVOS = ['./', './index.html', './manifest.webmanifest', './icono.svg', './icono-192.png', './icono-512.png', './bicho.js'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(ARCHIVOS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

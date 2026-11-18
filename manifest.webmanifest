@@ -1,6 +1,6 @@
 {
-  "name": "Serie — cuaderno de gym",
-  "short_name": "Serie",
+  "name": "Gym",
+  "short_name": "Gym",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

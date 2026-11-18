@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Serie">
-<title>Serie · gym</title>
+<meta name="apple-mobile-web-app-title" content="Gym">
+<title>Gym</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icono.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icono-192.png">
@@ -639,11 +639,11 @@ function aMas() {
   $('#dk').oninput = dc; $('#db').onchange = dc;
   $('#adesc').onchange = (e) => { D.aj.descanso = +e.target.value; guardar(); };
   $('#ainc').onchange = (e) => { D.aj.inc = +e.target.value; guardar(); };
-  $('#exp').onclick = () => { const b = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `serie-gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
+  $('#exp').onclick = () => { const b = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
   $('#avisos').onclick = async () => { if (!('Notification' in window)) { toast('En iPhone, añádela antes a la pantalla de inicio'); return; }
     const p = await Notification.requestPermission(); if (p === 'granted') { toast('Avisos activados'); notificar('Avisos activados', 'Así te aviso de tus logros.'); } else toast('Sin permiso para avisar'); pintar(); };
   $('#imp').onclick = () => $('#impf').click();
-  $('#impf').onchange = async (e) => { const fl = e.target.files[0]; if (!fl) return; try { const o = JSON.parse(await fl.text()); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0; if (!confirm('Esto cambia todo lo de ahora por la copia. ¿Seguro?')) return; D = { ...nuevo(), ...o }; guardar(); toast('Copia recuperada'); pintar(); } catch { toast('Ese archivo no es una copia de Serie'); } };
+  $('#impf').onchange = async (e) => { const fl = e.target.files[0]; if (!fl) return; try { const o = JSON.parse(await fl.text()); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0; if (!confirm('Esto cambia todo lo de ahora por la copia. ¿Seguro?')) return; D = { ...nuevo(), ...o }; guardar(); toast('Copia recuperada'); pintar(); } catch { toast('Ese archivo no es una copia de la app'); } };
   $('#reset').onclick = () => { if (!confirm('¿Borrar todos tus entrenos, pesos y la rutina?')) return; if (!confirm('Seguro seguro? No se puede deshacer.')) return; D = nuevo(); guardar(); pintar(); };
 }
 
