@@ -624,13 +624,13 @@ function serieE1(ej) { const m = new Map(); for (const r of regsDe(ej)) { const 
 // ================= PROGRESO =================
 const sinTilde = (t) => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 const GRUPOS = [
-  ['core', 'Core', /abs|abdominal|plancha|crunch/],
-  ['pierna', 'Pierna', /prensa|femoral|cuadriceps|sentadilla|gemel|aductor|abductor|abducc|culete|peso muerto|zancada|hip thrust|gluteo/],
-  ['triceps', 'Tríceps', /triceps|frances|fondos/],
+  ['core', 'Core', /abs|abdominal|plancha|crunch|rueda|tronco|elevacion de piernas|elevaciones de piernas/],
+  ['pierna', 'Pierna', /prensa|femoral|cuadriceps|sentadilla|gemel|aductor|abductor|abducc|culete|peso muerto|zancada|hip|gluteo/],
+  ['triceps', 'Tríceps', /triceps|frances|fondos|codo|press cerrado/],
   ['biceps', 'Bíceps', /curl|biceps|antebrazo/],
-  ['hombro', 'Hombro', /militar|lateral|posterior|pajaros|face pull|rear delt|hombro/],
   ['espalda', 'Espalda', /remo|jalon|dominad|esquiador|pull|espalda/],
-  ['pecho', 'Pecho', /pecho|inclinado|peck|pec |aperturas|flexiones|banca|cruce|contractor/],
+  ['hombro', 'Hombro', /militar|lateral|posterior|pajaros|rear delt|hombro/],
+  ['pecho', 'Pecho', /pecho|inclinado|plano|peck|pec |aperturas|flexiones|banca|cruce|contractor/],
 ];
 const grupoDe = (id, nombre) => { const n = sinTilde(nombre + ' ' + String(id).replace(/_/g, ' ')); const g = GRUPOS.find((x) => x[2].test(n)); return g ? g[0] : 'otro'; };
 const nombreGrupo = (g) => (GRUPOS.find((x) => x[0] === g) || [0, 'Otros'])[1];
@@ -644,6 +644,7 @@ function analisis() {
   const ejs = [];
   for (const e of porEj.values()) {
     const ds = [...e.dias].sort((a, b) => a[0].localeCompare(b[0])).map(([fecha, x]) => ({ fecha, ...x })); if (ds.length < 2 || dias_(ds[0].fecha, ds[ds.length - 1].fecha) < 6) continue;
+    if (/lastre|anadid|kg extra/.test(sinTilde(e.nombre))) continue; // solo cuenta el peso añadido: el % saldría inflado
     const base = ds[0].v, ahora = Math.max(...ds.slice(-2).map((x) => x.v));
     ejs.push({ id: e.id, nombre: e.nombre, grupo: grupoDe(e.id, e.nombre), ds, base, ahora, sube: (ahora / base - 1) * 100, kg0: ds[0].kg, kgMax: Math.max(...ds.map((x) => x.kg)), desde: ds[0].fecha });
   }
