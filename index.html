@@ -88,6 +88,13 @@ h3{font-size:16px;font-weight:600;letter-spacing:-.01em}
 .fila-btn{display:flex;gap:8px}
 
 /* barra de sesión */
+.guardado{display:flex;gap:12px;align-items:center;margin-bottom:16px;border-color:var(--ac)}
+.guardado .ok-g{flex:0 0 36px;height:36px;border-radius:50%;background:var(--ac);display:grid;place-items:center}
+.guardado .ok-g svg{width:20px;height:20px;stroke:var(--ac-ink);stroke-width:2.6;fill:none}
+.guardado b{display:block;font-size:15px}.guardado small{color:var(--mu);font-size:13px}
+.hecho-g{width:64px;height:64px;border-radius:50%;background:var(--ac);display:grid;place-items:center;margin:6px auto 14px;animation:pop .45s cubic-bezier(.2,.9,.3,1.4)}
+.hecho-g svg{width:34px;height:34px;stroke:var(--ac-ink);stroke-width:2.6;fill:none}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
 .sesion{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:10px 14px}
 .sesion .t{font-family:var(--mono);font-size:20px;font-weight:600}
 .punto{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ac);margin-right:8px;animation:lat 1.6s ease-in-out infinite}
@@ -359,16 +366,18 @@ const diaPorId = (id) => dias().find((d) => d.id === id);
 function diaDeHoy() {
   const h = hoy(), ids = new Set(dias().map((d) => d.id));
   if (D.hoyDia && D.hoyDia.fecha === h && ids.has(D.hoyDia.dia)) return D.hoyDia.dia;
-  const deHoy = D.regs.filter((r) => r.fecha === h && ids.has(r.dia));
-  if (deHoy.length) return deHoy[deHoy.length - 1].dia;
   const orden = (D.rutina.orden || []).filter((x) => ids.has(x)); const o = orden.length ? orden : dias().map((d) => d.id);
+  const cerrados = D.sesiones.filter((x) => x.fecha === h).map((x) => x.dia);
+  const deHoy = D.regs.filter((r) => r.fecha === h && ids.has(r.dia) && r.series.length && !cerrados.includes(r.dia));
+  if (deHoy.length) return deHoy[deHoy.length - 1].dia;
+  if (cerrados.length) { const u = cerrados[cerrados.length - 1]; return o.includes(u) ? o[(o.indexOf(u) + 1) % o.length] : o[0]; }
   const prev = D.regs.filter((r) => r.fecha < h && o.includes(r.dia));
   if (prev.length) { const i = o.indexOf(prev[prev.length - 1].dia); return o[(i + 1) % o.length]; }
   return o[0];
 }
 const regsDe = (ej) => D.regs.filter((r) => r.ej === ej && r.series.length);
-const ultima = (ej) => { const p = regsDe(ej).filter((r) => r.fecha < hoy()); return p.length ? p[p.length - 1] : null; };
-const regHoy = (ej) => D.regs.find((r) => r.ej === ej && r.fecha === hoy());
+const ultima = (ej) => { const h = hoy(), d = diaDeHoy(); const p = regsDe(ej).filter((r) => r.fecha < h || (r.fecha === h && r.dia !== d)); return p.length ? p[p.length - 1] : null; };
+const regHoy = (ej) => { const h = hoy(), d = diaDeHoy(); return D.regs.find((r) => r.ej === ej && r.fecha === h && r.dia === d); };
 // Si en la última sesión todas las series llegaron al tope de reps -> sube peso; si no, mismo peso y una rep más.
 function sugerir(e, u) {
   if (!u) return null;
@@ -412,10 +421,12 @@ function vEntreno() {
   if (!dias().length) return `<header class="top"><div><div class="eyebrow">Sin rutina</div><h1>Monta tu rutina</h1></div></header><button class="btn pri" onclick="pestana='rutina';pintar()">Ir a Rutina</button>`;
   const id = diaDeHoy(), dia = diaPorId(id), h = hoy(); const salt = (D.saltados[h] || []);
   const fecha = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-  const hechas = D.regs.filter((r) => r.fecha === h).reduce((a, r) => a + r.series.length, 0);
+  const hechas = D.regs.filter((r) => r.fecha === h && r.dia === id).reduce((a, r) => a + r.series.length, 0);
+  const cerrada = [...D.sesiones].reverse().find((x) => x.fecha === h);
   const ses = D.activa && D.activa.fecha === h ? D.activa : null;
   let html = `<header class="top"><div><div class="eyebrow">${esc(fecha)}</div><h1>${esc(dia.nombre)}</h1></div></header>
   <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>`;
+  if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. Abajo tienes el siguiente día.</small></div></div>`;
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
   html += `<div class="stack">` + dia.ejercicios.map((e) => tarjeta(e, salt.includes(e.id))).join('') + `</div>`;
   html += `<div style="margin-top:18px">${hechas ? `<button class="btn pri" id="terminar">Terminar entreno · ${hechas} series</button>` : `<p class="texto" style="text-align:center">Apunta kilos y reps y dale al ✓. Si no escribes nada, se guarda lo que sale en gris.</p>`}</div>`;
@@ -500,20 +511,20 @@ $('#dmas').onclick = () => { fin += 15000; total += 15; tickD(); };
 $('#dfin').onclick = cerrarD;
 
 function terminar() {
-  const h = hoy(); const rs = D.regs.filter((r) => r.fecha === h); if (!rs.length) return;
+  const h = hoy(), dId = diaDeHoy(); const rs = D.regs.filter((r) => r.fecha === h && r.dia === dId && r.series.length); if (!rs.length) return;
   const ini = D.activa && D.activa.fecha === h ? D.activa.inicio : null; const min = ini ? Math.round((Date.now() - ini) / 60000) : null;
   const prs = rs.flatMap((r) => r.series.filter((s) => s.pr).map(() => r.nombre));
   const ses = { fecha: h, dia: rs[0].dia, min, series: rs.reduce((a, r) => a + r.series.length, 0), vol: Math.round(volumen(rs)), prs: [...new Set(prs)] };
-  D.sesiones = D.sesiones.filter((s) => s.fecha !== h); D.sesiones.push(ses); D.activa = null; guardar(); cerrarD(); pintar();
+  D.sesiones = D.sesiones.filter((s) => !(s.fecha === h && s.dia === ses.dia)); D.sesiones.push(ses); D.activa = null; D.hoyDia = null; guardar(); cerrarD(); pintar(); window.scrollTo(0, 0);
   const sem = semanaActual();
-  abrirHoja(`<div class="eyebrow">Entreno terminado</div><h1 style="margin-bottom:16px">${esc(diaPorId(ses.dia)?.nombre || ses.dia)}</h1>
+  abrirHoja(`<div class="hecho-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h1 style="text-align:center">Guardado</h1><p class="texto" style="text-align:center;margin:4px 0 18px">${esc(diaPorId(ses.dia)?.nombre || ses.dia)} está guardado en tu móvil y ya cuenta en Progreso.</p>
    <div class="kpis"><div class="card kpi"><div class="v">${min ?? '–'}<small> min</small></div><div class="l">Duración</div></div>
    <div class="card kpi"><div class="v">${ses.series}</div><div class="l">Series</div></div>
-   <div class="card kpi"><div class="v">${f(ses.vol / 1000, 1)}<small> t</small></div><div class="l">Volumen</div></div></div>
+   <div class="card kpi"><div class="v">${ses.prs.length}</div><div class="l">Récords</div></div></div>
    ${ses.prs.length ? `<h2>Récords</h2><div class="lista">${ses.prs.map((p) => `<div class="item"><div class="c"><b>${esc(p)}</b></div><div class="d" style="color:var(--ac)">PR</div></div>`).join('')}</div>` : ''}
    <p class="texto" style="margin:18px 0">Esta semana llevas <b>${sem} de ${D.rutina.objetivo || 4}</b> entrenos. Próximo día: <b>${esc(siguiente(ses.dia))}</b>.</p>
-   <button class="btn pri" onclick="cerrarHoja();pintar()">Hecho</button>`);
-  vibrar([40, 60, 40]); avisarBicho('terminar'); setTimeout(revisarLogros, 1200);
+   <button class="btn pri" onclick="cerrarHoja();pintar();window.scrollTo(0,0)">Vale</button>`);
+  vibrar([40, 60, 40]); toast('Entreno guardado'); avisarBicho('terminar'); setTimeout(revisarLogros, 1200);
 }
 function siguiente(id) { const o = D.rutina.orden?.length ? D.rutina.orden : dias().map((d) => d.id); const n = o[(o.indexOf(id) + 1) % o.length]; const d = diaPorId(n); return d ? `${d.id} · ${d.nombre}` : n; }
 const fechasEntreno = () => [...new Set(D.regs.filter((r) => r.series.length).map((r) => r.fecha))].sort();
@@ -551,7 +562,7 @@ function serieE1(ej) { const m = new Map(); for (const r of regsDe(ej)) { const 
 // ================= PROGRESO =================
 function vProgreso() {
   const fechas = fechasEntreno(); const sem = semanaActual(); const obj = D.rutina.objetivo || 4;
-  const l = lunes(hoy()); const volSem = volumen(D.regs.filter((r) => r.fecha >= l));
+  const l = lunes(hoy()); const seriesSem = D.regs.filter((r) => r.fecha >= l).reduce((a, r) => a + r.series.length, 0);
   // últimas 8 semanas
   const sems = []; for (let k = 7; k >= 0; k--) { const d = new Date(l + 'T12:00'); d.setDate(d.getDate() - 7 * k); const a = fechaDe(d); const b = new Date(d); b.setDate(b.getDate() + 6); const n = fechas.filter((x) => x >= a && x <= fechaDe(b)).length; sems.push({ n, et: `${d.getDate()}/${d.getMonth() + 1}` }); }
   const mxS = Math.max(obj, ...sems.map((s) => s.n));
@@ -563,7 +574,7 @@ function vProgreso() {
   return `<header class="top"><div><div class="eyebrow">Progreso</div><h1>Cómo vas</h1></div></header>
   <div class="kpis"><div class="card kpi"><div class="v">${sem}<small>/${obj}</small></div><div class="l">Esta semana</div></div>
    <div class="card kpi"><div class="v">${fechas.length}</div><div class="l">Entrenos</div></div>
-   <div class="card kpi"><div class="v">${f(volSem / 1000, 1)}<small> t</small></div><div class="l">Volumen sem.</div></div></div>
+   <div class="card kpi"><div class="v">${seriesSem}</div><div class="l">Series semana</div></div></div>
   <div class="card" style="margin-top:8px"><div class="eyebrow">Últimas 8 semanas</div><div class="semanas">${sems.map((s) => `<div><i class="${s.n >= obj ? 'ok' : ''}" style="height:${Math.max(6, 100 * s.n / mxS)}%"></i><span>${s.et}</span></div>`).join('')}</div></div>
   <h2>Récords y 1RM</h2>
   <div class="lista">${ejs.length ? ejs.map((e) => `<button class="item" data-ejh="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">Mejor ${f(e.m.kg)} kg × ${e.m.reps}</small></div>${linea(e.serie, 64, 26, false)}<div class="d">${f(e.m.e1, 0)}<small>1RM est.</small></div></button>`).join('') : `<div class="vacio">Cuando apuntes tu primer entreno, aquí verás tus récords y cómo suben.</div>`}</div>
@@ -573,7 +584,7 @@ function vProgreso() {
    <div style="display:flex;gap:8px;align-items:center;${peso.length >= 2 ? 'margin-top:8px' : ''}"><div class="campo" style="flex:1"><input id="pesoIn" inputmode="decimal" placeholder="${peso.length ? f(peso[peso.length - 1].kg) : 'Tu peso de hoy'}"><span>kg</span></div><button class="btn peq pri" id="pesoOk">Apuntar</button></div>
    ${peso.length ? `<p class="texto" style="margin-top:8px">Último: <b class="num">${f(peso[peso.length - 1].kg)} kg</b> (${fCorta(peso[peso.length - 1].fecha)})${peso.length > 1 ? ` · desde el principio <b class="num">${(peso[peso.length - 1].kg - peso[0].kg >= 0 ? '+' : '') + f(peso[peso.length - 1].kg - peso[0].kg)} kg</b>` : ''}</p>` : ''}</div>
   <h2>Historial</h2>
-  <div class="lista">${ses.length ? ses.slice(0, 40).map((s) => `<button class="item" data-ses="${s.fecha}"><div class="c"><b>${esc(diaPorId(s.dia)?.nombre || s.dia)}</b><small>${fCorta(s.fecha)} · ${s.series} series${s.min ? ` · ${s.min} min` : ''}</small></div><div class="d">${f(s.vol / 1000, 1)} t${s.prs.length ? `<small style="color:var(--ac)">${s.prs.length} PR</small>` : ''}</div></button>`).join('') : `<div class="vacio">Aún no has terminado ningún entreno.</div>`}</div>`;
+  <div class="lista">${ses.length ? ses.slice(0, 40).map((s) => `<button class="item" data-ses="${s.fecha}" data-dia-s="${esc(s.dia)}"><div class="c"><b>${esc(diaPorId(s.dia)?.nombre || s.dia)}</b><small>${fCorta(s.fecha)} · ${s.series} series${s.min ? ` · ${s.min} min` : ''}</small></div><div class="d">${s.prs.length ? `<span style="color:var(--ac)">${s.prs.length} PR</span>` : '✓'}</div></button>`).join('') : `<div class="vacio">Aún no has terminado ningún entreno.</div>`}</div>`;
 }
 function aProgreso() {
   document.querySelectorAll('[data-ejh]').forEach((b) => b.onclick = () => hojaEjercicio(b.dataset.ejh, b.dataset.nom));
@@ -657,7 +668,7 @@ function aMas() {
   $('#avisos').onclick = async () => { if (!('Notification' in window)) { toast('En iPhone, añádela antes a la pantalla de inicio'); return; }
     const p = await Notification.requestPermission(); if (p === 'granted') { toast('Avisos activados'); notificar('Avisos activados', 'Así te aviso de tus logros.'); } else toast('Sin permiso para avisar'); pintar(); };
   $('#imp').onclick = () => $('#impf').click();
-  $('#impf').onchange = async (e) => { const fl = e.target.files[0]; if (!fl) return; try { const o = JSON.parse(await fl.text()); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0; if (!confirm('Esto cambia todo lo de ahora por la copia. ¿Seguro?')) return; D = { ...nuevo(), ...o }; guardar(); toast('Copia recuperada'); pintar(); } catch { toast('Ese archivo no es una copia de la app'); } };
+  $('#impf').onchange = async (e) => { const fl = e.target.files[0]; if (!fl) return; try { const o = JSON.parse(await fl.text()); if (!o || !o.rutina || !Array.isArray(o.regs)) throw 0; if (!confirm('Esto cambia todo lo de ahora por la copia. ¿Seguro?')) return; D = { ...nuevo(), ...o }; if (!o.logros) revisarLogros(true); guardar(); toast(`Copia recuperada: ${fechasEntreno().length} entrenos`); pintar(); } catch { toast('Ese archivo no es una copia de la app'); } };
   $('#reset').onclick = () => { if (!confirm('¿Borrar todos tus entrenos, pesos y la rutina?')) return; if (!confirm('Seguro seguro? No se puede deshacer.')) return; D = nuevo(); guardar(); pintar(); };
 }
 
@@ -683,8 +694,8 @@ const LOGROS = [
   { id: 'pr1', t: 'Primer récord', d: 'Bate una marca tuya', i: 'estrella', ok: (s) => s.prs >= 1 },
   { id: 'pr10', t: '10 récords', d: 'Subiendo sin parar', i: 'estrella', ok: (s) => s.prs >= 10 },
   { id: 'pr50', t: '50 récords', d: 'Esto ya es otra cosa', i: 'estrella', ok: (s) => s.prs >= 50 },
-  { id: 'ton5', t: 'Cinco toneladas', d: '5.000 kg en un solo entreno', i: 'rayo', ok: (s) => s.volSes >= 5000 },
-  { id: 'ton100', t: 'Cien toneladas', d: '100.000 kg levantados en total', i: 'rayo', ok: (s) => s.volTotal >= 100000 },
+  { id: 's100', t: 'Cien series', d: 'Apunta 100 series', i: 'rayo', ok: (s) => s.series >= 100 },
+  { id: 's500', t: 'Quinientas series', d: 'Apunta 500 series', i: 'rayo', ok: (s) => s.series >= 500 },
   { id: 'club100', t: 'Club de los 100', d: '1RM estimado de 100 kg', i: 'trofeo', ok: (s) => s.maxE1 >= 100 },
   { id: 'peso', t: 'A la báscula', d: 'Apunta tu peso corporal', i: 'bascula', ok: (s) => s.pesos >= 1 },
 ];
@@ -696,9 +707,9 @@ function statsLogros() {
     const seguida = prev && Math.round((new Date(l + 'T12:00') - new Date(prev + 'T12:00')) / 864e5) === 7;
     racha = n >= obj ? (seguida ? racha + 1 : 1) : 0; mejorR = Math.max(mejorR, racha); prev = l;
   }
-  let prs = 0, volTotal = 0, maxE1 = 0;
-  for (const r of D.regs) for (const x of r.series) { if (x.pr) prs++; const v = x.kg * x.reps; volTotal += v; porDia.set(r.fecha, (porDia.get(r.fecha) || 0) + v); maxE1 = Math.max(maxE1, e1rm(x.kg, x.reps)); }
-  return { entrenos: fechas.length, obj, semMax: Math.max(0, ...porSem.values()), racha: mejorR, prs, volTotal, volSes: Math.max(0, ...porDia.values()), maxE1, pesos: D.peso.length };
+  let prs = 0, series = 0, maxE1 = 0;
+  for (const r of D.regs) for (const x of r.series) { if (x.pr) prs++; series++; maxE1 = Math.max(maxE1, e1rm(x.kg, x.reps)); }
+  return { entrenos: fechas.length, obj, semMax: Math.max(0, ...porSem.values()), racha: mejorR, prs, series, maxE1, pesos: D.peso.length };
 }
 const colaLogros = [];
 function revisarLogros(silencio = false) {
