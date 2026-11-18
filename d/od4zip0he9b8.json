@@ -1,0 +1,9862 @@
+{
+ "v": 1,
+ "rutina": {
+  "orden": [
+   "P1",
+   "PB",
+   "P2",
+   "EP",
+   "PHT"
+  ],
+  "objetivo": 5,
+  "dias": [
+   {
+    "id": "P1",
+    "nombre": "Pierna día 1",
+    "ejercicios": [
+     {
+      "id": "aductor_maquina",
+      "nombre": "Aductor máquina",
+      "series": 3,
+      "reps": "12-16",
+      "notas": ""
+     },
+     {
+      "id": "extension_de_cuadriceps",
+      "nombre": "Extensión de cuádriceps",
+      "series": 6,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "femoral_sentado",
+      "nombre": "Femoral sentado",
+      "series": 3,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "prensa_inclinada",
+      "nombre": "Prensa inclinada",
+      "series": 4,
+      "reps": "4-15",
+      "notas": ""
+     },
+     {
+      "id": "sentadilla_maquina",
+      "nombre": "Sentadilla máquina",
+      "series": 3,
+      "reps": "3-10",
+      "notas": ""
+     },
+     {
+      "id": "gemelo_sentado",
+      "nombre": "Gemelo sentado",
+      "series": 3,
+      "reps": "10-17",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "PB",
+    "nombre": "Pecho y bíceps",
+    "ejercicios": [
+     {
+      "id": "contractor_de_placas",
+      "nombre": "Contractor de placas",
+      "series": 6,
+      "reps": "9-14",
+      "notas": ""
+     },
+     {
+      "id": "cruce_entre_poleas",
+      "nombre": "Cruce entre poleas",
+      "series": 6,
+      "reps": "10-15",
+      "notas": ""
+     },
+     {
+      "id": "aperturas_inclinadas_mancuernas",
+      "nombre": "Aperturas inclinadas mancuernas",
+      "series": 3,
+      "reps": "7-14",
+      "notas": ""
+     },
+     {
+      "id": "press_frontal_placas",
+      "nombre": "Press frontal placas",
+      "series": 3,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "curl_alterno_mancuernas",
+      "nombre": "Curl alterno mancuernas",
+      "series": 4,
+      "reps": "16-22",
+      "notas": ""
+     },
+     {
+      "id": "curl_barra_polea_baja",
+      "nombre": "Curl barra polea baja",
+      "series": 3,
+      "reps": "9-13",
+      "notas": ""
+     },
+     {
+      "id": "curl_alterno_martillo",
+      "nombre": "Curl alterno martillo",
+      "series": 6,
+      "reps": "4-26",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "P2",
+    "nombre": "Pierna día 2",
+    "ejercicios": [
+     {
+      "id": "femoral_de_pie_unilateral",
+      "nombre": "Femoral de pie unilateral",
+      "series": 4,
+      "reps": "5-13",
+      "notas": ""
+     },
+     {
+      "id": "femoral_sentado",
+      "nombre": "Femoral sentado",
+      "series": 6,
+      "reps": "4-12",
+      "notas": ""
+     },
+     {
+      "id": "peso_muerto_rumano",
+      "nombre": "Peso muerto rumano",
+      "series": 4,
+      "reps": "6-10",
+      "notas": ""
+     },
+     {
+      "id": "hip_thrust_maquina_discos",
+      "nombre": "Hip thrust máquina discos",
+      "series": 4,
+      "reps": "8-9",
+      "notas": ""
+     },
+     {
+      "id": "extension_de_cuadriceps_1_de_descanso",
+      "nombre": "Extensión de cuádriceps (1’ de descanso)",
+      "series": 6,
+      "reps": "20-24",
+      "notas": ""
+     },
+     {
+      "id": "aductor_maquina",
+      "nombre": "Aductor máquina",
+      "series": 3,
+      "reps": "9-13",
+      "notas": ""
+     },
+     {
+      "id": "abductor_maquina",
+      "nombre": "Abductor máquina",
+      "series": 3,
+      "reps": "13",
+      "notas": ""
+     },
+     {
+      "id": "gemelo_prensa_frontal",
+      "nombre": "Gemelo prensa frontal",
+      "series": 3,
+      "reps": "12-15",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "EP",
+    "nombre": "Espalda y pecho",
+    "ejercicios": [
+     {
+      "id": "jalon_al_pecho_agarre_amplio",
+      "nombre": "Jalón al pecho agarre amplio",
+      "series": 4,
+      "reps": "6-12",
+      "notas": ""
+     },
+     {
+      "id": "remo_bajo_de_discos_kg_por_lado",
+      "nombre": "Remo bajo de discos (kg por lado)",
+      "series": 4,
+      "reps": "6-11",
+      "notas": ""
+     },
+     {
+      "id": "remo_t",
+      "nombre": "Remo t",
+      "series": 5,
+      "reps": "6-11",
+      "notas": ""
+     },
+     {
+      "id": "jalon_al_pecho_agarre_supino",
+      "nombre": "Jalón al pecho agarre supino",
+      "series": 6,
+      "reps": "5-10",
+      "notas": ""
+     },
+     {
+      "id": "aperturas_planas_mancuernas",
+      "nombre": "Aperturas planas mancuernas",
+      "series": 3,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "press_plano_mancuernas",
+      "nombre": "Press plano mancuernas",
+      "series": 3,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "pullover_mancuerna",
+      "nombre": "Pullover mancuerna",
+      "series": 2,
+      "reps": "16-18",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "PHT",
+    "nombre": "Pecho, hombro y tríceps",
+    "ejercicios": [
+     {
+      "id": "contractor_de_placas",
+      "nombre": "Contractor de placas",
+      "series": 6,
+      "reps": "13-19",
+      "notas": ""
+     },
+     {
+      "id": "elevaciones_laterales_maquina",
+      "nombre": "Elevaciones laterales máquina",
+      "series": 3,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "pajaros_con_mancuernas",
+      "nombre": "Pájaros con mancuernas",
+      "series": 3,
+      "reps": "13-17",
+      "notas": ""
+     },
+     {
+      "id": "press_de_hombro_maquina",
+      "nombre": "Press de hombro máquina",
+      "series": 2,
+      "reps": "7-8",
+      "notas": ""
+     },
+     {
+      "id": "fondos_triceps_maquina",
+      "nombre": "Fondos tríceps máquina",
+      "series": 3,
+      "reps": "7-11",
+      "notas": ""
+     },
+     {
+      "id": "jalon_cuerda",
+      "nombre": "Jalón cuerda",
+      "series": 3,
+      "reps": "11-12",
+      "notas": ""
+     },
+     {
+      "id": "jalon_cuerda_por_encima_de_la_cabeza",
+      "nombre": "Jalón cuerda por encima de la cabeza",
+      "series": 3,
+      "reps": "10-12",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "ABD",
+    "nombre": "Abdomen",
+    "ejercicios": [
+     {
+      "id": "encogimientos_banco_declinado",
+      "nombre": "Encogimientos banco declinado",
+      "series": 5,
+      "reps": "15-18",
+      "notas": ""
+     },
+     {
+      "id": "encogimientos_desde_polea",
+      "nombre": "Encogimientos desde polea",
+      "series": 3,
+      "reps": "15-22",
+      "notas": ""
+     }
+    ]
+   }
+  ]
+ },
+ "regs": [
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 20
+    },
+    {
+     "kg": 66.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 66.0,
+     "reps": 12
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 15
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 130.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 140.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 120.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 80.0,
+     "reps": 10
+    },
+    {
+     "kg": 90.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 80.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 90.0,
+     "reps": 7
+    },
+    {
+     "kg": 70.0,
+     "reps": 10
+    },
+    {
+     "kg": 70.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 93.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 10
+    },
+    {
+     "kg": 66.0,
+     "reps": 8
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 23.0,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 13
+    },
+    {
+     "kg": 18.0,
+     "reps": 11
+    },
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 9.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 8
+    },
+    {
+     "kg": 17.5,
+     "reps": 7
+    },
+    {
+     "kg": 12.5,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 24
+    },
+    {
+     "kg": 17.5,
+     "reps": 14
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 9
+    },
+    {
+     "kg": 50.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 41.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 10.0,
+     "reps": 22
+    },
+    {
+     "kg": 7.5,
+     "reps": 28
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 35.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 120.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 120.0,
+     "reps": 8
+    },
+    {
+     "kg": 80.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 12
+    },
+    {
+     "kg": 25.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 24
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 21
+    },
+    {
+     "kg": 25.0,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 11
+    },
+    {
+     "kg": 66.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 73.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 73.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 17
+    },
+    {
+     "kg": 107.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 9
+    },
+    {
+     "kg": 68.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 64.0,
+     "reps": 9
+    },
+    {
+     "kg": 59.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 11
+    },
+    {
+     "kg": 40.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 35.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 11
+    },
+    {
+     "kg": 35.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 8
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 54.0,
+     "reps": 11
+    },
+    {
+     "kg": 41.0,
+     "reps": 13
+    },
+    {
+     "kg": 36.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 14
+    },
+    {
+     "kg": 20.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 8
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 15.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 14
+    },
+    {
+     "kg": 15.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 72.0,
+     "reps": 15
+    },
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 77.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 64.0,
+     "reps": 15,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 14
+    },
+    {
+     "kg": 20.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 13
+    },
+    {
+     "kg": 40.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    },
+    {
+     "kg": 30.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 73.0,
+     "reps": 11
+    },
+    {
+     "kg": 77.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 77.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 9
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 23.0,
+     "reps": 12
+    },
+    {
+     "kg": 23.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 23.0,
+     "reps": 6
+    },
+    {
+     "kg": 18.0,
+     "reps": 9
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 28.4,
+     "reps": 18
+    },
+    {
+     "kg": 28.4,
+     "reps": 13
+    },
+    {
+     "kg": 26.1,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-05",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 54.0,
+     "reps": 17,
+     "pr": true
+    },
+    {
+     "kg": 50.0,
+     "reps": 18
+    },
+    {
+     "kg": 50.0,
+     "reps": 16
+    },
+    {
+     "kg": 50.0,
+     "reps": 16
+    },
+    {
+     "kg": 45.0,
+     "reps": 23
+    },
+    {
+     "kg": 45.0,
+     "reps": 22
+    },
+    {
+     "kg": 45.0,
+     "reps": 20
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 16,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 11
+    },
+    {
+     "kg": 93.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 73.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 11
+    },
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 14,
+     "pr": true
+    },
+    {
+     "kg": 73.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 120.0,
+     "reps": 13
+    },
+    {
+     "kg": 130.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 140.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 120.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 90.0,
+     "reps": 12
+    },
+    {
+     "kg": 110.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 110.0,
+     "reps": 9
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 17
+    },
+    {
+     "kg": 60.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 7
+    },
+    {
+     "kg": 93.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 10
+    },
+    {
+     "kg": 66.0,
+     "reps": 8
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 23.0,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 13
+    },
+    {
+     "kg": 18.0,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 9.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 12.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 52.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 26,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 16
+    },
+    {
+     "kg": 15.0,
+     "reps": 20
+    },
+    {
+     "kg": 12.5,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 6
+    },
+    {
+     "kg": 41.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 14
+    },
+    {
+     "kg": 12.5,
+     "reps": 18
+    },
+    {
+     "kg": 10.0,
+     "reps": 20
+    },
+    {
+     "kg": 7.5,
+     "reps": 20
+    },
+    {
+     "kg": 5.0,
+     "reps": 40
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 42.5,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 79.0,
+     "reps": 7
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 11
+    },
+    {
+     "kg": 45.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 120.0,
+     "reps": 8
+    },
+    {
+     "kg": 120.0,
+     "reps": 7
+    },
+    {
+     "kg": 100.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 35.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 21,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 21
+    },
+    {
+     "kg": 25.0,
+     "reps": 21
+    },
+    {
+     "kg": 25.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    },
+    {
+     "kg": 66.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 73.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 113.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 113.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 9
+    },
+    {
+     "kg": 68.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 59.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 42.5,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 37.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.5,
+     "reps": 8
+    },
+    {
+     "kg": 27.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 8
+    },
+    {
+     "kg": 59.0,
+     "reps": 9
+    },
+    {
+     "kg": 54.0,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 41.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 12
+    },
+    {
+     "kg": 17.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 12
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 12.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 12
+    },
+    {
+     "kg": 15.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 14,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 72.0,
+     "reps": 14
+    },
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 73.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 77.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 82.0,
+     "reps": 9,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 9
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 7
+    },
+    {
+     "kg": 25.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 9
+    },
+    {
+     "kg": 82.0,
+     "reps": 6
+    },
+    {
+     "kg": 68.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 13
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    },
+    {
+     "kg": 23.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 9
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 54.0,
+     "reps": 13
+    },
+    {
+     "kg": 50.0,
+     "reps": 13
+    },
+    {
+     "kg": 45.0,
+     "reps": 16
+    },
+    {
+     "kg": 45.0,
+     "reps": 15
+    },
+    {
+     "kg": 45.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 9
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 130.0,
+     "reps": 10
+    },
+    {
+     "kg": 140.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 150.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 120.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    },
+    {
+     "kg": 120.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 90.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 86.0,
+     "reps": 11
+    },
+    {
+     "kg": 86.0,
+     "reps": 9
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 13
+    },
+    {
+     "kg": 23.0,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 11.5,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 12
+    },
+    {
+     "kg": 17.5,
+     "reps": 6
+    },
+    {
+     "kg": 15.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 9
+    },
+    {
+     "kg": 39.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 22
+    },
+    {
+     "kg": 15.0,
+     "reps": 14
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 10.0,
+     "reps": 26
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 7
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 12.5,
+     "reps": 18
+    },
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 10.0,
+     "reps": 30
+    },
+    {
+     "kg": 7.5,
+     "reps": 30
+    },
+    {
+     "kg": 5.0,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 42.5,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 42.5,
+     "reps": 9
+    },
+    {
+     "kg": 37.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 7
+    },
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 12
+    },
+    {
+     "kg": 45.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 110.0,
+     "reps": 10
+    },
+    {
+     "kg": 120.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 130.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 50.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 23,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 19
+    },
+    {
+     "kg": 25.0,
+     "reps": 21
+    },
+    {
+     "kg": 18.0,
+     "reps": 30
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 73.0,
+     "reps": 15
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    },
+    {
+     "kg": 66.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 79.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 113.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 113.0,
+     "reps": 10
+    },
+    {
+     "kg": 93.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 21,
+     "pr": true
+    },
+    {
+     "kg": 50.0,
+     "reps": 23,
+     "pr": true
+    },
+    {
+     "kg": 50.0,
+     "reps": 18
+    },
+    {
+     "kg": 50.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 10
+    },
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 68.0,
+     "reps": 7
+    },
+    {
+     "kg": 59.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 42.5,
+     "reps": 8
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 47.5,
+     "reps": 7,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 32.5,
+     "reps": 9
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 27.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 8
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 54.0,
+     "reps": 10
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    },
+    {
+     "kg": 36.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 14,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 13
+    },
+    {
+     "kg": 17.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 12
+    },
+    {
+     "kg": 12.5,
+     "reps": 13
+    },
+    {
+     "kg": 12.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 17
+    },
+    {
+     "kg": 17.5,
+     "reps": 15,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 15
+    },
+    {
+     "kg": 72.0,
+     "reps": 15
+    },
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 7
+    },
+    {
+     "kg": 77.0,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 15
+    },
+    {
+     "kg": 25.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 32.5,
+     "reps": 9
+    },
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 42.5,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 27.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 82.0,
+     "reps": 7
+    },
+    {
+     "kg": 64.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 17,
+     "pr": true
+    },
+    {
+     "kg": 27.0,
+     "reps": 13
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 13
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-19",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 21
+    },
+    {
+     "kg": 45.0,
+     "reps": 28
+    },
+    {
+     "kg": 45.0,
+     "reps": 24
+    },
+    {
+     "kg": 41.0,
+     "reps": 30
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-19",
+   "dia": "ABD",
+   "ej": "encogimientos_maquina",
+   "nombre": "Encogimientos máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 23
+    },
+    {
+     "kg": 32.0,
+     "reps": 25,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 22
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 7
+    },
+    {
+     "kg": 73.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 130.0,
+     "reps": 11
+    },
+    {
+     "kg": 145.0,
+     "reps": 9
+    },
+    {
+     "kg": 155.0,
+     "reps": 7
+    },
+    {
+     "kg": 120.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 80.0,
+     "reps": 12
+    },
+    {
+     "kg": 90.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 11
+    },
+    {
+     "kg": 80.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 60.0,
+     "reps": 13
+    },
+    {
+     "kg": 60.0,
+     "reps": 13
+    },
+    {
+     "kg": 60.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 13
+    },
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 93.0,
+     "reps": 11
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 14
+    },
+    {
+     "kg": 20.5,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 10
+    },
+    {
+     "kg": 11.5,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 7
+    },
+    {
+     "kg": 15.0,
+     "reps": 10
+    },
+    {
+     "kg": 12.5,
+     "reps": 13
+    },
+    {
+     "kg": 12.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 10
+    },
+    {
+     "kg": 39.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 22
+    },
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 10.0,
+     "reps": 28
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 7
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    },
+    {
+     "kg": 10.0,
+     "reps": 20
+    },
+    {
+     "kg": 7.5,
+     "reps": 32
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 42.5,
+     "reps": 10
+    },
+    {
+     "kg": 45.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 47.5,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 37.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 7
+    },
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.0,
+     "reps": 13
+    },
+    {
+     "kg": 45.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 115.0,
+     "reps": 10
+    },
+    {
+     "kg": 125.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 135.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 105.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 55.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 60.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 21,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 19
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 19
+    },
+    {
+     "kg": 25.0,
+     "reps": 22
+    },
+    {
+     "kg": 25.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    },
+    {
+     "kg": 66.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 10
+    },
+    {
+     "kg": 73.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 107.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 68.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 73.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 59.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 42.5,
+     "reps": 9
+    },
+    {
+     "kg": 45.0,
+     "reps": 9
+    },
+    {
+     "kg": 47.5,
+     "reps": 7
+    },
+    {
+     "kg": 37.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 32.5,
+     "reps": 10
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 64.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 59.0,
+     "reps": 12
+    },
+    {
+     "kg": 45.0,
+     "reps": 12
+    },
+    {
+     "kg": 41.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 12
+    },
+    {
+     "kg": 20.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 13
+    },
+    {
+     "kg": 12.5,
+     "reps": 15
+    },
+    {
+     "kg": 12.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 20,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 17,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 86.0,
+     "reps": 13
+    },
+    {
+     "kg": 72.0,
+     "reps": 15
+    },
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 6
+    },
+    {
+     "kg": 77.0,
+     "reps": 32,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 13
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 32.5,
+     "reps": 10
+    },
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.5,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 10
+    },
+    {
+     "kg": 82.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 64.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 54.0,
+     "reps": 23,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 20
+    },
+    {
+     "kg": 54.0,
+     "reps": 19
+    },
+    {
+     "kg": 54.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-26",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 54.0,
+     "reps": 21
+    },
+    {
+     "kg": 54.0,
+     "reps": 21
+    },
+    {
+     "kg": 54.0,
+     "reps": 16
+    },
+    {
+     "kg": 50.0,
+     "reps": 25
+    },
+    {
+     "kg": 50.0,
+     "reps": 23
+    },
+    {
+     "kg": 50.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 14
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 79.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 93.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 13
+    },
+    {
+     "kg": 73.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 130.0,
+     "reps": 10
+    },
+    {
+     "kg": 145.0,
+     "reps": 10
+    },
+    {
+     "kg": 120.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 85.0,
+     "reps": 10
+    },
+    {
+     "kg": 95.0,
+     "reps": 10
+    },
+    {
+     "kg": 105.0,
+     "reps": 10
+    },
+    {
+     "kg": 80.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 60.0,
+     "reps": 14
+    },
+    {
+     "kg": 70.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 14
+    },
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 93.0,
+     "reps": 11
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 15
+    },
+    {
+     "kg": 20.5,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 13
+    },
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 11.5,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 7
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 12.5,
+     "reps": 12
+    },
+    {
+     "kg": 12.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 13
+    },
+    {
+     "kg": 39.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 20
+    },
+    {
+     "kg": 17.5,
+     "reps": 14
+    },
+    {
+     "kg": 12.5,
+     "reps": 26
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 11
+    },
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 41.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 10.0,
+     "reps": 20
+    },
+    {
+     "kg": 7.5,
+     "reps": 32
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 54.0,
+     "reps": 20
+    },
+    {
+     "kg": 54.0,
+     "reps": 17
+    },
+    {
+     "kg": 54.0,
+     "reps": 15
+    },
+    {
+     "kg": 50.0,
+     "reps": 21
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 43.75,
+     "reps": 9
+    },
+    {
+     "kg": 46.25,
+     "reps": 8
+    },
+    {
+     "kg": 50.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 38.75,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 6
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 130.0,
+     "reps": 9
+    },
+    {
+     "kg": 140.0,
+     "reps": 6
+    },
+    {
+     "kg": 105.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 9
+    },
+    {
+     "kg": 60.0,
+     "reps": 8
+    },
+    {
+     "kg": 65.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 20
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    },
+    {
+     "kg": 39.0,
+     "reps": 15
+    },
+    {
+     "kg": 32.0,
+     "reps": 17
+    },
+    {
+     "kg": 25.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 107.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 66.5,
+     "reps": 8
+    },
+    {
+     "kg": 70.5,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 7
+    },
+    {
+     "kg": 61.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 47.5,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 50.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 37.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 33.75,
+     "reps": 8
+    },
+    {
+     "kg": 36.25,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 27.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 64.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 5
+    },
+    {
+     "kg": 45.0,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 6
+    },
+    {
+     "kg": 20.0,
+     "reps": 10
+    },
+    {
+     "kg": 17.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 10
+    },
+    {
+     "kg": 12.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 15
+    },
+    {
+     "kg": 22.5,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 13
+    },
+    {
+     "kg": 86.0,
+     "reps": 13
+    },
+    {
+     "kg": 72.0,
+     "reps": 14
+    },
+    {
+     "kg": 66.0,
+     "reps": 14
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 24
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 77.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 13
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 37.5,
+     "reps": 5
+    },
+    {
+     "kg": 32.5,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 7
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    },
+    {
+     "kg": 27.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 10
+    },
+    {
+     "kg": 82.0,
+     "reps": 8
+    },
+    {
+     "kg": 64.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 10
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    },
+    {
+     "kg": 23.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 16
+    },
+    {
+     "kg": 54.0,
+     "reps": 21
+    },
+    {
+     "kg": 54.0,
+     "reps": 21
+    },
+    {
+     "kg": 54.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-03",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 54.0,
+     "reps": 24,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 21
+    },
+    {
+     "kg": 54.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 14
+    },
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 9
+    },
+    {
+     "kg": 79.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 11
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 135.0,
+     "reps": 10
+    },
+    {
+     "kg": 150.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 170.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 130.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 90.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    },
+    {
+     "kg": 80.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 12
+    },
+    {
+     "kg": 75.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 14
+    },
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 14
+    },
+    {
+     "kg": 20.5,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 14
+    },
+    {
+     "kg": 18.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 11.5,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 11
+    },
+    {
+     "kg": 15.0,
+     "reps": 7
+    },
+    {
+     "kg": 12.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 5
+    },
+    {
+     "kg": 39.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 11
+    },
+    {
+     "kg": 50.0,
+     "reps": 7
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 10.0,
+     "reps": 20
+    },
+    {
+     "kg": 7.5,
+     "reps": 30
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 47.5,
+     "reps": 8
+    },
+    {
+     "kg": 50.0,
+     "reps": 7
+    },
+    {
+     "kg": 40.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 5
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 120.0,
+     "reps": 8
+    },
+    {
+     "kg": 130.0,
+     "reps": 7
+    },
+    {
+     "kg": 140.0,
+     "reps": 5
+    },
+    {
+     "kg": 105.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 8
+    },
+    {
+     "kg": 65.0,
+     "reps": 9,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 20
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 79.0,
+     "reps": 10
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 15
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 18,
+     "pr": true
+    },
+    {
+     "kg": 113.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 66.5,
+     "reps": 8
+    },
+    {
+     "kg": 70.5,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 61.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 46.25,
+     "reps": 8
+    },
+    {
+     "kg": 48.75,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 51.25,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 38.75,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 27.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 64.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 10
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 11
+    },
+    {
+     "kg": 20.0,
+     "reps": 10
+    },
+    {
+     "kg": 17.5,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 9
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 12.5,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 15
+    },
+    {
+     "kg": 22.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 13
+    },
+    {
+     "kg": 86.0,
+     "reps": 13
+    },
+    {
+     "kg": 72.0,
+     "reps": 13
+    },
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 59.0,
+     "reps": 17
+    },
+    {
+     "kg": 52.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 11
+    },
+    {
+     "kg": 86.0,
+     "reps": 9
+    },
+    {
+     "kg": 77.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 15
+    },
+    {
+     "kg": 25.0,
+     "reps": 12
+    },
+    {
+     "kg": 20.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 45.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 30.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 10
+    },
+    {
+     "kg": 82.0,
+     "reps": 9
+    },
+    {
+     "kg": 68.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 11
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 23.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 9
+    },
+    {
+     "kg": 14.0,
+     "reps": 13
+    },
+    {
+     "kg": 14.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 16
+    },
+    {
+     "kg": 54.0,
+     "reps": 18
+    },
+    {
+     "kg": 54.0,
+     "reps": 17
+    },
+    {
+     "kg": 54.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-10",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 17
+    },
+    {
+     "kg": 59.0,
+     "reps": 16
+    },
+    {
+     "kg": 54.0,
+     "reps": 19
+    },
+    {
+     "kg": 54.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-10",
+   "dia": "ABD",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 107.0,
+     "reps": 12
+    },
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 93.0,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 79.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 79.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 79.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 140.0,
+     "reps": 10
+    },
+    {
+     "kg": 160.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 180.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 130.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 90.0,
+     "reps": 10
+    },
+    {
+     "kg": 90.0,
+     "reps": 9
+    },
+    {
+     "kg": 90.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    },
+    {
+     "kg": 80.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 12
+    },
+    {
+     "kg": 75.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 15
+    },
+    {
+     "kg": 20.5,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 13
+    },
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 10
+    },
+    {
+     "kg": 11.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 11
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 12.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 20
+    },
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 54.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 20
+    },
+    {
+     "kg": 12.5,
+     "reps": 16
+    },
+    {
+     "kg": 10.0,
+     "reps": 16
+    },
+    {
+     "kg": 7.5,
+     "reps": 24
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 50.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 52.5,
+     "reps": 6
+    },
+    {
+     "kg": 40.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 6
+    },
+    {
+     "kg": 73.0,
+     "reps": 10
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 130.0,
+     "reps": 8
+    },
+    {
+     "kg": 140.0,
+     "reps": 5
+    },
+    {
+     "kg": 105.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 8
+    },
+    {
+     "kg": 65.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 22,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 19
+    },
+    {
+     "kg": 39.0,
+     "reps": 17
+    },
+    {
+     "kg": 32.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 14
+    },
+    {
+     "kg": 86.0,
+     "reps": 11
+    },
+    {
+     "kg": 79.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 10
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 113.0,
+     "reps": 12
+    },
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 66.5,
+     "reps": 8
+    },
+    {
+     "kg": 70.5,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 7
+    },
+    {
+     "kg": 61.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 46.25,
+     "reps": 8
+    },
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 52.5,
+     "reps": 7
+    },
+    {
+     "kg": 40.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    },
+    {
+     "kg": 25.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 7
+    },
+    {
+     "kg": 64.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 10
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    },
+    {
+     "kg": 36.0,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 11
+    },
+    {
+     "kg": 17.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 10
+    },
+    {
+     "kg": 15.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 18,
+     "pr": true
+    },
+    {
+     "kg": 22.5,
+     "reps": 16,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 16
+    },
+    {
+     "kg": 59.0,
+     "reps": 14
+    },
+    {
+     "kg": 54.0,
+     "reps": 17
+    },
+    {
+     "kg": 54.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 13
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 72.0,
+     "reps": 13
+    },
+    {
+     "kg": 66.0,
+     "reps": 15
+    },
+    {
+     "kg": 59.0,
+     "reps": 16
+    },
+    {
+     "kg": 52.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 77.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 13
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    },
+    {
+     "kg": 45.0,
+     "reps": 3
+    },
+    {
+     "kg": 30.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 9
+    },
+    {
+     "kg": 82.0,
+     "reps": 8
+    },
+    {
+     "kg": 68.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 79.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 11
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 145.0,
+     "reps": 10
+    },
+    {
+     "kg": 170.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 190.0,
+     "reps": 3
+    },
+    {
+     "kg": 130.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 90.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    },
+    {
+     "kg": 80.0,
+     "reps": 4
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 12
+    },
+    {
+     "kg": 75.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 15
+    },
+    {
+     "kg": 93.0,
+     "reps": 13
+    },
+    {
+     "kg": 93.0,
+     "reps": 9
+    },
+    {
+     "kg": 66.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 20.5,
+     "reps": 13
+    },
+    {
+     "kg": 23.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.5,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 11.5,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 10
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 12.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 7
+    },
+    {
+     "kg": 39.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 22
+    },
+    {
+     "kg": 17.5,
+     "reps": 16
+    },
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 28
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 7
+    },
+    {
+     "kg": 45.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    },
+    {
+     "kg": 12.5,
+     "reps": 18
+    },
+    {
+     "kg": 10.0,
+     "reps": 18
+    },
+    {
+     "kg": 7.5,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 9
+    },
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 55.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 93.0,
+     "reps": 5
+    },
+    {
+     "kg": 73.0,
+     "reps": 11
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 130.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 140.0,
+     "reps": 7
+    },
+    {
+     "kg": 105.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 60.0,
+     "reps": 11
+    },
+    {
+     "kg": 70.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 80.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 80.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 20,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 19
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 19
+    },
+    {
+     "kg": 25.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 11
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 11
+    },
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 73.0,
+     "reps": 15
+    },
+    {
+     "kg": 73.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 113.0,
+     "reps": 12
+    },
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 66.5,
+     "reps": 10
+    },
+    {
+     "kg": 70.5,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 77.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 64.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 47.5,
+     "reps": 8
+    },
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 55.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 25.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 7
+    },
+    {
+     "kg": 64.0,
+     "reps": 11
+    },
+    {
+     "kg": 50.0,
+     "reps": 9
+    },
+    {
+     "kg": 41.0,
+     "reps": 9
+    },
+    {
+     "kg": 36.0,
+     "reps": 4
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 12
+    },
+    {
+     "kg": 17.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 11
+    },
+    {
+     "kg": 17.5,
+     "reps": 8
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 15
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 72.0,
+     "reps": 13
+    },
+    {
+     "kg": 66.0,
+     "reps": 13
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 77.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 13
+    },
+    {
+     "kg": 25.0,
+     "reps": 9
+    },
+    {
+     "kg": 20.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 7
+    },
+    {
+     "kg": 45.0,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 8
+    },
+    {
+     "kg": 82.0,
+     "reps": 7
+    },
+    {
+     "kg": 68.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 9
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 14.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-24",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 17
+    },
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 54.0,
+     "reps": 21
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 13
+    },
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 150.0,
+     "reps": 10
+    },
+    {
+     "kg": 175.0,
+     "reps": 8
+    },
+    {
+     "kg": 190.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 140.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 95.0,
+     "reps": 10
+    },
+    {
+     "kg": 105.0,
+     "reps": 10
+    },
+    {
+     "kg": 115.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 11
+    },
+    {
+     "kg": 80.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 13
+    },
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 11
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 20.5,
+     "reps": 12
+    },
+    {
+     "kg": 23.0,
+     "reps": 8
+    },
+    {
+     "kg": 18.0,
+     "reps": 12
+    },
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 6
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    },
+    {
+     "kg": 11.5,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 11
+    },
+    {
+     "kg": 17.5,
+     "reps": 8
+    },
+    {
+     "kg": 12.5,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12
+    },
+    {
+     "kg": 52.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 24
+    },
+    {
+     "kg": 17.5,
+     "reps": 14
+    },
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 26
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 7
+    },
+    {
+     "kg": 45.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 16
+    },
+    {
+     "kg": 17.5,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    },
+    {
+     "kg": 10.0,
+     "reps": 22
+    },
+    {
+     "kg": 7.5,
+     "reps": 22
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 9
+    },
+    {
+     "kg": 55.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 79.0,
+     "reps": 10
+    },
+    {
+     "kg": 86.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 6
+    },
+    {
+     "kg": 73.0,
+     "reps": 12
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 130.0,
+     "reps": 10
+    },
+    {
+     "kg": 140.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 150.0,
+     "reps": 5
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 11
+    },
+    {
+     "kg": 80.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 90.0,
+     "reps": 9,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 20
+    },
+    {
+     "kg": 45.0,
+     "reps": 18
+    },
+    {
+     "kg": 39.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 19
+    },
+    {
+     "kg": 25.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 10
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 73.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 113.0,
+     "reps": 12
+    },
+    {
+     "kg": 120.0,
+     "reps": 10
+    },
+    {
+     "kg": 100.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 8
+    },
+    {
+     "kg": 77.0,
+     "reps": 6
+    },
+    {
+     "kg": 64.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 55.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 55.0,
+     "reps": 5
+    },
+    {
+     "kg": 50.0,
+     "reps": 7
+    },
+    {
+     "kg": 40.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.5,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 6
+    },
+    {
+     "kg": 64.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 9
+    },
+    {
+     "kg": 41.0,
+     "reps": 9
+    },
+    {
+     "kg": 36.0,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 22.5,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 5
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    },
+    {
+     "kg": 15.0,
+     "reps": 10
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 17,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 14,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 14
+    },
+    {
+     "kg": 72.0,
+     "reps": 14
+    },
+    {
+     "kg": 66.0,
+     "reps": 16
+    },
+    {
+     "kg": 59.0,
+     "reps": 17
+    },
+    {
+     "kg": 52.0,
+     "reps": 19
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 82.0,
+     "reps": 8
+    },
+    {
+     "kg": 86.0,
+     "reps": 6
+    },
+    {
+     "kg": 77.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 13
+    },
+    {
+     "kg": 25.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 45.0,
+     "reps": 6
+    },
+    {
+     "kg": 30.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 8
+    },
+    {
+     "kg": 82.0,
+     "reps": 6
+    },
+    {
+     "kg": 68.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 11
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "ABD",
+   "ej": "encogimientos_banco_declinado",
+   "nombre": "Encogimientos banco declinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 16
+    },
+    {
+     "kg": 10.0,
+     "reps": 15
+    },
+    {
+     "kg": 10.0,
+     "reps": 18,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 17,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "ABD",
+   "ej": "encogimientos_desde_polea",
+   "nombre": "Encogimientos desde polea",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 15
+    },
+    {
+     "kg": 54.0,
+     "reps": 22
+    },
+    {
+     "kg": 54.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 14
+    },
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 86.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "ej": "extension_de_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 93.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 52.0,
+     "reps": 11
+    },
+    {
+     "kg": 32.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 12
+    },
+    {
+     "kg": 79.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "ej": "prensa_inclinada",
+   "nombre": "Prensa inclinada",
+   "series": [
+    {
+     "kg": 160.0,
+     "reps": 10
+    },
+    {
+     "kg": 180.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 200.0,
+     "reps": 4
+    },
+    {
+     "kg": 140.0,
+     "reps": 15
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "ej": "sentadilla_maquina",
+   "nombre": "Sentadilla máquina",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 10
+    },
+    {
+     "kg": 110.0,
+     "reps": 10
+    },
+    {
+     "kg": 120.0,
+     "reps": 3
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "ej": "gemelo_sentado",
+   "nombre": "Gemelo sentado",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 12
+    },
+    {
+     "kg": 80.0,
+     "reps": 10
+    },
+    {
+     "kg": 60.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 93.0,
+     "reps": 14
+    },
+    {
+     "kg": 100.0,
+     "reps": 12
+    },
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 10
+    },
+    {
+     "kg": 66.0,
+     "reps": 10
+    },
+    {
+     "kg": 52.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "cruce_entre_poleas",
+   "nombre": "Cruce entre poleas",
+   "series": [
+    {
+     "kg": 20.5,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 23.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.5,
+     "reps": 10
+    },
+    {
+     "kg": 18.0,
+     "reps": 14
+    },
+    {
+     "kg": 14.0,
+     "reps": 14
+    },
+    {
+     "kg": 11.5,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "aperturas_inclinadas_mancuernas",
+   "nombre": "Aperturas inclinadas mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 7,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "press_frontal_placas",
+   "nombre": "Press frontal placas",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 59.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "curl_alterno_mancuernas",
+   "nombre": "Curl alterno mancuernas",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 16
+    },
+    {
+     "kg": 15.0,
+     "reps": 20
+    },
+    {
+     "kg": 15.0,
+     "reps": 18
+    },
+    {
+     "kg": 12.5,
+     "reps": 22
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "curl_barra_polea_baja",
+   "nombre": "Curl barra polea baja",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 9
+    },
+    {
+     "kg": 45.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "ej": "curl_alterno_martillo",
+   "nombre": "Curl alterno martillo",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 20,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 12
+    },
+    {
+     "kg": 15.0,
+     "reps": 4
+    },
+    {
+     "kg": 12.5,
+     "reps": 26
+    },
+    {
+     "kg": 10.0,
+     "reps": 20
+    },
+    {
+     "kg": 7.5,
+     "reps": 22
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "femoral_de_pie_unilateral",
+   "nombre": "Femoral de pie unilateral",
+   "series": [
+    {
+     "kg": 47.5,
+     "reps": 10
+    },
+    {
+     "kg": 52.5,
+     "reps": 8
+    },
+    {
+     "kg": 57.5,
+     "reps": 5
+    },
+    {
+     "kg": 42.5,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 7
+    },
+    {
+     "kg": 100.0,
+     "reps": 4
+    },
+    {
+     "kg": 79.0,
+     "reps": 10
+    },
+    {
+     "kg": 59.0,
+     "reps": 12
+    },
+    {
+     "kg": 52.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 130.0,
+     "reps": 10
+    },
+    {
+     "kg": 140.0,
+     "reps": 9
+    },
+    {
+     "kg": 150.0,
+     "reps": 6
+    },
+    {
+     "kg": 120.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "hip_thrust_maquina_discos",
+   "nombre": "Hip thrust máquina discos",
+   "series": [
+    {
+     "kg": 80.0,
+     "reps": 9
+    },
+    {
+     "kg": 90.0,
+     "reps": 9
+    },
+    {
+     "kg": 100.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "extension_de_cuadriceps_1_de_descanso",
+   "nombre": "Extensión de cuádriceps (1’ de descanso)",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 22,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 22
+    },
+    {
+     "kg": 39.0,
+     "reps": 21
+    },
+    {
+     "kg": 32.0,
+     "reps": 20
+    },
+    {
+     "kg": 25.0,
+     "reps": 24
+    },
+    {
+     "kg": 25.0,
+     "reps": 22
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "aductor_maquina",
+   "nombre": "Aductor máquina",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 100.0,
+     "reps": 9
+    },
+    {
+     "kg": 93.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "abductor_maquina",
+   "nombre": "Abductor máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    },
+    {
+     "kg": 79.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "ej": "gemelo_prensa_frontal",
+   "nombre": "Gemelo prensa frontal",
+   "series": [
+    {
+     "kg": 113.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 120.0,
+     "reps": 12
+    },
+    {
+     "kg": 107.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_amplio",
+   "nombre": "Jalón al pecho agarre amplio",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 9
+    },
+    {
+     "kg": 73.0,
+     "reps": 8
+    },
+    {
+     "kg": 77.0,
+     "reps": 6
+    },
+    {
+     "kg": 64.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "remo_bajo_de_discos_kg_por_lado",
+   "nombre": "Remo bajo de discos (kg por lado)",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.5,
+     "reps": 8
+    },
+    {
+     "kg": 55.0,
+     "reps": 6
+    },
+    {
+     "kg": 40.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "remo_t",
+   "nombre": "Remo t",
+   "series": [
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    },
+    {
+     "kg": 35.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.5,
+     "reps": 11
+    },
+    {
+     "kg": 25.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "jalon_al_pecho_agarre_supino",
+   "nombre": "Jalón al pecho agarre supino",
+   "series": [
+    {
+     "kg": 68.0,
+     "reps": 8
+    },
+    {
+     "kg": 73.0,
+     "reps": 7
+    },
+    {
+     "kg": 64.0,
+     "reps": 10
+    },
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 41.0,
+     "reps": 10
+    },
+    {
+     "kg": 36.0,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "aperturas_planas_mancuernas",
+   "nombre": "Aperturas planas mancuernas",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 22.5,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "press_plano_mancuernas",
+   "nombre": "Press plano mancuernas",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 8
+    },
+    {
+     "kg": 15.0,
+     "reps": 12
+    },
+    {
+     "kg": 15.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "pullover_mancuerna",
+   "nombre": "Pullover mancuerna",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 18
+    },
+    {
+     "kg": 25.0,
+     "reps": 16,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "ej": "encogimientos_banco_declinado",
+   "nombre": "Encogimientos banco declinado",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 20,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 16,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 14
+    },
+    {
+     "kg": 25.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "contractor_de_placas",
+   "nombre": "Contractor de placas",
+   "series": [
+    {
+     "kg": 100.0,
+     "reps": 13
+    },
+    {
+     "kg": 79.0,
+     "reps": 15
+    },
+    {
+     "kg": 72.0,
+     "reps": 15
+    },
+    {
+     "kg": 66.0,
+     "reps": 17
+    },
+    {
+     "kg": 59.0,
+     "reps": 19
+    },
+    {
+     "kg": 59.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales máquina",
+   "series": [
+    {
+     "kg": 86.0,
+     "reps": 8
+    },
+    {
+     "kg": 82.0,
+     "reps": 10
+    },
+    {
+     "kg": 77.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "pajaros_con_mancuernas",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 22.5,
+     "reps": 15
+    },
+    {
+     "kg": 25.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 17
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "press_de_hombro_maquina",
+   "nombre": "Press de hombro máquina",
+   "series": [
+    {
+     "kg": 37.5,
+     "reps": 8
+    },
+    {
+     "kg": 42.5,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "fondos_triceps_maquina",
+   "nombre": "Fondos tríceps máquina",
+   "series": [
+    {
+     "kg": 77.0,
+     "reps": 8
+    },
+    {
+     "kg": 82.0,
+     "reps": 7
+    },
+    {
+     "kg": 68.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "jalon_cuerda",
+   "nombre": "Jalón cuerda",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "ej": "jalon_cuerda_por_encima_de_la_cabeza",
+   "nombre": "Jalón cuerda por encima de la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 12
+    },
+    {
+     "kg": 14.0,
+     "reps": 10
+    }
+   ]
+  }
+ ],
+ "sesiones": [
+  {
+   "fecha": "2026-08-31",
+   "dia": "P1",
+   "min": null,
+   "series": 24,
+   "vol": 0,
+   "prs": [
+    "Aductor máquina",
+    "Extensión de cuádriceps",
+    "Prensa inclinada",
+    "Sentadilla máquina"
+   ]
+  },
+  {
+   "fecha": "2026-09-01",
+   "dia": "PB",
+   "min": null,
+   "series": 29,
+   "vol": 0,
+   "prs": [
+    "Contractor de placas",
+    "Curl barra polea baja"
+   ]
+  },
+  {
+   "fecha": "2026-09-02",
+   "dia": "P2",
+   "min": null,
+   "series": 33,
+   "vol": 0,
+   "prs": [
+    "Femoral de pie unilateral",
+    "Peso muerto rumano",
+    "Hip thrust máquina discos",
+    "Abductor máquina",
+    "Gemelo prensa frontal"
+   ]
+  },
+  {
+   "fecha": "2026-09-03",
+   "dia": "EP",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho agarre amplio",
+    "Remo bajo de discos (kg por lado)",
+    "Remo t",
+    "Aperturas planas mancuernas"
+   ]
+  },
+  {
+   "fecha": "2026-09-04",
+   "dia": "PHT",
+   "min": null,
+   "series": 32,
+   "vol": 0,
+   "prs": [
+    "Contractor de placas",
+    "Elevaciones laterales máquina",
+    "Pájaros con mancuernas",
+    "Press de hombro máquina",
+    "Fondos tríceps máquina"
+   ]
+  },
+  {
+   "fecha": "2026-09-05",
+   "dia": "ABD",
+   "min": null,
+   "series": 8,
+   "vol": 0,
+   "prs": [
+    "Encogimientos desde polea"
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "P1",
+   "min": null,
+   "series": 23,
+   "vol": 0,
+   "prs": [
+    "Aductor máquina",
+    "Extensión de cuádriceps",
+    "Femoral sentado",
+    "Prensa inclinada",
+    "Sentadilla máquina"
+   ]
+  },
+  {
+   "fecha": "2026-09-08",
+   "dia": "PB",
+   "min": null,
+   "series": 31,
+   "vol": 0,
+   "prs": [
+    "Press frontal placas",
+    "Curl alterno mancuernas"
+   ]
+  },
+  {
+   "fecha": "2026-09-09",
+   "dia": "P2",
+   "min": null,
+   "series": 33,
+   "vol": 0,
+   "prs": [
+    "Hip thrust máquina discos",
+    "Extensión de cuádriceps (1’ de descanso)",
+    "Abductor máquina",
+    "Gemelo prensa frontal"
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "EP",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho agarre amplio",
+    "Remo bajo de discos (kg por lado)",
+    "Aperturas planas mancuernas"
+   ]
+  },
+  {
+   "fecha": "2026-09-12",
+   "dia": "PHT",
+   "min": null,
+   "series": 30,
+   "vol": 0,
+   "prs": [
+    "Contractor de placas",
+    "Elevaciones laterales máquina",
+    "Pájaros con mancuernas"
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "P1",
+   "min": null,
+   "series": 20,
+   "vol": 0,
+   "prs": [
+    "Extensión de cuádriceps",
+    "Prensa inclinada",
+    "Sentadilla máquina"
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "PB",
+   "min": null,
+   "series": 30,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-09-16",
+   "dia": "P2",
+   "min": null,
+   "series": 37,
+   "vol": 0,
+   "prs": [
+    "Peso muerto rumano",
+    "Hip thrust máquina discos",
+    "Extensión de cuádriceps (1’ de descanso)",
+    "Abductor máquina",
+    "Gemelo prensa frontal",
+    "Encogimientos desde polea"
+   ]
+  },
+  {
+   "fecha": "2026-09-17",
+   "dia": "EP",
+   "min": null,
+   "series": 24,
+   "vol": 0,
+   "prs": [
+    "Remo bajo de discos (kg por lado)",
+    "Remo t",
+    "Aperturas planas mancuernas",
+    "Pullover mancuerna"
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "PHT",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Contractor de placas",
+    "Elevaciones laterales máquina",
+    "Pájaros con mancuernas",
+    "Press de hombro máquina",
+    "Fondos tríceps máquina",
+    "Jalón cuerda"
+   ]
+  },
+  {
+   "fecha": "2026-09-19",
+   "dia": "ABD",
+   "min": null,
+   "series": 7,
+   "vol": 0,
+   "prs": [
+    "Encogimientos máquina"
+   ]
+  },
+  {
+   "fecha": "2026-09-21",
+   "dia": "P1",
+   "min": null,
+   "series": 23,
+   "vol": 0,
+   "prs": [
+    "Extensión de cuádriceps"
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "PB",
+   "min": null,
+   "series": 31,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "P2",
+   "min": null,
+   "series": 33,
+   "vol": 0,
+   "prs": [
+    "Femoral de pie unilateral",
+    "Peso muerto rumano",
+    "Hip thrust máquina discos",
+    "Extensión de cuádriceps (1’ de descanso)"
+   ]
+  },
+  {
+   "fecha": "2026-09-24",
+   "dia": "EP",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho agarre amplio",
+    "Jalón al pecho agarre supino",
+    "Aperturas planas mancuernas",
+    "Pullover mancuerna"
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "PHT",
+   "min": null,
+   "series": 29,
+   "vol": 0,
+   "prs": [
+    "Contractor de placas",
+    "Elevaciones laterales máquina",
+    "Fondos tríceps máquina",
+    "Jalón cuerda",
+    "Encogimientos desde polea"
+   ]
+  },
+  {
+   "fecha": "2026-09-26",
+   "dia": "ABD",
+   "min": null,
+   "series": 7,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "P1",
+   "min": null,
+   "series": 22,
+   "vol": 0,
+   "prs": [
+    "Extensión de cuádriceps"
+   ]
+  },
+  {
+   "fecha": "2026-09-29",
+   "dia": "PB",
+   "min": null,
+   "series": 35,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-09-30",
+   "dia": "P2",
+   "min": null,
+   "series": 31,
+   "vol": 0,
+   "prs": [
+    "Femoral de pie unilateral",
+    "Hip thrust máquina discos"
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "dia": "EP",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Remo bajo de discos (kg por lado)",
+    "Remo t",
+    "Jalón al pecho agarre supino",
+    "Press plano mancuernas",
+    "Pullover mancuerna"
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "dia": "PHT",
+   "min": null,
+   "series": 30,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-03",
+   "dia": "ABD",
+   "min": null,
+   "series": 4,
+   "vol": 0,
+   "prs": [
+    "Encogimientos desde polea"
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "dia": "P1",
+   "min": null,
+   "series": 23,
+   "vol": 0,
+   "prs": [
+    "Femoral sentado",
+    "Prensa inclinada"
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "dia": "PB",
+   "min": null,
+   "series": 31,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-07",
+   "dia": "P2",
+   "min": null,
+   "series": 32,
+   "vol": 0,
+   "prs": [
+    "Hip thrust máquina discos",
+    "Gemelo prensa frontal"
+   ]
+  },
+  {
+   "fecha": "2026-10-08",
+   "dia": "EP",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho agarre amplio",
+    "Remo bajo de discos (kg por lado)",
+    "Remo t",
+    "Jalón al pecho agarre supino"
+   ]
+  },
+  {
+   "fecha": "2026-10-09",
+   "dia": "PHT",
+   "min": null,
+   "series": 29,
+   "vol": 0,
+   "prs": [
+    "Press de hombro máquina"
+   ]
+  },
+  {
+   "fecha": "2026-10-10",
+   "dia": "ABD",
+   "min": null,
+   "series": 7,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "P1",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": [
+    "Femoral sentado",
+    "Prensa inclinada"
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "PB",
+   "min": null,
+   "series": 30,
+   "vol": 0,
+   "prs": [
+    "Curl barra polea baja"
+   ]
+  },
+  {
+   "fecha": "2026-10-14",
+   "dia": "P2",
+   "min": null,
+   "series": 32,
+   "vol": 0,
+   "prs": [
+    "Femoral de pie unilateral",
+    "Extensión de cuádriceps (1’ de descanso)"
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "EP",
+   "min": null,
+   "series": 30,
+   "vol": 0,
+   "prs": [
+    "Press plano mancuernas",
+    "Pullover mancuerna"
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "PHT",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "P1",
+   "min": null,
+   "series": 23,
+   "vol": 0,
+   "prs": [
+    "Extensión de cuádriceps",
+    "Prensa inclinada"
+   ]
+  },
+  {
+   "fecha": "2026-10-20",
+   "dia": "PB",
+   "min": null,
+   "series": 29,
+   "vol": 0,
+   "prs": [
+    "Curl barra polea baja"
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "P2",
+   "min": null,
+   "series": 34,
+   "vol": 0,
+   "prs": [
+    "Femoral de pie unilateral",
+    "Peso muerto rumano",
+    "Hip thrust máquina discos",
+    "Extensión de cuádriceps (1’ de descanso)"
+   ]
+  },
+  {
+   "fecha": "2026-10-22",
+   "dia": "EP",
+   "min": null,
+   "series": 26,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho agarre amplio",
+    "Remo bajo de discos (kg por lado)"
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "PHT",
+   "min": null,
+   "series": 24,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-24",
+   "dia": "ABD",
+   "min": null,
+   "series": 3,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "P1",
+   "min": null,
+   "series": 22,
+   "vol": 0,
+   "prs": [
+    "Prensa inclinada"
+   ]
+  },
+  {
+   "fecha": "2026-10-27",
+   "dia": "PB",
+   "min": null,
+   "series": 32,
+   "vol": 0,
+   "prs": [
+    "Press frontal placas",
+    "Curl barra polea baja",
+    "Curl alterno martillo"
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "P2",
+   "min": null,
+   "series": 32,
+   "vol": 0,
+   "prs": [
+    "Femoral de pie unilateral",
+    "Peso muerto rumano",
+    "Hip thrust máquina discos"
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "EP",
+   "min": null,
+   "series": 29,
+   "vol": 0,
+   "prs": [
+    "Remo bajo de discos (kg por lado)",
+    "Aperturas planas mancuernas",
+    "Press plano mancuernas",
+    "Pullover mancuerna"
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "dia": "PHT",
+   "min": null,
+   "series": 25,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "ABD",
+   "min": null,
+   "series": 8,
+   "vol": 0,
+   "prs": [
+    "Encogimientos banco declinado"
+   ]
+  },
+  {
+   "fecha": "2026-11-02",
+   "dia": "P1",
+   "min": null,
+   "series": 22,
+   "vol": 0,
+   "prs": [
+    "Extensión de cuádriceps",
+    "Prensa inclinada"
+   ]
+  },
+  {
+   "fecha": "2026-11-03",
+   "dia": "PB",
+   "min": null,
+   "series": 31,
+   "vol": 0,
+   "prs": [
+    "Cruce entre poleas",
+    "Aperturas inclinadas mancuernas",
+    "Press frontal placas",
+    "Curl barra polea baja",
+    "Curl alterno martillo"
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "P2",
+   "min": null,
+   "series": 33,
+   "vol": 0,
+   "prs": [
+    "Hip thrust máquina discos",
+    "Extensión de cuádriceps (1’ de descanso)",
+    "Aductor máquina",
+    "Abductor máquina",
+    "Gemelo prensa frontal"
+   ]
+  },
+  {
+   "fecha": "2026-11-05",
+   "dia": "EP",
+   "min": null,
+   "series": 31,
+   "vol": 0,
+   "prs": [
+    "Aperturas planas mancuernas",
+    "Pullover mancuerna",
+    "Encogimientos banco declinado"
+   ]
+  },
+  {
+   "fecha": "2026-11-06",
+   "dia": "PHT",
+   "min": null,
+   "series": 23,
+   "vol": 0,
+   "prs": [
+    "Pájaros con mancuernas"
+   ]
+  }
+ ],
+ "activa": null,
+ "peso": [],
+ "hoyDia": null,
+ "saltados": {},
+ "aj": {
+  "descanso": 90,
+  "inc": 2.5,
+  "barra": 20
+ }
+}

@@ -624,12 +624,12 @@ function serieE1(ej) { const m = new Map(); for (const r of regsDe(ej)) { const 
 // ================= PROGRESO =================
 const sinTilde = (t) => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 const GRUPOS = [
-  ['core', 'Core', /abs|abdominal|plancha|crunch|rueda|tronco|elevacion de piernas|elevaciones de piernas/],
+  ['core', 'Core', /abs|abdominal|plancha|crunch|rueda|tronco|elevacion de piernas|elevaciones de piernas|encogimiento/],
   ['pierna', 'Pierna', /prensa|femoral|cuadriceps|sentadilla|gemel|aductor|abductor|abducc|culete|peso muerto|zancada|hip|gluteo/],
-  ['triceps', 'Tríceps', /triceps|frances|fondos|codo|press cerrado/],
+  ['triceps', 'Tríceps', /triceps|frances|fondos|codo|press cerrado|jalon cuerda|cuerda por encima/],
   ['biceps', 'Bíceps', /curl|biceps|antebrazo/],
   ['espalda', 'Espalda', /remo|jalon|dominad|esquiador|pull|espalda/],
-  ['hombro', 'Hombro', /militar|lateral|posterior|pajaros|rear delt|hombro/],
+  ['hombro', 'Hombro', /militar|lateral|posterior|pajaros|rear delt|hombro|frontal/],
   ['pecho', 'Pecho', /pecho|inclinado|plano|peck|pec |aperturas|flexiones|banca|cruce|contractor/],
 ];
 const grupoDe = (id, nombre) => { const n = sinTilde(nombre + ' ' + String(id).replace(/_/g, ' ')); const g = GRUPOS.find((x) => x[2].test(n)); return g ? g[0] : 'otro'; };
