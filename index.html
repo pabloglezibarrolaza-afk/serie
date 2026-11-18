@@ -143,6 +143,19 @@ nav.tabs button.on svg{stroke:var(--ac)}
 .mus .barra-m i{display:block;height:100%;border-radius:6px;background:var(--ac)}
 .mus .v{text-align:right;font-weight:600;font-size:14px}
 .mus small{grid-column:2/4;color:var(--mu);font-size:11.5px;margin-top:3px}
+.cal-cab{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-cab div{text-align:center}.cal-cab b{display:block;font-size:15px}.cal-cab small{color:var(--mu);font-size:12px}
+.cal-cab button{width:40px;height:40px;border-radius:10px;background:var(--s2);font-size:22px;line-height:1;color:var(--tx)}
+.cal-cab button:disabled{opacity:.3}
+.cal-sem,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-sem span{text-align:center;font-size:11px;color:var(--mu2);padding-bottom:4px}
+.cd{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:13px;color:var(--mu2)}
+.cd b{font-weight:500;font-family:var(--mono)}
+.cd.si{background:var(--ac-soft);color:var(--tx);border:1px solid rgba(108,180,255,.35)}
+.cd.si b{color:var(--ac);font-weight:600}
+.cd.si small{font-size:9.5px;color:var(--mu);font-family:var(--mono)}
+.cd.si:active{transform:scale(.94)}
+.cd.hoy{outline:1.5px solid var(--tx);outline-offset:-1.5px}
 .semanas{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:10px}
 .semanas div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
 .semanas i{display:block;width:100%;border-radius:5px;background:var(--s3);min-height:4px}
@@ -430,7 +443,7 @@ function sugerir(e, u) {
 // Mejor marca de un ejercicio (sin contar la serie i de hoy, para detectar récords)
 function mejor(ej, excluir) {
   let m = { e1: 0, kg: 0, reps: 0, fecha: null };
-  for (const r of regsDe(ej)) r.series.forEach((s, i) => { if (excluir && r === excluir.reg && i === excluir.i) return; const v = e1rm(s.kg, s.reps); if (v > m.e1) m = { e1: v, kg: s.kg, reps: s.reps, fecha: r.fecha }; });
+  for (const r of regsDe(ej)) r.series.forEach((s, i) => { if (excluir && r === excluir.reg && i === excluir.i) return; const v = s.kg > 0 ? e1rm(s.kg, s.reps) : s.reps * 0.001; if (v > m.e1) m = { e1: v, kg: s.kg, reps: s.reps, fecha: r.fecha }; });
   return m;
 }
 const volumen = (rs) => rs.reduce((a, r) => a + r.series.reduce((b, s) => b + s.kg * s.reps, 0), 0);
@@ -681,8 +694,9 @@ function vProgreso() {
    <div class="card kpi"><div class="v">${fechas.length}</div><div class="l">Entrenos</div></div>
    <div class="card kpi"><div class="v">${seriesSem}</div><div class="l">Series semana</div></div></div>
   <div class="card" style="margin-top:8px"><div class="eyebrow">Últimas 8 semanas</div><div class="semanas">${sems.map((s) => `<div><i class="${s.n >= obj ? 'ok' : ''}" style="height:${Math.max(6, 100 * s.n / mxS)}%"></i><span>${s.et}</span></div>`).join('')}</div></div>
+  <h2>Calendario</h2>${vCalendario()}
   <h2>Récords y 1RM</h2>
-  <div class="lista">${ejs.length ? ejs.map((e) => `<button class="item" data-ejh="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">Mejor ${f(e.m.kg)} kg × ${e.m.reps}${subeDe.has(e.id) ? ` · <span style="color:var(--ac)">${pct(subeDe.get(e.id))}</span>` : ''}</small></div>${linea(e.serie, 64, 26, false)}<div class="d">${f(e.m.e1, 0)}<small>1RM est.</small></div></button>`).join('') : `<div class="vacio">Cuando apuntes tu primer entreno, aquí verás tus récords y cómo suben.</div>`}</div>
+  <div class="lista">${ejs.length ? ejs.map((e) => `<button class="item" data-ejh="${esc(e.id)}" data-nom="${esc(e.nombre)}"><div class="c"><b>${esc(e.nombre)}</b><small class="num">Mejor ${e.m.kg > 0 ? `${f(e.m.kg)} kg × ${e.m.reps}` : `${e.m.reps} reps (sin peso)`}${subeDe.has(e.id) ? ` · <span style="color:var(--ac)">${pct(subeDe.get(e.id))}</span>` : ''}</small></div>${linea(e.serie, 64, 26, false)}<div class="d">${e.m.kg > 0 ? `${f(e.m.e1, 0)}<small>1RM est.</small>` : `${e.m.reps}<small>reps</small>`}</div></button>`).join('') : `<div class="vacio">Cuando apuntes tu primer entreno, aquí verás tus récords y cómo suben.</div>`}</div>
   <h2>Logros · ${Object.keys(D.logros || {}).length}/${LOGROS.length}</h2><div class="logros">${LOGROS.map((l) => { const h = (D.logros || {})[l.id]; return `<div class="card lg ${h ? '' : 'no'}"><div class="med">${ICONO[l.i]}</div><div><b>${esc(l.t)}</b><small>${h ? 'Conseguido el ' + fCorta(h) : esc(l.d)}</small></div></div>`; }).join('')}</div>
   <h2>Peso corporal</h2>
   <div class="card">${peso.length >= 2 ? linea(peso.map((p) => ({ x: fCorta(p.fecha), y: p.kg }))) : ''}
@@ -691,7 +705,24 @@ function vProgreso() {
   <h2>Historial</h2>
   <div class="lista">${ses.length ? ses.slice(0, 40).map((s) => `<button class="item" data-ses="${s.fecha}" data-dia-s="${esc(s.dia)}"><div class="c"><b>${esc(diaPorId(s.dia)?.nombre || s.dia)}</b><small>${fCorta(s.fecha)} · ${s.series} series${s.min ? ` · ${s.min} min` : ''}</small></div><div class="d">${s.prs.length ? `<span style="color:var(--ac)">${s.prs.length} PR</span>` : '✓'}</div></button>`).join('') : `<div class="vacio">Aún no has terminado ningún entreno.</div>`}</div>`;
 }
+// ---------- calendario por meses: toca un día entrenado y ves sus marcas ----------
+let calMes = null;
+function vCalendario() {
+  const mes = calMes || hoy().slice(0, 7), [y, m] = mes.split('-').map(Number), primero = new Date(y, m - 1, 1), nDias = new Date(y, m, 0).getDate();
+  const porFecha = new Map(); for (const r of D.regs) if (r.series.length && r.fecha.startsWith(mes)) { const x = porFecha.get(r.fecha) || { dia: r.dia, pr: false, n: 0 }; x.n += r.series.length; x.pr = x.pr || r.series.some((z) => z.pr); porFecha.set(r.fecha, x); }
+  const hueco = (primero.getDay() + 6) % 7, h = hoy(), celdas = [];
+  for (let i = 0; i < hueco; i++) celdas.push('<span></span>');
+  for (let d = 1; d <= nDias; d++) { const fe = `${mes}-${pad(d)}`, x = porFecha.get(fe);
+    celdas.push(x ? `<button class="cd si ${fe === h ? 'hoy' : ''}" data-cal="${fe}"><b>${d}</b><small>${esc(x.dia || '')}${x.pr ? ' ★' : ''}</small></button>` : `<span class="cd ${fe === h ? 'hoy' : ''}"><b>${d}</b></span>`); }
+  const nombre = primero.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }), todos = fechasEntreno(), hayAntes = todos.length && todos[0].slice(0, 7) < mes, hayDespues = mes < hoy().slice(0, 7);
+  return `<div class="card cal"><div class="cal-cab"><button id="calPrev" ${hayAntes ? '' : 'disabled'} aria-label="Mes anterior">‹</button><div><b>${esc(nombre.charAt(0).toUpperCase() + nombre.slice(1))}</b><small>${porFecha.size} entreno${porFecha.size === 1 ? '' : 's'}</small></div><button id="calNext" ${hayDespues ? '' : 'disabled'} aria-label="Mes siguiente">›</button></div>
+    <div class="cal-sem">${['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((x) => `<span>${x}</span>`).join('')}</div><div class="cal-grid">${celdas.join('')}</div>
+    <p class="texto" style="margin-top:8px;font-size:12px">Toca un día marcado para ver lo que levantaste. ★ = hiciste récord.</p></div>`;
+}
+const moverMes = (k) => { const [y, m] = (calMes || hoy().slice(0, 7)).split('-').map(Number), d = new Date(y, m - 1 + k, 1); calMes = `${d.getFullYear()}-${pad(d.getMonth() + 1)}`; pintar(); };
 function aProgreso() {
+  document.querySelectorAll('[data-cal]').forEach((b) => b.onclick = () => hojaSesion(b.dataset.cal));
+  const cp = $('#calPrev'), cn = $('#calNext'); if (cp) cp.onclick = () => moverMes(-1); if (cn) cn.onclick = () => moverMes(1);
   document.querySelectorAll('[data-ejh]').forEach((b) => b.onclick = () => hojaEjercicio(b.dataset.ejh, b.dataset.nom));
   document.querySelectorAll('[data-grupo]').forEach((b) => b.onclick = () => hojaGrupo(b.dataset.grupo));
   document.querySelectorAll('[data-ses]').forEach((b) => b.onclick = () => hojaSesion(b.dataset.ses));
@@ -709,10 +740,12 @@ function hojaEjercicio(id, nombre) {
    : `<p class="texto">Todavía no has apuntado este ejercicio.</p>`}`);
 }
 function hojaSesion(fecha) {
-  const rs = D.regs.filter((r) => r.fecha === fecha && r.series.length); const s = D.sesiones.find((x) => x.fecha === fecha);
-  abrirHoja(`<div class="eyebrow">${esc(new Date(fecha + 'T12:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }))}</div><h1 style="margin-bottom:14px">${esc(diaPorId(s?.dia)?.nombre || s?.dia || 'Entreno')}</h1>
-   <div class="lista">${rs.map((r) => `<div class="item"><div class="c"><b>${esc(r.nombre)}</b><small class="num">${r.series.map((x) => `${f(x.kg)}×${x.reps}${x.pr ? '★' : ''}`).join('  ')}</small></div></div>`).join('')}</div>
+  const rs = D.regs.filter((r) => r.fecha === fecha && r.series.length); const s = D.sesiones.find((x) => x.fecha === fecha), did = s?.dia || rs[0]?.dia;
+  abrirHoja(`<div class="eyebrow">${esc(new Date(fecha + 'T12:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }))}</div><h1 style="margin-bottom:4px">${esc(diaPorId(did)?.nombre || (did && did !== 'Otro' ? did : 'Entreno'))}</h1>
+   <p class="texto" style="margin-bottom:14px">${rs.length} ejercicios · ${rs.reduce((a, r) => a + r.series.length, 0)} series${rs.some((r) => r.series.some((x) => x.pr)) ? ' · ★ récord' : ''}</p>
+   <div class="lista">${rs.map((r) => { const vs = r.series.filter((x) => x.kg > 0); return `<button class="item" data-ejd="${esc(r.ej)}" data-nom="${esc(r.nombre)}"><div class="c"><b>${esc(r.nombre)}</b><small class="num">${r.series.map((x) => `${f(x.kg)}×${x.reps}${x.pr ? '★' : ''}`).join('  ')}</small></div>${vs.length ? `<div class="d">${f(Math.max(...vs.map((x) => e1rm(x.kg, x.reps))), 0)}<small>1RM est.</small></div>` : ''}</button>`; }).join('')}</div>
    <div style="margin-top:16px"><button class="btn peligro" id="borrarSes">Borrar este entreno</button></div>`);
+  document.querySelectorAll('[data-ejd]').forEach((b) => b.onclick = () => hojaEjercicio(b.dataset.ejd, b.dataset.nom));
   $('#borrarSes').onclick = () => { if (!confirm('¿Borrar este entreno y sus series?')) return; D.regs = D.regs.filter((r) => r.fecha !== fecha); D.sesiones = D.sesiones.filter((x) => x.fecha !== fecha); guardar(); cerrarHoja(); pintar(); };
 }
 
