@@ -228,7 +228,7 @@ if (m) {
   const suelo = () => { const nav = document.querySelector('nav.tabs').getBoundingClientRect().top; return nav - tam() * 0.74; };
   let lado = 'der', modo = 'fuera', ocupadoHasta = 0, tIdle, foco = false;
   const ir = (x, y, r = 0, dur = 0.9) => { cv.style.transitionDuration = quieto ? '0s' : dur + 's'; cv.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`; };
-  const xSuelo = (l) => l === 'izq' ? 6 : innerWidth - tam() - 6;
+  const xSuelo = (l) => l === 'izq' ? 6 : l === 'centro' ? innerWidth / 2 - tam() / 2 : innerWidth - tam() - 6;
   function sentarse(l = lado, dur) { lado = l; modo = 'suelo'; ir(xSuelo(l), suelo(), 0, dur); }
   function esconder(dur = 0.6) { modo = 'fuera'; ir(xSuelo(lado), innerHeight + 20, 0, dur); }
   const ocupado = () => Date.now() < ocupadoHasta;
@@ -246,16 +246,45 @@ if (m) {
     setTimeout(() => { ir(xSuelo(l), innerHeight + 20, 0, 0); }, 5800);
     setTimeout(() => { if (!foco) sentarse(l, 0.8); }, 5900);
   }
-  function pasear() { ocupar(3); sentarse(lado === 'der' ? 'izq' : 'der', 2.6); }
-  const RUTINAS = ['pesa', 'pesa', 'asomarse', 'pasear', 'baile', 'malabares', 'voltereta', 'bostezo', 'estrella'];
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  const libre = () => !document.hidden && !foco && !ocupado() && modo === 'suelo';
+  // a otro sitio del suelo (izquierda, centro o derecha), caminando
+  function pasear() { const L = ['izq', 'centro', 'der'].filter((x) => x !== lado); const l = L[Math.floor(Math.random() * L.length)]; ocupar(3); sentarse(l, l === 'centro' || lado === 'centro' ? 1.6 : 2.6); }
+  // saltitos de verdad: sube y baja por la pantalla
+  async function saltitos(n = 3, alto = 34) {
+    if (modo !== 'suelo') return; ocupar(n * 0.5 + 0.5); X('happy', n * 0.5 + 0.6); const x = xSuelo(lado), y = suelo();
+    for (let i = 0; i < n; i++) { ir(x, y - alto, 0, 0.2); await espera(210); ir(x, y, 0, 0.22); await espera(260); }
+  }
+  // se convierte en mancuerna y se «levanta» a sí mismo
+  async function mancuerna() {
+    if (modo !== 'suelo') return; ocupar(7); try { m.forma('pesa'); } catch { return; }
+    const x = xSuelo(lado), y = suelo(); await espera(900);
+    for (let i = 0; i < 3; i++) { ir(x, y - 46, 0, 0.55); await espera(650); ir(x, y - 6, 0, 0.45); await espera(520); }
+    ir(x, y, 0, 0.3); await espera(400); X('happy', 1.5);
+  }
+  const GESTOS = ['pesa', 'pesa', 'mancuerna', 'mancuerna', 'saltitos', 'saltitos', 'feliz', 'estrella', 'malabares', 'baile', 'voltereta', 'bostezo'];
+  function hacerGesto() {
+    const g = GESTOS[Math.floor(Math.random() * GESTOS.length)];
+    if (g === 'saltitos') saltitos(2 + Math.floor(Math.random() * 3)); else if (g === 'mancuerna') mancuerna();
+    else if (g === 'feliz') { T('sonrisa'); ocupar(4); } else { T(g); ocupar(6); }
+  }
+  // cada 9-16 s hace algo en el sitio; cada ~50-70 s se cambia de sitio (camina o se asoma por un lado)
+  let proxMover = Date.now() + 45000;
   function siguiente() {
     clearTimeout(tIdle); tIdle = setTimeout(() => {
-      if (!document.hidden && !foco && !ocupado() && modo === 'suelo') {
-        const r = RUTINAS[Math.floor(Math.random() * RUTINAS.length)];
-        if (r === 'asomarse') asomarse(); else if (r === 'pasear') pasear(); else { T(r); ocupar(6); }
+      if (libre()) {
+        if (Date.now() > proxMover) { proxMover = Date.now() + 50000 + Math.random() * 20000; Math.random() < 0.4 ? asomarse() : pasear(); }
+        else hacerGesto();
       }
       siguiente();
-    }, 16000 + Math.random() * 22000);
+    }, 9000 + Math.random() * 7000);
+  }
+  // superar tu marca de verdad: fiesta
+  async function fiesta(texto) {
+    clearInterval(tPesas); ocupar(9); const antes = modo; modo = 'suelo'; lado = 'centro'; ir(xSuelo('centro'), suelo(), 0, 0.5); await espera(550);
+    T('estrella'); await saltitos(4, 44); ocupar(8); if (texto && window.bichoDecir) window.bichoDecir(texto, 4);
+    await espera(2600); T('corazon'); await espera(4300);
+    if (antes === 'descanso' && document.getElementById('descanso').classList.contains('on')) aDescanso();
   }
   // descanso: se sube encima del temporizador y hace pesas
   let tPesas;
@@ -282,6 +311,9 @@ if (m) {
     if (foco && ev !== 'foco-fuera') return;
     switch (ev) {
       case 'serie': X('happy', 1.4); break;
+      case 'pr-grande': fiesta(dato); break;
+      case 'mancuerna': if (libre()) mancuerna(); break;
+      case 'saltitos': if (libre()) saltitos(3); break;
       case 'pr': ocupar(4.5); if (modo === 'descanso') T('estrella'); else { ir(innerWidth / 2 - tam() / 2, suelo(), 0, 0.6); setTimeout(() => T('estrella'), 600); setTimeout(() => { if (modo === 'suelo') sentarse(lado, 0.8); }, 4400); } break;
       case 'descanso': aDescanso(); break;
       case 'descanso-fin': finDescanso(dato); break;
@@ -489,14 +521,16 @@ function confirmar(e, i, card) {
   const kg = num(ik.value || ik.placeholder), reps = Math.round(num(ir.value || ir.placeholder) || 0);
   if (kg == null || kg < 0 || !reps || reps < 1) { toast('Pon los kilos y las reps'); (kg == null ? ik : ir).focus(); return; }
   if (!r) { r = { fecha: h, dia: diaDeHoy(), ej: e.id, nombre: e.nombre, series: [] }; D.regs.push(r); }
-  const antes = mejor(e.id);
+  const antes = mejor(e.id); const maxAntes = Math.max(0, ...regsDe(e.id).flatMap((x) => x.series.map((y) => y.kg)));
   const serie = { kg, reps }; r.series.push(serie);
   const v = e1rm(kg, reps);
   const esPR = antes.e1 > 0 && v > antes.e1 + 0.01;
   if (esPR) { serie.pr = true; toast(`Récord en ${e.nombre}: ${f(kg)} × ${reps}`); vibrar([30, 40, 30]); } else vibrar(15);
   if (!D.activa || D.activa.fecha !== h) D.activa = { fecha: h, dia: r.dia, inicio: Date.now() };
   delete borr[e.id][i]; if (extras[e.id]) extras[e.id] = 0;
-  guardar(); pintar(); descanso(D.aj.descanso); avisarBicho(esPR ? 'pr' : 'serie'); setTimeout(revisarLogros, esPR ? 2600 : 600);
+  guardar(); pintar(); descanso(D.aj.descanso);
+  const grande = esPR && (v >= antes.e1 * 1.04 || kg > maxAntes);
+  avisarBicho(grande ? 'pr-grande' : esPR ? 'pr' : 'serie', grande ? (kg > maxAntes ? `¡Brutal! ${f(kg)} kg, más que nunca en ${e.nombre.toLowerCase()}.` : `¡Bestia! Tu mejor ${e.nombre.toLowerCase()} hasta hoy.`) : undefined); setTimeout(revisarLogros, esPR ? 2600 : 600);
 }
 
 // --- crono de la sesión

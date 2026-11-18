@@ -11,7 +11,7 @@
 const TAU = Math.PI * 2;
 const CIAN = [92, 203, 245], ROJO = [194, 85, 75];
 const ESTADOS = ['reposo', 'pensar', 'leer', 'escribir', 'comando', 'web', 'esperando', 'enviar', 'hecho', 'error', 'parado', 'dormir', 'proyectos', 'escuchando'];
-const FORMAS = ['circulo', 'coche', 'viga', 'buho'];
+const FORMAS = ['circulo', 'coche', 'viga', 'buho', 'pesa'];
 const rgba = (c, a = 1) => `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${a})`;
 const mezcla = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
 const hh = x => { const v = Math.sin(x * 12.9898) * 43758.5453; return v - Math.floor(v); };
@@ -76,6 +76,8 @@ function ptsFijo(n) {
   else if (n === 'avion') r = [[-0.8, -0.62], [1, 0], [-0.8, 0.62], [-0.40, 0]];
   else if (n === 'check') r = gruesa([[-0.75, 0.05], [-0.25, 0.55], [0.85, -0.55]], 0.17);
   else if (n === 'viga') r = [[0, -0.78], [1, -0.78], [1, -0.48], [0.2, -0.48], [0.2, 0.48], [1, 0.48], [1, 0.78], [-1, 0.78], [-1, 0.48], [-0.2, 0.48], [-0.2, -0.48], [-1, -0.48], [-1, -0.78]];
+  else if (n === 'pesa') { const R = [[0, -0.30], [0.40, -0.30], [0.40, -0.10], [0.50, -0.10], [0.50, -0.78], [0.72, -0.78], [0.72, -0.55], [0.92, -0.55], [0.92, 0.55], [0.72, 0.55], [0.72, 0.78], [0.50, 0.78], [0.50, 0.10], [0.40, 0.10], [0.40, 0.30], [0, 0.30]];
+    r = [...R, ...R.slice(1, -1).reverse().map(([x, y]) => [-x, y])].map(([x, y]) => [x * 1.22, y * 1.05]); }
   else if (n === 'coche') r = [[0, -0.52], [0.34, -0.52], [0.52, -0.40], [0.66, -0.08], [0.95, -0.02], [1.0, 0.05], [1.0, 0.30], [0.96, 0.40], [0.82, 0.45], ...arcPts(0.55, 0.45, 0.24, 0, PI, 8), [0.31, 0.45], [0, 0.45], [-0.31, 0.45], ...arcPts(-0.55, 0.45, 0.24, 0, PI, 8), [-0.79, 0.45], [-0.96, 0.40], [-1.0, 0.30], [-1.0, 0.05], [-0.95, -0.02], [-0.66, -0.08], [-0.52, -0.40], [-0.34, -0.52]];
   else if (n === 'buho') { r = []; const E = th => [0.78 * cos(th), 0.05 + 0.86 * sin(th)]; for (let i = 0; i <= 4; i++) r.push(E(-PI / 2 + (-1.0 + PI / 2) * i / 4)); r.push([0.62, -1.08], E(-0.45)); for (let i = 1; i <= 14; i++) r.push(E(-0.45 + (PI + 0.45 + 0.45) * i / 14)); r.push([-0.62, -1.08]); for (let i = 0; i < 4; i++) r.push(E(PI + 1.0 + (PI * 1.5 - PI - 1.0) * i / 4)); }
   else if (n === 'arco') r = [[0, -0.92], ...arcPts(0, -0.1, 0.82, -PI / 2, 0, 12), [0.82, 0.72], [0.34, 0.72], [0.34, -0.1], ...arcPts(0, -0.1, 0.34, 0, -PI, 12), [-0.34, 0.72], [-0.82, 0.72], ...arcPts(0, -0.1, 0.82, PI, PI * 1.5, 12)];
@@ -90,6 +92,7 @@ const ptsForma = (n, t, wob, legs) => n === 'bicho' ? ptsBicho(t, wob, legs) : p
 const INFO = {
   bicho: { a: 1, eyes: 1, ey: -0.12, pitch: 0.082, kb: 0, hoja: 0, fw: 1 }, hoja: { a: 1, eyes: 1, ey: -0.55, pitch: 0.082, kb: 0, hoja: 1, fw: 0.6 },
   avion: { a: 1, eyes: 0, ey: -0.12, pitch: 0.082, kb: 0, hoja: 0, fw: 1 }, coche: { a: 1, eyes: 0, ey: -0.12, pitch: 0.082, kb: 0, hoja: 0, fw: 1 }, viga: { a: 1, eyes: 0, ey: -0.12, pitch: 0.082, kb: 0, hoja: 0, fw: 1 },
+  pesa: { a: 1, eyes: 1, ey: -0.02, pitch: 0.05, kb: 0, hoja: 0, fw: 0.5 },
   buho: { a: 1, eyes: 1, ey: -0.12, pitch: 0.075, kb: 0, hoja: 0, fw: 0.88 }, charco: { a: 1, eyes: 1, ey: 0.62, pitch: 0.058, kb: 0, hoja: 0, fw: 1 }, punto: { a: 1, eyes: 0, ey: 0.1, pitch: 0.05, kb: 0, hoja: 0, fw: 1 },
   arco: { a: 1, eyes: 0, ey: -0.12, pitch: 0.08, kb: 0, hoja: 0, fw: 1 }, casita: { a: 1, eyes: 1, ey: 0.22, pitch: 0.068, kb: 0, hoja: 0, fw: 0.9 },
   teclado: { a: 0.30, eyes: 0, ey: -0.12, pitch: 0.082, kb: 1, hoja: 0, fw: 1 }, carga: { a: 0, eyes: 0, ey: 0.1, pitch: 0.05, kb: 0, hoja: 0, fw: 1 }, check: { a: 1, eyes: 0, ey: 0, pitch: 0.06, kb: 0, hoja: 0, fw: 1 },
