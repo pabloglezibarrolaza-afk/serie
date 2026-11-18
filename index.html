@@ -40,7 +40,7 @@ h2{font-size:13px;font-weight:500;color:var(--mu);letter-spacing:.06em;text-tran
 h3{font-size:16px;font-weight:600;letter-spacing:-.01em}
 
 /* chips de día */
-.dias{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 16px;padding:0 16px}
+.dias{position:relative;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 16px;padding:0 16px}
 .dias::-webkit-scrollbar{display:none}
 .chip{flex:0 0 auto;padding:8px 12px;border-radius:10px;background:var(--s1);border:1px solid var(--line);color:var(--mu);font-size:13px;font-weight:500;transition:background .15s,color .15s,transform .1s}
 .chip b{font-family:var(--mono);font-weight:600;color:var(--tx);margin-right:6px}
@@ -390,10 +390,21 @@ let pestana = 'entreno'; const borr = {}; // borradores de series sin confirmar
 document.querySelectorAll('nav.tabs button').forEach((b) => b.onclick = () => { cerrarHoja(); pestana = b.dataset.t; pintar(); avisarBicho('pestana'); window.scrollTo(0, 0); });
 function pintar() {
   document.querySelectorAll('nav.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === pestana));
-  const sl = $('.dias') ? $('.dias').scrollLeft : 0;
-  $('#app').innerHTML = ({ entreno: vEntreno, progreso: vProgreso, rutina: vRutina, mas: vMas })[pestana]();
+  // La barra de días (A1, B1, A2, B2) NO se vuelve a dibujar: se reutiliza la misma, así no se mueve al tocar un día.
+  // (sacarla del DOM aunque sea un instante le reinicia el scroll, así que se queda quieta y se cambia lo de alrededor)
+  const app = $('#app'), vieja = app.querySelector('.dias'), tmp = document.createElement('div');
+  tmp.innerHTML = ({ entreno: vEntreno, progreso: vProgreso, rutina: vRutina, mas: vMas })[pestana]();
+  const nueva = tmp.querySelector('.dias');
+  if (vieja && nueva && vieja.dataset.k === nueva.dataset.k && nueva.parentNode === tmp) {
+    [...app.childNodes].forEach((n) => { if (n !== vieja) n.remove(); });
+    const kids = [...tmp.childNodes], i = kids.indexOf(nueva);
+    vieja.before(...kids.slice(0, i)); vieja.after(...kids.slice(i + 1));
+    const id = diaDeHoy(); vieja.querySelectorAll('.chip').forEach((c) => c.classList.toggle('on', c.dataset.dia === id));
+  } else {
+    app.replaceChildren(...tmp.childNodes);
+    const n = app.querySelector('.dias'); if (n) { const on = n.querySelector('.on'); if (on && on.offsetLeft + on.offsetWidth > n.clientWidth) n.scrollLeft = on.offsetLeft - 16; }
+  }
   ({ entreno: aEntreno, progreso: aProgreso, rutina: aRutina, mas: aMas })[pestana]();
-  const ds = $('.dias'); if (ds) { ds.scrollLeft = sl; const on = ds.querySelector('.on'); if (on && (on.offsetLeft < ds.scrollLeft || on.offsetLeft + on.offsetWidth > ds.scrollLeft + ds.clientWidth)) ds.scrollLeft = on.offsetLeft - 16; }
 }
 
 // ================= ENTRENO =================
@@ -404,7 +415,7 @@ function vEntreno() {
   const hechas = D.regs.filter((r) => r.fecha === h).reduce((a, r) => a + r.series.length, 0);
   const ses = D.activa && D.activa.fecha === h ? D.activa : null;
   let html = `<header class="top"><div><div class="eyebrow">${esc(fecha)}</div><h1>${esc(dia.nombre)}</h1></div></header>
-  <div class="dias">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>`;
+  <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>`;
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
   html += `<div class="stack">` + dia.ejercicios.map((e) => tarjeta(e, salt.includes(e.id))).join('') + `</div>`;
   html += `<div style="margin-top:18px">${hechas ? `<button class="btn pri" id="terminar">Terminar entreno · ${hechas} series</button>` : `<p class="texto" style="text-align:center">Apunta kilos y reps y dale al ✓. Si no escribes nada, se guarda lo que sale en gris.</p>`}</div>`;
