@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#1B1B19">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -25,7 +25,7 @@
   --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{background:var(--bg);color:var(--tx);font-family:Geist,system-ui,sans-serif;font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
+html,body{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior:none;background:var(--bg);color:var(--tx);font-family:Geist,system-ui,sans-serif;font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
 body{min-height:100dvh;overscroll-behavior-y:none}
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:35;pointer-events:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none}
@@ -186,6 +186,14 @@ nav.tabs button.on svg{stroke:var(--ac)}
 .x{color:var(--mu2);font-size:20px;line-height:1;height:36px}
 .x:active{color:var(--bad)}
 .ex-cab{display:grid;grid-template-columns:1fr 50px 74px 30px;gap:6px;padding:8px 10px 0 14px;font-size:11px;color:var(--mu2);text-transform:uppercase;letter-spacing:.05em}
+.tgs{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.tg{font-size:12px;padding:5px 9px;border-radius:8px;background:var(--s2);color:var(--mu);border:1px solid transparent}
+.tg.on{background:var(--ac-soft);color:var(--ac);border-color:rgba(108,180,255,.4)}
+.ex.con-ss{box-shadow:inset 3px 0 0 var(--ac)}
+.ss-grupo{position:relative;border-left:3px solid var(--ac);border-radius:var(--r);padding-left:8px;display:grid;gap:8px}
+.ss-tag{font-size:12px;color:var(--ac);font-weight:600;letter-spacing:.02em;padding:2px 2px 0}
+.etq{display:inline-block;font-size:11px;font-weight:600;color:var(--ac);background:var(--ac-soft);padding:2px 6px;border-radius:6px;vertical-align:2px;margin-left:4px}
+.fila.drop .n{color:var(--ac);font-size:15px}
 .añadir{width:100%;padding:12px;color:var(--ac);font-size:14px;font-weight:500;border-top:1px solid var(--line)}
 
 /* herramientas */
@@ -217,6 +225,31 @@ nav.tabs button.on svg{stroke:var(--ac)}
 .lg b{display:block;font-size:13.5px;font-weight:600;line-height:1.2}
 .lg small{font-size:11.5px;color:var(--mu);line-height:1.25;display:block;margin-top:2px}
 .lg.no{opacity:.38}.lg.no .med{background:var(--s2)}.lg.no .med svg{stroke:var(--mu2)}
+body.en-chat #app{padding-bottom:0}
+body.en-chat #bicho,body.en-chat #bocadillo{display:none}
+.chat-vista{display:flex;flex-direction:column;height:calc(100dvh - var(--safe-t) - 18px - 64px - var(--safe-b))}
+.chat-cab{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding-top:4px}
+#bichoGrande{width:min(62vw,240px);height:min(62vw,240px);display:block}
+.chat-nom{font-weight:600;font-size:18px;margin-top:-8px}
+.chat-est{font-size:12px;color:var(--mu);margin-top:2px}
+.chat-est.rojo{color:var(--bad)}
+.chat-lista{flex:1 1 auto;overflow-y:auto;padding:12px 2px 8px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.msg{max-width:84%;display:flex;flex-direction:column}
+.msg .txt{padding:9px 12px;border-radius:16px;font-size:14.5px;line-height:1.42;white-space:normal;word-wrap:break-word}
+.msg small{font-size:10.5px;color:var(--mu2);margin:3px 6px 0}
+.msg.el{align-self:flex-start}.msg.el .txt{background:var(--s2);border:1px solid var(--line);border-bottom-left-radius:6px}
+.msg.yo{align-self:flex-end;align-items:flex-end}.msg.yo .txt{background:var(--ac);color:var(--ac-ink);border-bottom-right-radius:6px}
+.escribiendo .txt{display:flex;gap:4px;padding:12px 14px}
+.escribiendo i{width:6px;height:6px;border-radius:50%;background:var(--mu);animation:punt 1s infinite}
+.escribiendo i:nth-child(2){animation-delay:.15s}.escribiendo i:nth-child(3){animation-delay:.3s}
+@keyframes punt{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.chat-caja{flex:0 0 auto;display:flex;gap:8px;padding:8px 0 10px}
+.chat-caja input{flex:1;height:46px;border-radius:23px;border:1px solid var(--line);background:var(--s2);padding:0 16px;outline:none}
+.chat-caja input:focus{border-color:var(--ac)}
+.chat-caja button{width:46px;height:46px;border-radius:50%;background:var(--ac);display:grid;place-items:center}
+.chat-caja svg{width:22px;height:22px;stroke:var(--ac-ink);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs button{position:relative}
+nav.tabs button.aviso::after{content:'';position:absolute;top:4px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 2px var(--bg)}
 #toast{position:fixed;top:calc(var(--safe-t) + 12px);left:50%;transform:translate(-50%,calc(-100% - var(--safe-t) - 30px));visibility:hidden;background:var(--ac);color:var(--ac-ink);padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;z-index:60;transition:transform .3s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 32px);text-align:center}
 #toast.on{transform:translate(-50%,0);visibility:visible}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -230,6 +263,7 @@ nav.tabs button.on svg{stroke:var(--ac)}
 <div id="toast"></div>
 <nav class="tabs"><div class="in">
   <button data-t="entreno"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>Entreno</button>
+  <button data-t="bicho"><svg viewBox="0 0 24 24"><path d="M5 15c0-5 3-9 7-9s7 4 7 9c0 1-.4 2-1 2.5M5 15c0 1 .4 2 1 2.5M8 18v2M11 18.5v2M13 18.5v2M16 18v2"/><path d="M9.5 12.5c.5-.8 1.5-.8 2 0M12.5 12.5c.5-.8 1.5-.8 2 0"/></svg>Bicho</button>
   <button data-t="progreso"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg>Progreso</button>
   <button data-t="rutina"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>Rutina</button>
   <button data-t="mas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Más</button>
@@ -243,6 +277,7 @@ import { crearMascota } from './bicho.js';
 const cv = document.getElementById('bicho');
 const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let m; try { m = crearMascota(cv, { transparente: true, sombra: false, vista: 0.92, espontaneas: false, ojos: '25' }); } catch (e) { cv.remove(); }
+window.crearBicho = (c, op) => crearMascota(c, op);
 if (m) {
   const T = (n) => { try { m.espontanea(n); } catch {} };
   const X = (n, s) => { try { m.expresion(n, s); } catch {} };
@@ -284,7 +319,8 @@ if (m) {
     for (let i = 0; i < 3; i++) { ir(x, y - 46, 0, 0.55); await espera(650); ir(x, y - 6, 0, 0.45); await espera(520); }
     ir(x, y, 0, 0.3); await espera(400); X('happy', 1.5);
   }
-  const GESTOS = ['pesa', 'pesa', 'mancuerna', 'mancuerna', 'saltitos', 'saltitos', 'feliz', 'estrella', 'malabares', 'baile', 'voltereta', 'bostezo'];
+  const NUEVAS = ['batido', 'flexiones', 'toalla', 'discos', 'calentar'].filter((n) => m.listaEspontaneas().includes(n));
+  const GESTOS = ['pesa', 'mancuerna', 'mancuerna', 'saltitos', 'saltitos', 'feliz', 'estrella', 'malabares', 'baile', 'voltereta', 'bostezo', ...NUEVAS, ...NUEVAS];
   function hacerGesto() {
     const g = GESTOS[Math.floor(Math.random() * GESTOS.length)];
     if (g === 'saltitos') saltitos(2 + Math.floor(Math.random() * 3)); else if (g === 'mancuerna') mancuerna();
@@ -313,9 +349,12 @@ if (m) {
   function aDescanso() {
     const b = document.getElementById('descanso').getBoundingClientRect(); modo = 'descanso';
     ir(b.right - tam() - 4, b.top - tam() * 0.80, 0, 0.7); clearInterval(tPesas);
-    setTimeout(() => T('pesa'), 750); tPesas = setInterval(() => { if (modo === 'descanso') T('pesa'); }, 7000);
+    // primero levanta la pesa; luego se hace reloj de arena y se va vaciando con el descanso que queda
+    setTimeout(() => T('pesa'), 750);
+    if (m.reloj) { let n = 0; tPesas = setInterval(() => { if (modo !== 'descanso') return; n++; if (n >= 7) { try { m.reloj(window.descansoFrac ? window.descansoFrac() : 0.5); } catch {} } }, 1000); }
+    else tPesas = setInterval(() => { if (modo === 'descanso') T('pesa'); }, 7000);
   }
-  function finDescanso(acabado) { clearInterval(tPesas); if (modo !== 'descanso') return; sentarse(lado, 0.7); if (acabado) setTimeout(() => T('voltereta'), 750); }
+  function finDescanso(acabado) { clearInterval(tPesas); try { m.reloj && m.reloj(null); } catch {} if (modo !== 'descanso') return; sentarse(lado, 0.7); if (acabado) setTimeout(() => T('voltereta'), 750); }
 
   // bocadillo: el bicho dice algo (consejos, logros)
   const boc = document.getElementById('bocadillo'); let tBoc;
@@ -342,13 +381,35 @@ if (m) {
       case 'terminar': ocupar(9); clearInterval(tPesas); sentarse(lado, 0.6); setTimeout(() => T('baile'), 700); setTimeout(() => T('corazon'), 5600); break;
       case 'asomarse': if (!ocupado() && modo === 'suelo') asomarse(); break;
       case 'logro': ocupar(4); T('estrella'); break;
+      case 'objetivo': (async () => { ocupar(5); X('happy', 2); if (modo === 'suelo') await saltitos(3, 40); if (dato && window.bichoDecir) window.bichoDecir(dato, 4.5); })(); break;
+      case 'toalla': if (modo === 'suelo' && !ocupado() && NUEVAS.includes('toalla')) { T('toalla'); ocupar(5); } break;
+      case 'calentar': if (NUEVAS.includes('calentar')) { setTimeout(() => { T('calentar'); ocupar(6); }, 4500); } break;
       case 'pestana': if (modo === 'suelo' && !ocupado() && Math.random() < 0.35) X('wow', 0.9); break;
     }
   };
+  // enfado: rojo y con mala cara (si el bicho lo sabe hacer)
+  window.bichoEnfado = (nivel) => { try { m.enfado ? m.enfado(nivel) : (nivel > 0.5 && X('strain', 3)); } catch {} };
+  try { if (D.enfado && D.enfado.nivel > 0) window.bichoEnfado(D.enfado.nivel); } catch {}
+  // tocarle: se pone contento (y si estaba enfadado, se le pasa)
+  let tragarClick = false; document.addEventListener('click', (e) => { if (tragarClick) { e.preventDefault(); e.stopPropagation(); tragarClick = false; } }, { capture: true });
+  document.addEventListener('pointerdown', (e) => {
+    if (modo === 'fuera' || document.body.classList.contains('en-chat')) return;
+    const r = cv.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height * 0.52, rad = r.width * 0.3;
+    if (Math.hypot(e.clientX - cx, e.clientY - cy) > rad || e.target.closest('input,select,textarea,nav,#descanso button,#hoja')) return;
+    e.preventDefault(); e.stopPropagation(); tragarClick = true; setTimeout(() => { tragarClick = false; }, 600);
+    const estaba = window.calmarBichoToque ? window.calmarBichoToque() : false;
+    if (estaba) { X('happy', 2); window.bichoDecir && window.bichoDecir('Vale, vale… se me pasa. Pero la próxima me contestas.', 4); return; }
+    if (ocupado() && modo !== 'suelo') { X('happy', 1.2); return; }
+    const k = Math.random(); X('happy', 1.5);
+    if (modo === 'suelo') { if (k < 0.45) saltitos(2, 30); else if (k < 0.65) T('corazon'); else if (k < 0.8) T('sonrisa'); }
+    if (Math.random() < 0.35 && window.bichoDecir) window.bichoDecir(['¡Ey! Eso hace cosquillas.', 'Sí, sí, yo también te quiero. Ahora a entrenar.', '¿Qué? ¿Me echabas de menos?', 'No me toques tanto que me distraes.'][Math.floor(Math.random() * 4)], 3);
+  }, { capture: true });
   // con el teclado abierto se esconde para no estorbar
   document.addEventListener('focusin', (e) => { if (e.target.matches('input,select,textarea')) { foco = true; clearInterval(tPesas); esconder(0.35); } });
   document.addEventListener('focusout', () => { setTimeout(() => { if (document.activeElement && document.activeElement.matches('input,select,textarea')) return; foco = false;
     if (document.getElementById('descanso').classList.contains('on')) aDescanso(); else sentarse(lado, 0.6); }, 250); });
+  // si el campo donde escribías desaparece (p. ej. cambias de pestaña), el navegador no avisa: lo comprobamos nosotros
+  setInterval(() => { if (foco && !(document.activeElement && document.activeElement.matches('input,select,textarea'))) { foco = false; if (document.getElementById('descanso').classList.contains('on')) aDescanso(); else sentarse(lado, 0.6); } }, 2000);
   addEventListener('resize', () => { if (modo === 'suelo') sentarse(lado, 0); else if (modo === 'descanso') aDescanso(); });
   // entrada: sube desde abajo, mira y saluda
   esconder(0); setTimeout(() => { sentarse('der', 0.9); setTimeout(() => X('wow', 1), 700); setTimeout(() => T('sonrisa'), 1500); }, 900);
@@ -392,10 +453,15 @@ const RUTINA_BASE = { orden: ['A1','B1','A2','B2'], objetivo: 4, dias: [
 ].map(d => ({ ...d, ejercicios: d.ejercicios.map(([id,nombre,series,reps,notas]) => ({ id, nombre, series, reps, notas })) })) };
 
 const CLAVE = 'serie.v1';
-const nuevo = () => ({ v:1, rutina: JSON.parse(JSON.stringify(RUTINA_BASE)), regs: [], sesiones: [], activa: null, peso: [], hoyDia: null, saltados: {}, aj: { descanso: 90, inc: 2.5, barra: 20 } });
+const nuevo = () => ({ v:1, rutina: JSON.parse(JSON.stringify(RUTINA_BASE)), regs: [], sesiones: [], activa: null, peso: [], hoyDia: null, saltados: {}, aj: { descanso: 180, inc: 2.5, barra: 20 } });
 let D;
 try { D = JSON.parse(localStorage.getItem(CLAVE)) || nuevo(); } catch { D = nuevo(); }
 D = { ...nuevo(), ...D, aj: { ...nuevo().aj, ...(D.aj || {}) } };
+// descanso por defecto: 3 min (a quien tenía el 1:30 de antes sin haberlo tocado, se le pasa a 3 min)
+if (!D.aj.descansoElegido && D.aj.descanso !== 180) D.aj.descanso = 180;
+// app de formato fijo: nada de zoom con dos dedos ni con doble toque (iOS ignora user-scalable)
+['gesturestart', 'gesturechange', 'gestureend'].forEach((ev) => document.addEventListener(ev, (e) => e.preventDefault(), { passive: false }));
+document.addEventListener('touchmove', (e) => { if (e.touches && e.touches.length > 1) e.preventDefault(); }, { passive: false });
 const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(D)); } catch (e) { toast('No se ha podido guardar'); } };
 
 // ================= utilidades =================
@@ -450,13 +516,14 @@ const volumen = (rs) => rs.reduce((a, r) => a + r.series.reduce((b, s) => b + s.
 
 // ================= navegación =================
 let pestana = 'entreno'; const borr = {}; // borradores de series sin confirmar
-document.querySelectorAll('nav.tabs button').forEach((b) => b.onclick = () => { cerrarHoja(); pestana = b.dataset.t; pintar(); avisarBicho('pestana'); window.scrollTo(0, 0); });
+document.querySelectorAll('nav.tabs button').forEach((b) => b.onclick = () => { cerrarHoja(); if (pestana === 'bicho' && b.dataset.t !== 'bicho') salirBicho(); pestana = b.dataset.t; pintar(); avisarBicho('pestana'); window.scrollTo(0, 0); });
 function pintar() {
   document.querySelectorAll('nav.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === pestana));
   // La barra de días (A1, B1, A2, B2) NO se vuelve a dibujar: se reutiliza la misma, así no se mueve al tocar un día.
   // (sacarla del DOM aunque sea un instante le reinicia el scroll, así que se queda quieta y se cambia lo de alrededor)
   const app = $('#app'), vieja = app.querySelector('.dias'), tmp = document.createElement('div');
-  tmp.innerHTML = ({ entreno: vEntreno, progreso: vProgreso, rutina: vRutina, mas: vMas })[pestana]();
+  if (pestana !== 'bicho' && document.body.classList.contains('en-chat')) salirBicho();
+  tmp.innerHTML = ({ entreno: vEntreno, bicho: vBicho, progreso: vProgreso, rutina: vRutina, mas: vMas })[pestana]();
   const nueva = tmp.querySelector('.dias');
   if (vieja && nueva && vieja.dataset.k === nueva.dataset.k && nueva.parentNode === tmp) {
     [...app.childNodes].forEach((n) => { if (n !== vieja) n.remove(); });
@@ -467,13 +534,14 @@ function pintar() {
     app.replaceChildren(...tmp.childNodes);
     const n = app.querySelector('.dias'); if (n) { const on = n.querySelector('.on'); if (on && on.offsetLeft + on.offsetWidth > n.clientWidth) n.scrollLeft = on.offsetLeft - 16; }
   }
-  ({ entreno: aEntreno, progreso: aProgreso, rutina: aRutina, mas: aMas })[pestana]();
+  ({ entreno: aEntreno, bicho: aBicho, progreso: aProgreso, rutina: aRutina, mas: aMas })[pestana]();
+  marcarNoLeido();
 }
 
 // tarjeta para pegar el enlace con tus entrenos (sale cuando la app está vacía)
 const tarjetaCargar = () => `<div class="card stack" style="margin-bottom:16px;border-color:var(--ac)"><b>¿Ya llevabas tiempo apuntando?</b><p class="texto">Pega aquí el enlace con tus entrenos y los cargo todos. Lo que hayas apuntado aquí no se borra.</p>
-    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk2">Cargar</button></div></div>`;
-const atarCargar = () => { const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); }; };
+    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk2">Cargar</button></div><button class="btn" id="impAbrir2">O importa tus notas o tu Excel</button></div>`;
+const atarCargar = () => { const i2 = $('#impAbrir2'); if (i2) i2.onclick = hojaImportar; const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); }; };
 // ================= ENTRENO =================
 function vEntreno() {
   if (!dias().length) return `<header class="top"><div><div class="eyebrow">Sin rutina</div><h1>Monta tu rutina</h1></div></header><button class="btn pri" onclick="pestana='rutina';pintar()">Ir a Rutina</button>`;
@@ -487,7 +555,12 @@ function vEntreno() {
   if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. Abajo tienes el siguiente día.</small></div></div>`;
   if (!D.regs.length) html += tarjetaCargar();
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
-  html += `<div class="stack">` + dia.ejercicios.map((e) => tarjeta(e, salt.includes(e.id))).join('') + `</div>`;
+  let bloques = '', es = dia.ejercicios;
+  for (let k = 0; k < es.length; k++) {
+    if (es[k].ss && es[k + 1]) { bloques += `<div class="ss-grupo"><div class="ss-tag">Superserie · los dos seguidos, descansas al acabar el segundo</div>${tarjeta(es[k], salt.includes(es[k].id))}${tarjeta(es[k + 1], salt.includes(es[k + 1].id))}</div>`; k++; }
+    else bloques += tarjeta(es[k], salt.includes(es[k].id));
+  }
+  html += `<div class="stack">` + bloques + `</div>`;
   html += `<div style="margin-top:18px">${hechas ? `<button class="btn pri" id="terminar">Terminar entreno · ${hechas} series</button>` : `<p class="texto" style="text-align:center">Apunta kilos y reps y dale al ✓. Si no escribes nada, se guarda lo que sale en gris.</p>`}</div>`;
   return html;
 }
@@ -495,26 +568,27 @@ function tarjeta(e, saltado) {
   const u = ultima(e.id), s = sugerir(e, u), r = regHoy(e.id), hechas = r ? r.series : [];
   const filas = Math.max(e.series, hechas.length + (hechas.length >= e.series ? 0 : 0));
   const b = borr[e.id] || (borr[e.id] = {});
-  const mj = mejor(e.id);
+  const mj = mejor(e.id), pd = pendDrop[e.id] || 0, base = Math.max(filas, hechas.length);
   let out = `<div class="card ej ${saltado ? 'saltado' : ''}" data-ej="${esc(e.id)}">
-   <div class="ej-h"><div><h3>${esc(e.nombre)}</h3><div class="meta">${e.series} × ${esc(e.reps)} reps</div></div><span class="cuenta ${hechas.length >= e.series ? 'hecho' : ''}">${hechas.length}/${e.series}</span></div>
+   <div class="ej-h"><div><h3>${esc(e.nombre)}${e.drop ? ' <span class="etq">Drop set</span>' : ''}</h3><div class="meta">${e.series} × ${esc(e.reps)} reps</div></div><span class="cuenta ${hechas.length >= e.series ? 'hecho' : ''}">${hechas.length}/${e.series}</span></div>
    <div class="info">${u ? `<span><span class="k">Última ${fCorta(u.fecha)}</span> <span class="num">${u.series.map((x) => `${f(x.kg)}×${x.reps}`).join(' · ')}</span></span>` : `<span class="k">Primera vez: elige un peso cómodo</span>`}
    ${s ? `<span class="sug num">${s.subir ? '↑ ' : ''}Hoy ${f(s.kg)} kg × ${s.reps}</span>` : ''}
    ${mj.e1 ? `<span><span class="k">1RM est.</span> <span class="num">${f(mj.e1, 0)} kg</span></span>` : ''}</div>
    ${e.notas ? `<div class="nota">${esc(e.notas)}</div>` : ''}
    <div class="series">`;
-  for (let i = 0; i < Math.max(filas, hechas.length); i++) {
-    const h = hechas[i];
-    const phKg = h ? '' : (hechas[i - 1] ? f(hechas[i - 1].kg) : s ? f(s.kg) : u ? f(u.series[Math.min(i, u.series.length - 1)].kg) : '');
+  for (let i = 0; i < base + pd; i++) {
+    const h = hechas[i], esDrop = h ? !!h.drop : i >= base;
+    const prevKg = esDrop && !h && hechas.length ? hechas[hechas.length - 1].kg : hechas[i - 1] ? hechas[i - 1].kg : null;
+    const phKg = h ? '' : esDrop && prevKg ?f(Math.max(0, Math.round(prevKg * 0.8 / 2.5) * 2.5)) : (prevKg != null ? f(prevKg) : s ? f(s.kg) : u ? f(u.series[Math.min(i, u.series.length - 1)].kg) : '');
     const phR = h ? '' : (s ? s.reps : u ? u.series[Math.min(i, u.series.length - 1)].reps : (repsNums(e.reps)[0] || ''));
     const pr = h && h.pr;
-    out += `<div class="fila ${h ? 'hecha' : ''} ${pr ? 'pr' : ''}" data-i="${i}">
-      <span class="n">${pr ? 'PR' : i + 1}</span>
+    out += `<div class="fila ${h ? 'hecha' : ''} ${pr ? 'pr' : ''} ${esDrop ? 'drop' : ''}" data-i="${i}" ${esDrop ? 'data-drop="1"' : ''}>
+      <span class="n">${pr ? 'PR' : esDrop ? '↓' : i + 1}</span>
       <div class="campo"><input inputmode="decimal" data-c="kg" value="${h ? f(h.kg) : esc(b[i]?.kg ?? '')}" placeholder="${esc(phKg)}" ${h ? 'readonly' : ''}><span>kg</span></div>
       <div class="campo"><input inputmode="numeric" data-c="reps" value="${h ? h.reps : esc(b[i]?.reps ?? '')}" placeholder="${esc(phR)}" ${h ? 'readonly' : ''}><span>reps</span></div>
       <button class="ok" data-ok="${i}" aria-label="${h ? 'Deshacer serie' : 'Serie hecha'}"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>`;
   }
-  out += `</div><div class="acciones"><button data-mas>+ Serie</button><button data-hist>Historial</button><button data-saltar>${saltado ? 'Recuperar' : 'Saltar hoy'}</button></div></div>`;
+  out += `</div><div class="acciones">${e.drop ? '<button data-bajada style="color:var(--ac)">+ Bajada</button>' : ''}<button data-mas>+ Serie</button><button data-hist>Historial</button><button data-saltar>${saltado ? 'Recuperar' : 'Saltar hoy'}</button></div></div>`;
   return out;
 }
 function aEntreno() {
@@ -526,6 +600,7 @@ function aEntreno() {
     card.querySelectorAll('[data-ok]').forEach((b) => b.onclick = () => confirmar(e, +b.dataset.ok, card));
     card.querySelector('[data-mas]').onclick = () => { e._extra = true; const r = regHoy(id); const n = (r ? r.series.length : 0); if (n >= e.series) { apuntarVacia(e); } pintar(); };
     card.querySelector('[data-hist]').onclick = () => hojaEjercicio(id, e.nombre);
+    const bj = card.querySelector('[data-bajada]'); if (bj) bj.onclick = () => { const r = regHoy(id); if (!r || !r.series.length) { toast('Primero haz la serie y luego la bajada'); return; } pendDrop[id] = (pendDrop[id] || 0) + 1; pintar(); };
     card.querySelector('[data-saltar]').onclick = () => { const h = hoy(); const l = new Set(D.saltados[h] || []); l.has(id) ? l.delete(id) : l.add(id); D.saltados = { [h]: [...l] }; guardar(); pintar(); };
   });
   const t = $('#terminar'); if (t) t.onclick = terminar;
@@ -533,7 +608,7 @@ function aEntreno() {
   reloj();
 }
 // "+ Serie" cuando ya están todas: añade una fila más pidiendo una serie extra
-const extras = {};
+const extras = {}, pendDrop = {};
 function apuntarVacia(e) { extras[e.id] = (extras[e.id] || 0) + 1; }
 const _tarjeta = tarjeta;
 tarjeta = function (e, s) { const x = extras[e.id] || 0; return _tarjeta({ ...e, series: Math.max(e.series, (regHoy(e.id)?.series.length || 0) + (x ? 1 : 0)) }, s); };
@@ -550,14 +625,25 @@ function confirmar(e, i, card) {
   if (kg == null || kg < 0 || !reps || reps < 1) { toast('Pon los kilos y las reps'); (kg == null ? ik : ir).focus(); return; }
   if (!r) { r = { fecha: h, dia: diaDeHoy(), ej: e.id, nombre: e.nombre, series: [] }; D.regs.push(r); }
   const antes = mejor(e.id); const maxAntes = Math.max(0, ...regsDe(e.id).flatMap((x) => x.series.map((y) => y.kg)));
-  const serie = { kg, reps }; r.series.push(serie);
+  const objetivo = sugerir(e, ultima(e.id)), nuevaSesion = !D.activa || D.activa.fecha !== h;
+  const esDrop = fila.dataset.drop === '1';
+  const serie = { kg, reps }; if (esDrop) serie.drop = true; r.series.push(serie);
   const v = e1rm(kg, reps);
   const esPR = antes.e1 > 0 && v > antes.e1 + 0.01;
   if (esPR) { serie.pr = true; toast(`Récord en ${e.nombre}: ${f(kg)} × ${reps}`); vibrar([30, 40, 30]); } else vibrar(15);
   if (!D.activa || D.activa.fecha !== h) D.activa = { fecha: h, dia: r.dia, inicio: Date.now() };
-  delete borr[e.id][i]; if (extras[e.id]) extras[e.id] = 0;
-  guardar(); pintar(); descanso(D.aj.descanso);
+  delete borr[e.id][i]; if (extras[e.id]) extras[e.id] = 0; if (esDrop && pendDrop[e.id]) pendDrop[e.id]--;
+  const lista = diaPorId(diaDeHoy())?.ejercicios || [], pos = lista.findIndex((x) => x.id === e.id), pareja = e.ss && lista[pos + 1];
+  guardar(); pintar();
+  if (esDrop) toast('Bajada apuntada');
+  else if (pareja) { toast(`Ahora sin descanso: ${pareja.nombre}`); const c = document.querySelector(`.ej[data-ej="${CSS.escape(pareja.id)}"]`); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  else descanso(D.aj.descanso);
   const grande = esPR && (v >= antes.e1 * 1.04 || kg > maxAntes);
+  const superado = !esDrop && objetivo && objetivo.kg > 0 && (kg > objetivo.kg || (kg >= objetivo.kg && reps > objetivo.reps));
+  if (nuevaSesion) avisarBicho('calentar');
+  if (superado && !grande) { const extra = kg > objetivo.kg ? `${f(kg - objetivo.kg)} kg más` : `${reps - objetivo.reps} rep${reps - objetivo.reps > 1 ? 's' : ''} más`; avisarBicho('objetivo', `¡Genial! ${f(kg)} × ${reps}: ${extra} de lo que te tocaba.`); }
+  else if (!esPR && !esDrop && Math.random() < 0.25) setTimeout(() => avisarBicho('toalla'), 1500);
+  if (!(superado && !grande))
   avisarBicho(grande ? 'pr-grande' : esPR ? 'pr' : 'serie', grande ? (kg > maxAntes ? `¡Brutal! ${f(kg)} kg, más que nunca en ${e.nombre.toLowerCase()}.` : `¡Bestia! Tu mejor ${e.nombre.toLowerCase()} hasta hoy.`) : undefined); setTimeout(revisarLogros, esPR ? 2600 : 600);
 }
 
@@ -565,9 +651,11 @@ function confirmar(e, i, card) {
 let tCrono; function reloj() { clearInterval(tCrono); const el = $('#crono'); if (!el || !D.activa) return; const tick = () => { if (!D.activa) { clearInterval(tCrono); return; } const s = Math.floor((Date.now() - D.activa.inicio) / 1000); el.textContent = s >= 3600 ? `${Math.floor(s / 3600)}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}` : `${Math.floor(s / 60)}:${pad(s % 60)}`; }; tick(); tCrono = setInterval(tick, 1000); }
 // --- descanso
 let tDesc, fin = 0, total = 0;
-function descanso(seg) { if (!seg) return; total = seg; fin = Date.now() + seg * 1000; $('#descanso').classList.add('on'); $('#descanso').classList.remove('fin'); requestAnimationFrame(() => avisarBicho('descanso')); clearInterval(tDesc); tickD(); tDesc = setInterval(tickD, 250); }
+function descanso(seg) { if (!seg) return; total = seg; fin = Date.now() + seg * 1000; $('#descanso').classList.add('on'); $('#descanso').classList.remove('fin'); setTimeout(() => avisarBicho('descanso'), 30); clearInterval(tDesc); tickD(); tDesc = setInterval(tickD, 250); }
 function tickD() { const q = Math.max(0, Math.ceil((fin - Date.now()) / 1000)); $('#dt').textContent = `${Math.floor(q / 60)}:${pad(q % 60)}`; $('#dbar').style.width = `${100 * q / total}%`;
   if (q === 0) { clearInterval(tDesc); $('#descanso').classList.add('fin'); $('#dt').textContent = '¡A por la siguiente!'; vibrar([200, 100, 200]); if (document.hidden) notificar('Descanso terminado', 'A por la siguiente serie.'); avisarBicho('descanso-fin', true); setTimeout(cerrarD, 4000); } }
+window.descansoFrac = () => total ? Math.max(0, Math.min(1, (fin - Date.now()) / (total * 1000))) : 0;
+window.calmarBichoToque = () => calmarBicho(true);
 function cerrarD() { const on = $('#descanso').classList.contains('on'); clearInterval(tDesc); $('#descanso').classList.remove('on', 'fin'); if (on) avisarBicho('descanso-fin', false); }
 $('#dmas').onclick = () => { fin += 15000; total += 15; tickD(); };
 $('#dfin').onclick = cerrarD;
@@ -625,10 +713,10 @@ function serieE1(ej) { const m = new Map(); for (const r of regsDe(ej)) { const 
 const sinTilde = (t) => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 const GRUPOS = [
   ['core', 'Core', /abs|abdominal|plancha|crunch|rueda|tronco|elevacion de piernas|elevaciones de piernas|encogimiento/],
-  ['pierna', 'Pierna', /prensa|femoral|cuadriceps|sentadilla|gemel|aductor|abductor|abducc|culete|peso muerto|zancada|hip|gluteo/],
+  ['pierna', 'Pierna', /prensa|femoral|cuadriceps|sentadilla|gemel|aductor|abductor|adductor|abducc|culete|peso muerto|zancada|hip|gluteo/],
   ['triceps', 'Tríceps', /triceps|frances|fondos|codo|press cerrado|jalon cuerda|cuerda por encima/],
   ['biceps', 'Bíceps', /curl|biceps|antebrazo/],
-  ['espalda', 'Espalda', /remo|jalon|dominad|esquiador|pull|espalda/],
+  ['espalda', 'Espalda', /remo|ramo bajo|low row|row low|jalon|dominad|esquia|pull|espalda/],
   ['hombro', 'Hombro', /militar|lateral|posterior|pajaros|rear delt|hombro|frontal/],
   ['pecho', 'Pecho', /pecho|inclinado|plano|peck|pec |aperturas|flexiones|banca|cruce|contractor/],
 ];
@@ -761,7 +849,8 @@ function vRutina() {
   <div class="stack">${dias().map((d, di) => `<div class="card edit-dia" data-di="${di}">
     <div class="cab"><input class="id" value="${esc(d.id)}" data-f="id" maxlength="4"><input class="nom" value="${esc(d.nombre)}" data-f="nombre"><button class="x" data-bdia title="Borrar día">×</button></div>
     <div class="ex-cab"><span>Ejercicio</span><span style="text-align:center">Series</span><span style="text-align:center">Reps</span><span></span></div>
-    ${d.ejercicios.map((e, ei) => `<div class="ex" data-ei="${ei}"><input value="${esc(e.nombre)}" data-e="nombre"><input class="c" inputmode="numeric" value="${e.series}" data-e="series"><input class="c" value="${esc(e.reps)}" data-e="reps"><button class="x" data-bej title="Quitar">×</button></div>`).join('')}
+    ${d.ejercicios.map((e, ei) => `<div class="ex ${e.ss && ei < d.ejercicios.length - 1 ? 'con-ss' : ''}" data-ei="${ei}"><input value="${esc(e.nombre)}" data-e="nombre"><input class="c" inputmode="numeric" value="${e.series}" data-e="series"><input class="c" value="${esc(e.reps)}" data-e="reps"><button class="x" data-bej title="Quitar">×</button>
+      <div class="tgs"><button class="tg ${e.drop ? 'on' : ''}" data-tg="drop">Drop set</button>${ei < d.ejercicios.length - 1 ? `<button class="tg ${e.ss ? 'on' : ''}" data-tg="ss">Superserie con el siguiente</button>` : ''}</div></div>`).join('')}
     <button class="añadir" data-aej>+ Añadir ejercicio</button></div>`).join('')}</div>
   <div style="margin-top:12px" class="stack"><button class="btn" id="addDia">+ Añadir día</button>
   <div class="card"><div class="form"><div><label>Entrenos por semana (objetivo)</label><input id="obj" inputmode="numeric" value="${D.rutina.objetivo || 4}"></div><div><label>Día que toca hoy</label><select id="selDia">${dias().map((d) => `<option value="${esc(d.id)}" ${d.id === diaDeHoy() ? 'selected' : ''}>${esc(d.id)} · ${esc(d.nombre)}</option>`).join('')}</select></div></div></div></div>`;
@@ -774,7 +863,8 @@ function aRutina() {
     card.querySelector('[data-bdia]').onclick = () => { if (!confirm(`¿Borrar el día ${d.id}?`)) return; D.rutina.dias = dias().filter((x) => x !== d); sync(); pintar(); };
     card.querySelectorAll('.ex').forEach((row) => { const e = d.ejercicios[+row.dataset.ei];
       row.querySelectorAll('input').forEach((inp) => inp.onchange = () => { const k = inp.dataset.e; let v = inp.value.trim(); if (k === 'series') { v = Math.max(1, Math.min(10, parseInt(v) || e.series)); inp.value = v; } if (!v) { inp.value = e[k]; return; } e[k] = v; sync(); });
-      row.querySelector('[data-bej]').onclick = () => { d.ejercicios.splice(+row.dataset.ei, 1); sync(); pintar(); }; });
+      row.querySelector('[data-bej]').onclick = () => { d.ejercicios.splice(+row.dataset.ei, 1); sync(); pintar(); };
+      row.querySelectorAll('[data-tg]').forEach((b) => b.onclick = () => { const k = b.dataset.tg; e[k] = !e[k]; if (k === 'ss' && e.ss) { const prev = d.ejercicios[+row.dataset.ei - 1]; if (prev && prev.ss) { prev.ss = false; } const sig = d.ejercicios[+row.dataset.ei + 1]; if (sig && sig.ss) sig.ss = false; } sync(); pintar(); toast(k === 'drop' ? (e.drop ? 'Drop set activado' : 'Drop set quitado') : (e.ss ? 'Superserie con el siguiente' : 'Superserie quitada')); }); });
     card.querySelector('[data-aej]').onclick = () => { const n = prompt('Nombre del ejercicio'); if (!n || !n.trim()) return; const ya = dias().flatMap((x) => x.ejercicios).find((x) => x.nombre.toLowerCase() === n.trim().toLowerCase()); d.ejercicios.push({ id: ya ? ya.id : slug(n), nombre: n.trim(), series: 3, reps: '8-12', notas: '' }); sync(); pintar(); };
   });
   $('#addDia').onclick = () => { const n = prompt('Nombre del día (p. ej. «Pierna»)'); if (!n || !n.trim()) return; let k = 1; while (diaPorId('D' + k)) k++; D.rutina.dias.push({ id: 'D' + k, nombre: n.trim(), ejercicios: [] }); sync(); pintar(); };
@@ -791,7 +881,9 @@ function vMas() {
   <h2>Ajustes</h2><div class="card"><div class="form"><div><label>Descanso entre series</label><select id="adesc">${[0, 60, 90, 120, 150, 180, 240].map((s) => `<option value="${s}" ${s === D.aj.descanso ? 'selected' : ''}>${s ? `${Math.floor(s / 60)}:${pad(s % 60)} min` : 'Sin temporizador'}</option>`).join('')}</select></div>
    <div><label>Subir peso de</label><select id="ainc">${[1, 1.25, 2, 2.5, 5].map((s) => `<option value="${s}" ${s === D.aj.inc ? 'selected' : ''}>${f(s, 2)} kg</option>`).join('')}</select></div></div>
    <p class="texto" style="margin-top:10px">Cuando haces todas las series al tope de reps, la app te sugiere subir ese peso. Si no, el mismo peso y una rep más.</p></div>
+  <h2>Tu bicho</h2><div class="card"><div class="form" style="grid-template-columns:1fr"><div><label>Nombre del bicho</label><input id="nomBicho" placeholder="Ponle nombre" value="${esc(D.aj.nombreBicho || '')}" maxlength="18" style="font-family:Geist"></div></div></div>
   <h2>Avisos</h2><div class="card stack"><p class="texto">Te aviso cuando consigues un logro y cuando acaba el descanso si estás en otra app. En iPhone solo funciona con la app <b>añadida a la pantalla de inicio</b>.</p><button class="btn" id="avisos">${'Notification' in window && Notification.permission === 'granted' ? 'Avisos activados ✓' : 'Activar avisos'}</button></div>
+  <h2>Importar mi entrenamiento</h2><div class="card stack"><p class="texto">¿Llevas tiempo apuntando en notas o en un Excel? Pégalo o súbelo y la app te monta tu rutina y tu progreso.</p><button class="btn pri" id="impAbrir">Importar mis notas o Excel</button></div>
   <h2>Cargar mis datos</h2><div class="card stack"><p class="texto">Si te han pasado un enlace con tus entrenos y la app está vacía, pégalo aquí.</p>
    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk">Cargar</button></div></div>
   <h2>Copia de seguridad</h2><div class="card stack"><p class="texto">Todo se guarda <b>solo en este móvil</b>, sin cuentas. Si cambias de móvil o borras el navegador, se pierde: saca una copia de vez en cuando.</p>
@@ -808,9 +900,11 @@ function aMas() {
     el.innerHTML = `<div class="discos"><div class="barra"></div>${ds.map((p) => `<div class="disco" style="background:${COLORES[p]};width:${p >= 10 ? 16 : 11}px;height:${20 + p * 2}px">${p >= 10 ? p : ''}</div>`).join('')}</div>
      <p class="texto">${ds.length ? `Por lado: <b class="num">${ds.map((p) => f(p, 2)).join(' + ')}</b>` : 'Solo la barra.'}${lado > 0.01 ? ` · sobran ${f(lado * 2, 2)} kg que no se pueden poner` : ''}</p>`; };
   $('#dk').oninput = dc; $('#db').onchange = dc;
-  $('#adesc').onchange = (e) => { D.aj.descanso = +e.target.value; guardar(); };
+  $('#adesc').onchange = (e) => { D.aj.descanso = +e.target.value; D.aj.descansoElegido = true; guardar(); };
   $('#ainc').onchange = (e) => { D.aj.inc = +e.target.value; guardar(); };
   $('#exp').onclick = () => { const b = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
+  $('#impAbrir').onclick = hojaImportar;
+  $('#nomBicho').onchange = (e) => { D.aj.nombreBicho = e.target.value.trim(); guardar(); toast(D.aj.nombreBicho ? `Ahora se llama ${D.aj.nombreBicho}` : 'Sin nombre'); };
   $('#avisos').onclick = async () => { if (!('Notification' in window)) { toast('En iPhone, añádela antes a la pantalla de inicio'); return; }
     const p = await Notification.requestPermission(); if (p === 'granted') { toast('Avisos activados'); notificar('Avisos activados', 'Así te aviso de tus logros.'); } else toast('Sin permiso para avisar'); pintar(); };
   $('#codOk').onclick = () => { const v = $('#codIn').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); };
@@ -906,6 +1000,374 @@ function consejo() {
 setTimeout(() => { if (pestana === 'entreno' && window.bichoDecir) window.bichoDecir(consejo(), 7); }, 3200);
 // cada ~6 min, si sigues por aquí, el bicho te dice algo
 setInterval(() => { if (!document.hidden && window.bichoDecir && !$('#hoja').classList.contains('on') && Math.random() < 0.6) window.bichoDecir(consejo(), 6); }, 360000);
+
+// ================= EL BICHO: chat con cerebro propio (sin internet, con tus datos) =================
+const nombreBicho = () => (D.aj.nombreBicho || '').trim() || 'Bicho';
+const azar = (l) => l[Math.floor(Math.random() * l.length)];
+const PALABRAS_VACIAS = new Set('el la los las un una unos unas de del al en y o que me mi mis tu tus te se lo le les por para con como cuanto cuanta cuantos cuantas cual cuales hoy ayer he has ha hemos voy vas va hago hice hizo esta este esto estoy estas eso ese esa muy mas menos pero ya si no yo tú tu es son ser fue era hay oye bicho dime sabes puedes quiero quieres algo cosa cosas tengo tienes mucho poco bien mal tal sobre semana dia dias'.split(' '));
+const MUSCULOS = [['pecho', /pecho|pectoral/], ['espalda', /espalda|dorsal/], ['pierna', /pierna|cuadricep|gluteo|culo|femoral|isquio|gemelo/], ['hombro', /hombro|deltoid/], ['biceps', /bicep/], ['triceps', /tricep/], ['core', /abdom|abs\b|\bcore|tableta/]];
+const DIAS_SEM = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+const MESES_N = { enero: 1, febrero: 2, marzo: 3, abril: 4, mayo: 5, junio: 6, julio: 7, agosto: 8, septiembre: 9, setiembre: 9, octubre: 10, noviembre: 11, diciembre: 12 };
+function ejerciciosConocidos() {
+  const m = new Map(); for (const r of D.regs) if (r.series.length) m.set(r.ej, r.nombre);
+  for (const d of dias()) for (const e of d.ejercicios) if (!m.has(e.id)) m.set(e.id, e.nombre);
+  return [...m].map(([id, nombre]) => ({ id, nombre }));
+}
+function buscarEjercicio(q) {
+  const toks = sinTilde(q).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter((t) => t.length >= 3 && !PALABRAS_VACIAS.has(t));
+  if (!toks.length) return null; let mejorE = null, mejorP = 0;
+  for (const e of ejerciciosConocidos()) {
+    const n = sinTilde(e.nombre).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/); let p = 0;
+    for (const t of toks) if (n.some((w) => w.length >= 3 && (w.startsWith(t.slice(0, 5)) || t.startsWith(w.slice(0, 5))))) p += t.length >= 5 ? 2 : 1;
+    if (p > mejorP) { mejorP = p; mejorE = e; }
+  }
+  return mejorP >= 2 ? mejorE : null;
+}
+function fechaDeTexto(q) {
+  const h = new Date(hoy() + 'T12:00'), n = sinTilde(q);
+  if (/\bayer\b/.test(n)) { h.setDate(h.getDate() - 1); return fechaDe(h); }
+  if (/\bhoy\b/.test(n) && /(hice|he hecho|entrene|llevo)/.test(n)) return hoy();
+  let m = n.match(/\b(\d{1,2})\s*(?:de\s*)?(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)/);
+  if (m) return `${h.getFullYear()}-${pad(MESES_N[m[2]])}-${pad(+m[1])}`;
+  m = n.match(/\b(\d{1,2})\/(\d{1,2})\b/); if (m) return `${h.getFullYear()}-${pad(+m[2])}-${pad(+m[1])}`;
+  const ds = DIAS_SEM.findIndex((d) => new RegExp(`\\b(el )?${d}\\b`).test(n));
+  if (ds >= 0 && /(hice|entrene|que tal|el )/.test(n)) { const d = new Date(h); do d.setDate(d.getDate() - 1); while (d.getDay() !== ds); return fechaDe(d); }
+  return null;
+}
+const listaSeries = (r) => r.series.map((x) => `${x.kg > 0 ? f(x.kg) + '×' : ''}${x.reps}${x.pr ? '★' : ''}`).join(' · ');
+function resumenDia(fecha) {
+  const rs = D.regs.filter((r) => r.fecha === fecha && r.series.length);
+  const nf = new Date(fecha + 'T12:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  if (!rs.length) return azar([`El ${nf} no tengo nada apuntado. O descansaste o se te olvidó apuntarlo, y no sé qué es peor.`, `${nf[0].toUpperCase() + nf.slice(1)}: vacío. Día de descanso, ¿no?`]);
+  const d = diaPorId(rs[0].dia); const prs = rs.filter((r) => r.series.some((x) => x.pr)).length;
+  return `El ${nf} hiciste ${d ? d.nombre.toLowerCase() : 'esto'}:\n` + rs.map((r) => `· ${r.nombre}: ${listaSeries(r)}`).join('\n') + (prs ? `\n\nY ${prs} récord${prs > 1 ? 's' : ''} (★). Nada mal.` : '');
+}
+function infoEjercicio(e) {
+  const rs = regsDe(e.id); if (!rs.length) return `${e.nombre} lo tienes en la rutina pero aún no lo has apuntado nunca. Hazlo y te cuento.`;
+  const m = mejor(e.id), u = rs[rs.length - 1], A = analisis(), x = A.ejs.find((y) => y.id === e.id);
+  const enRut = dias().flatMap((d) => d.ejercicios).find((y) => y.id === e.id), sg = enRut ? sugerir(enRut, ultima(e.id)) : null;
+  let t = `${e.nombre}:\n· Tu mejor serie: ${m.kg > 0 ? `${f(m.kg)} kg × ${m.reps}` : `${m.reps} reps`}${m.fecha ? ` (${fCorta(m.fecha)})` : ''}`;
+  if (m.kg > 0) t += `\n· 1RM estimado: ${f(m.e1, 0)} kg`;
+  t += `\n· Última vez (${fCorta(u.fecha)}): ${listaSeries(u)}`;
+  if (x) t += `\n· Desde el ${fCorta(x.desde)} has subido un ${pct(x.sube)}`;
+  if (sg) t += `\n· La próxima vez: ${f(sg.kg)} kg × ${sg.reps}${sg.subir ? ' (toca subir peso)' : ''}`;
+  if (x && x.ds.length >= 3) { const k = x.ds.slice(-3).map((y) => y.kg); if (k[0] === k[1] && k[1] === k[2]) t += `\n\nLlevas 3 sesiones con ${f(k[0])} kg. Busca una rep más en cada serie antes de subir.`; }
+  return t;
+}
+function infoMusculo(g) {
+  const A = analisis(), G = A.grupos.find((x) => x.g === g), nom = nombreGrupo(g).toLowerCase();
+  if (!G) return `De ${nom} no tengo datos suficientes todavía. Necesito al menos un par de semanas del mismo ejercicio.`;
+  const top = G.ejs[0], peor = G.ejs[G.ejs.length - 1], pos = A.grupos.indexOf(G) + 1;
+  let t = `En ${nom} llevas un ${pct(G.sube)} de fuerza, unos ${pct(G.mes)} al mes. Es tu músculo número ${pos} de ${A.grupos.length} en subida.`;
+  t += `\n· Lo que más tira: ${top.nombre} (${pct(top.sube)})`;
+  if (G.ejs.length > 1) t += `\n· Lo que menos: ${peor.nombre} (${pct(peor.sube)})`;
+  t += G.sube >= 20 ? '\n\nVas como un tiro.' : G.sube >= 5 ? '\n\nSube, pero sin prisa. Aprieta más en las últimas reps.' : '\n\nAquí estás un poco parado. Prueba a cambiar el rango de reps o meter un drop set.';
+  return t;
+}
+function infoGeneral() {
+  const A = analisis(), n = fechasEntreno().length; if (!n) return 'Todavía no has apuntado nada. Apunta tu primer entreno y empiezo a llevarte las cuentas.';
+  if (!A.ejs.length) return `Llevas ${n} entreno${n > 1 ? 's' : ''}. Con un par de semanas más ya te digo cuánto subes.`;
+  const top = A.grupos[0], bot = A.grupos[A.grupos.length - 1];
+  return `Desde el ${fCorta(A.desde)} has subido un ${pct(A.sube)} de media (unos ${pct(A.mes)} al mes) en ${n} entrenos.\n· Lo que más sube: ${top.nombre.toLowerCase()} (${pct(top.sube)})\n· Lo más lento: ${bot.nombre.toLowerCase()} (${pct(bot.sube)})\n\n${A.mes >= 8 ? 'Ritmo de novato con hambre. Aprovecha.' : A.mes >= 3 ? 'Ritmo sano. Constancia y a seguir.' : 'Vas lento. O descansas poco, o comes poco, o te quedas corto de reps.'}`;
+}
+function infoHoy() {
+  const dia = diaPorId(diaDeHoy()); if (!dia) return 'No tienes rutina montada. Ve a Rutina y crea tus días.';
+  const cerrada = D.sesiones.find((x) => x.fecha === hoy());
+  let t = `${cerrada ? `Hoy ya has hecho ${diaPorId(cerrada.dia)?.nombre.toLowerCase() || 'tu entreno'}. Lo siguiente sería` : 'Hoy toca'} ${dia.nombre.toLowerCase()}:\n`;
+  t += dia.ejercicios.map((e) => { const sg = sugerir(e, ultima(e.id)); return `· ${e.nombre}: ${sg ? `${f(sg.kg)} kg × ${sg.reps}${sg.subir ? ' ↑' : ''}` : `${e.series} × ${e.reps}`}`; }).join('\n');
+  return t + '\n\nLos ↑ son los que tocan subir peso. A por ellos.';
+}
+function infoSemana() {
+  const sem = semanaActual(), obj = D.rutina.objetivo || 4, l = lunes(hoy()), series = D.regs.filter((r) => r.fecha >= l).reduce((a, r) => a + r.series.length, 0);
+  return `Esta semana llevas ${sem} de ${obj} entrenos y ${series} series.${sem >= obj ? ' Semana cumplida, campeón.' : ` Te falta${obj - sem > 1 ? 'n' : ''} ${obj - sem}.`}`;
+}
+function infoRecords() {
+  const l = []; for (const r of [...D.regs].reverse()) for (const x of r.series) if (x.pr && l.length < 6) l.push(`· ${r.nombre}: ${x.kg > 0 ? f(x.kg) + ' kg × ' : ''}${x.reps} (${fCorta(r.fecha)})`);
+  return l.length ? `Tus últimos récords:\n${l.join('\n')}` : 'Aún no has batido ningún récord. Tranquilo, el primero llega rápido.';
+}
+function infoEstancados() {
+  const A = analisis(), l = A.ejs.filter((e) => e.ds.length >= 3 && e.ds.slice(-3).every((x) => x.v <= e.ds[e.ds.length - 3].v + 0.5)).slice(0, 5);
+  return l.length ? `Donde estás atascado (3 sesiones sin subir):\n${l.map((e) => `· ${e.nombre}`).join('\n')}\n\nTruco: una rep más por serie, o un drop set en la última.` : 'Ahora mismo no veo nada estancado. Todo sube.';
+}
+function responder(txt) {
+  const n = sinTilde(txt).trim(), A = () => analisis();
+  if (!n) return { t: '…', a: 'pensar' };
+  if ((/^(hola|buenas|ey|eh|hey|que pasa|buenos dias|buenas tardes)\b/.test(n) && n.length < 22) || /^que tal\W*$/.test(n)) {
+    const sem = semanaActual(), obj = D.rutina.objetivo || 4;
+    return { t: azar([`¡Buenas! Llevas ${sem} de ${obj} esta semana. ¿Qué quieres saber?`, `Hombre, por fin me hablas. Pregúntame lo que quieras del gym.`, `¡Ey! Aquí, esperándote. Hoy toca ${diaPorId(diaDeHoy())?.nombre.toLowerCase() || 'entrenar'}.`]), a: 'feliz' };
+  }
+  if (/(como te llamas|tu nombre|quien eres|que eres)/.test(n)) return { t: D.aj.nombreBicho ? `Soy ${nombreBicho()}. Tu entrenador de bolsillo, sin sueldo y sin vacaciones.` : 'Aún no tengo nombre. Pónmelo en Más → Nombre del bicho, que ya va siendo hora.', a: 'feliz' };
+  if (/(gracias|grande|crack|maquina|te quiero|eres el mejor)/.test(n)) return { t: azar(['Lo sé. De nada.', 'Para eso estoy. Ahora a entrenar.', 'Ya, ya. Menos piropos y más series.']), a: 'corazon' };
+  if (/(tonto|inutil|idiota|gilipollas|callate|pesado|mierda)/.test(n)) return { t: azar(['Habló el que hoy no ha hecho ni una serie.', 'Vale. Pero sigo levantando más ánimo que tú.', 'Me lo apunto. Al lado de tus excusas.']), a: 'enfado' };
+  const fe = fechaDeTexto(n); if (fe) return { t: resumenDia(fe), a: 'pensar' };
+  if (/(que toca|toca hoy|que hago hoy|entreno de hoy|rutina de hoy|que me toca|objetivo)/.test(n)) return { t: infoHoy(), a: 'pesa' };
+  if (/(record|marca|pr\b|mejor serie)/.test(n) && !buscarEjercicio(n)) return { t: infoRecords(), a: 'estrella' };
+  if (/(estanc|atasc|no subo|no avanzo|parado)/.test(n)) return { t: infoEstancados(), a: 'pensar' };
+  if (/(semana|cuantos entrenos|cuantas veces|racha|constancia)/.test(n)) return { t: infoSemana(), a: 'feliz' };
+  if (/(peso corporal|cuanto peso|mi peso|bascula|engord|adelgaz)/.test(n)) { const p = [...D.peso].sort((a, b) => a.fecha.localeCompare(b.fecha)); return { t: p.length ? `Tu último peso: ${f(p[p.length - 1].kg)} kg (${fCorta(p[p.length - 1].fecha)}).${p.length > 1 ? ` Desde el principio: ${(p[p.length - 1].kg - p[0].kg >= 0 ? '+' : '') + f(p[p.length - 1].kg - p[0].kg)} kg.` : ''}` : 'No me has dicho tu peso nunca. Apúntalo en Progreso → Peso corporal.', a: 'pensar' }; }
+  if (/(descanso|descansar|cuanto descanso|entre series)/.test(n)) return { t: `En lo pesado, 2-3 minutos. En aislamiento (bíceps, laterales…), 1-1:30. Tienes el temporizador en ${Math.round(D.aj.descanso / 60 * 10) / 10} min; cámbialo en Más si quieres.`, a: 'reloj' };
+  if (/(proteina|comer|comida|dieta|creatina|batido)/.test(n)) return { t: 'Lo básico: 1,6-2 g de proteína por kilo al día, repartida en 3-4 comidas. La creatina (3-5 g al día) es de lo poco que funciona de verdad. Y no te saltes la comida después de entrenar.', a: 'batido' };
+  if (/(dolor|duele|lesion|me he hecho dano|molestia)/.test(n)) return { t: 'Si es dolor de agujetas, tranquilo: se va en 2-3 días. Si es un dolor punzante, en una articulación o que no se va, para ese ejercicio y que te lo mire un fisio. Con eso no se juega.', a: 'pensar' };
+  if (/(cansado|ganas|no me apetece|pereza|motivacion|animo|animame|no puedo|desmotiv)/.test(n)) return { t: azar(['Las ganas vienen después de empezar, no antes. Haz el primer ejercicio y luego decides.', 'Nadie se arrepiente de haber entrenado. De no haber ido, sí.', `Llevas ${fechasEntreno().length} entrenos apuntados. No vas a tirar eso por un día de pereza, ¿no?`]), a: 'flexiones' };
+  if (/(sueno|dormir|dormi|duerm)/.test(n)) return { t: 'Duerme 7-9 horas. Los músculos crecen mientras duermes, no mientras haces scroll.', a: 'bostezo' };
+  const mus = MUSCULOS.find(([, re]) => re.test(n)); const ej = buscarEjercicio(n);
+  if (ej && (!mus || sinTilde(ej.nombre).split(' ').length > 1 && /(press|curl|remo|jalon|prensa|femoral|extension|elevac|peck|fondos|sentadilla|hip|abductor|aductor|gemelo|aperturas|contractor|cruce|pullover|pajaros)/.test(n))) return { t: infoEjercicio(ej), a: 'pensar' };
+  if (mus) return { t: infoMusculo(mus[0]), a: 'pensar' };
+  if (/(como voy|progreso|he mejorado|he subido|evolucion|mejorando|resumen|estadistica)/.test(n)) return { t: infoGeneral(), a: 'feliz' };
+  if (/(chiste|cuentame algo|aburr)/.test(n)) return { t: azar(['¿Sabes por qué el bíceps nunca miente? Porque siempre va de frente… vale, era malo.', 'Fui a hacer press de banca y me robaron el banco. Desde entonces solo hago press.', 'Mi ejercicio favorito es el «curl de mando». A ti te veo muy bueno en ese.']), a: 'feliz' };
+  if (/(adios|hasta luego|me voy|chao|nos vemos|buenas noches)/.test(n)) return { t: azar(['Venga, a descansar. Mañana más.', 'Hasta luego. Y apunta las series, que te conozco.']), a: 'feliz' };
+  if (/(como estas|que tal estas|como te encuentras)/.test(n)) return { t: azar(['Aquí, haciendo pesas mentalmente. ¿Y tú, has entrenado?', 'Fuerte. Como siempre.']), a: 'feliz' };
+  if (/(ayuda|que sabes|que puedes|que te pregunto)/.test(n)) return { t: 'Pregúntame lo que quieras del gym: qué toca hoy, cómo vas, cómo vas en pecho (o el músculo que sea), tu récord en un ejercicio, qué hiciste el martes o el 12 de noviembre, si te estás estancando… También de descanso, comida o sueño.', a: 'feliz' };
+  return { t: azar(['Eso no lo pillo. Pregúntame por tu progreso, un músculo, un ejercicio o qué toca hoy.', 'Mmm, eso se me escapa. Yo de pesas sé mucho; de lo demás, regular.', 'No te he entendido. Prueba con «¿cómo voy en pecho?» o «¿qué toca hoy?».']), a: 'pensar' };
+}
+
+// --- vista de la pestaña
+let bichoGrande = null;
+const chatHora = (t) => { const d = new Date(t); return `${pad(d.getHours())}:${pad(d.getMinutes())}`; };
+function vBicho() {
+  D.chat = D.chat || [];
+  if (!D.chat.length) D.chat.push({ de: 'b', t: Date.now(), txt: `¡Buenas! Soy ${nombreBicho() === 'Bicho' ? 'tu bicho' : nombreBicho()}. Pregúntame lo que quieras del gym: qué toca hoy, cómo vas en pecho, tu récord en press… Yo me sé todos tus datos.` });
+  const enf = D.enfado && D.enfado.nivel > 0.3;
+  return `<div class="chat-vista">
+    <div class="chat-cab"><canvas id="bichoGrande" aria-hidden="true"></canvas><div class="chat-nom">${esc(nombreBicho())}</div><div class="chat-est ${enf ? 'rojo' : ''}" id="chatEst">${enf ? 'Enfadado contigo' : D.activa ? 'Entrenando contigo' : 'Esperándote'}</div></div>
+    <div class="chat-lista" id="chatLista">${D.chat.slice(-80).map(burbujaChat).join('')}</div>
+    <form class="chat-caja" id="chatForm" autocomplete="off"><input id="chatIn" placeholder="Escríbele a ${esc(nombreBicho())}…" enterkeyhint="send"><button aria-label="Enviar"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
+  </div>`;
+}
+const burbujaChat = (m) => `<div class="msg ${m.de === 'yo' ? 'yo' : 'el'}"><div class="txt">${esc(m.txt).replace(/\n/g, '<br>')}</div><small>${chatHora(m.t)}</small></div>`;
+function aBicho() {
+  document.body.classList.add('en-chat'); D.chatNoLeido = 0; guardar(); marcarNoLeido();
+  const lista = $('#chatLista'); lista.scrollTop = lista.scrollHeight;
+  const cv = $('#bichoGrande');
+  if (window.crearBicho) { try { bichoGrande = window.crearBicho(cv, { transparente: true, sombra: false, vista: 0.9, espontaneas: true, ojos: '25' }); if (D.enfado && D.enfado.nivel > 0.3 && bichoGrande.enfado) bichoGrande.enfado(D.enfado.nivel); } catch {} }
+  $('#chatForm').onsubmit = (ev) => { ev.preventDefault(); const inp = $('#chatIn'), v = inp.value.trim(); if (!v) return; inp.value = ''; enviarChat(v); };
+}
+function salirBicho() { document.body.classList.remove('en-chat'); if (bichoGrande) { try { bichoGrande.destruir(); } catch {} bichoGrande = null; } }
+function animGrande(a) {
+  const b = bichoGrande; if (!b) return;
+  try {
+    if (a === 'pensar') b.estado('pensar');
+    else { b.estado('reposo'); if (a === 'feliz') b.expresion('happy', 2); else if (a === 'enfado') b.expresion('strain', 2.5); else if (b.listaEspontaneas().includes(a)) b.espontanea(a); }
+  } catch {}
+}
+function anadirMsg(de, txt) { D.chat = D.chat || []; D.chat.push({ de, t: Date.now(), txt }); if (D.chat.length > 200) D.chat = D.chat.slice(-200); guardar(); const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', burbujaChat(D.chat[D.chat.length - 1])); l.scrollTop = l.scrollHeight; } }
+function enviarChat(v) {
+  anadirMsg('yo', v); D.ultHablado = Date.now(); calmarBicho(false);
+  const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', '<div class="msg el escribiendo" id="escr"><div class="txt"><i></i><i></i><i></i></div></div>'); l.scrollTop = l.scrollHeight; }
+  try { bichoGrande && bichoGrande.estado('pensar'); } catch {}
+  const r = responder(v);
+  setTimeout(() => { $('#escr')?.remove(); anadirMsg('b', r.t); animGrande(r.a); }, 650 + Math.min(1400, r.t.length * 6));
+}
+
+// --- el bicho te escribe mientras entrenas, y se enfada si le ignoras 40 min
+function marcarNoLeido() { const b = document.querySelector('nav.tabs [data-t="bicho"]'); if (b) b.classList.toggle('aviso', (D.chatNoLeido || 0) > 0 && pestana !== 'bicho'); }
+function bichoEscribe(txt) { anadirMsg('b', txt); if (pestana !== 'bicho') { D.chatNoLeido = (D.chatNoLeido || 0) + 1; guardar(); marcarNoLeido(); } D.preguntaSinResp = D.preguntaSinResp || Date.now(); guardar(); }
+function calmarBicho(porToque) {
+  const estaba = D.enfado && D.enfado.nivel > 0.05; D.enfado = { nivel: 0 }; D.preguntaSinResp = null; guardar();
+  try { window.bichoEnfado && window.bichoEnfado(0); bichoGrande && bichoGrande.enfado && bichoGrande.enfado(0); } catch {}
+  const e = $('#chatEst'); if (e) { e.classList.remove('rojo'); e.textContent = D.activa ? 'Entrenando contigo' : 'Esperándote'; }
+  return estaba;
+}
+const PREGUNTAS = () => {
+  const h = hoy(), n = D.regs.filter((r) => r.fecha === h).reduce((a, r) => a + r.series.length, 0);
+  return [`¿Qué tal vas? Llevas ${n} series hoy.`, '¿Cómo va esa serie? ¿Pesa o vas sobrado?', 'Oye, ¿estás descansando o mirando el móvil?', `${n} series ya. ¿Cuánto te queda?`, '¿Cómo te encuentras hoy? ¿Con fuerza?'];
+};
+setInterval(() => {
+  if (document.hidden || !D.activa || D.activa.fecha !== hoy()) return;
+  const ahora = Date.now(), ultHablo = Math.max(D.ultHablado || 0, D.activa.inicio);
+  if (!D.preguntaSinResp && ahora - Math.max(ultHablo, D.ultPregunta || 0) > 15 * 60000 && ahora - D.activa.inicio > 10 * 60000) { D.ultPregunta = ahora; bichoEscribe(azar(PREGUNTAS())); if (pestana !== 'bicho' && window.bichoDecir) window.bichoDecir('Te he escrito en el chat.', 4); }
+  if (D.preguntaSinResp && pestana !== 'bicho') {
+    const ign = (ahora - D.preguntaSinResp) / 60000, nivel = ign < 25 ? 0 : Math.min(1, (ign - 25) / 15); // a los 40 min, rojo del todo
+    if (nivel > 0 && (!D.enfado || Math.abs((D.enfado.nivel || 0) - nivel) > 0.08)) {
+      const antes = D.enfado?.nivel || 0; D.enfado = { nivel }; guardar(); try { window.bichoEnfado && window.bichoEnfado(nivel); } catch {}
+      if (nivel >= 1 && antes < 1 && window.bichoDecir) window.bichoDecir(azar(['Oye, que te estoy hablando.', 'Te he escrito hace 40 minutos. Muy bonito.', 'Vale, ignórame. Ya veremos quién te cuenta los récords.']), 6);
+    }
+  }
+}, 30000);
+
+// ================= IMPORTAR TU ENTRENAMIENTO (notas pegadas, Excel o texto) =================
+// Todo se analiza aquí, en el móvil. Formatos que entiende:
+//  · Notas por días: una fecha («7 sep», «Lunes, 31 de agosto: Pierna día 1»), el ejercicio y debajo «kg(reps)».
+//    «kg(r1-r2)» = varias series · «+» o «;» = bajada de peso · «&» = superserie (si hay dos ejercicios seguidos)
+//    «kg/(reps)» = kg por lado · «’» = parciales (no cuentan) · {…} [..] * = notas.
+//  · Tabla por semanas (Excel): bloques «DÍA n: NOMBRE», cabecera «Semana 1, Semana 2…» y celdas «25kg por 8 por 6».
+const IMP_MESES = { ene: 1, feb: 2, mar: 3, abr: 4, may: 5, jun: 6, jul: 7, ago: 8, sep: 9, set: 9, oct: 10, nov: 11, dic: 12 };
+const impNombre = (raw) => {
+  let t = String(raw).replace(/\{[^}]*\}\S*|\[[^\]]*\]|\([^)]*\)/g, ' ').replace(/[*“”"!🏠✅]/g, '').replace(/1\s*[’']\s*descanso/i, '').replace(/\s+/g, ' ').trim().replace(/[\s:/.-]+$/, '');
+  if (!t) return null; t = t[0].toUpperCase() + t.slice(1).toLowerCase(); return t.replace(/\bthust\b/, 'thrust');
+};
+// el «id» junta abreviaturas y erratas típicas para que el progreso no se parta en dos ejercicios
+const IMP_SINONIMOS = [[/\bfem\b/g, 'femoral'], [/\bext\b/g, 'extension'], [/\belev\b|\belv\w*|\belevac\w*/g, 'elevaciones'], [/\bpe+c?k? (deck|fly)\b/g, 'pec deck'], [/\bfrance\W?s\b|\bfrances\b/g, 'frances'], [/\bgr?e?meli\w*|\bgemelos?\b/g, 'gemelos'],
+  [/\blow row\b|\brow low\b|\bramo bajo\b|\btemo bajo\b|\bremo bajo low row\b/g, 'remo bajo'], [/\bmi+t?ar\b|\bmi+litar\b/g, 'militar'], [/\badductor\w*|\baductores\b/g, 'aductor'], [/\babductores\b/g, 'abductor'], [/\bmaquinv+a\b/g, 'maquina'], [/\b(agrr?|agarre)\b/g, 'agarre'], [/\bde\b|\bla\b|\bel\b|\ben\b|\bcon\b/g, ' ']];
+const impId = (n) => { let t = sinTilde(n).replace(/[^a-z0-9 ]+/g, ' '); for (const [re, v] of IMP_SINONIMOS) t = t.replace(re, v); return t.replace(/\s+/g, '_').replace(/^_|_$/g, '').slice(0, 40); };
+function impSeriesTexto(linea) {
+  // devuelve lista de segmentos (separados por &), cada uno con sus series
+  let t = sinTilde(linea).replace(/,/g, '.').replace(/[“”"]/g, '').replace(/\[[^\]]*\]|\{[^}]*\}/g, ' ');
+  const pc = t.match(/^\s*\d+\s*º\s*:\s*\(?\s*(\d+)/); if (pc) return [[{ kg: 0, reps: +pc[1] }]];
+  t = t.replace(/barra\s*z\s*\+\s*/g, '').replace(/^\s*\+\/-\s*/, '').replace(/^\s*\d+\s*(mancuernas)?\s*de\s+|^\s*\d+\s*d\s+/, '');
+  return t.split('&').map((seg) => {
+    const out = [];
+    for (const parte of seg.split(/[+;:]/)) {
+      const m = parte.match(/(\d+(?:\.\d+)?)\s*\**\s*\/?\s*\(([^)]*)/); if (!m) continue;
+      const kg = +m[1], reps = m[2].replace(/\d+\s*[’']/g, '');
+      for (const r of reps.split(/[-—]/)) { const d = r.match(/^\s*(\d+)/); if (d && +d[1] >= 1 && +d[1] <= 60) out.push({ kg, reps: +d[1] }); }
+    }
+    return out;
+  });
+}
+function impSeriesCelda(txt) { // «25kg por 8 por 6», «40kg por 9 35kg por 9», «Por 12 por 12», «30kg 14 por 12»
+  if (txt == null) return []; let t = sinTilde(String(txt)).replace(/,/g, '.').replace(/\([^)]*\)/g, ' ');
+  if (!/\d/.test(t)) return [];
+  t = t.replace(/^\s*(?:mejor tecnica\s*)?(\d+(?:\.\d+)?)\s+por/, '$1kg por');
+  let cur = /^\s*por/.test(t) ? 0 : null; const out = [];
+  for (const m of t.matchAll(/(\d+(?:\.\d+)?)\s*kg|(\d+(?:\.\d+)?)/g)) {
+    if (m[1] != null) { cur = +m[1]; continue; } const n = +m[2];
+    if (cur == null) { cur = n; continue; } if (n !== Math.floor(n) || n < 1 || n > 40) break; out.push({ kg: cur, reps: n });
+  }
+  return out;
+}
+function impFecha(linea, ref) {
+  const n = sinTilde(linea).trim();
+  const m = n.match(/^(?:(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo),?\s+)?(\d{1,2})\s+(?:de\s+)?([a-z]{3,})\.?\s*(?:de\s+(\d{4}))?\s*[:,-]?\s*(.*)$/);
+  if (!m) return null; const mes = IMP_MESES[m[2].slice(0, 3)]; if (!mes || +m[1] > 31) return null;
+  let y = m[3] ? +m[3] : ref.getFullYear(); if (!m[3] && mes > ref.getMonth() + 2) y--;
+  const et = String(linea).includes(':') ? String(linea).slice(String(linea).indexOf(':') + 1) : (m[4] || '');
+  return { fecha: `${y}-${pad(mes)}-${pad(+m[1])}`, etiqueta: et.replace(/\(.*?\)/g, '').trim() };
+}
+function impDesdeNotas(texto) {
+  const ref = new Date(), regs = [], raros = []; let fecha = null, etiqueta = '', pend = [], ultDato = false;
+  for (const bruto of String(texto).split(/\r?\n/)) {
+    const t = bruto.trim(); if (!t) continue; const n = sinTilde(t);
+    const fe = impFecha(t, ref); if (fe) { fecha = fe.fecha; etiqueta = fe.etiqueta; pend = []; ultDato = false; continue; }
+    if (!fecha || /^(gym|abdm:?|superserie:?|\(.*\))$/.test(n)) continue;
+    if (/\d\s*\**\s*\/?\s*\(/.test(t) || /^\s*\d+\s*º\s*:/.test(t)) {
+      const segs = impSeriesTexto(t); if (!pend.length) { raros.push(t); continue; }
+      const pares = segs.length === 2 && pend.length >= 2 ? [[pend[pend.length - 2], segs[0]], [pend[pend.length - 1], segs[1]]] : segs.map((sg) => [pend[pend.length - 1], sg]);
+      for (const [ej, ss] of pares) { if (!ss.length) continue; const id = impId(ej); let r = regs.find((x) => x.fecha === fecha && x.ej === id); if (!r) { r = { fecha, etiqueta, ej: id, nombre: ej, series: [] }; regs.push(r); } r.series.push(...ss); }
+      ultDato = true; continue;
+    }
+    if (/[a-z]/.test(n)) {
+      if (/\bx\s*\d+\s*$/.test(n) || /^x\s*\d+$/.test(n) || /(no se medir|planchas|segundos|\bseg\b)/.test(n)) { pend = []; ultDato = false; continue; }
+      const nom = impNombre(t); if (!nom) continue; if (ultDato) pend = [nom]; else pend.push(nom); ultDato = false; continue;
+    }
+    if (/\d/.test(t)) raros.push(t);
+  }
+  return { regs, raros };
+}
+function impDesdeTabla(filas, ultFecha) {
+  // filas: array de arrays (Excel). Bloques «DÍA n: NOMBRE» + fila de «Semana N».
+  const regs = [], raros = [], rutina = []; let ultSem = 0, bloques = [];
+  for (let i = 0; i < filas.length; i++) {
+    const c0 = filas[i].map((v) => (v == null ? '' : String(v))).join(' ').trim(); const m = sinTilde(c0).match(/^dia\s*(\d+)\s*[:.-]\s*(.+)$/);
+    if (!m) continue; const cab = filas.slice(i + 1, i + 4).find((f) => f.some((v) => /^semana\s*\d+/i.test(String(v || '')))); if (!cab) continue;
+    const semcol = new Map(); cab.forEach((v, j) => { const s = String(v || '').match(/^semana\s*(\d+)/i); if (s) semcol.set(j, +s[1]); });
+    const colNom = cab.findIndex((v) => /ejercicio/i.test(String(v || ''))); const nc = colNom >= 0 ? colNom : 1;
+    const ejs = []; let j = filas.indexOf(cab) + 1;
+    for (; j < filas.length; j++) { const f = filas[j], nom = f[nc]; if (f.some((v) => /^\s*d[ií]a\s*\d+/i.test(String(v || '')))) break; if (!nom || !/[a-zA-Z]/.test(String(nom)) || /ejercicio/i.test(String(nom))) { if (ejs.length && !f.some((v) => v)) break; continue; }
+      const nombre = impNombre(nom); if (!nombre || /plancha/i.test(nombre)) continue; const id = impId(nombre); const rep = String(f[nc + 1] || '').trim(), ser = parseInt(f[nc + 2]) || 2;
+      ejs.push({ id, nombre, series: Math.min(6, ser), reps: /^\d+(-\d+)?$/.test(rep) ? rep : '8-12', notas: '' });
+      for (const [col, sem] of semcol) { const ss = impSeriesCelda(f[col]); if (!ss.length) continue; ultSem = Math.max(ultSem, sem); regs.push({ sem, off: Math.min(6, +m[1] - 1), dia: `D${m[1]}`, ej: id, nombre, series: ss }); }
+    }
+    rutina.push({ id: `D${m[1]}`, nombre: m[2].trim().toLowerCase().replace(/^./, (x) => x.toUpperCase()), ejercicios: ejs }); bloques.push(m[1]); i = j - 1;
+  }
+  if (!regs.length) return null;
+  const finLunes = new Date(lunes(ultFecha || hoy()) + 'T12:00');
+  for (const r of regs) { const d = new Date(finLunes); d.setDate(d.getDate() - 7 * (ultSem - r.sem) + r.off); r.fecha = fechaDe(d); delete r.sem; delete r.off; }
+  return { regs: regs.filter((r) => r.fecha <= hoy()), raros, rutina };
+}
+// a partir de los registros, monta la rutina (si no viene) y lo deja listo para la app
+function impMontar(res) {
+  let { regs, rutina } = res; if (!regs.length) return null;
+  regs.sort((a, b) => a.fecha.localeCompare(b.fecha));
+  const fechas = [...new Set(regs.map((r) => r.fecha))];
+  if (!rutina) {
+    // días: por etiqueta si la hay («Pierna día 1»); si no, agrupando entrenos que comparten ejercicios
+    const grupos = [];
+    for (const fe of fechas) {
+      const rs = regs.filter((r) => r.fecha === fe), ids = new Set(rs.map((r) => r.ej)), et = sinTilde(rs[0].etiqueta || '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+      let g = et ? grupos.find((x) => x.et === et) : null;
+      if (!g && !et) g = grupos.filter((x) => !x.et).map((x) => ({ x, p: [...ids].filter((i) => x.ids.has(i)).length / Math.max(1, Math.min(ids.size, x.ids.size)) })).filter((y) => y.p >= 0.5).sort((a, b) => b.p - a.p)[0]?.x;
+      if (!g) { g = { et: et || '', etOrig: rs[0].etiqueta || '', ids: new Set(), fechas: [] }; grupos.push(g); }
+      rs.forEach((r) => g.ids.add(r.ej)); g.fechas.push(fe);
+    }
+    // los entrenos sueltos (grupos de un solo día) se juntan con el día al que más se parecen
+    const fuertes = grupos.filter((g) => g.fechas.length >= 2), sueltos = grupos.filter((g) => g.fechas.length < 2);
+    if (fuertes.length) for (const s of sueltos) {
+      const best = fuertes.map((x) => ({ x, p: [...s.ids].filter((i) => x.ids.has(i)).length })).sort((a, b) => b.p - a.p)[0];
+      if (best && best.p > 0) { best.x.fechas.push(...s.fechas); best.x.fechas.sort(); s.fechas = []; }
+    }
+    const usados = new Set();
+    rutina = grupos.filter((g) => g.fechas.length >= 2 || (g.fechas.length && !fuertes.length)).map((g, k) => {
+      const ult = regs.filter((r) => r.fecha === g.fechas[g.fechas.length - 1]);
+      const nomG = () => { const c = {}; ult.forEach((r) => { const gg = grupoDe(r.ej, r.nombre); if (gg !== 'otro') c[gg] = (c[gg] || 0) + r.series.length; }); const top = Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([x]) => nombreGrupo(x).toLowerCase()); return top.join(' y ').replace(/^./, (x) => x.toUpperCase()); };
+      let nombre = g.etOrig ? g.etOrig.replace(/^./, (x) => x.toUpperCase()) : nomG(); let id = `D${k + 1}`;
+      g.id = id; g.fechas.forEach((fe) => usados.add(fe));
+      return { id, nombre, ejercicios: ult.filter((r) => g.etOrig || !/^(encogimiento|elevaciones de piernas)/i.test(r.nombre)).map((r) => { const rp = r.series.map((x) => x.reps); return { id: r.ej, nombre: r.nombre, series: Math.max(2, Math.min(5, r.series.length)), reps: Math.min(...rp) === Math.max(...rp) ? String(rp[0]) : `${Math.min(...rp)}-${Math.max(...rp)}`, notas: '' }; }) };
+    });
+    for (const r of regs) { const g = grupos.find((x) => x.fechas.includes(r.fecha)); r.dia = g && g.id ? g.id : 'Otro'; }
+  }
+  // récords en orden
+  const mej = {};
+  for (const r of regs) { delete r.etiqueta; for (const s of r.series) { const v = s.kg > 0 ? e1rm(s.kg, s.reps) : s.reps * 0.001; if (mej[r.ej] > 0 && v > mej[r.ej] + 0.01) s.pr = true; mej[r.ej] = Math.max(mej[r.ej] || 0, v); } }
+  const sesiones = fechas.map((fe) => { const rs = regs.filter((r) => r.fecha === fe); return { fecha: fe, dia: rs[0].dia, min: null, series: rs.reduce((a, r) => a + r.series.length, 0), vol: 0, prs: [...new Set(rs.filter((r) => r.series.some((x) => x.pr)).map((r) => r.nombre))] }; });
+  const conDia = rutina.filter((d) => d.ejercicios.length);
+  return { rutina: { orden: conDia.map((d) => d.id), objetivo: Math.min(6, Math.max(2, conDia.length)), dias: conDia }, regs, sesiones };
+}
+async function impLeerArchivo(file) {
+  const nom = file.name.toLowerCase();
+  if (/\.(xlsx|xls|ods)$/.test(nom)) {
+    if (!window.XLSX) await new Promise((ok, mal) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'; s.onload = ok; s.onerror = () => mal(new Error('Sin internet no puedo abrir Excel')); document.head.appendChild(s); });
+    const wb = XLSX.read(await file.arrayBuffer(), { type: 'array' });
+    return { hojas: wb.SheetNames.map((n) => XLSX.utils.sheet_to_json(wb.Sheets[n], { header: 1, raw: false, defval: '' })) };
+  }
+  if (/\.json$/.test(nom)) return { json: JSON.parse(await file.text()) };
+  return { texto: await file.text() };
+}
+async function impAnalizar(texto, file, ultFecha) {
+  let res = null;
+  if (file) {
+    const a = await impLeerArchivo(file);
+    if (a.json) { const o = a.json; if (o.rutina && Array.isArray(o.regs)) return { rutina: o.rutina, regs: o.regs, sesiones: o.sesiones || [], raros: [], copia: true }; throw new Error('Ese JSON no es una copia de la app'); }
+    if (a.hojas) {
+      for (const h of a.hojas) { const r = impDesdeTabla(h, ultFecha); if (r && (!res || r.regs.length > res.regs.length)) res = r; }
+      if (!res) texto = a.hojas.map((h) => h.map((f) => f.filter((v) => v !== '').join(' ')).join('\n')).join('\n');
+    } else texto = a.texto;
+  }
+  if (!res) res = impDesdeNotas(texto || '');
+  const m = impMontar(res); if (!m) return null; m.raros = res.raros || []; return m;
+}
+function hojaImportar() {
+  abrirHoja(`<div class="eyebrow">Importar</div><h1 style="margin-bottom:6px">Tu entrenamiento</h1>
+   <p class="texto" style="margin-bottom:12px">Pega tus notas del gym o sube tu Excel. Lo analizo aquí mismo y te enseño lo que he entendido antes de cargar nada. Ejemplo de notas:<br><span class="num" style="color:var(--tx)">7 sep<br>Press banca<br>60(10)<br>60(8-7)<br>50(12)+40(10)</span></p>
+   <textarea id="impTxt" rows="7" placeholder="Pega aquí tus notas…" style="width:100%;border-radius:12px;border:1px solid var(--line);background:var(--s2);padding:10px 12px;outline:none;resize:vertical;font-size:14px"></textarea>
+   <div class="fila-btn" style="margin-top:8px"><button class="btn" id="impArch">Subir Excel o archivo</button><input type="file" id="impFile" accept=".xlsx,.xls,.ods,.csv,.txt,.json,text/plain" hidden></div>
+   <p class="texto" id="impArchNom" style="margin-top:6px"></p>
+   <div class="form" style="margin-top:8px;grid-template-columns:1fr"><div><label>Si tu archivo va por semanas y sin fechas: día del último entreno</label><input type="date" id="impFecha" value="${hoy()}"></div></div>
+   <button class="btn pri" id="impGo" style="margin-top:12px">Analizar</button>
+   <div id="impRes" style="margin-top:14px"></div>`);
+  let file = null;
+  $('#impArch').onclick = () => $('#impFile').click();
+  $('#impFile').onchange = (e) => { file = e.target.files[0] || null; $('#impArchNom').textContent = file ? `Archivo: ${file.name}` : ''; };
+  $('#impGo').onclick = async () => {
+    const out = $('#impRes'); out.innerHTML = '<p class="texto">Analizando…</p>';
+    try {
+      const m = await impAnalizar($('#impTxt').value, file, $('#impFecha').value || hoy());
+      if (!m || !m.regs.length) { out.innerHTML = '<p class="texto">No he encontrado entrenos. Mira que cada día empiece por la fecha («7 sep») y que las series vayan como «kilos(reps)».</p>'; return; }
+      const fs = [...new Set(m.regs.map((r) => r.fecha))], nser = m.regs.reduce((a, r) => a + r.series.length, 0), nej = new Set(m.regs.map((r) => r.ej)).size;
+      out.innerHTML = `<div class="card stack"><b>He encontrado ${fs.length} entrenos</b><p class="texto">Del ${fCorta(fs[0])} al ${fCorta(fs[fs.length - 1])} · ${nser} series · ${nej} ejercicios.</p>
+        <p class="texto"><b>Tu rutina:</b><br>${m.rutina.dias.map((d) => `${esc(d.nombre)}: ${d.ejercicios.map((e) => esc(e.nombre)).join(', ')}`).join('<br>')}</p>
+        ${m.raros.length ? `<p class="texto">No he sabido leer ${m.raros.length} línea${m.raros.length > 1 ? 's' : ''}: <span class="num">${m.raros.slice(0, 4).map(esc).join(' · ')}</span></p>` : ''}
+        <p class="texto">${D.regs.length ? 'Lo que ya tienes apuntado en otros días se queda; la rutina se cambia por esta.' : ''}</p>
+        <button class="btn pri" id="impOk">Cargar mis entrenos</button></div>`;
+      $('#impOk').onclick = () => {
+        const en = new Set(m.regs.map((x) => x.fecha)), propios = D.regs.filter((x) => !en.has(x.fecha));
+        D = { ...nuevo(), ...D, rutina: m.rutina, regs: [...m.regs, ...propios].sort((a, b) => a.fecha.localeCompare(b.fecha)), sesiones: [...m.sesiones, ...D.sesiones.filter((x) => !en.has(x.fecha))].sort((a, b) => a.fecha.localeCompare(b.fecha)), hoyDia: null };
+        revisarLogros(true); guardar(); cerrarHoja(); pestana = 'progreso'; pintar(); window.scrollTo(0, 0);
+        toast(`Cargados ${fs.length} entrenos`); setTimeout(() => window.bichoDecir && window.bichoDecir('¡Ya tengo todo tu historial! Mira cuánto has subido.', 6), 1500);
+      };
+    } catch (err) { out.innerHTML = `<p class="texto">${esc(err.message || 'No he podido leerlo')}</p>`; }
+  };
+}
 
 // ================= ENLACE CON TUS DATOS (?cargar=código) =================
 // Carga la copia d/<código>.json una sola vez. El enlace NO se limpia: así, al añadir la app a la pantalla
