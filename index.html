@@ -458,36 +458,15 @@ if (m) {
 'use strict';
 const avisarBicho = (ev, dato) => { try { window.bicho && window.bicho(ev, dato); } catch {} };
 // ================= datos =================
-const RUTINA_BASE = { orden: ['A1','B1','A2','B2'], objetivo: 4, dias: [
-  { id:'A1', nombre:'Brazo y pierna', ejercicios:[
-    ['curl_biceps_maquina','Curl bíceps en máquina',2,'10-12',''],
-    ['press_frances','Press francés',2,'10-15','Alternativa: extensiones de tríceps'],
-    ['press_militar_maquina','Press militar en máquina',2,'8-12','Alternativa: press militar con mancuernas'],
-    ['extension_cuadriceps','Extensión de cuádriceps',2,'8-12',''],
-    ['elevaciones_laterales','Elevaciones laterales con mancuernas',2,'11-13',''],
-    ['femoral_sentado','Femoral sentado',2,'8-12',''],
-    ['abducciones','Culete (abducciones)',2,'12-14','']]},
-  { id:'B1', nombre:'Pecho y espalda', ejercicios:[
-    ['press_pecho_maquina','Press pecho en máquina',2,'9-12',''],
-    ['remo_bajo_maquina','Remo bajo en máquina',2,'10-12',''],
-    ['peck_deck','Peck deck',2,'8-11',''],
-    ['remo_en_t','Remo en T',2,'7-12',''],
-    ['hombro_posterior','Hombro posterior',3,'10-20',''],
-    ['abs_maquina','Abs en máquina',3,'15-20','']]},
-  { id:'A2', nombre:'Hombro, brazo y pierna', ejercicios:[
-    ['press_militar_maquina','Press militar en máquina',2,'8-12',''],
-    ['curl_biceps_inclinado','Curl bíceps inclinado',2,'8-12',''],
-    ['maquina_fondos','Máquina de fondos',2,'10-13',''],
-    ['prensa','Prensa',2,'8-13',''],
-    ['elevaciones_laterales','Elevaciones laterales con mancuernas',2,'11-13',''],
-    ['femoral_sentado','Femoral sentado',2,'8-12','']]},
-  { id:'B2', nombre:'Pecho y espalda (variante)', ejercicios:[
-    ['press_inclinado_maquina','Press inclinado en máquina',2,'11-13','Alternativa: press con mancuernas'],
-    ['remo_maquina','Remo en máquina',2,'8-12',''],
-    ['peck_deck','Peck deck',2,'8-11',''],
-    ['remo_gironda_amplio','Remo gironda agarre amplio',2,'9-12',''],
-    ['hombro_posterior','Hombro posterior',3,'10-20',''],
-    ['abs_maquina','Abs en máquina',3,'15-20','']]},
+// rutina de fábrica (la de Pablo, 23-nov): lun Brazo 1, mié Pecho y espalda 1, jue Brazo 2, sáb Pierna, dom Pecho y espalda 2
+const BRAZO_EJ = [['press_militar_maquina','Press militar en máquina',2,'8-12',''],['curl_biceps_maquina','Curl bíceps en máquina',2,'10-12',''],['press_frances','Press francés',2,'10-15',''],
+  ['curl_biceps_inclinado','Curl bíceps inclinado con mancuernas',2,'8-12',''],['extensiones_triceps','Extensión de tríceps en polea',2,'10-12',''],['elevaciones_laterales','Elevaciones laterales',2,'11-13','']];
+const RUTINA_BASE = { orden: ['BR1','PE1','BR2','PI','PE2'], objetivo: 5, semana: ['PE2','BR1','','PE1','BR2','','PI'], dias: [
+  { id:'PE1', nombre:'Pecho y espalda 1', ejercicios:[['press_pecho_maquina','Press pecho en máquina',2,'9-12',''],['remo_bajo_maquina','Remo bajo',2,'10-12',''],['peck_deck','Pec deck',2,'8-11',''],['remo_en_t','Remo en T',2,'7-12',''],['hombro_posterior','Hombro posterior',3,'10-20',''],['abs_maquina','Abdominales en máquina',3,'15-20','']]},
+  { id:'PE2', nombre:'Pecho y espalda 2', ejercicios:[['press_inclinado_maquina','Press inclinado en máquina',2,'11-13',''],['remo_gironda_amplio','Remo gironda agarre amplio',2,'9-12',''],['remo_maquina','Remo en máquina',2,'8-12',''],['peck_deck','Pec deck',2,'8-11',''],['hombro_posterior','Hombro posterior',3,'10-20',''],['abs_maquina','Abdominales en máquina',3,'15-20','']]},
+  { id:'PI', nombre:'Pierna', ejercicios:[['prensa','Prensa',2,'8-13',''],['extension_cuadriceps','Extensión de cuádriceps',2,'8-12',''],['femoral_sentado','Femoral sentado',2,'8-12',''],['abducciones','Culete (abductores, abrir)',2,'12-14',''],['aductores','Aductores (cerrar)',2,'12-14','']]},
+  { id:'BR1', nombre:'Brazo 1', ejercicios: BRAZO_EJ },
+  { id:'BR2', nombre:'Brazo 2', ejercicios: BRAZO_EJ },
 ].map(d => ({ ...d, ejercicios: d.ejercicios.map(([id,nombre,series,reps,notas]) => ({ id, nombre, series, reps, notas })) })) };
 
 const CLAVE = 'serie.v1';
@@ -497,6 +476,7 @@ try { D = JSON.parse(localStorage.getItem(CLAVE)) || nuevo(); } catch { D = nuev
 D = { ...nuevo(), ...D, aj: { ...nuevo().aj, ...(D.aj || {}) } };
 // descanso por defecto: 3 min (a quien tenía el 1:30 de antes sin haberlo tocado, se le pasa a 3 min)
 if (!D.aj.descansoElegido && D.aj.descanso !== 180) D.aj.descanso = 180;
+if (!D.regs.length && !D.rutinaCargada && D.rutina && D.rutina.dias && D.rutina.dias.some((d) => d.id === 'A1') && !D.rutina.semana) D.rutina = JSON.parse(JSON.stringify(RUTINA_BASE));
 // app de formato fijo: nada de zoom con dos dedos ni con doble toque (iOS ignora user-scalable)
 ['gesturestart', 'gesturechange', 'gestureend'].forEach((ev) => document.addEventListener(ev, (e) => e.preventDefault(), { passive: false }));
 document.addEventListener('touchmove', (e) => { if (e.touches && e.touches.length > 1) e.preventDefault(); }, { passive: false });
@@ -584,9 +564,14 @@ function pintar() {
 }
 
 // tarjeta para pegar el enlace con tus entrenos (sale cuando la app está vacía)
-const tarjetaCargar = () => `<div class="card stack" style="margin-bottom:16px;border-color:var(--ac)"><b>¿Ya llevabas tiempo apuntando?</b><p class="texto">Pega aquí el enlace con tus entrenos y los cargo todos. Lo que hayas apuntado aquí no se borra.</p>
-    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk2">Cargar</button></div><button class="btn" id="impAbrir2">O importa tus notas o tu Excel</button></div>`;
-const atarCargar = () => { const i2 = $('#impAbrir2'); if (i2) i2.onclick = hojaImportar; const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); }; };
+const tarjetaCargar = () => D.saltarCarga ? '' : `<div class="card stack" style="margin-bottom:16px;border-color:var(--ac)"><b>¿Tienes un enlace con tus entrenos?</b><p class="texto">Cópialo, toca «Pegar enlace» y lo cargo todo: tus marcas, tu progreso y tu rutina. Si no tienes, sáltatelo.</p>
+    <button class="btn pri" id="codPegar">Pegar enlace y cargar</button>
+    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="o pégalo aquí a mano" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq" id="codOk2">Cargar</button></div>
+    <div class="fila-btn"><button class="btn" id="impAbrir2">Importar notas o Excel</button><button class="btn" id="saltarCarga">Saltar</button></div></div>`;
+const codigoDe = (v) => { const m = String(v || '').trim().match(/cargar=([a-z0-9]+)/) || String(v || '').trim().match(/^([a-z0-9]{6,20})$/); return m ? m[1] : ''; };
+const atarCargar = () => { const i2 = $('#impAbrir2'); if (i2) i2.onclick = hojaImportar;
+  const sc = $('#saltarCarga'); if (sc) sc.onclick = () => { D.saltarCarga = true; guardar(); pintar(); toast('Vale. Si algún día tienes un enlace, está en Más → Cargar mis datos'); };
+  const pg = $('#codPegar'); if (pg) pg.onclick = async () => { try { const t = await navigator.clipboard.readText(); const c = codigoDe(t); if (!c) { toast('Lo que tienes copiado no es un enlace de la app'); return; } cargarCodigo(c, true); } catch { toast('No me deja leer lo copiado: pégalo abajo a mano'); $('#codIn2')?.focus(); } }; const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); }; };
 // ================= ENTRENO =================
 function vEntreno() {
   if (!dias().length) return `<header class="top"><div><div class="eyebrow">Sin rutina</div><h1>Monta tu rutina</h1></div></header><button class="btn pri" onclick="pestana='rutina';pintar()">Ir a Rutina</button>`;
