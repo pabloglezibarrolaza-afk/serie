@@ -1,0 +1,262 @@
+{
+ "rutina": {
+  "dias": [
+   {
+    "id": "PE1",
+    "nombre": "Pecho y espalda 1",
+    "ejercicios": [
+     {
+      "id": "press_pecho_maquina",
+      "nombre": "Press pecho en máquina",
+      "series": 2,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "remo_bajo_maquina",
+      "nombre": "Remo bajo",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "peck_deck",
+      "nombre": "Pec deck",
+      "series": 2,
+      "reps": "8-11",
+      "notas": ""
+     },
+     {
+      "id": "remo_en_t",
+      "nombre": "Remo en T",
+      "series": 2,
+      "reps": "7-12",
+      "notas": ""
+     },
+     {
+      "id": "hombro_posterior",
+      "nombre": "Hombro posterior",
+      "series": 3,
+      "reps": "10-20",
+      "notas": ""
+     },
+     {
+      "id": "abs_maquina",
+      "nombre": "Abdominales en máquina",
+      "series": 3,
+      "reps": "15-20",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "PE2",
+    "nombre": "Pecho y espalda 2",
+    "ejercicios": [
+     {
+      "id": "press_inclinado_maquina",
+      "nombre": "Press inclinado en máquina",
+      "series": 2,
+      "reps": "11-13",
+      "notas": ""
+     },
+     {
+      "id": "remo_gironda_amplio",
+      "nombre": "Remo gironda agarre amplio",
+      "series": 2,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "remo_maquina",
+      "nombre": "Remo en máquina",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "peck_deck",
+      "nombre": "Pec deck",
+      "series": 2,
+      "reps": "8-11",
+      "notas": ""
+     },
+     {
+      "id": "hombro_posterior",
+      "nombre": "Hombro posterior",
+      "series": 3,
+      "reps": "10-20",
+      "notas": ""
+     },
+     {
+      "id": "abs_maquina",
+      "nombre": "Abdominales en máquina",
+      "series": 3,
+      "reps": "15-20",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "PI",
+    "nombre": "Pierna",
+    "ejercicios": [
+     {
+      "id": "prensa",
+      "nombre": "Prensa",
+      "series": 2,
+      "reps": "8-13",
+      "notas": ""
+     },
+     {
+      "id": "extension_cuadriceps",
+      "nombre": "Extensión de cuádriceps",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "femoral_sentado",
+      "nombre": "Femoral sentado",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "abducciones",
+      "nombre": "Culete (abductores, abrir)",
+      "series": 2,
+      "reps": "12-14",
+      "notas": ""
+     },
+     {
+      "id": "aductores",
+      "nombre": "Aductores (cerrar)",
+      "series": 2,
+      "reps": "12-14",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "BR1",
+    "nombre": "Brazo 1",
+    "ejercicios": [
+     {
+      "id": "press_militar_maquina",
+      "nombre": "Press militar en máquina",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_maquina",
+      "nombre": "Curl bíceps en máquina",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "press_frances",
+      "nombre": "Press francés",
+      "series": 2,
+      "reps": "10-15",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_inclinado",
+      "nombre": "Curl bíceps inclinado con mancuernas",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "extensiones_triceps",
+      "nombre": "Extensión de tríceps en polea",
+      "series": 2,
+      "reps": "10-12",
+      "notas": "",
+      "alt": [
+       "polea_triceps"
+      ]
+     },
+     {
+      "id": "elevaciones_laterales",
+      "nombre": "Elevaciones laterales",
+      "series": 2,
+      "reps": "11-13",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "BR2",
+    "nombre": "Brazo 2",
+    "ejercicios": [
+     {
+      "id": "press_militar_maquina",
+      "nombre": "Press militar en máquina",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_maquina",
+      "nombre": "Curl bíceps en máquina",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "press_frances",
+      "nombre": "Press francés",
+      "series": 2,
+      "reps": "10-15",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_inclinado",
+      "nombre": "Curl bíceps inclinado con mancuernas",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "extensiones_triceps",
+      "nombre": "Extensión de tríceps en polea",
+      "series": 2,
+      "reps": "10-12",
+      "notas": "",
+      "alt": [
+       "polea_triceps"
+      ]
+     },
+     {
+      "id": "elevaciones_laterales",
+      "nombre": "Elevaciones laterales",
+      "series": 2,
+      "reps": "11-13",
+      "notas": ""
+     }
+    ]
+   }
+  ],
+  "orden": [
+   "BR1",
+   "PE1",
+   "BR2",
+   "PI",
+   "PE2"
+  ],
+  "objetivo": 5,
+  "semana": [
+   "PE2",
+   "BR1",
+   "",
+   "PE1",
+   "BR2",
+   "",
+   "PI"
+  ]
+ }
+}
