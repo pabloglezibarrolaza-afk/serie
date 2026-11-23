@@ -297,7 +297,6 @@ nav.tabs button.aviso::after{content:'';position:absolute;top:4px;left:calc(50% 
 <div id="toast"></div>
 <nav class="tabs"><div class="in">
   <button data-t="entreno"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>Entreno</button>
-  <button data-t="bicho"><svg viewBox="0 0 24 24"><path d="M5 15c0-5 3-9 7-9s7 4 7 9c0 1-.4 2-1 2.5M5 15c0 1 .4 2 1 2.5M8 18v2M11 18.5v2M13 18.5v2M16 18v2"/><path d="M9.5 12.5c.5-.8 1.5-.8 2 0M12.5 12.5c.5-.8 1.5-.8 2 0"/></svg>Bicho</button>
   <button data-t="progreso"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg>Progreso</button>
   <button data-t="rutina"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>Rutina</button>
   <button data-t="mas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Más</button>
@@ -436,7 +435,8 @@ if (m) {
     if (Math.hypot(e.clientX - cx, e.clientY - cy) > rad || e.target.closest('input,select,textarea,nav,#descanso button,#hoja')) return;
     e.preventDefault(); e.stopPropagation(); tragarClick = true; setTimeout(() => { tragarClick = false; }, 600);
     const estaba = window.calmarBichoToque ? window.calmarBichoToque() : false;
-    if (estaba) { X('happy', 2); window.bichoDecir && window.bichoDecir('Vale, vale… se me pasa. Pero la próxima me contestas.', 4); return; }
+    if (estaba === true) { X('happy', 2); window.bichoDecir && window.bichoDecir('Vale, vale… se me pasa. Pero la próxima vez no tardes tanto.', 4); return; }
+    if (estaba === 'resp') { X('happy', 2); if (modo === 'suelo') saltitos(2, 30); window.bichoDecir && window.bichoDecir(['¡Así me gusta! A por la siguiente.', 'Eso es. Sigue así.', 'Bien. No me dejes tirado.'][Math.floor(Math.random() * 3)], 3.5); return; }
     if (ocupado() && modo !== 'suelo') { X('happy', 1.2); return; }
     const k = Math.random(); X('happy', 1.5);
     if (modo === 'suelo') { if (k < 0.45) saltitos(2, 30); else if (k < 0.65) T('corazon'); else if (k < 0.8) T('sonrisa'); }
@@ -707,7 +707,7 @@ function descanso(seg) { if (!seg) return; total = seg; fin = Date.now() + seg *
 function tickD() { const q = Math.max(0, Math.ceil((fin - Date.now()) / 1000)); $('#dt').textContent = `${Math.floor(q / 60)}:${pad(q % 60)}`; $('#dbar').style.width = `${100 * q / total}%`;
   if (q === 0) { clearInterval(tDesc); $('#descanso').classList.add('fin'); $('#dt').textContent = '¡A por la siguiente!'; vibrar([200, 100, 200]); if (document.hidden) notificar('Descanso terminado', 'A por la siguiente serie.'); avisarBicho('descanso-fin', true); setTimeout(cerrarD, 4000); } }
 window.descansoFrac = () => total ? Math.max(0, Math.min(1, (fin - Date.now()) / (total * 1000))) : 0;
-window.calmarBichoToque = () => calmarBicho(true);
+window.calmarBichoToque = () => { const habia = !!D.preguntaSinResp; return calmarBicho(true) ? true : habia ? 'resp' : false; };
 function cerrarD() { const on = $('#descanso').classList.contains('on'); clearInterval(tDesc); $('#descanso').classList.remove('on', 'fin'); if (on) avisarBicho('descanso-fin', false); }
 $('#dmas').onclick = () => { fin += 15000; total += 15; tickD(); };
 $('#dfin').onclick = cerrarD;
@@ -1229,7 +1229,8 @@ function enviarChat(v) {
 
 // --- el bicho te escribe mientras entrenas, y se enfada si le ignoras 40 min
 function marcarNoLeido() { const b = document.querySelector('nav.tabs [data-t="bicho"]'); if (b) b.classList.toggle('aviso', (D.chatNoLeido || 0) > 0 && pestana !== 'bicho'); }
-function bichoEscribe(txt) { anadirMsg('b', txt); if (pestana !== 'bicho') { D.chatNoLeido = (D.chatNoLeido || 0) + 1; guardar(); marcarNoLeido(); } D.preguntaSinResp = D.preguntaSinResp || Date.now(); guardar(); }
+// sin chat: el bicho te pregunta en un bocadillo y le contestas tocándole
+function bichoEscribe(txt) { D.preguntaSinResp = D.preguntaSinResp || Date.now(); guardar(); if (window.bichoDecir) window.bichoDecir(txt + ' (tócame para contestar)', 7); }
 function calmarBicho(porToque) {
   const estaba = D.enfado && D.enfado.nivel > 0.05; D.enfado = { nivel: 0 }; D.preguntaSinResp = null; guardar();
   try { window.bichoEnfado && window.bichoEnfado(0); bichoGrande && bichoGrande.enfado && bichoGrande.enfado(0); } catch {}
@@ -1243,12 +1244,12 @@ const PREGUNTAS = () => {
 setInterval(() => {
   if (document.hidden || !D.activa || D.activa.fecha !== hoy()) return;
   const ahora = Date.now(), ultHablo = Math.max(D.ultHablado || 0, D.activa.inicio);
-  if (!D.preguntaSinResp && ahora - Math.max(ultHablo, D.ultPregunta || 0) > 15 * 60000 && ahora - D.activa.inicio > 10 * 60000) { D.ultPregunta = ahora; bichoEscribe(azar(PREGUNTAS())); if (pestana !== 'bicho' && window.bichoDecir) window.bichoDecir('Te he escrito en el chat.', 4); }
+  if (!D.preguntaSinResp && ahora - Math.max(ultHablo, D.ultPregunta || 0) > 15 * 60000 && ahora - D.activa.inicio > 10 * 60000) { D.ultPregunta = ahora; bichoEscribe(azar(PREGUNTAS())); }
   if (D.preguntaSinResp && pestana !== 'bicho') {
     const ign = (ahora - D.preguntaSinResp) / 60000, nivel = ign < 25 ? 0 : Math.min(1, (ign - 25) / 15); // a los 40 min, rojo del todo
     if (nivel > 0 && (!D.enfado || Math.abs((D.enfado.nivel || 0) - nivel) > 0.08)) {
       const antes = D.enfado?.nivel || 0; D.enfado = { nivel }; guardar(); try { window.bichoEnfado && window.bichoEnfado(nivel); } catch {}
-      if (nivel >= 1 && antes < 1 && window.bichoDecir) window.bichoDecir(azar(['Oye, que te estoy hablando.', 'Te he escrito hace 40 minutos. Muy bonito.', 'Vale, ignórame. Ya veremos quién te cuenta los récords.']), 6);
+      if (nivel >= 1 && antes < 1 && window.bichoDecir) window.bichoDecir(azar(['Oye, que te estoy hablando.', 'Te he preguntado hace 40 minutos. Muy bonito.', 'Vale, ignórame. Ya veremos quién te cuenta los récords.']), 6);
     }
   }
 }, 30000);
