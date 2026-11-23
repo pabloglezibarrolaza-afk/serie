@@ -1,0 +1,3703 @@
+{
+ "v": 1,
+ "rutina": {
+  "dias": [
+   {
+    "id": "PE1",
+    "nombre": "Pecho y espalda 1",
+    "ejercicios": [
+     {
+      "id": "press_pecho_maquina",
+      "nombre": "Press pecho en máquina",
+      "series": 2,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "remo_bajo_maquina",
+      "nombre": "Remo bajo",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "peck_deck",
+      "nombre": "Pec deck",
+      "series": 2,
+      "reps": "8-11",
+      "notas": ""
+     },
+     {
+      "id": "remo_en_t",
+      "nombre": "Remo en T",
+      "series": 2,
+      "reps": "7-12",
+      "notas": ""
+     },
+     {
+      "id": "hombro_posterior",
+      "nombre": "Hombro posterior",
+      "series": 3,
+      "reps": "10-20",
+      "notas": ""
+     },
+     {
+      "id": "abs_maquina",
+      "nombre": "Abdominales en máquina",
+      "series": 3,
+      "reps": "15-20",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "PE2",
+    "nombre": "Pecho y espalda 2",
+    "ejercicios": [
+     {
+      "id": "press_inclinado_maquina",
+      "nombre": "Press inclinado en máquina",
+      "series": 2,
+      "reps": "11-13",
+      "notas": ""
+     },
+     {
+      "id": "remo_gironda_amplio",
+      "nombre": "Remo gironda agarre amplio",
+      "series": 2,
+      "reps": "9-12",
+      "notas": ""
+     },
+     {
+      "id": "remo_maquina",
+      "nombre": "Remo en máquina",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "peck_deck",
+      "nombre": "Pec deck",
+      "series": 2,
+      "reps": "8-11",
+      "notas": ""
+     },
+     {
+      "id": "hombro_posterior",
+      "nombre": "Hombro posterior",
+      "series": 3,
+      "reps": "10-20",
+      "notas": ""
+     },
+     {
+      "id": "abs_maquina",
+      "nombre": "Abdominales en máquina",
+      "series": 3,
+      "reps": "15-20",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "PI",
+    "nombre": "Pierna",
+    "ejercicios": [
+     {
+      "id": "prensa",
+      "nombre": "Prensa",
+      "series": 2,
+      "reps": "8-13",
+      "notas": ""
+     },
+     {
+      "id": "extension_cuadriceps",
+      "nombre": "Extensión de cuádriceps",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "femoral_sentado",
+      "nombre": "Femoral sentado",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "abducciones",
+      "nombre": "Culete (abductores, abrir)",
+      "series": 2,
+      "reps": "12-14",
+      "notas": ""
+     },
+     {
+      "id": "aductores",
+      "nombre": "Aductores (cerrar)",
+      "series": 2,
+      "reps": "12-14",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "BR1",
+    "nombre": "Brazo 1",
+    "ejercicios": [
+     {
+      "id": "press_militar_maquina",
+      "nombre": "Press militar en máquina",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_maquina",
+      "nombre": "Curl bíceps en máquina",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "press_frances",
+      "nombre": "Press francés",
+      "series": 2,
+      "reps": "10-15",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_inclinado",
+      "nombre": "Curl bíceps inclinado con mancuernas",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "polea_triceps",
+      "nombre": "Extensión de tríceps en polea",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "elevaciones_laterales",
+      "nombre": "Elevaciones laterales",
+      "series": 2,
+      "reps": "11-13",
+      "notas": ""
+     }
+    ]
+   },
+   {
+    "id": "BR2",
+    "nombre": "Brazo 2",
+    "ejercicios": [
+     {
+      "id": "press_militar_maquina",
+      "nombre": "Press militar en máquina",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_maquina",
+      "nombre": "Curl bíceps en máquina",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "press_frances",
+      "nombre": "Press francés",
+      "series": 2,
+      "reps": "10-15",
+      "notas": ""
+     },
+     {
+      "id": "curl_biceps_inclinado",
+      "nombre": "Curl bíceps inclinado con mancuernas",
+      "series": 2,
+      "reps": "8-12",
+      "notas": ""
+     },
+     {
+      "id": "polea_triceps",
+      "nombre": "Extensión de tríceps en polea",
+      "series": 2,
+      "reps": "10-12",
+      "notas": ""
+     },
+     {
+      "id": "elevaciones_laterales",
+      "nombre": "Elevaciones laterales",
+      "series": 2,
+      "reps": "11-13",
+      "notas": ""
+     }
+    ]
+   }
+  ],
+  "orden": [
+   "BR1",
+   "PE1",
+   "BR2",
+   "PI",
+   "PE2"
+  ],
+  "objetivo": 5,
+  "semana": [
+   "PE2",
+   "BR1",
+   "",
+   "PE1",
+   "BR2",
+   "",
+   "PI"
+  ]
+ },
+ "regs": [
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "ej": "aductores",
+   "nombre": "Aductores",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 11
+    },
+    {
+     "kg": 32.0,
+     "reps": 16,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 27,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 21
+    },
+    {
+     "kg": 45.0,
+     "reps": 14,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 11
+    },
+    {
+     "kg": 45.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 8
+    },
+    {
+     "kg": 18.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 40,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 28
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 5
+    },
+    {
+     "kg": 20.0,
+     "reps": 10
+    },
+    {
+     "kg": 20.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "ej": "sentadilla",
+   "nombre": "Sentadilla (máquina / multipower)",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 11
+    },
+    {
+     "kg": 30.0,
+     "reps": 11
+    },
+    {
+     "kg": 30.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 30.0,
+     "reps": 21,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "ej": "gemelos",
+   "nombre": "Gemelos",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 12
+    },
+    {
+     "kg": 20.0,
+     "reps": 9
+    },
+    {
+     "kg": 20.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "B1",
+   "ej": "press_frances",
+   "nombre": "Press francés (barra Z, kg añadidos)",
+   "series": [
+    {
+     "kg": 5.0,
+     "reps": 9
+    },
+    {
+     "kg": 5.0,
+     "reps": 10,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "B1",
+   "ej": "curl_barra",
+   "nombre": "Curl de bíceps con barra",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 10
+    },
+    {
+     "kg": 10.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "B1",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 9
+    },
+    {
+     "kg": 36.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "B1",
+   "ej": "remo_bajo_maquina",
+   "nombre": "Remo bajo en máquina",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 10
+    },
+    {
+     "kg": 15.0,
+     "reps": 10
+    },
+    {
+     "kg": 14.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "B1",
+   "ej": "remo_en_t",
+   "nombre": "Remo en T",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 6
+    },
+    {
+     "kg": 10.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "B2",
+   "ej": "press_inclinado_mancuernas",
+   "nombre": "Press inclinado con mancuernas",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 10
+    },
+    {
+     "kg": 12.5,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 12.5,
+     "reps": 11
+    },
+    {
+     "kg": 12.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "B2",
+   "ej": "fondos",
+   "nombre": "Fondos (peso corporal)",
+   "series": [
+    {
+     "kg": 0.0,
+     "reps": 6
+    },
+    {
+     "kg": 0.0,
+     "reps": 5
+    },
+    {
+     "kg": 0.0,
+     "reps": 4
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "B2",
+   "ej": "polea_triceps",
+   "nombre": "Tríceps en polea",
+   "series": [
+    {
+     "kg": 21.0,
+     "reps": 8
+    },
+    {
+     "kg": 17.5,
+     "reps": 10
+    },
+    {
+     "kg": 17.5,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 38.5,
+     "reps": 7
+    },
+    {
+     "kg": 32.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "Otro",
+   "ej": "jalon_pecho",
+   "nombre": "Jalón al pecho",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 32.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "Otro",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 11
+    },
+    {
+     "kg": 32.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "Otro",
+   "ej": "polea_esquiador",
+   "nombre": "Polea «esquiador» con cuerdas",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 6
+    },
+    {
+     "kg": 18.0,
+     "reps": 9
+    },
+    {
+     "kg": 18.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "Otro",
+   "ej": "curl_barra",
+   "nombre": "Curl de bíceps con barra",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 6
+    },
+    {
+     "kg": 10.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "A1",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    },
+    {
+     "kg": 30.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 8
+    },
+    {
+     "kg": 39.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 12
+    },
+    {
+     "kg": 39.0,
+     "reps": 11
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "A1",
+   "ej": "sentadilla",
+   "nombre": "Sentadilla (máquina / multipower)",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 11
+    },
+    {
+     "kg": 30.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "A1",
+   "ej": "gemelos",
+   "nombre": "Gemelos",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 12
+    },
+    {
+     "kg": 20.0,
+     "reps": 13,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-20",
+   "dia": "Otro",
+   "ej": "press_militar_mancuernas",
+   "nombre": "Press militar con mancuernas",
+   "series": [
+    {
+     "kg": 12.5,
+     "reps": 8
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-20",
+   "dia": "Otro",
+   "ej": "elevaciones_laterales",
+   "nombre": "Elevaciones laterales con mancuernas",
+   "series": [
+    {
+     "kg": 7.5,
+     "reps": 9
+    },
+    {
+     "kg": 7.5,
+     "reps": 9
+    },
+    {
+     "kg": 5.0,
+     "reps": 5
+    },
+    {
+     "kg": 7.5,
+     "reps": 6
+    },
+    {
+     "kg": 5.0,
+     "reps": 4
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-20",
+   "dia": "Otro",
+   "ej": "face_pull",
+   "nombre": "Face pull",
+   "series": [
+    {
+     "kg": 11.3,
+     "reps": 12
+    },
+    {
+     "kg": 11.3,
+     "reps": 10
+    },
+    {
+     "kg": 11.3,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-20",
+   "dia": "Otro",
+   "ej": "triceps_tras_cabeza",
+   "nombre": "Tríceps en polea tras la cabeza",
+   "series": [
+    {
+     "kg": 23.0,
+     "reps": 8
+    },
+    {
+     "kg": 23.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-20",
+   "dia": "Otro",
+   "ej": "curl_sentado",
+   "nombre": "Curl de bíceps sentado",
+   "series": [
+    {
+     "kg": 7.5,
+     "reps": 6
+    },
+    {
+     "kg": 7.5,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "B1",
+   "ej": "peso_muerto_rumano",
+   "nombre": "Peso muerto rumano",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 8
+    },
+    {
+     "kg": 12.0,
+     "reps": 6,
+     "pr": true
+    },
+    {
+     "kg": 12.0,
+     "reps": 5
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "B1",
+   "ej": "remo_en_t",
+   "nombre": "Remo en T",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 12
+    },
+    {
+     "kg": 10.0,
+     "reps": 12
+    },
+    {
+     "kg": 10.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "B1",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 39.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 39.0,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "B1",
+   "ej": "remo_bajo_maquina",
+   "nombre": "Remo bajo en máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 30.0,
+     "reps": 8
+    },
+    {
+     "kg": 30.0,
+     "reps": 10,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 9
+    },
+    {
+     "kg": 39.0,
+     "reps": 10
+    },
+    {
+     "kg": 39.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "A1",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 7
+    },
+    {
+     "kg": 40.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 40.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "A1",
+   "ej": "aductores",
+   "nombre": "Aductores",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 8
+    },
+    {
+     "kg": 25.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 9
+    },
+    {
+     "kg": 39.0,
+     "reps": 6
+    },
+    {
+     "kg": 32.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "A1",
+   "ej": "gemelos",
+   "nombre": "Gemelos",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 16,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 13
+    },
+    {
+     "kg": 20.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 38.5,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 38.5,
+     "reps": 10
+    },
+    {
+     "kg": 38.5,
+     "reps": 8
+    },
+    {
+     "kg": 38.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 9
+    },
+    {
+     "kg": 36.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "ej": "pajaros",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 5.0,
+     "reps": 9
+    },
+    {
+     "kg": 5.0,
+     "reps": 8
+    },
+    {
+     "kg": 5.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 9
+    },
+    {
+     "kg": 13.0,
+     "reps": 8
+    },
+    {
+     "kg": 10.0,
+     "reps": 8
+    },
+    {
+     "kg": 10.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 13
+    },
+    {
+     "kg": 36.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 36.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "ej": "triceps_tras_cabeza",
+   "nombre": "Tríceps en polea tras la cabeza",
+   "series": [
+    {
+     "kg": 18.0,
+     "reps": 8
+    },
+    {
+     "kg": 9.0,
+     "reps": 6
+    },
+    {
+     "kg": 18.0,
+     "reps": 8
+    },
+    {
+     "kg": 0.0,
+     "reps": 12
+    },
+    {
+     "kg": 9.0,
+     "reps": 12
+    },
+    {
+     "kg": 0.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "A2",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 59.0,
+     "reps": 13,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "A2",
+   "ej": "press_militar_mancuernas",
+   "nombre": "Press militar con mancuernas",
+   "series": [
+    {
+     "kg": 12.5,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 8
+    },
+    {
+     "kg": 7.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 9
+    },
+    {
+     "kg": 39.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 41.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "curl_biceps_maquina",
+   "nombre": "Curl bíceps en máquina",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 6
+    },
+    {
+     "kg": 27.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 15
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 30.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "press_frances",
+   "nombre": "Press francés (barra Z, kg añadidos)",
+   "series": [
+    {
+     "kg": 5.0,
+     "reps": 9
+    },
+    {
+     "kg": 5.0,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 36.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 9
+    },
+    {
+     "kg": 39.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "ej": "gemelos",
+   "nombre": "Gemelos",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 30.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "B1",
+   "ej": "press_pecho_maquina",
+   "nombre": "Press pecho en máquina",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "B1",
+   "ej": "remo_bajo_maquina",
+   "nombre": "Remo bajo en máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 30.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "B1",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 12
+    },
+    {
+     "kg": 45.0,
+     "reps": 9,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "B1",
+   "ej": "remo_en_t",
+   "nombre": "Remo en T",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "A2",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 66.0,
+     "reps": 18,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 18,
+     "pr": true
+    },
+    {
+     "kg": 50.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 7.5,
+     "reps": 9
+    },
+    {
+     "kg": 7.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 8
+    },
+    {
+     "kg": 52.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "A2",
+   "ej": "curl_polea",
+   "nombre": "Curl de bíceps en polea",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 9
+    },
+    {
+     "kg": 32.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "B2",
+   "ej": "press_inclinado_mancuernas",
+   "nombre": "Press inclinado con mancuernas",
+   "series": [
+    {
+     "kg": 12.5,
+     "reps": 10
+    },
+    {
+     "kg": 12.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 8
+    },
+    {
+     "kg": 45.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "B2",
+   "ej": "jalon_pecho",
+   "nombre": "Jalón al pecho",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 36.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "B2",
+   "ej": "remo_poleas",
+   "nombre": "Remo en polea",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 14
+    },
+    {
+     "kg": 45.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "ej": "press_frances",
+   "nombre": "Press francés (barra Z, kg añadidos)",
+   "series": [
+    {
+     "kg": 7.5,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 7.5,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "ej": "curl_biceps_maquina",
+   "nombre": "Curl bíceps en máquina",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 27.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 36.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "ej": "press_pecho_maquina",
+   "nombre": "Press pecho en máquina",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "ej": "remo_en_t",
+   "nombre": "Remo en T",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 20.0,
+     "reps": 8,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "ej": "remo_bajo_maquina",
+   "nombre": "Remo bajo en máquina",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 35.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 52.0,
+     "reps": 7,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "ej": "face_pull",
+   "nombre": "Face pull",
+   "series": [
+    {
+     "kg": 23.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "ej": "abs_inclinados",
+   "nombre": "Abdominales inclinados con mancuerna",
+   "series": [
+    {
+     "kg": 17.5,
+     "reps": 12
+    },
+    {
+     "kg": 20.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 9
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "A2",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 73.0,
+     "reps": 12
+    },
+    {
+     "kg": 75.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 7
+    },
+    {
+     "kg": 7.5,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 12
+    },
+    {
+     "kg": 54.0,
+     "reps": 4
+    },
+    {
+     "kg": 50.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "A2",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 14
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "B2",
+   "ej": "press_inclinado_mancuernas",
+   "nombre": "Press inclinado con mancuernas",
+   "series": [
+    {
+     "kg": 12.5,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "B2",
+   "ej": "jalon_pecho",
+   "nombre": "Jalón al pecho",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 41.0,
+     "reps": 7,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 59.0,
+     "reps": 7,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "B2",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 9
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "ej": "curl_biceps_maquina",
+   "nombre": "Curl bíceps en máquina",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 30.5,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "ej": "press_frances",
+   "nombre": "Press francés (barra Z, kg añadidos)",
+   "series": [
+    {
+     "kg": 7.5,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 10.0,
+     "reps": 9,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 13
+    },
+    {
+     "kg": 59.0,
+     "reps": 8,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 6
+    },
+    {
+     "kg": 28.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12
+    },
+    {
+     "kg": 52.0,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 13
+    },
+    {
+     "kg": 36.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "ej": "press_pecho_maquina",
+   "nombre": "Press pecho en máquina",
+   "series": [
+    {
+     "kg": 39.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 7,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "ej": "remo_bajo_maquina",
+   "nombre": "Remo bajo en máquina",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 14,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 10,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 66.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "ej": "remo_en_t",
+   "nombre": "Remo en T",
+   "series": [
+    {
+     "kg": 20.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 17.5,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "ej": "hombro_posterior",
+   "nombre": "Hombro posterior",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 16
+    },
+    {
+     "kg": 32.0,
+     "reps": 10,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "ej": "abs_maquina",
+   "nombre": "Abs en máquina",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12
+    },
+    {
+     "kg": 50.0,
+     "reps": 9,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 54.3,
+     "reps": 9
+    },
+    {
+     "kg": 59.0,
+     "reps": 6
+    },
+    {
+     "kg": 52.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 38.0,
+     "reps": 11,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 5
+    },
+    {
+     "kg": 7.5,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 15
+    },
+    {
+     "kg": 80.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "ej": "press_inclinado_mancuernas",
+   "nombre": "Press inclinado con mancuernas",
+   "series": [
+    {
+     "kg": 15.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 15.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12
+    },
+    {
+     "kg": 36.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "ej": "remo_gironda_amplio",
+   "nombre": "Remo agarre amplio",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 9
+    },
+    {
+     "kg": 27.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "ej": "abs_maquina",
+   "nombre": "Abs en máquina",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 41.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "ej": "hombro_posterior",
+   "nombre": "Hombro posterior",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 18
+    },
+    {
+     "kg": 25.0,
+     "reps": 18
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "ej": "curl_biceps_maquina",
+   "nombre": "Curl bíceps en máquina",
+   "series": [
+    {
+     "kg": 29.2,
+     "reps": 7
+    },
+    {
+     "kg": 29.2,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 38.0,
+     "reps": 11
+    },
+    {
+     "kg": 38.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "ej": "press_frances",
+   "nombre": "Press francés (barra Z, kg añadidos)",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 9
+    },
+    {
+     "kg": 10.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 55.3,
+     "reps": 8
+    },
+    {
+     "kg": 53.2,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 52.0,
+     "reps": 7
+    },
+    {
+     "kg": 39.0,
+     "reps": 5
+    },
+    {
+     "kg": 25.0,
+     "reps": 4
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "ej": "abducciones",
+   "nombre": "Abductores (culete)",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 10
+    },
+    {
+     "kg": 32.0,
+     "reps": 7
+    },
+    {
+     "kg": 25.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 38.0,
+     "reps": 11
+    },
+    {
+     "kg": 41.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 8
+    },
+    {
+     "kg": 10.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 54.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 8
+    },
+    {
+     "kg": 60.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 55.0,
+     "reps": 6
+    },
+    {
+     "kg": 52.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "ej": "elevaciones_laterales_maquina",
+   "nombre": "Elevaciones laterales en máquina",
+   "series": [
+    {
+     "kg": 34.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "dia": "B2",
+   "ej": "remo_gironda_amplio",
+   "nombre": "Remo agarre amplio",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 66.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "dia": "B2",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 11
+    },
+    {
+     "kg": 36.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "dia": "B2",
+   "ej": "press_pecho_maquina",
+   "nombre": "Press pecho en máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 11
+    },
+    {
+     "kg": 35.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "dia": "B2",
+   "ej": "hombro_posterior",
+   "nombre": "Hombro posterior",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 27,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 14
+    },
+    {
+     "kg": 25.0,
+     "reps": 21
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "ej": "curl_biceps_maquina",
+   "nombre": "Curl bíceps en máquina",
+   "series": [
+    {
+     "kg": 27.0,
+     "reps": 12
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "ej": "press_militar_mancuernas",
+   "nombre": "Press militar con mancuernas",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 25.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 59.0,
+     "reps": 9,
+     "pr": true
+    },
+    {
+     "kg": 59.0,
+     "reps": 10,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "ej": "abducciones",
+   "nombre": "Abductores (culete)",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 8
+    },
+    {
+     "kg": 32.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "ej": "polea_triceps",
+   "nombre": "Tríceps en polea",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 8,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 41.0,
+     "reps": 8,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "ej": "elevaciones_laterales",
+   "nombre": "Elevaciones laterales con mancuernas",
+   "series": [
+    {
+     "kg": 5.0,
+     "reps": 20
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "ej": "press_pecho_maquina",
+   "nombre": "Press pecho en máquina",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 15
+    },
+    {
+     "kg": 40.0,
+     "reps": 12,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "ej": "remo_bajo_maquina",
+   "nombre": "Remo bajo en máquina",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 7
+    },
+    {
+     "kg": 35.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 11
+    },
+    {
+     "kg": 66.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "ej": "jalon_pecho",
+   "nombre": "Jalón al pecho",
+   "series": [
+    {
+     "kg": 36.0,
+     "reps": 12
+    },
+    {
+     "kg": 36.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "ej": "abs_maquina",
+   "nombre": "Abs en máquina",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12
+    },
+    {
+     "kg": 45.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "ej": "hombro_posterior",
+   "nombre": "Hombro posterior",
+   "series": [
+    {
+     "kg": 25.0,
+     "reps": 25
+    },
+    {
+     "kg": 25.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "dia": "A2",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 8
+    },
+    {
+     "kg": 27.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 10.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "dia": "A2",
+   "ej": "maquina_fondos",
+   "nombre": "Máquina de fondos",
+   "series": [
+    {
+     "kg": 54.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 54.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "dia": "A2",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 7
+    },
+    {
+     "kg": 45.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 13
+    },
+    {
+     "kg": 52.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-15",
+   "dia": "B2",
+   "ej": "flexiones",
+   "nombre": "Flexiones declinadas",
+   "series": [
+    {
+     "kg": 0.0,
+     "reps": 11
+    },
+    {
+     "kg": 0.0,
+     "reps": 11
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-15",
+   "dia": "B2",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 30.0,
+     "reps": 15
+    },
+    {
+     "kg": 40.0,
+     "reps": 11,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-15",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 11
+    },
+    {
+     "kg": 66.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-15",
+   "dia": "B2",
+   "ej": "remo_gironda_amplio",
+   "nombre": "Remo agarre amplio",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 10
+    },
+    {
+     "kg": 27.0,
+     "reps": 12
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-15",
+   "dia": "B2",
+   "ej": "pajaros",
+   "nombre": "Pájaros con mancuernas",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 18,
+     "pr": true
+    },
+    {
+     "kg": 10.0,
+     "reps": 12
+    },
+    {
+     "kg": 10.0,
+     "reps": 14
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "ej": "curl_biceps_maquina",
+   "nombre": "Curl bíceps en máquina",
+   "series": [
+    {
+     "kg": 29.2,
+     "reps": 10,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 7,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 38.0,
+     "reps": 15,
+     "pr": true
+    },
+    {
+     "kg": 41.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "ej": "extension_cuadriceps",
+   "nombre": "Extensión de cuádriceps",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 13
+    },
+    {
+     "kg": 59.0,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "ej": "press_frances",
+   "nombre": "Press francés (barra Z, kg añadidos)",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 11,
+     "pr": true
+    },
+    {
+     "kg": 10.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "ej": "abducciones",
+   "nombre": "Abductores (culete)",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 39.0,
+     "reps": 8,
+     "pr": true
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "ej": "elevaciones_laterales",
+   "nombre": "Elevaciones laterales con mancuernas",
+   "series": [
+    {
+     "kg": 6.0,
+     "reps": 13
+    },
+    {
+     "kg": 6.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "ej": "elevaciones_laterales",
+   "nombre": "Elevaciones laterales",
+   "series": [
+    {
+     "kg": 7.5,
+     "reps": 13,
+     "pr": true
+    },
+    {
+     "kg": 7.5,
+     "reps": 10
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "ej": "femoral_sentado",
+   "nombre": "Femoral sentado",
+   "series": [
+    {
+     "kg": 52.0,
+     "reps": 12
+    },
+    {
+     "kg": 52.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "ej": "curl_biceps_inclinado",
+   "nombre": "Curl bíceps inclinado",
+   "series": [
+    {
+     "kg": 10.0,
+     "reps": 10
+    },
+    {
+     "kg": 10.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "ej": "prensa",
+   "nombre": "Prensa",
+   "series": [
+    {
+     "kg": 70.0,
+     "reps": 14
+    },
+    {
+     "kg": 80.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "ej": "press_militar_maquina",
+   "nombre": "Press militar en máquina",
+   "series": [
+    {
+     "kg": 41.0,
+     "reps": 12,
+     "pr": true
+    },
+    {
+     "kg": 45.0,
+     "reps": 6
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "ej": "polea_triceps",
+   "nombre": "Polea exten tríceps",
+   "series": [
+    {
+     "kg": 41.0,
+     "reps": 8
+    },
+    {
+     "kg": 36.0,
+     "reps": 13
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "ej": "press_inclinado_maquina",
+   "nombre": "Press inclinado con máquina",
+   "series": [
+    {
+     "kg": 50.0,
+     "reps": 8
+    },
+    {
+     "kg": 50.0,
+     "reps": 7
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "ej": "remo_gironda_amplio",
+   "nombre": "Remo agarre amplio",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 14,
+     "pr": true
+    },
+    {
+     "kg": 36.0,
+     "reps": 9
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "ej": "peck_deck",
+   "nombre": "Peck deck",
+   "series": [
+    {
+     "kg": 66.0,
+     "reps": 11
+    },
+    {
+     "kg": 66.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "ej": "remo_maquina",
+   "nombre": "Remo sentado (divergente)",
+   "series": [
+    {
+     "kg": 40.0,
+     "reps": 11
+    },
+    {
+     "kg": 40.0,
+     "reps": 8
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "ej": "hombro_posterior",
+   "nombre": "Hombro posterior",
+   "series": [
+    {
+     "kg": 32.0,
+     "reps": 25,
+     "pr": true
+    },
+    {
+     "kg": 32.0,
+     "reps": 17
+    },
+    {
+     "kg": 32.0,
+     "reps": 16
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "ej": "abs_maquina",
+   "nombre": "Abs en máquina",
+   "series": [
+    {
+     "kg": 45.0,
+     "reps": 12
+    },
+    {
+     "kg": 45.0,
+     "reps": 9
+    },
+    {
+     "kg": 45.0,
+     "reps": 8
+    }
+   ]
+  }
+ ],
+ "sesiones": [
+  {
+   "fecha": "2026-09-07",
+   "dia": "A1",
+   "min": null,
+   "series": 22,
+   "vol": 0,
+   "prs": [
+    "Aductores",
+    "Extensión de cuádriceps",
+    "Femoral sentado",
+    "Sentadilla (máquina / multipower)"
+   ]
+  },
+  {
+   "fecha": "2026-09-11",
+   "dia": "B1",
+   "min": null,
+   "series": 11,
+   "vol": 0,
+   "prs": [
+    "Press francés (barra Z, kg añadidos)"
+   ]
+  },
+  {
+   "fecha": "2026-09-14",
+   "dia": "B2",
+   "min": null,
+   "series": 13,
+   "vol": 0,
+   "prs": [
+    "Press inclinado con mancuernas"
+   ]
+  },
+  {
+   "fecha": "2026-09-15",
+   "dia": "Otro",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho",
+    "Remo sentado (divergente)",
+    "Curl de bíceps con barra"
+   ]
+  },
+  {
+   "fecha": "2026-09-18",
+   "dia": "A1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Prensa",
+    "Gemelos"
+   ]
+  },
+  {
+   "fecha": "2026-09-20",
+   "dia": "Otro",
+   "min": null,
+   "series": 15,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-09-22",
+   "dia": "B1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Peso muerto rumano",
+    "Remo sentado (divergente)",
+    "Remo bajo en máquina"
+   ]
+  },
+  {
+   "fecha": "2026-09-23",
+   "dia": "A1",
+   "min": null,
+   "series": 14,
+   "vol": 0,
+   "prs": [
+    "Prensa",
+    "Gemelos"
+   ]
+  },
+  {
+   "fecha": "2026-09-25",
+   "dia": "A2",
+   "min": null,
+   "series": 23,
+   "vol": 0,
+   "prs": [
+    "Peck deck",
+    "Máquina de fondos"
+   ]
+  },
+  {
+   "fecha": "2026-09-28",
+   "dia": "A2",
+   "min": null,
+   "series": 10,
+   "vol": 0,
+   "prs": [
+    "Prensa",
+    "Press militar con mancuernas",
+    "Máquina de fondos"
+   ]
+  },
+  {
+   "fecha": "2026-10-12",
+   "dia": "A1",
+   "min": null,
+   "series": 14,
+   "vol": 0,
+   "prs": [
+    "Press militar en máquina",
+    "Press francés (barra Z, kg añadidos)",
+    "Elevaciones laterales en máquina",
+    "Gemelos"
+   ]
+  },
+  {
+   "fecha": "2026-10-13",
+   "dia": "B1",
+   "min": null,
+   "series": 8,
+   "vol": 0,
+   "prs": [
+    "Remo bajo en máquina",
+    "Peck deck",
+    "Remo en T"
+   ]
+  },
+  {
+   "fecha": "2026-10-15",
+   "dia": "A2",
+   "min": null,
+   "series": 10,
+   "vol": 0,
+   "prs": [
+    "Prensa",
+    "Máquina de fondos"
+   ]
+  },
+  {
+   "fecha": "2026-10-16",
+   "dia": "B2",
+   "min": null,
+   "series": 8,
+   "vol": 0,
+   "prs": [
+    "Jalón al pecho"
+   ]
+  },
+  {
+   "fecha": "2026-10-18",
+   "dia": "A1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Press francés (barra Z, kg añadidos)",
+    "Curl bíceps en máquina",
+    "Press militar en máquina"
+   ]
+  },
+  {
+   "fecha": "2026-10-19",
+   "dia": "B1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Press pecho en máquina",
+    "Remo en T",
+    "Remo bajo en máquina",
+    "Peck deck",
+    "Face pull"
+   ]
+  },
+  {
+   "fecha": "2026-10-21",
+   "dia": "A2",
+   "min": null,
+   "series": 11,
+   "vol": 0,
+   "prs": []
+  },
+  {
+   "fecha": "2026-10-23",
+   "dia": "B2",
+   "min": null,
+   "series": 8,
+   "vol": 0,
+   "prs": [
+    "Press inclinado con mancuernas",
+    "Jalón al pecho",
+    "Peck deck"
+   ]
+  },
+  {
+   "fecha": "2026-10-25",
+   "dia": "A1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Curl bíceps en máquina",
+    "Press francés (barra Z, kg añadidos)",
+    "Femoral sentado",
+    "Extensión de cuádriceps"
+   ]
+  },
+  {
+   "fecha": "2026-10-26",
+   "dia": "B1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Press pecho en máquina",
+    "Remo bajo en máquina",
+    "Peck deck",
+    "Remo en T",
+    "Hombro posterior",
+    "Abs en máquina"
+   ]
+  },
+  {
+   "fecha": "2026-10-28",
+   "dia": "A2",
+   "min": null,
+   "series": 13,
+   "vol": 0,
+   "prs": [
+    "Press militar en máquina",
+    "Máquina de fondos"
+   ]
+  },
+  {
+   "fecha": "2026-10-29",
+   "dia": "B2",
+   "min": null,
+   "series": 13,
+   "vol": 0,
+   "prs": [
+    "Press inclinado con mancuernas",
+    "Peck deck",
+    "Abs en máquina",
+    "Hombro posterior"
+   ]
+  },
+  {
+   "fecha": "2026-11-01",
+   "dia": "A1",
+   "min": null,
+   "series": 15,
+   "vol": 0,
+   "prs": [
+    "Extensión de cuádriceps"
+   ]
+  },
+  {
+   "fecha": "2026-11-04",
+   "dia": "A2",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Máquina de fondos"
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "dia": "B2",
+   "min": null,
+   "series": 11,
+   "vol": 0,
+   "prs": [
+    "Remo agarre amplio",
+    "Peck deck",
+    "Hombro posterior"
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "dia": "A1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Press militar con mancuernas",
+    "Extensión de cuádriceps",
+    "Tríceps en polea"
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "dia": "B1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Press pecho en máquina"
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "dia": "A2",
+   "min": null,
+   "series": 10,
+   "vol": 0,
+   "prs": [
+    "Curl bíceps inclinado",
+    "Máquina de fondos"
+   ]
+  },
+  {
+   "fecha": "2026-11-15",
+   "dia": "B2",
+   "min": null,
+   "series": 11,
+   "vol": 0,
+   "prs": [
+    "Remo sentado (divergente)",
+    "Pájaros con mancuernas"
+   ]
+  },
+  {
+   "fecha": "2026-11-16",
+   "dia": "A1",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Curl bíceps en máquina",
+    "Press militar en máquina",
+    "Press francés (barra Z, kg añadidos)",
+    "Abductores (culete)"
+   ]
+  },
+  {
+   "fecha": "2026-11-19",
+   "dia": "A2",
+   "min": null,
+   "series": 12,
+   "vol": 0,
+   "prs": [
+    "Elevaciones laterales",
+    "Press militar en máquina"
+   ]
+  },
+  {
+   "fecha": "2026-11-22",
+   "dia": "B2",
+   "min": null,
+   "series": 14,
+   "vol": 0,
+   "prs": [
+    "Remo agarre amplio",
+    "Hombro posterior"
+   ]
+  }
+ ],
+ "activa": null,
+ "peso": [],
+ "hoyDia": null,
+ "saltados": {},
+ "aj": {
+  "descanso": 90,
+  "inc": 2.5,
+  "barra": 20
+ },
+ "diasViejos": {
+  "A1": "Brazo y pierna",
+  "B1": "Pecho y espalda",
+  "A2": "Hombro, brazo y pierna",
+  "B2": "Pecho y espalda (variante)"
+ },
+ "rutinaDesde": "2026-11-23",
+ "rutinaCodigo": "1qxvt0fv3vx4"
+}

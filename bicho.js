@@ -11,7 +11,8 @@
 //   m.extras({proyectosTrabajando, voz, atento, dormir}), m.avanzar(dt), m.saltar(seg), m.destruir()
 
 const TAU = Math.PI * 2;
-const CIAN = [92, 203, 245], ROJO = [194, 85, 75];
+// paleta amarillo marcador: base #F0C24B, luz/crema calido, sombras marron-ambar
+const BASE = [240, 194, 75], ROJO = [194, 85, 75];
 const ESTADOS = ['reposo', 'pensar', 'leer', 'escribir', 'comando', 'web', 'esperando', 'enviar', 'hecho', 'error', 'parado', 'dormir', 'proyectos', 'escuchando'];
 const FORMAS = ['circulo', 'coche', 'viga', 'buho', 'pesa', 'reloj'];
 const rgba = (c, a = 1) => `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${a})`;
@@ -129,7 +130,7 @@ function celdaObj(expr, r, c, side, E) {
 function spriteLed(col) {
   const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d');
   const g = x.createRadialGradient(32, 32, 4, 32, 32, 32); g.addColorStop(0, rgba(col, .55)); g.addColorStop(1, rgba(col, 0)); x.fillStyle = g; x.fillRect(0, 0, 64, 64);
-  x.fillStyle = col === ROJO ? '#FFE0DB' : '#E6FBFF'; x.beginPath(); x.roundRect(21, 21, 22, 22, 5); x.fill();
+  x.fillStyle = col === ROJO ? '#FFE0DB' : '#FFF1E6'; x.beginPath(); x.roundRect(21, 21, 22, 22, 5); x.fill();
   return c;
 }
 
@@ -137,10 +138,10 @@ export function crearMascota(canvas, op = {}) {
   const O = Object.assign({ vista: 0.85, sombra: true, transparente: false, calidad: 1, volverForma: 6, hogar: [0, 0.04], volumen: true, giro: 0 }, op);
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas 2D no disponible');
-  const SPR = { cian: spriteLed(CIAN), rojo: spriteLed(ROJO) };
+  const SPR = { cian: spriteLed(BASE), rojo: spriteLed(ROJO) };
   const HX = O.hogar[0], HY = O.hogar[1], S0 = 0.40, GROUND = -0.62;
   const S = { x: new Muelle(HX, 120, .8), y: new Muelle(HY, 120, .8), s: new Muelle(1, 160, .8), r: new Muelle(0, 140, .8), sx: new Muelle(0, 220, .75), sy: new Muelle(0, 220, .75) };
-  let tiempo = 0, est = 'reposo', t0 = 0, formaSel = null, formaT = 0, wob = 0, col = CIAN.slice(), colT = CIAN;
+  let tiempo = 0, est = 'reposo', t0 = 0, formaSel = null, formaT = 0, wob = 0, col = BASE.slice(), colT = BASE;
   let puntero = null, arrastre = null, atentoOn = false, vozN = 0, proxVoz = 0, np = 1, durProy = 4, cerrar = 0;
   let gesto = null, proxGesto = 7, proxParp = 2, parp = -1, tapT = -9, fasePrev = -1;
   let congelado = 0, dimv = 0, shapeTo = 'bicho', morphU = 1, morphDur = 0.5, fromPts = null, fromInfo = null, ptsActual = null, infoActual = { ...INFO.bicho };
@@ -184,7 +185,7 @@ export function crearMascota(canvas, op = {}) {
   function objetivos(dt) {
     const t = tiempo - t0;
     const T = { f: 'bicho', x: HX, y: HY, s: 1, r: 0, sy: 0, sx: 0, ex: 'n', look: null, lid: 0, tilt: 0, vis: 1, alpha: 1, frozen: 0, brillo: 1 };
-    colT = CIAN; hopY = 0; rotX = 0; eyeKt = 1; shiver = 0; zapK = 0; tapLeg = 0; E.rojo = 0; legsA.forEach(l => { l.dl = 0; l.dx = 0; });
+    colT = BASE; hopY = 0; rotX = 0; eyeKt = 1; shiver = 0; zapK = 0; tapLeg = 0; E.rojo = 0; legsA.forEach(l => { l.dl = 0; l.dx = 0; });
     switch (est) {
       case 'reposo': {
         T.s = 1 + 0.015 * Math.sin(tiempo * 1.6); T.sy = 0.012 * Math.sin(tiempo * 1.6);
@@ -280,7 +281,7 @@ export function crearMascota(canvas, op = {}) {
       case 'error': {
         colT = ROJO; E.rojo = 1; T.ex = 'x';
         if (t < 1.7) { T.f = 'charco'; T.x = HX + 0.008 * sin(t * 50) * Math.exp(-t); if (fasePrev !== 1) { fasePrev = 1; for (let i = 0; i < 11; i++) part.push({ x: HX + rnd(-0.3, 0.3), y: HY - 0.2 + rnd(-0.03, 0.03), vx: rnd(-0.3, 0.3), vy: rnd(0, 0.3), r: rnd(0.012, 0.04), age: -(0.35 + rnd(0, 0.5)) }); } }
-        else if (t < 2.7) { T.f = 'bicho'; const rc = ease(clamp((t - 1.7) / 0.9, 0, 1)); colT = mezcla(ROJO, CIAN, rc); E.rojo = 1 - rc; T.ex = rc > 0.5 ? 'n' : 'x'; }
+        else if (t < 2.7) { T.f = 'bicho'; const rc = ease(clamp((t - 1.7) / 0.9, 0, 1)); colT = mezcla(ROJO, BASE, rc); E.rojo = 1 - rc; T.ex = rc > 0.5 ? 'n' : 'x'; }
         else entrar('reposo');
         break; }
       case 'parado': { T.frozen = 1; T.ex = 'sleep'; T.brillo = 1; wob = Math.min(wob, 0.02); break; }
@@ -295,7 +296,7 @@ export function crearMascota(canvas, op = {}) {
     }
     enfK += (enfadoN - enfK) * Math.min(1, dt * 3);
     if (enfK > 0.004 && est !== 'dormir' && est !== 'parado') {
-      const kk = clamp(enfK * 1.05, 0, 1), VIOLETA = [170, 112, 205]; colT = mezcla(colT, kk < 0.5 ? mezcla(CIAN, VIOLETA, kk * 2) : mezcla(VIOLETA, ROJO, kk * 2 - 1), Math.min(1, enfK * 4)); E.rojo = Math.max(E.rojo, enfK);
+      const kk = clamp(enfK * 1.05, 0, 1); colT = mezcla(colT, mezcla(BASE, ROJO, kk), Math.min(1, enfK * 4)); E.rojo = Math.max(E.rojo, enfK);
       T.tilt = Math.max(T.tilt, 0.5 * enfK); if (T.ex === 'n' && enfK > 0.3) T.ex = 'strain';
       shiver = Math.max(shiver, 0.55 * enfK); wob = Math.max(wob, 0.12 * enfK); T.sy -= 0.03 * enfK;
     }
@@ -304,15 +305,15 @@ export function crearMascota(canvas, op = {}) {
 
   // ----- animaciones espontaneas (solo en reposo, cada 25-70 s; una distinta a la anterior) -----
   const env = (u, a, b, c) => ease(clamp(u / a, 0, 1)) * (1 - ease(clamp((u - b) / (c - b), 0, 1)));
-  function linea(P, a, w = 1, col = CIAN) { // polilinea en coordenadas de mundo: halo + nucleo blanco, fina y nitida
+  function linea(P, a, w = 1, col = BASE) { // polilinea en coordenadas de mundo: halo + nucleo blanco, fina y nitida
     if (a <= 0.01 || P.length < 2) return; ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.globalAlpha = a;
-    for (const [lw, al, cc] of [[5 * w, .30, col], [1.6 * w, 1, [235, 252, 255]]]) { ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(px(p[0]), py(p[1])) : ctx.moveTo(px(p[0]), py(p[1]))); ctx.strokeStyle = rgba(cc, al); ctx.lineWidth = Math.max(1, pxu * 0.0045 * lw); ctx.stroke(); }
+    for (const [lw, al, cc] of [[5 * w, .30, col], [1.6 * w, 1, [255, 242, 222]]]) { ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(px(p[0]), py(p[1])) : ctx.moveTo(px(p[0]), py(p[1]))); ctx.strokeStyle = rgba(cc, al); ctx.lineWidth = Math.max(1, pxu * 0.0045 * lw); ctx.stroke(); }
     ctx.restore();
   }
   function rayoLin(x0, y0, x1, y1, seed, n = 8, amp = 0.05, w = 1.4) { const P = [[x0, y0]]; for (let q = 1; q < n; q++) { const f = q / n; P.push([lerp(x0, x1, f) + (hh(seed + q * 3.1) - .5) * amp, lerp(y0, y1, f) + (hh(seed + q * 5.3) - .5) * amp]); } P.push([x1, y1]); linea(P, 1, w); }
   function tentaculo(x0, y0, cx, cy, x1, y1, a, w = 2.2) { const P = []; for (let i = 0; i <= 12; i++) { const f = i / 12, g = 1 - f; P.push([g * g * x0 + 2 * g * f * cx + f * f * x1, g * g * y0 + 2 * g * f * cy + f * f * y1]); } linea(P, a, w); }
   function glifo(pat, x, y, cs, al) { if (al <= 0.01) return; const sz = cs * 2.7, nr = pat.length, nc = pat[0].length; ctx.save(); ctx.globalAlpha = al; for (let r = 0; r < nr; r++) for (let c = 0; c < nc; c++) if (pat[r][c] === '1') ctx.drawImage(SPR.cian, x + (c - (nc - 1) / 2) * cs * 1.15 - sz / 2, y + (r - (nr - 1) / 2) * cs * 1.15 - sz / 2, sz, sz); ctx.restore(); }
-  function burbuja(x, y, r, a) { const X = px(x), Y = py(y), R = r * pxu; if (R < 1) return; ctx.save(); ctx.globalAlpha = a; ctx.beginPath(); ctx.arc(X, Y, R, 0, TAU); ctx.fillStyle = 'rgba(92,203,245,.10)'; ctx.fill(); ctx.strokeStyle = 'rgba(215,248,255,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.0045); ctx.stroke(); ctx.beginPath(); ctx.arc(X, Y, R * 0.8, PI * 1.15, PI * 1.55); ctx.lineWidth = Math.max(1, pxu * 0.007); ctx.lineCap = 'round'; ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.stroke(); ctx.beginPath(); ctx.arc(X + R * 0.45, Y + R * 0.4, R * 0.08, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.fill(); ctx.restore(); }
+  function burbuja(x, y, r, a) { const X = px(x), Y = py(y), R = r * pxu; if (R < 1) return; ctx.save(); ctx.globalAlpha = a; ctx.beginPath(); ctx.arc(X, Y, R, 0, TAU); ctx.fillStyle = 'rgba(240,194,75,.10)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,238,215,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.0045); ctx.stroke(); ctx.beginPath(); ctx.arc(X, Y, R * 0.8, PI * 1.15, PI * 1.55); ctx.lineWidth = Math.max(1, pxu * 0.007); ctx.lineCap = 'round'; ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.stroke(); ctx.beginPath(); ctx.arc(X + R * 0.45, Y + R * 0.4, R * 0.08, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.fill(); ctx.restore(); }
   const PLANO = [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]], [[0.42, 0], [0.42, 0.58], [0, 0.58]], [[0.42, 0.58], [1, 0.58]], [[0.72, 0.58], [0.72, 1]], [[0.1, 1], [0.1, 0.86], [0.26, 0.86]], [[0.8, 0], [0.8, 0.12], [0.96, 0.12]]];
   const PLANO_L = PLANO.map(P => P.reduce((s, p, i) => i ? s + Math.hypot(p[0] - P[i - 1][0], p[1] - P[i - 1][1]) : 0, 0)), PLANO_T = PLANO_L.reduce((a, b) => a + b, 0);
   const KPESA = [[0, 0], [1.4, 0], [2.0, 2], [2.4, 2], [3.0, 1], [3.2, 1], [3.9, 2], [4.9, 2], [5.1, 0], [6.0, 0]];
@@ -322,32 +323,32 @@ export function crearMascota(canvas, op = {}) {
   // ----- utensilios de las espontaneas nuevas (coordenadas de mundo) -----
   function discoNeon(x, y, w, h, ang, a) {
     const W2 = w * pxu, H2 = h * pxu; ctx.save(); ctx.globalAlpha = a; ctx.translate(px(x), py(y)); ctx.rotate(-ang);
-    ctx.fillStyle = rgba(CIAN, .12); ctx.beginPath(); ctx.roundRect(-W2 / 2 - 3, -H2 / 2 - 3, W2 + 6, H2 + 6, H2 * 0.6); ctx.fill();
-    ctx.beginPath(); ctx.roundRect(-W2 / 2, -H2 / 2, W2, H2, H2 * 0.4); const gg = ctx.createLinearGradient(0, -H2 / 2, 0, H2 / 2); gg.addColorStop(0, 'rgba(235,252,255,.95)'); gg.addColorStop(1, 'rgba(92,203,245,.7)'); ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(0, 0, W2 * 0.05, H2 * 0.2, 0, 0, TAU); ctx.fillStyle = 'rgba(3,34,62,.65)'; ctx.fill(); ctx.restore();
+    ctx.fillStyle = rgba(BASE, .12); ctx.beginPath(); ctx.roundRect(-W2 / 2 - 3, -H2 / 2 - 3, W2 + 6, H2 + 6, H2 * 0.6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(-W2 / 2, -H2 / 2, W2, H2, H2 * 0.4); const gg = ctx.createLinearGradient(0, -H2 / 2, 0, H2 / 2); gg.addColorStop(0, 'rgba(255, 242, 222,.95)'); gg.addColorStop(1, 'rgba(240,194,75,.7)'); ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(0, 0, W2 * 0.05, H2 * 0.2, 0, 0, TAU); ctx.fillStyle = 'rgba(62,33,3,.65)'; ctx.fill(); ctx.restore();
   }
   function toallaD(cx, cy, hw, hh2, ang, sag, a) { // tira de toalla de lado a lado, con rayas
     const W2 = hw * pxu, H2 = hh2 * pxu, sg = sag * pxu; ctx.save(); ctx.globalAlpha = a; ctx.translate(px(cx), py(cy)); ctx.rotate(-ang); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     const tr = () => { ctx.beginPath(); ctx.moveTo(-W2, -H2); ctx.quadraticCurveTo(0, -H2 + sg, W2, -H2); ctx.lineTo(W2, H2); ctx.quadraticCurveTo(0, H2 + sg, -W2, H2); ctx.closePath(); };
-    tr(); ctx.strokeStyle = rgba(CIAN, .25); ctx.lineWidth = Math.max(4, pxu * 0.03); ctx.stroke();
-    tr(); const gg = ctx.createLinearGradient(0, -H2, 0, H2); gg.addColorStop(0, 'rgba(240,253,255,.97)'); gg.addColorStop(1, 'rgba(150,222,248,.92)'); ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke();
-    ctx.save(); tr(); ctx.clip(); ctx.strokeStyle = 'rgba(40,150,205,.85)'; ctx.lineWidth = Math.max(1, pxu * 0.006);
+    tr(); ctx.strokeStyle = rgba(BASE, .25); ctx.lineWidth = Math.max(4, pxu * 0.03); ctx.stroke();
+    tr(); const gg = ctx.createLinearGradient(0, -H2, 0, H2); gg.addColorStop(0, 'rgba(255, 243, 222,.97)'); gg.addColorStop(1, 'rgba(248,213,150,.92)'); ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke();
+    ctx.save(); tr(); ctx.clip(); ctx.strokeStyle = 'rgba(205,144,40,.85)'; ctx.lineWidth = Math.max(1, pxu * 0.006);
     for (const yy of [-0.45, 0.45]) { ctx.beginPath(); ctx.moveTo(-W2, yy * H2); ctx.quadraticCurveTo(0, yy * H2 + sg, W2, yy * H2); ctx.stroke(); } ctx.restore(); ctx.restore();
   }
   function vasoShaker(x, y, ang, nivel, sc, tapa) { // vaso agitador: trapecio, liquido con superficie horizontal y tapa que sale volando
     const h = 0.28 * sc * pxu, wt = 0.22 * sc * pxu, wb = 0.15 * sc * pxu, X = px(x), Y = py(y); if (h < 2) return;
     const cup = () => { ctx.beginPath(); ctx.moveTo(-wt / 2, -h / 2); ctx.lineTo(wt / 2, -h / 2); ctx.lineTo(wb / 2, h / 2); ctx.quadraticCurveTo(0, h / 2 + h * 0.06, -wb / 2, h / 2); ctx.closePath(); };
-    ctx.save(); ctx.translate(X, Y); ctx.rotate(-ang); cup(); ctx.fillStyle = 'rgba(92,203,245,.10)'; ctx.fill();
+    ctx.save(); ctx.translate(X, Y); ctx.rotate(-ang); cup(); ctx.fillStyle = 'rgba(240,194,75,.10)'; ctx.fill();
     if (nivel > 0.02) {
       ctx.save(); cup(); ctx.clip(); ctx.setTransform(1, 0, 0, 1, 0, 0);
-      const ys = Y - (-h / 2 + nivel * h) * Math.cos(ang), lg = ctx.createLinearGradient(0, ys, 0, ys + h * 1.5); lg.addColorStop(0, 'rgba(210,246,255,.95)'); lg.addColorStop(1, 'rgba(70,185,235,.88)');
+      const ys = Y - (-h / 2 + nivel * h) * Math.cos(ang), lg = ctx.createLinearGradient(0, ys, 0, ys + h * 1.5); lg.addColorStop(0, 'rgba(255,236,210,.95)'); lg.addColorStop(1, 'rgba(235,178,70,.88)');
       ctx.fillStyle = lg; ctx.fillRect(X - h * 2, ys, h * 4, h * 3); ctx.fillStyle = 'rgba(255,255,255,.95)'; ctx.fillRect(X - h * 2, ys - 0.5, h * 4, Math.max(1.5, h * 0.05)); ctx.restore();
     }
-    cup(); ctx.lineJoin = 'round'; ctx.strokeStyle = 'rgba(92,203,245,.35)'; ctx.lineWidth = Math.max(4, pxu * 0.022); ctx.stroke(); ctx.strokeStyle = 'rgba(240,253,255,.98)'; ctx.lineWidth = Math.max(1.2, pxu * 0.006); ctx.stroke();
+    cup(); ctx.lineJoin = 'round'; ctx.strokeStyle = 'rgba(240,194,75,.35)'; ctx.lineWidth = Math.max(4, pxu * 0.022); ctx.stroke(); ctx.strokeStyle = 'rgba(255, 243, 222,.98)'; ctx.lineWidth = Math.max(1.2, pxu * 0.006); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(-wt * 0.30, -h * 0.30); ctx.lineTo(-wb * 0.30, h * 0.30); ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = Math.max(1, pxu * 0.005); ctx.stroke();
     ctx.restore();
     const tp = clamp(tapa, 0, 1); // tapa: puesta mientras se agita, sale volando al abrir
-    if (tp < 0.98) { const cw = wt * 1.08, ch = h * 0.20, d = h / 2 + ch / 2; ctx.save(); ctx.globalAlpha = 1 - tp; ctx.translate(X - Math.sin(ang) * d + 0.22 * tp * pxu, Y - Math.cos(ang) * d - 0.28 * Math.sin(PI * tp * 0.8) * pxu + 0.2 * tp * tp * pxu); ctx.rotate(-ang - 2.2 * tp); ctx.beginPath(); ctx.roundRect(-cw / 2, -ch / 2, cw, ch, ch * 0.4); ctx.fillStyle = 'rgba(230,251,255,.95)'; ctx.fill(); ctx.strokeStyle = 'rgba(92,203,245,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.005); ctx.stroke(); ctx.restore(); }
+    if (tp < 0.98) { const cw = wt * 1.08, ch = h * 0.20, d = h / 2 + ch / 2; ctx.save(); ctx.globalAlpha = 1 - tp; ctx.translate(X - Math.sin(ang) * d + 0.22 * tp * pxu, Y - Math.cos(ang) * d - 0.28 * Math.sin(PI * tp * 0.8) * pxu + 0.2 * tp * tp * pxu); ctx.rotate(-ang - 2.2 * tp); ctx.beginPath(); ctx.roundRect(-cw / 2, -ch / 2, cw, ch, ch * 0.4); ctx.fillStyle = 'rgba(255, 241, 222,.95)'; ctx.fill(); ctx.strokeStyle = 'rgba(240,194,75,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.005); ctx.stroke(); ctx.restore(); }
   }
 
   const ESP = {
@@ -365,11 +366,11 @@ export function crearMascota(canvas, op = {}) {
         else { if (!g.p) { g.p = 1; S.sx.v += L * 1.6; S.sy.v -= 1.2; wob = Math.max(wob, .8); flashT = tiempo; } T.look = [0, 0]; T.ex = u < 3.2 ? 'x' : 'happy'; } },
       d(g, u, bx, by) { const L = g.lado;
         if (u < 2.3) { if (u > 0.3) { const k = ease(clamp((u - .4) / 1.9, 0, 1)); burbuja(bx + L * (0.30 - 0.20 * k), by + 0.02 + 0.05 * k, 0.02 + 0.40 * k * (1 + 0.03 * Math.sin(u * 13)), 1); } }
-        else { const v = u - 2.3; if (v < 0.5) { const f = v / 0.5; ctx.save(); ctx.globalAlpha = (1 - f) * 0.8; ctx.beginPath(); ctx.arc(px(bx + L * 0.1), py(by + 0.07), pxu * (0.42 + 0.35 * f), 0, TAU); ctx.strokeStyle = 'rgba(215,248,255,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); }
+        else { const v = u - 2.3; if (v < 0.5) { const f = v / 0.5; ctx.save(); ctx.globalAlpha = (1 - f) * 0.8; ctx.beginPath(); ctx.arc(px(bx + L * 0.1), py(by + 0.07), pxu * (0.42 + 0.35 * f), 0, TAU); ctx.strokeStyle = 'rgba(255,238,215,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); }
           if (v < 0.8) for (let i = 0; i < 10; i++) { const a = i * TAU / 10 + 0.3, d = 0.18 + 0.42 * ease(Math.min(1, v / 0.4)), x = bx + L * 0.1 + Math.cos(a) * d, y = by + 0.07 + Math.sin(a) * d - 0.5 * v * v; gotaPx(px(x), py(y), pxu * (0.012 + 0.01 * hh(i)) * (1 - v / 0.8), false, 1 - v / 0.8); } } } },
     arco: { dur: 3.9,
       a(g, u, T) { if (u < 0.4) { const k = ease(u / 0.4); T.sy = -0.12 * k; T.sx = 0.07 * k; } else if (u < 3.0) { T.f = 'arco'; T.s = 1.2; T.y = HY + 0.04; } },
-      d(g, u, bx, by) { const e = env(u - 0.9, 0.4, 1.6, 2.1); if (e < .02) return; const s = S.s.x, hw = 0.82 * S0 * s, yd = by - 0.72 * S0 * s - 0.1, cy = by + 0.05 * s; ctx.save(); ctx.globalAlpha = e * 0.75; ctx.strokeStyle = 'rgba(235,252,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.003); ctx.lineCap = 'round';
+      d(g, u, bx, by) { const e = env(u - 0.9, 0.4, 1.6, 2.1); if (e < .02) return; const s = S.s.x, hw = 0.82 * S0 * s, yd = by - 0.72 * S0 * s - 0.1, cy = by + 0.05 * s; ctx.save(); ctx.globalAlpha = e * 0.75; ctx.strokeStyle = 'rgba(255, 242, 222,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.003); ctx.lineCap = 'round';
         ctx.beginPath(); ctx.moveTo(px(bx - hw), py(yd)); ctx.lineTo(px(bx + hw), py(yd)); for (const sg of [-1, 1]) { ctx.moveTo(px(bx + sg * hw) - 4, py(yd) + 4); ctx.lineTo(px(bx + sg * hw) + 4, py(yd) - 4); ctx.moveTo(px(bx + sg * hw), py(yd) - 7); ctx.lineTo(px(bx + sg * hw), py(yd) + 7); } ctx.stroke();
         ctx.setLineDash([3, 5]); ctx.globalAlpha = e * 0.45; ctx.beginPath(); ctx.moveTo(px(bx), py(yd) + 10); ctx.lineTo(px(bx), py(by + 0.92 * S0 * s + 0.08)); ctx.stroke();
         ctx.beginPath(); ctx.arc(px(bx), py(cy), hw * pxu, PI, TAU); ctx.stroke(); ctx.restore(); } },
@@ -378,7 +379,7 @@ export function crearMascota(canvas, op = {}) {
       d(g, u, bx, by) { const cx = bx - 0.05, cy = by + 0.60, w = 0.62, h = 0.30, al = 1 - ease(clamp((u - 5.0) / 0.8, 0, 1)); if (al < 0.02) return;
         const Lr = PLANO_T * ease(clamp((u - 0.9) / 3.4, 0, 1)); let acc = 0, pen = null; const W2 = p => [cx + (p[0] - 0.5) * w, cy + (0.5 - p[1]) * h];
         PLANO.forEach((P, k) => { if (Lr <= acc) return; const pts = [W2(P[0])]; let rest = Lr - acc; for (let i = 1; i < P.length; i++) { const sl = Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]); if (rest >= sl) { pts.push(W2(P[i])); rest -= sl; } else { const f = rest / sl; pts.push(W2([lerp(P[i - 1][0], P[i][0], f), lerp(P[i - 1][1], P[i][1], f)])); rest = 0; break; } } acc += PLANO_L[k]; if (pts.length > 1) { linea(pts, al, 1); pen = pts[pts.length - 1]; } });
-        if (pen && Lr < PLANO_T) { tentaculo(bx + 0.24, by - 0.30, bx + 0.62, by - 0.02, pen[0], pen[1], al, 2); gotaPx(px(pen[0]), py(pen[1]), pxu * 0.012, false, al, [235, 252, 255]); } } },
+        if (pen && Lr < PLANO_T) { tentaculo(bx + 0.24, by - 0.30, bx + 0.62, by - 0.02, pen[0], pen[1], al, 2); gotaPx(px(pen[0]), py(pen[1]), pxu * 0.012, false, al, [255, 242, 222]); } } },
     estornudo: { dur: 4.8,
       a(g, u, T) {
         if (u < 1.0) { const k = ease(u); T.s = 1 + 0.1 * k; T.sy = 0.06 * k; T.look = [0, -1]; T.lid = 0.1 * k; if (u > 0.5) T.ex = 'strain'; return; }
@@ -386,13 +387,13 @@ export function crearMascota(canvas, op = {}) {
         const k = ease(clamp((u - 1.0) / 0.4, 0, 1)) * (1 - ease(clamp((u - 3.1) / 0.9, 0, 1))), run = u > 1.4 && u < 3.3 ? 1 : 0, X = i => HX + [-0.38, 0.02, 0.38][i] * k + 0.09 * Math.sin(u * 2.7 + i * 2.1) * run * k, Y = i => HY + 0.14 * k + 0.03 * Math.abs(Math.sin(u * 13 + i * 1.9)) * k * run;
         T.s = 1 - 0.66 * k; T.x = X(0); T.y = Y(0); T.ex = u < 1.6 ? 'wow' : 'happy'; for (let i = 0; i < 4; i++) legsA[i].dl = 0.07 * Math.sin(u * 24 + i * 1.5) * run * k;
         minis = k > 0.02 ? [1, 2].map(i => ({ x: X(i), y: Y(i), s: 0.34 * k })) : []; },
-      d(g, u, bx, by) { const v = u - 1.0; if (v < 0 || v > 0.7) return; for (let i = 0; i < 8; i++) { const x = bx + (hh(i) - .5) * 1.5 * v, y = by + 0.05 + (0.35 + 0.5 * hh(i + 3)) * v * (hh(i + 6) > .5 ? 1 : 0.4) - 1.3 * v * v; gotaPx(px(x), py(y), pxu * (0.011 + 0.01 * hh(i + 2)), false, 1 - v / 0.7); } if (v < 0.35) { ctx.save(); ctx.globalAlpha = (1 - v / 0.35) * 0.8; ctx.beginPath(); ctx.arc(px(bx), py(by + 0.05), pxu * (0.3 + 0.9 * v / 0.35), 0, TAU); ctx.strokeStyle = 'rgba(215,248,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } },
+      d(g, u, bx, by) { const v = u - 1.0; if (v < 0 || v > 0.7) return; for (let i = 0; i < 8; i++) { const x = bx + (hh(i) - .5) * 1.5 * v, y = by + 0.05 + (0.35 + 0.5 * hh(i + 3)) * v * (hh(i + 6) > .5 ? 1 : 0.4) - 1.3 * v * v; gotaPx(px(x), py(y), pxu * (0.011 + 0.01 * hh(i + 2)), false, 1 - v / 0.7); } if (v < 0.35) { ctx.save(); ctx.globalAlpha = (1 - v / 0.35) * 0.8; ctx.beginPath(); ctx.arc(px(bx), py(by + 0.05), pxu * (0.3 + 0.9 * v / 0.35), 0, TAU); ctx.strokeStyle = 'rgba(255,238,215,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } },
     rayo: { dur: 3.4,
       a(g, u, T) { T.look = [0, u < 1.5 ? -1 : 0.1]; zapK = u < 1.45 ? clamp((u - 0.5) / 0.9, 0, 1) * 0.7 : u < 2.6 ? 1 - (u - 1.45) / 1.15 : 0;
         if (u >= 1.45 && !g.z) { g.z = 1; flashT = tiempo; S.sy.v -= 1.8; S.sx.v += 1.0; wob = 1; }
         if (u >= 1.45 && u < 2.6) { T.ex = 'noise'; shiver = 1 - (u - 1.45) / 1.15; for (let i = 0; i < 4; i++) legsA[i].dl = 0.08 * Math.sin(u * 70 + i * 3) * shiver; } else if (u >= 2.6 && u < 3.0) T.ex = 'wow'; },
       d(g, u, bx, by) { const gx = bx, gy = by + 0.62;
-        if (u < 1.65) { const k = ease(clamp(u / 0.7, 0, 1)); gotaPx(px(gx), py(gy), pxu * 0.034 * k, false, 1, [235, 252, 255]); if (u > 0.8) for (let q = 0; q < 2; q++) { const a = hh(Math.floor(u * 18) + q * 7) * TAU; rayoLin(gx, gy, gx + Math.cos(a) * 0.10, gy + Math.sin(a) * 0.10, Math.floor(u * 18) + q * 7, 3, 0.03, 1); } }
+        if (u < 1.65) { const k = ease(clamp(u / 0.7, 0, 1)); gotaPx(px(gx), py(gy), pxu * 0.034 * k, false, 1, [255, 242, 222]); if (u > 0.8) for (let q = 0; q < 2; q++) { const a = hh(Math.floor(u * 18) + q * 7) * TAU; rayoLin(gx, gy, gx + Math.cos(a) * 0.10, gy + Math.sin(a) * 0.10, Math.floor(u * 18) + q * 7, 3, 0.03, 1); } }
         const real = u > 1.45 && u < 1.65, tease = (u > 1.2 && u < 1.27) || (u > 1.0 && u < 1.06); if (real || tease) { const sd = Math.floor(u * 45); rayoLin(gx, gy, bx + 0.02, by + (real ? 0.34 : 0.50), sd, 9, 0.12, 1.6); if (real) rayoLin(gx - 0.02, gy - 0.12, bx + 0.2 * (hh(sd) - .5), by + 0.47, sd + 5, 5, 0.1, 1); }
         if (u > 1.45 && u < 1.8) chispas(px(bx), py(by + 0.34), pxu * 0.3, (u - 1.45) / 0.35, 7, 6); } },
     asomarse: { dur: 6.2,
@@ -404,19 +405,19 @@ export function crearMascota(canvas, op = {}) {
         T.x = x; T.r = 0.12 * L * ti; if (look) T.look = look; const m = mov(); for (let i = 0; i < 4; i++) legsA[i].dl = 0.07 * Math.sin(u * 20 + i * 1.6) * m; } },
     bostezo: { dur: 3.4,
       a(g, u, T) { const k = u < 2.0 ? ease(clamp(u / 0.9, 0, 1)) : 1 - ease(clamp((u - 2.0) / 0.8, 0, 1)); T.sy = 0.14 * k; T.s = 1 + 0.04 * k; T.lid = 0.25 * k; T.look = [0, -0.3 * k]; if (k > 0.25) T.ex = 'strain'; legsA[0].dx = -0.12 * k; legsA[3].dx = 0.12 * k; legsA[1].dx = -0.05 * k; legsA[2].dx = 0.05 * k; legsA.forEach(l => l.dl = 0.05 * k); if (u > 2.8) T.r = 0.03 * Math.sin((u - 2.8) * 26) * (1 - (u - 2.8) / 0.6); },
-      d(g, u, bx, by) { const k = u < 2.0 ? ease(clamp((u - 0.25) / 0.8, 0, 1)) : 1 - ease(clamp((u - 2.0) / 0.6, 0, 1)); if (k < 0.03) return; const s = S.s.x, my = by - 0.26 * S0 * s - 0.04, rx = 0.085 * s * k, ry = 0.12 * s * k; ctx.save(); ctx.beginPath(); ctx.ellipse(px(bx), py(my), rx * pxu, ry * pxu, 0, 0, TAU); ctx.fillStyle = 'rgba(3,34,62,.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(215,248,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } },
+      d(g, u, bx, by) { const k = u < 2.0 ? ease(clamp((u - 0.25) / 0.8, 0, 1)) : 1 - ease(clamp((u - 2.0) / 0.6, 0, 1)); if (k < 0.03) return; const s = S.s.x, my = by - 0.26 * S0 * s - 0.04, rx = 0.085 * s * k, ry = 0.12 * s * k; ctx.save(); ctx.beginPath(); ctx.ellipse(px(bx), py(my), rx * pxu, ry * pxu, 0, 0, TAU); ctx.fillStyle = 'rgba(62,33,3,.88)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,238,215,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } },
     baile: { dur: 4.6,
       a(g, u, T) { const e = env(u, .3, 4.2, 4.6), b = u / 0.5, f = b % 1, bi = Math.floor(b); hopY = 0.05 * e * Math.abs(Math.sin(PI * b)); T.x = HX + 0.08 * e * Math.sin(PI * b / 2); T.r = 0.07 * e * Math.sin(PI * b / 2 + 0.6); legsA[bi % 4].dl = -0.16 * e * Math.sin(PI * f); legsA[(bi + 2) % 4].dx = 0.08 * e * Math.sin(PI * f) * (bi % 2 ? 1 : -1); T.look = [0.5 * Math.sin(PI * b / 2), 0.1]; if (bi % 4 === 3) T.ex = 'happy'; T.sy = 0.02 * e * Math.sin(PI * 2 * b); },
-      d(g, u, bx, by) { const e = env(u, .3, 4.2, 4.6), b = u / 0.5, f = b % 1, bi = Math.floor(b) % 4; if (e < .02) return; ctx.save(); ctx.globalAlpha = (1 - f) * 0.5 * e; ctx.beginPath(); ctx.ellipse(px(bx), py(GROUND + 0.02), pxu * (0.12 + 0.4 * f), pxu * (0.03 + 0.1 * f), 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore();
+      d(g, u, bx, by) { const e = env(u, .3, 4.2, 4.6), b = u / 0.5, f = b % 1, bi = Math.floor(b) % 4; if (e < .02) return; ctx.save(); ctx.globalAlpha = (1 - f) * 0.5 * e; ctx.beginPath(); ctx.ellipse(px(bx), py(GROUND + 0.02), pxu * (0.12 + 0.4 * f), pxu * (0.03 + 0.1 * f), 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore();
         for (let i = 0; i < 4; i++) { const on = i === bi; ctx.save(); ctx.globalAlpha = e * (on ? 1 : 0.3); const sz = pxu * 0.05; ctx.drawImage(SPR.cian, px(bx + (i - 1.5) * 0.1) - sz / 2, py(GROUND - 0.1) - sz / 2, sz, sz); ctx.restore(); } } },
     espejo: { dur: 5.6,
       a(g, u, T) { const k = env(u, 0.8, 4.4, 5.2); T.s = lerp(1, 0.82, k); T.y = lerp(HY, 0.22, k); T.look = u < 2.2 ? [0, -1] : u < 3.4 ? [0.3, -0.5] : [0, -0.2]; if (u > 0.8 && u < 2.2) T.r = 0.07 * Math.sin(u * 2.2); if (u > 2.2 && u < 3.4) { T.ex = 'wink'; if (!g.w) { g.w = 1; S.sy.v += 0.9; } } else if (u >= 3.4 && u < 4.2) { T.sx = 0.08 * Math.sin((u - 3.4) * 7); T.ex = 'happy'; } },
       p(g, u, bx, by, T) { const k = env(u, 0.8, 4.4, 5.2); if (k < 0.03) return; const axis = by - 1.05 * S0 * S.s.x - 0.02, ry = 0.30 * k, rx = 0.62 * k, cyy = axis - ry; const ell = new Path2D(); ell.ellipse(px(bx), py(cyy), rx * pxu, ry * pxu, 0, 0, TAU);
-        ctx.save(); const gr = ctx.createLinearGradient(0, py(axis), 0, py(axis - 2 * ry)); gr.addColorStop(0, 'rgba(92,203,245,.30)'); gr.addColorStop(1, 'rgba(20,70,100,.35)'); ctx.fillStyle = gr; ctx.fill(ell); ctx.clip(ell);
+        ctx.save(); const gr = ctx.createLinearGradient(0, py(axis), 0, py(axis - 2 * ry)); gr.addColorStop(0, 'rgba(240,194,75,.30)'); gr.addColorStop(1, 'rgba(100,67,20,.35)'); ctx.fillStyle = gr; ctx.fill(ell); ctx.clip(ell);
         ctx.save(); ctx.translate(0, 2 * py(axis)); ctx.scale(1, -1); dibujarCuerpoMorph(T, bx + 0.012 * Math.sin(tiempo * 4), by); ctx.restore();
         ctx.globalAlpha = 0.6; if (O.transparente) ctx.globalCompositeOperation = 'destination-out'; ctx.fillStyle = '#131416'; ctx.fill(ell); ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
-        for (let i = 0; i < 3; i++) { const f = ((tiempo * 0.5 + i / 3) % 1); ctx.beginPath(); ctx.ellipse(px(bx), py(axis - 0.04), pxu * rx * (0.25 + 0.8 * f), pxu * ry * (0.1 + 0.3 * f), 0, 0, TAU); ctx.strokeStyle = 'rgba(215,248,255,' + (0.5 * (1 - f)) + ')'; ctx.lineWidth = Math.max(1, pxu * 0.003); ctx.stroke(); }
-        ctx.restore(); ctx.save(); ctx.globalAlpha = 0.9; ctx.strokeStyle = 'rgba(215,248,255,.85)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(ell); ctx.restore(); } },
+        for (let i = 0; i < 3; i++) { const f = ((tiempo * 0.5 + i / 3) % 1); ctx.beginPath(); ctx.ellipse(px(bx), py(axis - 0.04), pxu * rx * (0.25 + 0.8 * f), pxu * ry * (0.1 + 0.3 * f), 0, 0, TAU); ctx.strokeStyle = 'rgba(255,238,215,' + (0.5 * (1 - f)) + ')'; ctx.lineWidth = Math.max(1, pxu * 0.003); ctx.stroke(); }
+        ctx.restore(); ctx.save(); ctx.globalAlpha = 0.9; ctx.strokeStyle = 'rgba(255,238,215,.85)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(ell); ctx.restore(); } },
     pesa: { dur: 6.0,
       a(g, u, T) { const pr = env(u, 0.6, 5.3, 5.9), lv = nivelPesa(u), subiendo = (u > 1.4 && u < 2.4) || (u > 3.0 && u < 4.9); T.sy = -0.1 * (1 - lv / 2) * pr; legsA[0].dx = -0.1 * pr; legsA[3].dx = 0.1 * pr; legsA[1].dx = -0.04 * pr; legsA[2].dx = 0.04 * pr;
         if (subiendo) { T.ex = 'strain'; T.look = [0, -0.5]; } if (u > 3.9 && u < 4.9) { T.x = HX + 0.006 * Math.sin(u * 60); T.r = 0.015 * Math.sin(u * 47); legsA.forEach((l, i) => l.dl = 0.04 * Math.sin(u * 55 + i)); }
@@ -424,9 +425,9 @@ export function crearMascota(canvas, op = {}) {
       d(g, u, bx, by) { const pr = env(u, 0.6, 5.3, 5.9); if (pr < 0.02) return; const lv = nivelPesa(u), y = lv <= 1 ? lerp(GROUND + 0.08, by + 0.02, lv) : lerp(by + 0.02, by + 0.62, lv - 1);
         for (const sg of [-1, 1]) tentaculo(bx + sg * 0.30, by - 0.10, bx + sg * 0.50, (by + y) / 2, bx + sg * 0.24, y, pr, 2.2);
         const L = 0.36 * pr; linea([[bx - L, y], [bx + L, y]], pr, 3);
-        for (const [dx, w, h] of [[0.31, 0.04, 0.17], [0.38, 0.03, 0.12]]) for (const sg of [-1, 1]) { const x = px(bx + sg * dx * pr), yy = py(y), W2 = w * pxu, H2 = h * pxu * pr; ctx.save(); ctx.globalAlpha = pr; ctx.beginPath(); ctx.roundRect(x - W2 / 2, yy - H2 / 2, W2, H2, W2 * 0.3); const gg = ctx.createLinearGradient(x - W2 / 2, 0, x + W2 / 2, 0); gg.addColorStop(0, 'rgba(235,252,255,.9)'); gg.addColorStop(1, 'rgba(92,203,245,.65)'); ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.003); ctx.stroke(); ctx.restore(); }
+        for (const [dx, w, h] of [[0.31, 0.04, 0.17], [0.38, 0.03, 0.12]]) for (const sg of [-1, 1]) { const x = px(bx + sg * dx * pr), yy = py(y), W2 = w * pxu, H2 = h * pxu * pr; ctx.save(); ctx.globalAlpha = pr; ctx.beginPath(); ctx.roundRect(x - W2 / 2, yy - H2 / 2, W2, H2, W2 * 0.3); const gg = ctx.createLinearGradient(x - W2 / 2, 0, x + W2 / 2, 0); gg.addColorStop(0, 'rgba(255, 242, 222,.9)'); gg.addColorStop(1, 'rgba(240,194,75,.65)'); ctx.fillStyle = gg; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = Math.max(1, pxu * 0.003); ctx.stroke(); ctx.restore(); }
         if (u > 4.0 && u < 5.0) { const f = ((u - 4.0) * 1.2) % 1; gotaPx(px(bx + 0.27), py(by + 0.24 - 0.5 * f * f), pxu * 0.014, true, 1 - f * 0.6); }
-        if (u > 5.1 && u < 5.5) { const f = (u - 5.1) / 0.4; ctx.save(); ctx.globalAlpha = (1 - f) * 0.7; ctx.beginPath(); ctx.ellipse(px(bx), py(GROUND + 0.02), pxu * (0.2 + 0.5 * f), pxu * (0.04 + 0.1 * f), 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } },
+        if (u > 5.1 && u < 5.5) { const f = (u - 5.1) / 0.4; ctx.save(); ctx.globalAlpha = (1 - f) * 0.7; ctx.beginPath(); ctx.ellipse(px(bx), py(GROUND + 0.02), pxu * (0.2 + 0.5 * f), pxu * (0.04 + 0.1 * f), 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } },
     casita: { dur: 5.2,
       a(g, u, T) { if (u < 0.4) { const k = ease(u / 0.4); T.sy = -0.12 * k; T.sx = 0.07 * k; } else if (u < 4.2) { T.f = 'casita'; T.s = 1.1; T.y = HY + 0.02; if (u > 1.0 && tiempo > g.humo) { g.humo = tiempo + 0.32; const b = burb[bi++ % 8], s = S.s.x; b.a = 1; b.x = S.x.x + 0.5 * S0 * s; b.y = S.y.x + 0.40 * s; b.r = rnd(0.02, 0.04); b.v = rnd(0.14, 0.2); b.vx = rnd(0.01, 0.05); b.e = 0; b.vida = rnd(1.2, 1.8); b.ph = rnd(0, 6); } } },
       init(g) { g.humo = 0; } },
@@ -473,7 +474,7 @@ export function crearMascota(canvas, op = {}) {
         const e = env(u, 0.5, 5.0, 5.6); if (e < 0.02) return; const fy = HY - 0.06 * e - 0.42;
         linea([[bx - 0.5, fy], [bx + 0.5, fy]], e * 0.85, 1.4);
         const fin = [1.55, 2.4, 3.25, 4.6]; for (let i = 0; i < 4; i++) { const on = u >= fin[i], sz = pxu * (on ? 0.15 : 0.10), x = px(bx + 0.18 + i * 0.15), y = py(by + 0.52); ctx.save(); ctx.globalAlpha = e * (on ? 1 : 0.28); ctx.drawImage(SPR.cian, x - sz / 2, y - sz / 2, sz, sz); ctx.restore(); }
-        for (const t of fin) { const v = u - t; if (v > 0 && v < 0.35) { const f = v / 0.35; ctx.save(); ctx.globalAlpha = (1 - f) * 0.6; ctx.beginPath(); ctx.ellipse(px(bx), py(fy), pxu * (0.18 + 0.35 * f), pxu * (0.03 + 0.06 * f), 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } } },
+        for (const t of fin) { const v = u - t; if (v > 0 && v < 0.35) { const f = v / 0.35; ctx.save(); ctx.globalAlpha = (1 - f) * 0.6; ctx.beginPath(); ctx.ellipse(px(bx), py(fy), pxu * (0.18 + 0.35 * f), pxu * (0.03 + 0.06 * f), 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } } },
     toalla: { dur: 5.4,
       a(g, u, T) {
         if (u < 1.9) { const k = ease(clamp(u / 0.5, 0, 1)); T.sy = -0.04 * k; T.lid = 0.12 * k; T.look = [0.15 * Math.sin(u * 2), 0.45]; }
@@ -481,7 +482,7 @@ export function crearMascota(canvas, op = {}) {
         else if (u < 4.6) { T.ex = 'happy'; T.sy = -0.09 * Math.sin(PI * (u - 4.0) / 0.6); if (!g.s) { g.s = 1; const b = burb[bi++ % 8]; b.a = 1; b.x = S.x.x + 0.30; b.y = S.y.x + 0.04; b.r = 0.04; b.v = 0.10; b.vx = 0.22; b.e = 0; b.vida = 1.0; b.ph = 0; S.sx.v += 0.9; S.sy.v -= 0.8; wob = Math.max(wob, 0.3); } }
         else if (u < 5.2) T.ex = 'happy'; },
       d(g, u, bx, by) {
-        for (let i = 0; i < 3; i++) { const q = (u - 0.25 - 0.5 * i) / 1.0; if (q < 0 || q > 1) continue; const sd = i % 2 ? 1 : -1; gotaPx(px(bx + sd * (0.385 + 0.03 * i)), py(by + 0.24 - 0.55 * q * q), pxu * 0.05, true, Math.min(1, q * 6) * (1 - 0.4 * q), [225, 248, 255]); }
+        for (let i = 0; i < 3; i++) { const q = (u - 0.25 - 0.5 * i) / 1.0; if (q < 0 || q > 1) continue; const sd = i % 2 ? 1 : -1; gotaPx(px(bx + sd * (0.385 + 0.03 * i)), py(by + 0.24 - 0.55 * q * q), pxu * 0.05, true, Math.min(1, q * 6) * (1 - 0.4 * q), [255, 238, 222]); }
         const ent = ease(clamp((u - 1.6) / 0.45, 0, 1)), sal = ease(clamp((u - 3.9) / 0.5, 0, 1)), k = ent * (1 - sal); if (k < 0.02) return;
         const w = (u > 2.0 && u < 3.9) ? Math.sin((u - 2.0) * 10) : 0, cx = bx + 0.10 * w + (1 - ent) * 0.9 + sal * 0.9, cy = by + 0.23 + 0.01 * Math.abs(w), ang = 0.10 * w, hw = 0.42;
         for (const sg of [-1, 1]) { const ex = cx + sg * hw * Math.cos(ang), ey = cy + sg * hw * Math.sin(ang); tentaculo(bx + sg * 0.30, by - 0.10, bx + sg * 0.58, by + 0.04, ex, ey, k, 2.2); }
@@ -505,7 +506,7 @@ export function crearMascota(canvas, op = {}) {
           const yf = FY + H3 / 2 + 0.012 * i, bounce = 0.05 * Math.abs(Math.sin(f * PI * 2.5)) * (1 - f), x = lerp(x0, TX + OFF[i], ease(f)), y = lerp(y0, yf, f * f) + bounce, rot = lerp(rot0, AE[i] * 0.5, ease(f)) - 0.9 * Math.sin(PI * f) * (1 - f * 0.3);
           discoNeon(x, y, W3[i], H3, rot, al);
         }
-        const v = u - 3.95; if (v > 0 && v < 0.4) { const f = v / 0.4; ctx.save(); ctx.globalAlpha = (1 - f) * 0.7; ctx.beginPath(); ctx.ellipse(px(TX + 0.15), py(FY), pxu * (0.15 + 0.4 * f), pxu * (0.03 + 0.07 * f), 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } },
+        const v = u - 3.95; if (v > 0 && v < 0.4) { const f = v / 0.4; ctx.save(); ctx.globalAlpha = (1 - f) * 0.7; ctx.beginPath(); ctx.ellipse(px(TX + 0.15), py(FY), pxu * (0.15 + 0.4 * f), pxu * (0.03 + 0.07 * f), 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); } } },
     calentar: { dur: 5.6,
       a(g, u, T) {
         [0, 3, 1, 2].forEach((li, k) => { const s = 0.4 + 0.6 * k, q = clamp((u - s) / 0.6, 0, 1); if (q <= 0 || q >= 1) return; const e = Math.sin(PI * q), sg = li < 2 ? -1 : 1; legsA[li].dl = 0.18 * e; legsA[li].dx = sg * 0.36 * e; T.look = [sg * 0.8, 0.1]; T.sx = 0.05 * e; T.r = -sg * 0.05 * e; T.x = HX + sg * 0.03 * e; });
@@ -514,8 +515,59 @@ export function crearMascota(canvas, op = {}) {
         else if (u >= 5.1 && u < 5.5) T.ex = 'happy'; },
       d(g, u, bx, by) {
         if (u >= 3.0 && u < 4.4) { const e = env(u - 3.0, 0.2, 1.2, 1.4), w = Math.sin(TAU * (u - 3.0) / 0.7); for (const sg of [-1, 1]) { const a = Math.max(0, sg * -w) * e; if (a < 0.05) continue; linea([[bx + sg * 0.50, by + 0.10], [bx + sg * 0.58, by + 0.0], [bx + sg * 0.50, by - 0.12]], a, 1.1); linea([[bx + sg * 0.60, by + 0.12], [bx + sg * 0.68, by + 0.0], [bx + sg * 0.60, by - 0.14]], a * 0.6, 1.1); } }
-        if (u > 5.0 && u < 5.4) { const f = (u - 5.0) / 0.4; ctx.save(); ctx.globalAlpha = (1 - f) * 0.7; ctx.beginPath(); ctx.ellipse(px(bx), py(GROUND + 0.02), pxu * (0.2 + 0.5 * f), pxu * (0.04 + 0.1 * f), 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); }
+        if (u > 5.0 && u < 5.4) { const f = (u - 5.0) / 0.4; ctx.save(); ctx.globalAlpha = (1 - f) * 0.7; ctx.beginPath(); ctx.ellipse(px(bx), py(GROUND + 0.02), pxu * (0.2 + 0.5 * f), pxu * (0.04 + 0.1 * f), 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.restore(); }
         if (u > 4.6 && u < 5.0) chispas(px(bx), py(by + 0.2), pxu * 0.38, (u - 4.6) / 0.4, 5, 6); } },
+    comba: { dur: 5.4,
+      a(g, u, T) {
+        if (u >= 0.7 && u < 3.7) { const b = (u - 0.7) / 0.5, p = b % 1, j = Math.sin(PI * clamp((p - 0.22) / 0.5, 0, 1)); hopY = 0.11 * j; T.sy = -0.03 * j; T.look = [0, -0.2]; legsA.forEach(l => l.dl = -0.12 * j); T.ex = 'happy'; const k = 'l' + Math.floor(b); if (p > 0.72 && !g[k]) { g[k] = 1; S.sy.v += 0.5; } }
+        else if (u >= 3.7 && u < 4.1) { const q = (u - 3.7) / 0.4; hopY = 0.06 * Math.sin(PI * q); T.ex = 'x'; T.r = 0.12 * Math.sin(PI * q); if (!g.tr) { g.tr = 1; S.sx.v += 1.3; S.sy.v -= 1.2; wob = Math.max(wob, 0.8); } }
+        else if (u >= 4.1 && u < 4.7) { T.ex = 'x'; T.sy = -0.05; T.look = [0, 0.4]; }
+        else if (u >= 4.7) { T.ex = 'happy'; if (!g.rr) { g.rr = 1; S.sy.v -= 1.2; S.sx.v += 0.7; wob = Math.max(wob, 0.5); } T.sy = 0.03 * Math.sin((u - 4.7) * 22); } },
+      d(g, u, bx, by) {
+        const e = env(u, 0.4, 5.0, 5.4); if (e < 0.02) return; const hy = HY - 0.12, hxs = 0.40, Lx = HX - hxs, Rx = HX + hxs;
+        for (const sg of [-1, 1]) tentaculo(bx + sg * 0.30, by - 0.06, bx + sg * 0.42, by - 0.14, HX + sg * hxs, hy, e, 2.2);
+        let ap;
+        if (u < 0.7) ap = hy - 0.30 * ease(clamp(u / 0.6, 0, 1));
+        else if (u < 3.7) { const th = ((u - 0.7) / 0.5) * TAU, c = Math.cos(th); ap = hy + (c > 0 ? 0.62 : 0.46) * c; }
+        else ap = hy - 0.20;
+        if (u < 3.7) tentaculo(Lx, hy, HX, 2 * ap - hy, Rx, hy, e, 1.3);
+        else { // cuerda enredada alrededor de las patas
+          const tw = ease(clamp((u - 3.7) / 0.5, 0, 1)), P = []; for (let i = 0; i <= 20; i++) { const f = i / 20; P.push([lerp(Lx, Rx, f) + 0.05 * Math.sin(f * 21) * tw, lerp(hy, GROUND + 0.05, tw) - 0.07 * Math.sin(f * 17) * tw + 0.14 * Math.sin(PI * f) * (1 - tw)]); }
+          linea(P, u < 4.9 ? e : e * (1 - ease(clamp((u - 4.9) / 0.4, 0, 1))), 1.2); }
+        if (u > 4.7 && u < 5.1) chispas(px(bx), py(by + 0.2), pxu * 0.38, (u - 4.7) / 0.4, 11, 5); } },
+    dominadas: { dur: 5.8,
+      a(g, u, T) {
+        let p = 0; const hang = ease(clamp((u - 0.6) / 0.35, 0, 1)) * (1 - ease(clamp((u - 4.9) / 0.35, 0, 1)));
+        for (const s of [1.2, 2.2]) if (u >= s && u < s + 0.9) p = 0.5 - 0.5 * Math.cos(TAU * (u - s) / 0.9);
+        const q = (u - 3.2) / 1.7, last = q >= 0 && q < 1; if (last) p = q < 0.35 ? ease(q / 0.35) : q < 0.75 ? 1 : 1 - ease((q - 0.75) / 0.25);
+        T.y = HY + 0.16 * hang + 0.22 * p * hang; T.sy = 0.07 * hang; T.look = [0, 0.5 * hang]; legsA.forEach((l, i) => l.dl = 0.10 * hang + 0.05 * Math.sin(u * 3 + i) * hang);
+        if (last && q > 0.35 && q < 0.75) { T.ex = 'strain'; T.x = HX + 0.01 * Math.sin(u * 55); shiver = 1; }
+        if (u >= 5.0 && u < 5.6) { T.ex = 'happy'; if (!g.t) { g.t = 1; S.sy.v -= 1.3; S.sx.v += 0.8; wob = Math.max(wob, .6); } } },
+      d(g, u, bx, by) {
+        const e = env(u, 0.5, 5.2, 5.7); if (e < 0.02) return; const yb = HY + 0.80 + 0.5 * (1 - ease(clamp(u / 0.5, 0, 1))), hang = ease(clamp((u - 0.6) / 0.35, 0, 1)) * (1 - ease(clamp((u - 4.9) / 0.35, 0, 1)));
+        linea([[bx - 0.55, yb], [bx + 0.55, yb]], e * 0.9, 1.5);
+        if (hang > 0.02) for (const sg of [-1, 1]) { const sx = bx + sg * 0.20, sy = by + 0.30; tentaculo(sx, sy, sx + sg * 0.06, (sy + yb) / 2, sx, yb, hang, 2.2); }
+        const fin = [2.1, 3.1, 4.9]; for (let i = 0; i < 3; i++) { const sz = pxu * 0.08, x = px(bx - 0.20 + i * 0.20), y = py(HY - 0.50); ctx.save(); ctx.globalAlpha = e * (u >= fin[i] ? 1 : 0.3); ctx.drawImage(SPR.cian, x - sz / 2, y - sz / 2, sz, sz); ctx.restore(); } } },
+    selfie: { dur: 5.2,
+      a(g, u, T) {
+        const e = env(u, 0.5, 4.6, 5.0);
+        T.look = [0.9 * e, 0.45 * e]; T.r = -0.05 * e - 0.03 * e * Math.sin(u * 3);
+        if (u >= 1.0 && u < 2.6) { T.sx = 0.03 * Math.abs(Math.sin((u - 1.0) * 8)); T.ex = 'strain'; shiver = 0.5; }
+        if (u >= 2.7 && u < 4.7) T.ex = 'wink';
+        if (u >= 2.9 && !g.f1) { g.f1 = 1; flashT = tiempo; S.sy.v -= 0.8; S.sx.v += 0.5; wob = Math.max(wob, 0.4); }
+        if (u >= 3.9 && !g.f2) { g.f2 = 1; flashT = tiempo; S.sy.v -= 0.8; S.sx.v += 0.5; wob = Math.max(wob, 0.4); }
+        if (u >= 4.7 && u < 5.1) T.ex = 'happy'; },
+      d(g, u, bx, by) {
+        const e = env(u, 0.5, 4.6, 5.0); if (e < 0.02) return;
+        const ph = bx + 0.62 * e, pyy = by + 0.28 * e + 0.04 * Math.sin(u * 2.5); tentaculo(bx + 0.30, by - 0.06, bx + 0.48, by + 0.02, ph - 0.02, pyy - 0.10, e, 2.2);
+        ctx.save(); ctx.translate(px(ph), py(pyy)); ctx.rotate(-0.15); const w = pxu * 0.15, h = pxu * 0.26; ctx.globalAlpha = e;
+        ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, w * 0.22); ctx.fillStyle = 'rgba(36,15,2,.92)'; ctx.fill(); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1.2, pxu * 0.009); ctx.stroke();
+        ctx.beginPath(); ctx.roundRect(-w * 0.36, -h * 0.40, w * 0.72, h * 0.72, w * 0.1); ctx.fillStyle = rgba(BASE, 0.22 + 0.15 * Math.sin(u * 6)); ctx.fill();
+        ctx.beginPath(); ctx.arc(0, h * 0.40, w * 0.08, 0, TAU); ctx.fillStyle = rgba(BASE, 1); ctx.fill(); ctx.restore();
+        const flex = u >= 0.9 ? 0.5 + 0.5 * Math.sin((u - 0.9) * 5) : 0, ex2 = bx - 0.54 * e, ey2 = by + 0.02 * flex;
+        tentaculo(bx - 0.30, by - 0.06, bx - 0.52 * e, by - 0.14, ex2, ey2, e, 2.2); tentaculo(ex2, ey2, ex2 - 0.02, ey2 + 0.18 * e, bx - 0.36 * e, by + 0.22 * e + 0.05 * flex, e, 2.2);
+        gotaPx(px(ex2 + 0.04), py(ey2 + 0.13), pxu * (0.032 + 0.016 * flex) * e, false, e);
+        for (const t of [2.9, 3.9]) { const v = u - t; if (v > 0 && v < 0.35) { const f = v / 0.35, X = px(ph), Y = py(pyy), R = pxu * (0.15 + 0.5 * f); ctx.save(); const gr = ctx.createRadialGradient(X, Y, 0, X, Y, R); gr.addColorStop(0, 'rgba(255,248,225,' + (0.95 * (1 - f)) + ')'); gr.addColorStop(1, 'rgba(255,230,160,0)'); ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(X, Y, R, 0, TAU); ctx.fill(); ctx.restore(); chispas(X, Y, pxu * 0.28, f, 5 + t, 5); } } } },
   };
   const NOMBRES = Object.keys(ESP), SIMPLES = ['corazon', 'estrella', 'sonrisa', 'bostezo'];
   function elegirEsp() { const L = (esAvatar ? SIMPLES : NOMBRES).filter(n => n !== ultEsp); return L[Math.floor(Math.random() * L.length)]; }
@@ -530,32 +582,32 @@ export function crearMascota(canvas, op = {}) {
   // ----- VOLUMEN (opcion volumen:true): cuerpo translucido con nucleo luminoso y borde denso, luz clave arriba-izquierda,
   //       oclusion abajo, luz de borde fria, brillo que se desplaza con la inclinacion y patas con sombreado cilindrico -----
   function volBase(P, c, o) {
-    const sy = Math.sin(o.vol.yaw), W = [255, 255, 255], dens = mezcla(c, [6, 56, 98], 0.38), prof = mezcla(c, [3, 30, 60], 0.5);
+    const sy = Math.sin(o.vol.yaw), W = [255, 255, 255], dens = mezcla(c, [98, 54, 6], 0.38), prof = mezcla(c, [60, 29, 3], 0.5);
     const g = ctx.createRadialGradient(0.04 + 0.26 * sy, 0.02, 0.04, 0.1 * sy, 0.1, 1.55);
     g.addColorStop(0, rgba(mezcla(c, W, 0.5))); g.addColorStop(0.3, rgba(mezcla(c, W, 0.14))); g.addColorStop(0.5, rgba(c)); g.addColorStop(0.78, rgba(dens)); g.addColorStop(1, rgba(prof));
     ctx.fillStyle = g; ctx.fill(P);
   }
   function volLuz(P, c, o) {
-    const V = o.vol, sy = Math.sin(V.yaw), U = o.U, ac = o.act ?? 0.3, resp = 0.5 + 0.5 * sin(tiempo * 1.9), frio = [150, 226, 255], sombra = 'rgba(2,24,50,';
+    const V = o.vol, sy = Math.sin(V.yaw), U = o.U, ac = o.act ?? 0.3, resp = 0.5 + 0.5 * sin(tiempo * 1.9), frio = [255, 217, 150], sombra = 'rgba(50,23,2,';
     const R = (x0, y0, x1, y1) => ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
     // nucleo subsuperficial: mas luminoso por dentro, se desplaza con el giro (profundidad)
     ctx.save();
-    let g = ctx.createRadialGradient(0.1 + 0.2 * sy, 0.1, 0, 0.1 + 0.2 * sy, 0.1, 0.7); const nuc = mezcla(c, [215, 248, 255], 0.55); g.addColorStop(0, rgba(nuc, 0.34 + 0.10 * resp + 0.10 * ac)); g.addColorStop(0.55, rgba(nuc, 0.10)); g.addColorStop(1, rgba(nuc, 0)); ctx.fillStyle = g; R(-1.5, -1.3, 1.5, 1.6);
+    let g = ctx.createRadialGradient(0.1 + 0.2 * sy, 0.1, 0, 0.1 + 0.2 * sy, 0.1, 0.7); const nuc = mezcla(c, [255, 238, 215], 0.55); g.addColorStop(0, rgba(nuc, 0.34 + 0.10 * resp + 0.10 * ac)); g.addColorStop(0.55, rgba(nuc, 0.10)); g.addColorStop(1, rgba(nuc, 0)); ctx.fillStyle = g; R(-1.5, -1.3, 1.5, 1.6);
     ctx.restore();
     if (!o.pequeno) { // corrientes internas muy suaves (con paralaje)
       ctx.lineCap = 'round';
-      for (let i = 0; i < 6; i++) { const y0 = -0.62 + i * 0.27; ctx.beginPath(); ctx.moveTo(-1.2, y0); for (let q = 0; q <= 11; q++) ctx.lineTo(-1.2 + q * 0.22 + 0.14 * sy, y0 + Math.sin(q * 0.9 + i * 1.7 + tiempo * 0.8) * 0.055); ctx.strokeStyle = i % 2 ? 'rgba(255,255,255,.07)' : 'rgba(5,70,110,.11)'; ctx.lineWidth = (2.6 + (i % 3)) / U; ctx.stroke(); }
+      for (let i = 0; i < 6; i++) { const y0 = -0.62 + i * 0.27; ctx.beginPath(); ctx.moveTo(-1.2, y0); for (let q = 0; q <= 11; q++) ctx.lineTo(-1.2 + q * 0.22 + 0.14 * sy, y0 + Math.sin(q * 0.9 + i * 1.7 + tiempo * 0.8) * 0.055); ctx.strokeStyle = i % 2 ? 'rgba(255,255,255,.07)' : 'rgba(110,67,5,.11)'; ctx.lineWidth = (2.6 + (i % 3)) / U; ctx.stroke(); }
     }
     // oclusion abajo y lado de sombra a la derecha
     g = ctx.createLinearGradient(0, -0.1, 0, 0.84); g.addColorStop(0, sombra + '0)'); g.addColorStop(0.5, sombra + '.10)'); g.addColorStop(1, sombra + '.34)'); ctx.fillStyle = g; R(-1.5, -1.3, 1.5, 1.7);
     g = ctx.createLinearGradient(-0.45, -0.5, 1.05, 0.55); g.addColorStop(0, sombra + '0)'); g.addColorStop(0.55, sombra + '0)'); g.addColorStop(1, sombra + '.34)'); ctx.fillStyle = g; R(-1.5, -1.3, 1.5, 1.7);
     // luz clave arriba-izquierda
-    g = ctx.createRadialGradient(-0.40 + 0.06 * sy, -0.44, 0, -0.40 + 0.06 * sy, -0.44, 0.98); g.addColorStop(0, 'rgba(255,255,255,.42)'); g.addColorStop(0.35, 'rgba(215,247,255,.17)'); g.addColorStop(1, 'rgba(215,247,255,0)'); ctx.fillStyle = g; R(-1.5, -1.3, 1.5, 1.2);
+    g = ctx.createRadialGradient(-0.40 + 0.06 * sy, -0.44, 0, -0.40 + 0.06 * sy, -0.44, 0.98); g.addColorStop(0, 'rgba(255,255,255,.42)'); g.addColorStop(0.35, 'rgba(255,237,215,.17)'); g.addColorStop(1, 'rgba(255,237,215,0)'); ctx.fillStyle = g; R(-1.5, -1.3, 1.5, 1.2);
     // patas: sombreado cilindrico, sombra del cuerpo encima, la mas alejada mas oscura
     if (o.legs && U >= 60) {
       for (let i = 0; i < 4; i++) {
         const L = o.legs[i], x0 = LEGX[i] + LEGB[i] + L.dx * 0.6, hw = 0.17, dark = clamp(0.1 + (i === 1 || i === 2 ? 0.07 : 0) - 0.34 * sy * LEGX[i], 0, 0.42);
-        const cg = ctx.createLinearGradient(x0 - hw, 0, x0 + hw, 0); cg.addColorStop(0, sombra + (0.14 + dark * 0.5) + ')'); cg.addColorStop(0.16, 'rgba(255,255,255,.05)'); cg.addColorStop(0.34, 'rgba(235,252,255,' + (0.34 - dark * 0.4) + ')'); cg.addColorStop(0.58, sombra + (0.03 + dark * 0.5) + ')'); cg.addColorStop(0.86, sombra + (0.2 + dark * 0.5) + ')'); cg.addColorStop(1, 'rgba(150,226,255,.34)');
+        const cg = ctx.createLinearGradient(x0 - hw, 0, x0 + hw, 0); cg.addColorStop(0, sombra + (0.14 + dark * 0.5) + ')'); cg.addColorStop(0.16, 'rgba(255,255,255,.05)'); cg.addColorStop(0.34, 'rgba(255, 242, 222,' + (0.34 - dark * 0.4) + ')'); cg.addColorStop(0.58, sombra + (0.03 + dark * 0.5) + ')'); cg.addColorStop(0.86, sombra + (0.2 + dark * 0.5) + ')'); cg.addColorStop(1, 'rgba(255,217,150,.34)');
         ctx.fillStyle = cg; const ga = ctx.globalAlpha; for (let q = 0; q < 8; q++) { ctx.globalAlpha = ga * Math.min(1, (q + 1) / 6); R(x0 - hw - 0.02, 0.54 + q * 0.06, x0 + hw + 0.02, 0.54 + (q + 1) * 0.06 + 0.002); } ctx.globalAlpha = ga; R(x0 - hw - 0.02, 1.02, x0 + hw + 0.02, 1.5);
         const sg = ctx.createLinearGradient(0, 0.68, 0, 1.02); sg.addColorStop(0, sombra + '.2)'); sg.addColorStop(1, sombra + '0)'); ctx.fillStyle = sg; R(x0 - hw - 0.02, 0.68, x0 + hw + 0.02, 1.02);
         const tipY = 0.45 + 0.42 + L.dl; ctx.beginPath(); ctx.ellipse(x0 - 0.06 + LEGB[i] * 0.4, tipY + 0.02, 0.05, 0.075, 0.3, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.26)'; ctx.fill();
@@ -563,7 +615,7 @@ export function crearMascota(canvas, op = {}) {
     }
     // luz de borde: blanca fina arriba-izquierda, fria y mas ancha abajo-derecha (solo la mitad de dentro por el recorte)
     ctx.lineJoin = 'round';
-    g = ctx.createLinearGradient(-0.9, -0.7, 0.9, 0.8); g.addColorStop(0, 'rgba(255,255,255,.7)'); g.addColorStop(0.28, 'rgba(220,247,255,.10)'); g.addColorStop(0.55, 'rgba(0,0,0,0)'); g.addColorStop(0.8, rgba(frio, 0.36)); g.addColorStop(1, rgba(frio, 0.9));
+    g = ctx.createLinearGradient(-0.9, -0.7, 0.9, 0.8); g.addColorStop(0, 'rgba(255,255,255,.7)'); g.addColorStop(0.28, 'rgba(255,237,220,.10)'); g.addColorStop(0.55, 'rgba(0,0,0,0)'); g.addColorStop(0.8, rgba(frio, 0.36)); g.addColorStop(1, rgba(frio, 0.9));
     ctx.strokeStyle = g; ctx.lineWidth = Math.max(0.13, 4.4 / U); ctx.stroke(P); ctx.lineWidth = Math.max(0.05, 1.8 / U); ctx.globalAlpha *= 0.9; ctx.stroke(P); ctx.globalAlpha /= 0.9;
     // brillo especular: se desliza un poco con la inclinacion
     ctx.save(); ctx.translate(0.11 * sy - 0.5 * V.rot, 0.04 * V.rot + 0.012 * Math.sin(tiempo * 1.3));
@@ -575,7 +627,7 @@ export function crearMascota(canvas, op = {}) {
 
   // ----- dibujo del cuerpo (neón líquido) -----
   function material(P, a, k, o) {
-    const c = o.col, luz = mezcla(c, [255, 255, 255], 0.62), osc = mezcla(c, [10, 40, 70], 0.42), U = o.U;
+    const c = o.col, luz = mezcla(c, [255, 255, 255], 0.62), osc = mezcla(c, [70, 38, 10], 0.42), U = o.U;
     const pequeno = o.pequeno, fl = 1 + 0.07 * sin(tiempo * 2.1) + (sin(tiempo * 0.9) > 0.93 ? 0.10 * sin(tiempo * 47) : 0.03 * sin(tiempo * 31)), resp = 0.5 + 0.5 * sin(tiempo * 1.9);
     ctx.save(); ctx.globalAlpha = a * (o.dim ? 0.8 : 1);
     ctx.lineJoin = 'round';
@@ -590,8 +642,8 @@ export function crearMascota(canvas, op = {}) {
     if (V) volLuz(P, c, o);
     if (!pequeno && !V) {
       ctx.lineCap = 'round';
-      for (let i = 0; i < 7; i++) { const y0 = -0.8 + i * 0.28; ctx.beginPath(); ctx.moveTo(-1.2, y0); for (let q = 0; q <= 11; q++) ctx.lineTo(-1.2 + q * 0.22, y0 + Math.sin(q * 0.9 + i * 1.7 + tiempo * 0.8) * 0.06); ctx.strokeStyle = i % 3 ? 'rgba(255,255,255,.11)' : 'rgba(5,70,110,.16)'; ctx.lineWidth = (3 + (i % 3)) / U; ctx.stroke(); }
-      const sg = ctx.createLinearGradient(0, 0, 0, 1.2); sg.addColorStop(0, 'rgba(0,50,90,0)'); sg.addColorStop(1, 'rgba(0,50,90,.28)'); ctx.fillStyle = sg; ctx.fillRect(-1.5, 0, 3, 1.5);
+      for (let i = 0; i < 7; i++) { const y0 = -0.8 + i * 0.28; ctx.beginPath(); ctx.moveTo(-1.2, y0); for (let q = 0; q <= 11; q++) ctx.lineTo(-1.2 + q * 0.22, y0 + Math.sin(q * 0.9 + i * 1.7 + tiempo * 0.8) * 0.06); ctx.strokeStyle = i % 3 ? 'rgba(255,255,255,.11)' : 'rgba(110,67,5,.16)'; ctx.lineWidth = (3 + (i % 3)) / U; ctx.stroke(); }
+      const sg = ctx.createLinearGradient(0, 0, 0, 1.2); sg.addColorStop(0, 'rgba(90,48,0,0)'); sg.addColorStop(1, 'rgba(90,48,0,.28)'); ctx.fillStyle = sg; ctx.fillRect(-1.5, 0, 3, 1.5);
     }
     if (!V) {
     ctx.beginPath(); ctx.moveTo(-0.78, -0.12); ctx.bezierCurveTo(-0.84, -0.52, -0.5, -0.72, -0.15, -0.76); ctx.bezierCurveTo(-0.45, -0.64, -0.62, -0.42, -0.62, -0.12); ctx.closePath(); ctx.fillStyle = 'rgba(255,255,255,.80)'; ctx.fill();
@@ -600,7 +652,7 @@ export function crearMascota(canvas, op = {}) {
     ctx.lineWidth = 6 / U; ctx.strokeStyle = 'rgba(255,255,255,' + (0.16 + 0.14 * resp + 0.1 * ac) + ')'; ctx.stroke(P);
     }
     if (o.frozen > 0.01) {
-      ctx.globalAlpha = a * o.frozen; ctx.strokeStyle = 'rgba(235,252,255,.75)'; ctx.lineWidth = 1.6 / U;
+      ctx.globalAlpha = a * o.frozen; ctx.strokeStyle = 'rgba(255, 242, 222,.75)'; ctx.lineWidth = 1.6 / U;
       for (const l of [[-.7, -.1, -.1, -.45], [-.1, -.45, .5, -.2], [.5, -.2, .8, .15], [-.4, .2, .1, .0], [.1, .0, .55, .35], [-.1, -.45, .1, 0], [-.9, .3, -.4, .2]]) { ctx.beginPath(); ctx.moveTo(l[0], l[1]); ctx.lineTo(l[2], l[3]); ctx.stroke(); }
       ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.beginPath(); ctx.moveTo(-.1, -.45); ctx.lineTo(.5, -.2); ctx.lineTo(.1, 0); ctx.closePath(); ctx.fill();
       const br = ctx.createLinearGradient(-1, -1, 1, 1), ph = (tiempo * 0.35) % 2 - 0.5; br.addColorStop(clamp(ph - .08, 0, 1), 'rgba(255,255,255,0)'); br.addColorStop(clamp(ph, 0, 1), 'rgba(255,255,255,.45)'); br.addColorStop(clamp(ph + .08, 0, 1), 'rgba(255,255,255,0)'); ctx.globalAlpha = a * o.frozen; ctx.fillStyle = br; ctx.fillRect(-1.5, -1.5, 3, 3);
@@ -659,7 +711,7 @@ export function crearMascota(canvas, op = {}) {
     const bY = 0.9 * PZ.wow + 0.35 * hap + 0.5 * vozN * (esc ? 1 : 0.5) + (esc ? 0.2 : 0) + 0.3 * PZ.heart + 0.3 * PZ.star + 0.35 * PZ.xx - 3 * PZ.lid - 0.7 * PZ.sleep, bT = 1.1 * PZ.tilt - 1.0 * PZ.xx - 0.3 * PZ.wow, asim = est === 'pensar' ? 1.1 : 0;
     for (let s = 0; s < 2; s++) { brY[s].t = bY + (s === 0 ? asim : -asim * 0.15); brT[s].t = bT - (s === 0 ? asim * 0.25 : 0); brY[s].paso(dt); brT[s].paso(dt); }
   }
-  const ojosPal = () => { const r = E.rojo, c = mezcla(CIAN, ROJO, r); return { c, luz: mezcla(c, [255, 255, 255], 0.84), blanco: mezcla([244, 253, 255], [255, 228, 224], r), osc: mezcla([3, 34, 62], [62, 10, 10], r), lid: mezcla(c, [10, 40, 70], 0.28) }; };
+  const ojosPal = () => { const r = E.rojo, c = mezcla(BASE, ROJO, r); return { c, luz: mezcla(c, [255, 255, 255], 0.84), blanco: mezcla([255, 243, 222], [255, 228, 224], r), osc: mezcla([62, 33, 3], [62, 10, 10], r), lid: mezcla(c, [70, 38, 10], 0.28) }; };
   // linea del parpado de arriba y de abajo en coordenadas del ojo (u: -1..1 horizontal, v: -1..1 vertical). El parpado se cierra con parpadeo/dormir, se inclina con el ceño.
   function lidFns(side, la = 0, ta = 0, usarHappy = true) {
     const hp = (usarHappy ? Math.max(PZ.happy, side > 0 ? PZ.wink : 0) : 0) * (usarHappy === true ? 1 : usarHappy || 0), c = PZ.close, lid = PZ.lid + la, tilt = PZ.tilt + ta, bk = clamp(hp * 0.82 + lid * 0.5, 0, 0.95), ui = u => side < 0 ? u : -u;
@@ -700,7 +752,7 @@ export function crearMascota(canvas, op = {}) {
     const patW = clamp(Math.max(PZ.xx, PZ.heart, PZ.star, PZ.smile, PZ.happy, PZ.noise) * 1.6, 0, 1);
     for (let s = 0; s < 2; s++) { const side = s ? 1 : -1, cx = side * sep;
       ctx.globalAlpha = al * 0.5; ctx.fillStyle = rgba(P.osc, 1); ctx.beginPath(); ctx.arc(cx, cy, Rv * 1.03, 0, TAU); ctx.fill();
-      for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) { const v = celdas[s * 36 + r * 6 + c]; if (v < 0.03) continue; const ex = cx + (c - 2.5) * pitch + gxf(r), ey2 = cy + (r - 2.5) * pitch, bs = pitch * (esAvatar ? 1.12 : 0.9); ctx.globalAlpha = al * Math.min(1, v * 3); ctx.fillStyle = 'rgba(3,34,62,.82)'; ctx.beginPath(); ctx.roundRect(ex - bs / 2, ey2 - bs / 2, bs, bs, bs * 0.22); ctx.fill(); ctx.globalAlpha = al * Math.min(1, v); ctx.drawImage(sp, ex - sz / 2, ey2 - sz / 2, sz, sz); }
+      for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) { const v = celdas[s * 36 + r * 6 + c]; if (v < 0.03) continue; const ex = cx + (c - 2.5) * pitch + gxf(r), ey2 = cy + (r - 2.5) * pitch, bs = pitch * (esAvatar ? 1.12 : 0.9); ctx.globalAlpha = al * Math.min(1, v * 3); ctx.fillStyle = 'rgba(62,33,3,.82)'; ctx.beginPath(); ctx.roundRect(ex - bs / 2, ey2 - bs / 2, bs, bs, bs * 0.22); ctx.fill(); ctx.globalAlpha = al * Math.min(1, v); ctx.drawImage(sp, ex - sz / 2, ey2 - sz / 2, sz, sz); }
       const rf = (1 - patW) * (1 - PZ.close * 0.6); if (rf > 0.02) { const rx0 = cx - 1.5 * pitch, ry0 = cy - 1.5 * pitch, bs = pitch * 0.58; ctx.globalAlpha = al * rf * 0.55; ctx.drawImage(sp, rx0 - sz * 0.42, ry0 - sz * 0.42, sz * 0.84, sz * 0.84); ctx.globalAlpha = al * rf; ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.roundRect(rx0 - bs / 2, ry0 - bs / 2, bs, bs, bs * 0.2); ctx.fill(); }
       const L = lidFns(side, 0, 0, false), R = regiones(L, cx, cy, Rv, Rv);
       ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, Rv * 1.03, 0, TAU); ctx.clip(); ctx.globalAlpha = al; ctx.fillStyle = rgba(P.lid, 1); ctx.fill(R.lt); ctx.fill(R.lb);
@@ -785,7 +837,7 @@ export function crearMascota(canvas, op = {}) {
         if (!peq) { ctx.save(); ctx.translate(gx, gy); ctx.rotate(ringA * (side < 0 ? 1 : -1)); ctx.beginPath(); ctx.arc(0, 0, fr, 0, TAU); ctx.setLineDash([fr * 0.3, fr * 0.2]); ctx.lineWidth = 0.014; ctx.strokeStyle = rgba(P.blanco, 0.85); ctx.stroke(); ctx.setLineDash([]); ctx.rotate(-ringA * (side < 0 ? 1 : -1) * 1.6);
           ctx.globalAlpha = ab * (0.25 + 0.7 * fo * fo); ctx.lineWidth = 0.014; ctx.beginPath(); for (let q = 0; q < 4; q++) { const a = q * PI / 2 + PI / 4; ctx.moveTo(Math.cos(a) * fr * 1.12, Math.sin(a) * fr * 1.12); ctx.lineTo(Math.cos(a) * ir * 0.92, Math.sin(a) * ir * 0.92); } ctx.stroke(); ctx.restore(); }
         else { ctx.lineWidth = 0.02; ctx.strokeStyle = rgba(P.blanco, 0.8); ctx.beginPath(); ctx.arc(gx, gy, fr, 0, TAU); ctx.stroke(); }
-        const pr = r * (esAvatar ? 0.4 : 0.27 - 0.08 * fo + 0.06 * PZ.dil + 0.04 * vozN - 0.1 * PZ.wow); ctx.fillStyle = 'rgba(2,12,24,1)'; ctx.beginPath(); ctx.arc(gx, gy, pr, 0, TAU); ctx.fill(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(gx - pr * 0.38, gy - pr * 0.4, Math.max(pr * 0.3, 0.012), 0, TAU); ctx.fill();
+        const pr = r * (esAvatar ? 0.4 : 0.27 - 0.08 * fo + 0.06 * PZ.dil + 0.04 * vozN - 0.1 * PZ.wow); ctx.fillStyle = 'rgba(24,12,2,1)'; ctx.beginPath(); ctx.arc(gx, gy, pr, 0, TAU); ctx.fill(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(gx - pr * 0.38, gy - pr * 0.4, Math.max(pr * 0.3, 0.012), 0, TAU); ctx.fill();
         ctx.globalAlpha = ab; const L = lidFns(side, 0, 0, 0.55), R = regiones(L, cx, cy2, r, r); ctx.fillStyle = rgba(P.osc, 0.98); ctx.fill(R.lt); ctx.fillStyle = rgba(P.lid, 1); ctx.fill(R.lb); trazo(R.T, 0.034, P.c, 0.3); trazo(R.T, 0.014, P.luz, 0.95); trazo(R.B, 0.034, P.c, 0.3); trazo(R.B, 0.014, P.luz, 0.95);
         ctx.restore(); ctx.lineWidth = 0.014; ctx.strokeStyle = rgba(P.luz, 0.85); ctx.stroke(eye); ctx.restore();
       }
@@ -1086,7 +1138,7 @@ export function crearMascota(canvas, op = {}) {
 
   function ojosAntifaz(al, o) { // antifaz oscuro de una pieza, con un ojo de luz pequeno dentro de cada agujero
     const P = ojosPal(), k = baseK(o) * 1.25, cy = (o.eyeY ?? -0.12) + 0.035, ls = 1 - 0.28 * PZ.lid, kk = k / 1.25, hY = y => y * kk * (1 + 0.1 * PZ.wow);
-    const sd = [2, 16, 30], md = mezcla(P.osc, sd, 0.55);
+    const sd = [30, 15, 2], md = mezcla(P.osc, sd, 0.55);
     ctx.save(); ctx.translate(E.px * 0.02, cy + E.py * 0.03);
     const mk = new Path2D();
     const half = sg => { const X = x => sg * x * kk; return [[X(0), hY(-0.06)], [X(0.2), hY(-0.19 * ls)], [X(0.42), hY(-0.27 * ls)], [X(0.62), hY(-0.28 * ls)], [X(0.9), hY(-0.43 * ls)], [X(0.84), hY(-0.12)], [X(0.7), hY(0.1)], [X(0.5), hY(0.17)], [X(0.3), hY(0.15)], [X(0.15), hY(0.09)], [X(0), hY(0.05)]]; };
@@ -1167,7 +1219,7 @@ export function crearMascota(canvas, op = {}) {
     ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     // zona de cara mas oscura (visor translucido, bordes suaves) para que la luz se lea sobre el cuerpo cian
     if (vis > 0.01) { const [cxp, kx] = pjx(0, fy); ctx.save(); ctx.translate(cxp, ey + 0.07); ctx.scale(Math.max(0.3, kx), 0.40); const gv = ctx.createRadialGradient(0, 0, 0, 0, 0, 0.98), a = al * vis * (1 - 0.25 * sl);
-      gv.addColorStop(0, 'rgba(2,16,36,' + 0.74 * a + ')'); gv.addColorStop(0.6, 'rgba(2,16,36,' + 0.66 * a + ')'); gv.addColorStop(0.84, 'rgba(3,24,48,' + 0.28 * a + ')'); gv.addColorStop(1, 'rgba(3,26,50,0)'); ctx.fillStyle = gv; ctx.fillRect(-1.1, -1.1, 2.2, 2.2); ctx.restore(); }
+      gv.addColorStop(0, 'rgba(36,15,2,' + 0.74 * a + ')'); gv.addColorStop(0.6, 'rgba(36,15,2,' + 0.66 * a + ')'); gv.addColorStop(0.84, 'rgba(48,23,3,' + 0.28 * a + ')'); gv.addColorStop(1, 'rgba(50,25,3,0)'); ctx.fillStyle = gv; ctx.fillRect(-1.1, -1.1, 2.2, 2.2); ctx.restore(); }
     // particulas glitch: trazos horizontales tenues, sobre todo encima de la linea
     if (!peq) { const N = id === '25' ? 28 : 48, aG = al * (1 - sl) * (1 - 0.6 * g) * (0.8 + 0.5 * vz); ctx.lineWidth = Math.max(0.007, 1.4 / U);
       for (let n = 0; n < N; n++) { const ph = Math.sin(t * (1.1 + hh(n * 1.9) * 2.4) + n * 2.1); if (ph < 0.25) continue; const sl2 = Math.floor(t * 9 + n), jx = (hh(sl2 * 0.7 + n) - 0.5) * 0.05;
@@ -1233,7 +1285,7 @@ export function crearMascota(canvas, op = {}) {
   }
   function dibujarArena(fr, P0, k) { // arena del reloj: se pinta dentro del cuerpo ya transformado (unidades de forma, y hacia abajo)
     ctx.save(); ctx.clip(P0); ctx.globalAlpha = k; ctx.lineCap = 'round';
-    const ySt = lerp(0.0, -0.78, fr), hb = (1 - fr) * 0.78, yb = 0.80 - hb, arena = rgba(mezcla(col, [236, 250, 255], 0.55), 0.72), brillo = rgba(mezcla(col, [255, 255, 255], 0.9), 1);
+    const ySt = lerp(0.0, -0.78, fr), hb = (1 - fr) * 0.78, yb = 0.80 - hb, arena = rgba(mezcla(col, [255, 240, 222], 0.55), 0.72), brillo = rgba(mezcla(col, [255, 255, 255], 0.9), 1);
     if (fr > 0.004) { ctx.beginPath(); ctx.moveTo(-1, ySt); ctx.quadraticCurveTo(0, ySt + 0.14 * Math.min(1, fr * 5), 1, ySt); ctx.lineTo(1, 0.04); ctx.lineTo(-1, 0.04); ctx.closePath(); ctx.fillStyle = arena; ctx.fill(); ctx.beginPath(); ctx.moveTo(-1, ySt); ctx.quadraticCurveTo(0, ySt + 0.14 * Math.min(1, fr * 5), 1, ySt); ctx.strokeStyle = brillo; ctx.lineWidth = 0.035; ctx.stroke(); }
     if (hb > 0.01) { ctx.beginPath(); ctx.moveTo(-1, yb + 0.12 * Math.min(1, hb * 4)); ctx.quadraticCurveTo(0, yb - 0.12 * Math.min(1, hb * 4), 1, yb + 0.12 * Math.min(1, hb * 4)); ctx.lineTo(1, 1); ctx.lineTo(-1, 1); ctx.closePath(); ctx.fillStyle = arena; ctx.fill(); ctx.beginPath(); ctx.moveTo(-1, yb + 0.12 * Math.min(1, hb * 4)); ctx.quadraticCurveTo(0, yb - 0.12 * Math.min(1, hb * 4), 1, yb + 0.12 * Math.min(1, hb * 4)); ctx.strokeStyle = brillo; ctx.lineWidth = 0.035; ctx.stroke(); }
     if (fr > 0.004 && fr < 0.999) { const yEnd = yb - 0.08 * Math.min(1, hb * 4); ctx.beginPath(); ctx.moveTo(0, -0.05); ctx.lineTo(0, yEnd); ctx.strokeStyle = arena; ctx.lineWidth = 0.05; ctx.stroke(); ctx.strokeStyle = brillo; ctx.lineWidth = 0.02; ctx.stroke();
@@ -1259,11 +1311,11 @@ export function crearMascota(canvas, op = {}) {
       material(P, minis.some(m => m.drop) ? 1 : info.a, 1, { col, U, dim: dimv > 0.3, frozen: congelado, pequeno: U < 26, rad: minis.length ? 3.6 : 0, pts: minis.length ? null : ptsActual, act, arco: !minis.length && info.a > 0.6, vol: volOn ? { yaw: YAW.x, rot: S.r.x } : null, legs: volOn && shapeTo === 'bicho' && morphU >= 0.999 && !minis.length ? legsA : null });
       const fu = (tiempo - flashT) / 0.5; if (fu > 0 && fu < 1) {
         ctx.save(); ctx.globalAlpha = (1 - fu); ctx.strokeStyle = '#fff'; ctx.lineWidth = (4 + 16 * fu) / U; ctx.stroke(P0); ctx.globalAlpha = 0.5 * (1 - fu) * (1 - fu); ctx.fillStyle = '#fff'; ctx.fill(P0);
-        for (const [d, w] of [[0, 3], [0.14, 2]]) { const f2 = clamp((fu - d) / (1 - d), 0, 1); if (f2 <= 0 || f2 >= 1) continue; ctx.globalAlpha = (1 - f2) * 0.9; ctx.beginPath(); ctx.ellipse(0, 0.1, 1.0 + 2.6 * f2, 0.85 + 2.2 * f2, 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = (w * (1 - f2) + 0.8) * 2 / U; ctx.stroke(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.3 / U; ctx.stroke(); }
+        for (const [d, w] of [[0, 3], [0.14, 2]]) { const f2 = clamp((fu - d) / (1 - d), 0, 1); if (f2 <= 0 || f2 >= 1) continue; ctx.globalAlpha = (1 - f2) * 0.9; ctx.beginPath(); ctx.ellipse(0, 0.1, 1.0 + 2.6 * f2, 0.85 + 2.2 * f2, 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = (w * (1 - f2) + 0.8) * 2 / U; ctx.stroke(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.3 / U; ctx.stroke(); }
         ctx.restore(); }
       if (info.hoja > 0.02) {
         ctx.save(); ctx.clip(P0); ctx.globalAlpha = info.hoja; ctx.lineCap = 'round';
-        for (let i = 0; i < 8; i++) { const y = -0.2 + i * 0.15, w = 0.9 + 0.5 * ((i * 37) % 7) / 7; ctx.beginPath(); ctx.moveTo(-0.55, y); ctx.lineTo(-0.55 + w, y); ctx.strokeStyle = 'rgba(5,70,110,.28)'; ctx.lineWidth = 3.2 / U; ctx.stroke(); }
+        for (let i = 0; i < 8; i++) { const y = -0.2 + i * 0.15, w = 0.9 + 0.5 * ((i * 37) % 7) / 7; ctx.beginPath(); ctx.moveTo(-0.55, y); ctx.lineTo(-0.55 + w, y); ctx.strokeStyle = 'rgba(110,67,5,.28)'; ctx.lineWidth = 3.2 / U; ctx.stroke(); }
         if (T.scan !== undefined) { const sy = (by - T.scan) / (S0 * esc); const g = ctx.createLinearGradient(0, sy - 0.7, 0, sy); g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,.35)'); ctx.fillStyle = g; ctx.fillRect(-1, sy - 0.7, 2, 0.7); ctx.beginPath(); ctx.moveTo(-1, sy); ctx.lineTo(1, sy); ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.2 / U; ctx.stroke(); }
         ctx.restore();
       }
@@ -1286,14 +1338,14 @@ export function crearMascota(canvas, op = {}) {
     ctx.save(); ctx.globalAlpha = a; ctx.lineJoin = 'round';
     const lw = Math.max(1, pxu * 0.0045);
     const rr = (k, esc) => { const cx = (k[0] + k[2]) / 2, cy = (k[1] + k[3]) / 2, w = (k[2] - k[0]) * esc, h = (k[3] - k[1]) * esc; return [px(cx) - w * pxu / 2, py(cy) - h * pxu / 2, w * pxu, h * pxu]; };
-    FILAS.forEach(([n], r) => { for (let i = 0; i < n; i++) { const [x, y, w, h] = rr(llave(r, i), 1); ctx.beginPath(); ctx.roundRect(x, y, w, h, Math.min(w, h) * 0.2); ctx.fillStyle = 'rgba(92,203,245,.07)'; ctx.fill(); ctx.strokeStyle = 'rgba(215,248,255,.55)'; ctx.lineWidth = lw; ctx.stroke(); } });
+    FILAS.forEach(([n], r) => { for (let i = 0; i < n; i++) { const [x, y, w, h] = rr(llave(r, i), 1); ctx.beginPath(); ctx.roundRect(x, y, w, h, Math.min(w, h) * 0.2); ctx.fillStyle = 'rgba(240,194,75,.07)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,238,215,.55)'; ctx.lineWidth = lw; ctx.stroke(); } });
     for (const k of teclas) {
       const u = tiempo - k.t; if (u > 1.1) continue; const kk = llave(k.r, k.i), sink = u < 0.05 ? u / 0.05 : Math.max(0, 1 - (u - 0.05) / 0.14), esc = 1 - 0.14 * sink;
       const [x, y, w, h] = rr(kk, esc), cx = x + w / 2, cy = y + h / 2, p = clamp((u - 0.04) / 0.95, 0, 1);
       ctx.save(); ctx.beginPath(); ctx.roundRect(x, y, w, h, Math.min(w, h) * 0.2);
-      const g = ctx.createRadialGradient(cx, cy, 1, cx, cy, w * 0.75); g.addColorStop(0, rgba([205, 247, 255], 0.55 * (1 - p * 0.6) + 0.35 * sink)); g.addColorStop(1, rgba(CIAN, 0.18 + 0.2 * sink)); ctx.fillStyle = g; ctx.fill();
-      ctx.shadowColor = rgba(CIAN, 1); ctx.shadowBlur = pequenoK() ? 0 : 10 * (1 - p); ctx.strokeStyle = rgba([225, 250, 255], 0.95 - 0.4 * p); ctx.lineWidth = lw * 1.5; ctx.stroke(); ctx.shadowBlur = 0; ctx.clip();
-      for (let j = 0; j < 4; j++) { const r2 = p - j * 0.2; if (r2 <= 0.03 || r2 > 1) continue; ctx.beginPath(); ctx.ellipse(cx, cy, w * 0.60 * r2, h * 0.60 * r2, 0, 0, TAU); ctx.strokeStyle = rgba([215, 248, 255], (1 - r2) * 0.9); ctx.lineWidth = lw; ctx.stroke(); }
+      const g = ctx.createRadialGradient(cx, cy, 1, cx, cy, w * 0.75); g.addColorStop(0, rgba([255, 237, 205], 0.55 * (1 - p * 0.6) + 0.35 * sink)); g.addColorStop(1, rgba(BASE, 0.18 + 0.2 * sink)); ctx.fillStyle = g; ctx.fill();
+      ctx.shadowColor = rgba(BASE, 1); ctx.shadowBlur = pequenoK() ? 0 : 10 * (1 - p); ctx.strokeStyle = rgba([255, 240, 222], 0.95 - 0.4 * p); ctx.lineWidth = lw * 1.5; ctx.stroke(); ctx.shadowBlur = 0; ctx.clip();
+      for (let j = 0; j < 4; j++) { const r2 = p - j * 0.2; if (r2 <= 0.03 || r2 > 1) continue; ctx.beginPath(); ctx.ellipse(cx, cy, w * 0.60 * r2, h * 0.60 * r2, 0, 0, TAU); ctx.strokeStyle = rgba([255, 238, 215], (1 - r2) * 0.9); ctx.lineWidth = lw; ctx.stroke(); }
       ctx.restore();
       if (u < 0.15) chispas(cx, cy, w * 0.95, u / 0.15, k.t * 997 + k.i * 3 + k.r);
     }
@@ -1305,28 +1357,28 @@ export function crearMascota(canvas, op = {}) {
     for (let i = 0; i < n; i++) {
       const a = hh(seed + i * 1.3) * TAU, len = size * (0.55 + 0.7 * hh(seed + i + 9)) * (0.35 + u), pts = [[x + Math.cos(a) * size * 0.2, y + Math.sin(a) * size * 0.2]]; let ang = a;
       for (let q = 0; q < 3; q++) { ang += (hh(seed + i * 7 + q) - 0.5) * 1.5; const p = pts[q]; pts.push([p[0] + Math.cos(ang) * len / 3, p[1] + Math.sin(ang) * len / 3]); }
-      for (const [w, a2, cc] of [[3.2, .35, CIAN], [1, 1, [255, 255, 255]]]) { ctx.beginPath(); pts.forEach(([a3, b3], q) => q ? ctx.lineTo(a3, b3) : ctx.moveTo(a3, b3)); ctx.strokeStyle = rgba(cc, a2); ctx.lineWidth = Math.max(w * 0.6, pxu * 0.0035 * w); ctx.stroke(); }
+      for (const [w, a2, cc] of [[3.2, .35, BASE], [1, 1, [255, 255, 255]]]) { ctx.beginPath(); pts.forEach(([a3, b3], q) => q ? ctx.lineTo(a3, b3) : ctx.moveTo(a3, b3)); ctx.strokeStyle = rgba(cc, a2); ctx.lineWidth = Math.max(w * 0.6, pxu * 0.0035 * w); ctx.stroke(); }
     }
     ctx.restore();
   }
-  function gotaPx(x, y, r, tear, a, c = CIAN) {
+  function gotaPx(x, y, r, tear, a, c = BASE) {
     ctx.save(); ctx.globalAlpha = a; ctx.beginPath();
     if (tear) { ctx.moveTo(x, y - 2.3 * r); ctx.bezierCurveTo(x + .25 * r, y - 1.3 * r, x + r, y - .7 * r, x + r, y); ctx.arc(x, y, r, 0, Math.PI, false); ctx.bezierCurveTo(x - r, y - .7 * r, x - .25 * r, y - 1.3 * r, x, y - 2.3 * r); } else ctx.arc(x, y, r, 0, TAU);
-    const g = ctx.createRadialGradient(x - .3 * r, y - .3 * r, 0, x, y, r * 1.2); g.addColorStop(0, rgba(mezcla(c, [255, 255, 255], .8))); g.addColorStop(.5, rgba(c)); g.addColorStop(1, rgba(mezcla(c, [10, 40, 70], .5))); ctx.fillStyle = g; ctx.fill();
+    const g = ctx.createRadialGradient(x - .3 * r, y - .3 * r, 0, x, y, r * 1.2); g.addColorStop(0, rgba(mezcla(c, [255, 255, 255], .8))); g.addColorStop(.5, rgba(c)); g.addColorStop(1, rgba(mezcla(c, [70, 38, 10], .5))); ctx.fillStyle = g; ctx.fill();
     ctx.beginPath(); ctx.ellipse(x - .35 * r, y - .3 * r, .2 * r, .3 * r, -.5, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.fill(); ctx.restore();
   }
   function dibujarLadrillos(a) {
     const bw = 0.118, bh = 0.088, y0 = GROUND + 0.04;
     for (let k = 0; k < 15; k++) {
       const row = Math.floor(k / 3), c = k % 3, bx = (c - 1) * bw + (row % 2 ? 0.03 : -0.03), by = y0 + bh / 2 + row * bh, b = ladr[k];
-      if (b.caida >= 0) { const f = b.caida, wx = lerp(S.x.x * 0.0, bx, ease(Math.min(1, f * 1.2))), wy = lerp(S.y.x - 0.12, by, f * f); gotaPx(px(wx), py(wy), pxu * 0.012, 1, a); if (f < 0.4) { ctx.save(); ctx.globalAlpha = a * (1 - f / 0.4); ctx.beginPath(); ctx.moveTo(px(S.x.x), py(S.y.x - 0.1)); ctx.lineTo(px(wx), py(wy) - pxu * 0.03); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = pxu * 0.012 * (1 - f / 0.4); ctx.lineCap = 'round'; ctx.stroke(); ctx.restore(); } }
+      if (b.caida >= 0) { const f = b.caida, wx = lerp(S.x.x * 0.0, bx, ease(Math.min(1, f * 1.2))), wy = lerp(S.y.x - 0.12, by, f * f); gotaPx(px(wx), py(wy), pxu * 0.012, 1, a); if (f < 0.4) { ctx.save(); ctx.globalAlpha = a * (1 - f / 0.4); ctx.beginPath(); ctx.moveTo(px(S.x.x), py(S.y.x - 0.1)); ctx.lineTo(px(wx), py(wy) - pxu * 0.03); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = pxu * 0.012 * (1 - f / 0.4); ctx.lineCap = 'round'; ctx.stroke(); ctx.restore(); } }
       if (b.q !== undefined && b.q >= 0 && b.q < 0.17) chispas(px(bx), py(by), bw * pxu * 0.95, b.q / 0.17, k * 13 + 3);
       if (b.s <= 0.01) continue;
       const w = (bw - 0.008) * pxu * b.s, h = (bh - 0.008) * pxu * b.s, x = px(bx) - w / 2, y = py(by) - h / 2;
       ctx.save(); ctx.globalAlpha = a; ctx.lineJoin = 'round';
-      ctx.fillStyle = rgba(CIAN, .06 + .12 * glow); ctx.beginPath(); ctx.roundRect(x - 5, y - 5, w + 10, h + 10, 9); ctx.fill();
-      const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, rgba(mezcla(CIAN, [255, 255, 255], .5 + .4 * glow))); g.addColorStop(1, rgba(mezcla(CIAN, [10, 40, 70], .3 - .25 * glow)));
-      ctx.beginPath(); ctx.roundRect(x, y, w, h, Math.max(2, h * .22)); ctx.fillStyle = g; ctx.fill(); ctx.strokeStyle = 'rgba(225,250,255,.9)'; ctx.lineWidth = Math.max(1, pxu * .004); ctx.stroke();
+      ctx.fillStyle = rgba(BASE, .06 + .12 * glow); ctx.beginPath(); ctx.roundRect(x - 5, y - 5, w + 10, h + 10, 9); ctx.fill();
+      const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, rgba(mezcla(BASE, [255, 255, 255], .5 + .4 * glow))); g.addColorStop(1, rgba(mezcla(BASE, [70, 38, 10], .3 - .25 * glow)));
+      ctx.beginPath(); ctx.roundRect(x, y, w, h, Math.max(2, h * .22)); ctx.fillStyle = g; ctx.fill(); ctx.strokeStyle = 'rgba(255, 240, 222,.9)'; ctx.lineWidth = Math.max(1, pxu * .004); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(x + w * .12, y + h * .22); ctx.lineTo(x + w * .5, y + h * .22); ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = Math.max(1, pxu * .005); ctx.lineCap = 'round'; ctx.stroke(); ctx.restore();
     }
   }
@@ -1407,24 +1459,24 @@ export function crearMascota(canvas, op = {}) {
   function pintar(T, hopOff, dt) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     if (O.transparente) ctx.clearRect(0, 0, W, H);
-    else { ctx.fillStyle = '#131416'; ctx.fillRect(0, 0, W, H); const g = ctx.createRadialGradient(W / 2, H * .45, 0, W / 2, H * .45, Math.max(W, H) * .7); g.addColorStop(0, 'rgba(40,52,60,.30)'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); }
+    else { ctx.fillStyle = '#131416'; ctx.fillRect(0, 0, W, H); const g = ctx.createRadialGradient(W / 2, H * .45, 0, W / 2, H * .45, Math.max(W, H) * .7); g.addColorStop(0, 'rgba(60,50,40,.30)'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); }
     const bx = S.x.x, by = S.y.x + hopOff;
     // sombra
     if (O.sombra) { const alt = clamp((by - GROUND) / 1.2, 0, 1), sw = (0.36 * S.s.x + 0.05) * pxu * (1 - .3 * alt), sh = sw * 0.2; if (est !== 'comando' && est !== 'leer') { const g = ctx.createRadialGradient(px(bx * 0.9), py(GROUND), 0, px(bx * 0.9), py(GROUND), sw); g.addColorStop(0, `rgba(0,0,0,${O.transparente ? .35 : .5 * (1 - .4 * alt)})`); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.save(); ctx.translate(0, py(GROUND)); ctx.scale(1, sh / sw); ctx.translate(0, -py(GROUND)); ctx.fillStyle = g; ctx.fillRect(px(bx * .9) - sw, py(GROUND) - sw, sw * 2, sw * 2); ctx.restore(); } }
     if (O.sombra && volOn && est !== 'comando' && est !== 'leer') { const alt = clamp((by - GROUND) / 1.2, 0, 1), sw = (0.36 * S.s.x + 0.05) * pxu * (1 - .3 * alt), sh = sw * 0.2, X = px(bx * 0.9 + 0.05 * Math.sin(YAW.x)), Y = py(GROUND);
       ctx.save(); ctx.translate(0, Y); ctx.scale(1, sh / sw); ctx.translate(0, -Y);
-      let g = ctx.createRadialGradient(X, Y, 0, X, Y, sw * 1.55); g.addColorStop(0, 'rgba(92,203,245,' + 0.10 * (1 - 0.5 * alt) + ')'); g.addColorStop(1, 'rgba(92,203,245,0)'); ctx.fillStyle = g; ctx.fillRect(X - sw * 1.6, Y - sw * 1.6, sw * 3.2, sw * 3.2);
-      g = ctx.createRadialGradient(X, Y, 0, X, Y, sw * 0.62); g.addColorStop(0, 'rgba(0,4,10,' + (O.transparente ? 0.55 : 0.8) * (1 - 0.45 * alt) + ')'); g.addColorStop(0.6, 'rgba(0,4,10,' + 0.26 * (1 - 0.45 * alt) + ')'); g.addColorStop(1, 'rgba(0,4,10,0)'); ctx.fillStyle = g; ctx.fillRect(X - sw, Y - sw, sw * 2, sw * 2); ctx.restore(); }
+      let g = ctx.createRadialGradient(X, Y, 0, X, Y, sw * 1.55); g.addColorStop(0, 'rgba(240,194,75,' + 0.10 * (1 - 0.5 * alt) + ')'); g.addColorStop(1, 'rgba(240,194,75,0)'); ctx.fillStyle = g; ctx.fillRect(X - sw * 1.6, Y - sw * 1.6, sw * 3.2, sw * 3.2);
+      g = ctx.createRadialGradient(X, Y, 0, X, Y, sw * 0.62); g.addColorStop(0, 'rgba(10,4,0,' + (O.transparente ? 0.55 : 0.8) * (1 - 0.45 * alt) + ')'); g.addColorStop(0.6, 'rgba(10,4,0,' + 0.26 * (1 - 0.45 * alt) + ')'); g.addColorStop(1, 'rgba(10,4,0,0)'); ctx.fillStyle = g; ctx.fillRect(X - sw, Y - sw, sw * 2, sw * 2); ctx.restore(); }
     const De = esp ? ESP[esp.n] : null, ue = esp ? tiempo - esp.t0 : 0;
     if (De && De.p) De.p(esp, ue, bx, by, T);
     dibujarCuerpoMorph(T, bx, by);
-    if (anillos.length && ptsActual) { const P = pathPts(ptsActual), U0 = S0 * pxu * S.s.x; for (const a of anillos) { const u = (tiempo - a.t) / 1.1; if (u >= 1) continue; const k = 1 + 0.9 * ease(u); ctx.save(); ctx.translate(px(bx), py(by)); ctx.rotate(-S.r.x); ctx.scale(U0 * k, U0 * k); ctx.globalAlpha = Math.pow(1 - u, 1.2) * (0.5 + 0.45 * a.a); ctx.lineWidth = Math.max(1, pxu * 0.006) / (U0 * k); ctx.lineJoin = 'round'; ctx.strokeStyle = 'rgba(200,244,255,1)'; ctx.stroke(P); ctx.restore(); } }
+    if (anillos.length && ptsActual) { const P = pathPts(ptsActual), U0 = S0 * pxu * S.s.x; for (const a of anillos) { const u = (tiempo - a.t) / 1.1; if (u >= 1) continue; const k = 1 + 0.9 * ease(u); ctx.save(); ctx.translate(px(bx), py(by)); ctx.rotate(-S.r.x); ctx.scale(U0 * k, U0 * k); ctx.globalAlpha = Math.pow(1 - u, 1.2) * (0.5 + 0.45 * a.a); ctx.lineWidth = Math.max(1, pxu * 0.006) / (U0 * k); ctx.lineJoin = 'round'; ctx.strokeStyle = 'rgba(255,234,200,1)'; ctx.stroke(P); ctx.restore(); } }
     if (De && De.d) De.d(esp, ue, bx, by);
     if (est === 'escribir') dibujarLadrillos(1);
     // check de 'hecho'
     if (T.check) { const k = ease(T.check); dibujarContorno(ptsFijo('check'), bx + 0.55 * S.s.x, by + 0.55 * S.s.x, 0.42 * k, 1); }
     // gotas rojas
-    if (est === 'error') { const t = tiempo - t0; for (const p of part) { if (p.age < 0) continue; const dB = Math.hypot(p.x - S.x.x, p.y - S.y.x), g = clamp(p.age / 0.14, 0, 1) * (t > 1.7 ? clamp((dB - 0.06) / 0.12, 0, 1) : 1); if (g > 0.03) gotaPx(px(p.x), py(p.y), p.r * pxu * g, 0, 1, mezcla(ROJO, CIAN, t > 1.7 ? clamp((t - 1.7) / 0.9, 0, 1) : 0)); } }
+    if (est === 'error') { const t = tiempo - t0; for (const p of part) { if (p.age < 0) continue; const dB = Math.hypot(p.x - S.x.x, p.y - S.y.x), g = clamp(p.age / 0.14, 0, 1) * (t > 1.7 ? clamp((dB - 0.06) / 0.12, 0, 1) : 1); if (g > 0.03) gotaPx(px(p.x), py(p.y), p.r * pxu * g, 0, 1, mezcla(ROJO, BASE, t > 1.7 ? clamp((t - 1.7) / 0.9, 0, 1) : 0)); } }
     // Z Z Z (dormir): glifo 5x5 de LEDs que sube flotando
     for (let i = zs.length - 1; i >= 0; i--) { const z = zs[i], u = (tiempo - z.t) / 3.4; if (u > 1) { zs.splice(i, 1); continue; }
       const cs = pxu * (0.016 + 0.016 * u), x0 = px(S.x.x + 0.34 + 0.10 * u + 0.025 * Math.sin(u * 9)), y0 = py(S.y.x + 0.26 + 0.55 * u), al = Math.sin(Math.PI * u) * 0.9, sz = cs * 2.7;
@@ -1432,13 +1484,13 @@ export function crearMascota(canvas, op = {}) {
       for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) if (Zp[r][c] === '1') ctx.drawImage(SPR.cian, x0 + (c - 2) * cs * 1.15 - sz / 2, y0 + (r - 2) * cs * 1.15 - sz / 2, sz, sz);
       ctx.restore(); }
     // burbujas finas
-    for (const b of burb) { if (b.a <= 0) continue; const pop = b.e > b.vida ? (b.e - b.vida) / 0.18 : 0, r = b.r * pxu * (1 + 0.5 * pop), al = (1 - pop) * Math.min(1, b.e * 6); ctx.save(); ctx.globalAlpha = al * 0.9; ctx.beginPath(); ctx.arc(px(b.x), py(b.y), r, 0, TAU); ctx.strokeStyle = 'rgba(215,248,255,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.fillStyle = 'rgba(92,203,245,.08)'; ctx.fill(); ctx.beginPath(); ctx.arc(px(b.x) - r * .35, py(b.y) - r * .38, r * .16, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.fill(); ctx.restore(); }
+    for (const b of burb) { if (b.a <= 0) continue; const pop = b.e > b.vida ? (b.e - b.vida) / 0.18 : 0, r = b.r * pxu * (1 + 0.5 * pop), al = (1 - pop) * Math.min(1, b.e * 6); ctx.save(); ctx.globalAlpha = al * 0.9; ctx.beginPath(); ctx.arc(px(b.x), py(b.y), r, 0, TAU); ctx.strokeStyle = 'rgba(255,238,215,.95)'; ctx.lineWidth = Math.max(1, pxu * 0.004); ctx.stroke(); ctx.fillStyle = 'rgba(240,194,75,.08)'; ctx.fill(); ctx.beginPath(); ctx.arc(px(b.x) - r * .35, py(b.y) - r * .38, r * .16, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.fill(); ctx.restore(); }
     // vapor del enfado: nubecitas que suben y se abren
     for (const v of vapor) { if (v.e < 0) continue; const f = v.e / v.vida, R = v.r * (1 + 1.7 * f) * pxu, al = (1 - f) * Math.min(1, v.e * 8); ctx.save(); ctx.globalAlpha = al;
       for (const [ox, oy, k] of [[-0.55, 0.1, 0.8], [0.5, 0.2, 0.75], [0, -0.45, 0.85], [0.05, 0.35, 0.7]]) { const X = px(v.x) + ox * R, Y = py(v.y) - oy * R, r = R * k, g = ctx.createRadialGradient(X, Y, 0, X, Y, r); g.addColorStop(0, 'rgba(255,248,246,1)'); g.addColorStop(0.6, 'rgba(255,206,198,.75)'); g.addColorStop(1, 'rgba(255,170,160,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X, Y, r, 0, TAU); ctx.fill(); }
       ctx.restore(); }
     // ondas de voz (anillos finos alrededor)
-    for (const o of ondasVoz) { const u = (tiempo - o.t) / 0.9; if (u > 1) continue; ctx.save(); ctx.globalAlpha = (1 - u) * 0.6 * o.a; ctx.beginPath(); ctx.ellipse(px(bx), py(by - 0.02), pxu * S0 * S.s.x * (1.2 + u * 1.2), pxu * S0 * S.s.x * (0.95 + u * 0.9), 0, 0, TAU); ctx.strokeStyle = rgba(CIAN, 1); ctx.lineWidth = Math.max(1, pxu * 0.005); ctx.stroke(); ctx.restore(); }
+    for (const o of ondasVoz) { const u = (tiempo - o.t) / 0.9; if (u > 1) continue; ctx.save(); ctx.globalAlpha = (1 - u) * 0.6 * o.a; ctx.beginPath(); ctx.ellipse(px(bx), py(by - 0.02), pxu * S0 * S.s.x * (1.2 + u * 1.2), pxu * S0 * S.s.x * (0.95 + u * 0.9), 0, 0, TAU); ctx.strokeStyle = rgba(BASE, 1); ctx.lineWidth = Math.max(1, pxu * 0.005); ctx.stroke(); ctx.restore(); }
   }
 
   // ----- puntero -----
