@@ -194,6 +194,10 @@ nav.tabs button.on svg{stroke:var(--ac)}
 .ss-tag{font-size:12px;color:var(--ac);font-weight:600;letter-spacing:.02em;padding:2px 2px 0}
 .etq{display:inline-block;font-size:11px;font-weight:600;color:var(--ac);background:var(--ac-soft);padding:2px 6px;border-radius:6px;vertical-align:2px;margin-left:4px}
 .fila.drop .n{color:var(--ac);font-size:15px}
+.semana-ed{display:grid;gap:6px}
+.semana-ed label{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center}
+.semana-ed span{font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.semana-ed select{height:40px;border-radius:10px;border:1px solid var(--line);background:var(--s2);padding:0 10px;font-size:15px;outline:none}
 .añadir{width:100%;padding:12px;color:var(--ac);font-size:14px;font-weight:500;border-top:1px solid var(--line)}
 
 /* herramientas */
@@ -494,11 +498,18 @@ function diaDeHoy() {
   const cerrados = D.sesiones.filter((x) => x.fecha === h).map((x) => x.dia);
   const deHoy = D.regs.filter((r) => r.fecha === h && ids.has(r.dia) && r.series.length && !cerrados.includes(r.dia));
   if (deHoy.length) return deHoy[deHoy.length - 1].dia;
+  const sem = semanaRut();
+  if (sem) { const w = new Date(h + 'T12:00').getDay(); if (!cerrados.length && sem[w] && ids.has(sem[w])) return sem[w]; return proximoDiaSemana(cerrados.length ? 1 : 0)?.dia || o[0]; }
   if (cerrados.length) { const u = cerrados[cerrados.length - 1]; return o.includes(u) ? o[(o.indexOf(u) + 1) % o.length] : o[0]; }
   const prev = D.regs.filter((r) => r.fecha < h && o.includes(r.dia));
   if (prev.length) { const i = o.indexOf(prev[prev.length - 1].dia); return o[(i + 1) % o.length]; }
   return o[0];
 }
+// semana: array de 7 (0 = domingo) con el id del día o '' si es descanso
+const semanaRut = () => { const s = D.rutina.semana; return Array.isArray(s) && s.length === 7 && s.some(Boolean) ? s : null; };
+const NOM_SEM = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+function proximoDiaSemana(desde = 1) { const sem = semanaRut(); if (!sem) return null; const ids = new Set(dias().map((d) => d.id)); const b = new Date(hoy() + 'T12:00'); for (let k = desde; k <= 7; k++) { const d = new Date(b); d.setDate(d.getDate() + k); const x = sem[d.getDay()]; if (x && ids.has(x)) return { dia: x, k, w: d.getDay() }; } return null; }
+const hoyDescanso = () => { const sem = semanaRut(), h = hoy(); if (!sem) return false; if (D.hoyDia && D.hoyDia.fecha === h) return false; if (D.regs.some((r) => r.fecha === h && r.series.length) || D.sesiones.some((x) => x.fecha === h)) return false; return !sem[new Date(h + 'T12:00').getDay()]; };
 const regsDe = (ej) => D.regs.filter((r) => r.ej === ej && r.series.length);
 const ultima = (ej) => { const h = hoy(), d = diaDeHoy(); const p = regsDe(ej).filter((r) => r.fecha < h || (r.fecha === h && r.dia !== d)); return p.length ? p[p.length - 1] : null; };
 const regHoy = (ej) => { const h = hoy(), d = diaDeHoy(); return D.regs.find((r) => r.ej === ej && r.fecha === h && r.dia === d); };
@@ -554,9 +565,14 @@ function vEntreno() {
   const hechas = D.regs.filter((r) => r.fecha === h && r.dia === id).reduce((a, r) => a + r.series.length, 0);
   const cerrada = [...D.sesiones].reverse().find((x) => x.fecha === h);
   const ses = D.activa && D.activa.fecha === h ? D.activa : null;
+  if (hoyDescanso()) { const px = proximoDiaSemana(1), pd = px && diaPorId(px.dia);
+    return `<header class="top"><div><div class="eyebrow">${esc(fecha)}</div><h1>Hoy descansas</h1></div></header>
+    <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>
+    <div class="card stack"><b>Día de descanso</b><p class="texto">${pd ? `${px.k === 1 ? 'Mañana' : 'El ' + NOM_SEM[px.w]} toca <b>${esc(pd.nombre.toLowerCase())}</b>. ` : ''}Descansar también es entrenar: hoy creces.</p><p class="texto">Si aun así quieres entrenar, toca un día arriba.</p></div>
+    ${D.regs.length ? '' : tarjetaCargar()}`; }
   let html = `<header class="top"><div><div class="eyebrow">${esc(fecha)}</div><h1>${esc(dia.nombre)}</h1></div></header>
   <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}"><b>${esc(d.id)}</b>${esc(d.nombre)}</button>`).join('')}</div>`;
-  if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. Abajo tienes el siguiente día.</small></div></div>`;
+  if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. ${semanaRut() ? 'Abajo tienes lo próximo que toca.' : 'Abajo tienes el siguiente día.'}</small></div></div>`;
   if (!D.regs.length) html += tarjetaCargar();
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
   let bloques = '', es = dia.ejercicios;
@@ -680,7 +696,7 @@ function terminar() {
    <button class="btn pri" onclick="cerrarHoja();pintar();window.scrollTo(0,0)">Vale</button>`);
   vibrar([40, 60, 40]); toast('Entreno guardado'); avisarBicho('terminar'); setTimeout(revisarLogros, 1200);
 }
-function siguiente(id) { const o = D.rutina.orden?.length ? D.rutina.orden : dias().map((d) => d.id); const n = o[(o.indexOf(id) + 1) % o.length]; const d = diaPorId(n); return d ? `${d.id} · ${d.nombre}` : n; }
+function siguiente(id) { const px = proximoDiaSemana(1); if (px) { const d = diaPorId(px.dia); return `${d.nombre} (${px.k === 1 ? 'mañana' : 'el ' + NOM_SEM[px.w]})`; } const o = D.rutina.orden?.length ? D.rutina.orden : dias().map((d) => d.id); const n = o[(o.indexOf(id) + 1) % o.length]; const d = diaPorId(n); return d ? `${d.id} · ${d.nombre}` : n; }
 const fechasEntreno = () => [...new Set(D.regs.filter((r) => r.series.length).map((r) => r.fecha))].sort();
 const semanaActual = () => { const l = lunes(hoy()); return fechasEntreno().filter((x) => x >= l).length; };
 
@@ -850,6 +866,8 @@ function hojaSesion(fecha) {
 function vRutina() {
   return `<header class="top"><div><div class="eyebrow">Rutina</div><h1>Tus días</h1></div></header>
   <p class="texto" style="margin-bottom:14px">Los días van en este orden y la app te pone solo el que toca. Toca cualquier campo para cambiarlo; se guarda solo.</p>
+  <div class="card" style="margin-bottom:12px"><b>Tu semana</b><p class="texto" style="margin:4px 0 10px">Qué día toca cada día de la semana. La app te pone solo el de hoy.</p>
+    <div class="semana-ed">${[1, 2, 3, 4, 5, 6, 0].map((w) => `<label><span>${NOM_SEM[w].slice(0, 3)}</span><select data-w="${w}"><option value="">Descanso</option>${dias().map((d) => `<option value="${esc(d.id)}" ${(semanaRut() || [])[w] === d.id ? 'selected' : ''}>${esc(d.nombre)}</option>`).join('')}</select></label>`).join('')}</div></div>
   <div class="stack">${dias().map((d, di) => `<div class="card edit-dia" data-di="${di}">
     <div class="cab"><input class="id" value="${esc(d.id)}" data-f="id" maxlength="4"><input class="nom" value="${esc(d.nombre)}" data-f="nombre"><button class="x" data-bdia title="Borrar día">×</button></div>
     <div class="ex-cab"><span>Ejercicio</span><span style="text-align:center">Series</span><span style="text-align:center">Reps</span><span></span></div>
@@ -860,6 +878,7 @@ function vRutina() {
   <div class="card"><div class="form"><div><label>Entrenos por semana (objetivo)</label><input id="obj" inputmode="numeric" value="${D.rutina.objetivo || 4}"></div><div><label>Día que toca hoy</label><select id="selDia">${dias().map((d) => `<option value="${esc(d.id)}" ${d.id === diaDeHoy() ? 'selected' : ''}>${esc(d.id)} · ${esc(d.nombre)}</option>`).join('')}</select></div></div></div></div>`;
 }
 function aRutina() {
+  document.querySelectorAll('.semana-ed select').forEach((sel) => sel.onchange = () => { const s = (semanaRut() || Array(7).fill('')).slice(); s[+sel.dataset.w] = sel.value; D.rutina.semana = s.some(Boolean) ? s : null; D.hoyDia = null; guardar(); toast(`${NOM_SEM[+sel.dataset.w][0].toUpperCase() + NOM_SEM[+sel.dataset.w].slice(1)}: ${sel.value ? diaPorId(sel.value).nombre : 'descanso'}`); });
   const sync = () => { D.rutina.orden = dias().map((d) => d.id); guardar(); };
   document.querySelectorAll('.edit-dia').forEach((card) => {
     const d = dias()[+card.dataset.di];
@@ -1075,6 +1094,7 @@ function infoGeneral() {
   return `Desde el ${fCorta(A.desde)} has subido un ${pct(A.sube)} de media (unos ${pct(A.mes)} al mes) en ${n} entrenos.\n· Lo que más sube: ${top.nombre.toLowerCase()} (${pct(top.sube)})\n· Lo más lento: ${bot.nombre.toLowerCase()} (${pct(bot.sube)})\n\n${A.mes >= 8 ? 'Ritmo de novato con hambre. Aprovecha.' : A.mes >= 3 ? 'Ritmo sano. Constancia y a seguir.' : 'Vas lento. O descansas poco, o comes poco, o te quedas corto de reps.'}`;
 }
 function infoHoy() {
+  if (hoyDescanso()) { const px = proximoDiaSemana(1), pd = px && diaPorId(px.dia); return `Hoy descansas.${pd ? ` ${px.k === 1 ? 'Mañana' : 'El ' + NOM_SEM[px.w]} toca ${pd.nombre.toLowerCase()}.` : ''} Come bien, duerme y no me vengas con remordimientos.`; }
   const dia = diaPorId(diaDeHoy()); if (!dia) return 'No tienes rutina montada. Ve a Rutina y crea tus días.';
   const cerrada = D.sesiones.find((x) => x.fecha === hoy());
   let t = `${cerrada ? `Hoy ya has hecho ${diaPorId(cerrada.dia)?.nombre.toLowerCase() || 'tu entreno'}. Lo siguiente sería` : 'Hoy toca'} ${dia.nombre.toLowerCase()}:\n`;
@@ -1392,6 +1412,15 @@ async function cargarCodigo(cod, manual = false) {
   } catch { limpiar(); toast('No he podido cargar los datos de este enlace'); }
 }
 cargarCodigo(new URLSearchParams(location.search).get('cargar'));
+async function cargarRutina(cod) {
+  if (!cod || !/^[a-z0-9]{6,20}$/.test(cod) || D.rutinaCargada === cod) return;
+  try {
+    const r = await fetch(`d/r-${cod}.json`, { cache: 'no-store' }); if (!r.ok) throw 0; const o = await r.json(); if (!o || !o.rutina || !Array.isArray(o.rutina.dias)) throw 0;
+    D.rutina = o.rutina; D.hoyDia = null; D.rutinaCargada = cod; guardar(); pintar();
+    toast('Rutina nueva puesta. Tus entrenos siguen igual'); setTimeout(() => window.bichoDecir && window.bichoDecir(`Rutina nueva. Hoy toca ${hoyDescanso() ? 'descansar' : diaPorId(diaDeHoy())?.nombre.toLowerCase()}. A por ello.`, 6), 2000);
+  } catch { toast('No he podido cargar la rutina de este enlace'); }
+}
+cargarRutina(new URLSearchParams(location.search).get('rutina'));
 if (!D.logros) revisarLogros(true);
 pintar();
 if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
