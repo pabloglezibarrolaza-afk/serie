@@ -1250,7 +1250,7 @@ function animGrande(a) {
 }
 function anadirMsg(de, txt) { D.chat = D.chat || []; D.chat.push({ de, t: Date.now(), txt }); if (D.chat.length > 200) D.chat = D.chat.slice(-200); guardar(); const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', burbujaChat(D.chat[D.chat.length - 1])); l.scrollTop = l.scrollHeight; } }
 // IA: la app no guarda ninguna clave; pregunta a un puente (Cloudflare) que tiene la de Gemini.
-const IA_URL = '';
+const IA_URL = 'https://gym-bicho.gymbicho.workers.dev';
 function contextoIA() {
   const fechas = fechasEntreno(), ult = fechas.slice(-4).reverse();
   const nom = nombreBicho() === 'Bicho' ? 'el bicho' : nombreBicho();
