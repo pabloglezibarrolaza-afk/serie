@@ -297,6 +297,7 @@ nav.tabs button.aviso::after{content:'';position:absolute;top:4px;left:calc(50% 
 <div id="toast"></div>
 <nav class="tabs"><div class="in">
   <button data-t="entreno"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>Entreno</button>
+  <button data-t="bicho"><svg viewBox="0 0 24 24"><path d="M5 15c0-5 3-9 7-9s7 4 7 9c0 1-.4 2-1 2.5M5 15c0 1 .4 2 1 2.5M8 18v2M11 18.5v2M13 18.5v2M16 18v2"/><path d="M9.5 12.5c.5-.8 1.5-.8 2 0M12.5 12.5c.5-.8 1.5-.8 2 0"/></svg>Bicho</button>
   <button data-t="progreso"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg>Progreso</button>
   <button data-t="rutina"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>Rutina</button>
   <button data-t="mas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Más</button>
@@ -523,13 +524,43 @@ const hoyDescanso = () => { const sem = semanaRut(), h = hoy(); if (!sem) return
 const regsDe = (ej) => D.regs.filter((r) => r.ej === ej && r.series.length);
 const ultima = (ej) => { const h = hoy(), d = diaDeHoy(); const p = regsDe(ej).filter((r) => r.fecha < h || (r.fecha === h && r.dia !== d)); return p.length ? p[p.length - 1] : null; };
 const regHoy = (ej) => { const h = hoy(), d = diaDeHoy(); return D.regs.find((r) => r.ej === ej && r.fecha === h && r.dia === d); };
-// Si en la última sesión todas las series llegaron al tope de reps -> sube peso; si no, mismo peso y una rep más.
+// Lo que toca hoy, a partir de tu serie más pesada de la última vez:
+//  · si llegaste al tope de reps del rango -> SUBE el peso (~5 %, a saltos de 2,5 kg; +1 kg si es mancuerna ligera)
+//    y las reps salen de tu 1RM estimado + 2 % (para que sea un poco más que la última vez);
+//  · si no llegaste -> mismo peso y +2 reps (sin pasar del tope).
+const subirPeso = (kg) => Math.round((kg < 10 ? kg + 1 : Math.max(kg + 2.5, Math.ceil(kg * 1.05 / 2.5) * 2.5)) * 100) / 100;
 function sugerir(e, u) {
-  if (!u) return null;
-  const kg = Math.max(...u.series.map((s) => s.kg)); const n = repsNums(e.reps); const top = n.length ? Math.max(...n) : null, bajo = n.length ? Math.min(...n) : null;
-  const minR = Math.min(...u.series.map((s) => s.reps));
-  if (top != null && u.series.every((s) => s.reps >= top) && D.aj.inc > 0) return { kg: Math.round((kg + D.aj.inc) * 100) / 100, reps: bajo, subir: true };
-  return { kg, reps: top != null ? Math.min(top, minR + 1) : minR + 1, subir: false };
+  if (!u || !u.series.length) return null;
+  const n = repsNums(e.reps), top = n.length ? Math.max(...n) : null, bajo = n.length ? Math.min(...n) : null;
+  const lista = u.series.filter((x) => !x.drop).length ? u.series.filter((x) => !x.drop) : u.series;
+  const fuerza = (x) => (x.kg > 0 ? e1rm(x.kg, x.reps) : x.reps * 0.001); // tu mejor serie de la última vez (más fuerza)
+  const best = lista.reduce((a, x) => (fuerza(x) > fuerza(a) ? x : a));
+  if (best.kg <= 0) return { kg: 0, reps: best.reps + 2, subir: false };
+  if (top != null && best.reps >= top) {
+    const kg2 = subirPeso(best.kg), meta = e1rm(best.kg, best.reps) * 1.02;
+    const r = Math.max(bajo ?? 1, Math.min(top, Math.floor(30 * (meta / kg2 - 1))));
+    return { kg: kg2, reps: r, subir: true };
+  }
+  return { kg: best.kg, reps: top != null ? Math.min(top, best.reps + 2) : best.reps + 2, subir: false };
+}
+// RÉCORD (como se entiende en el gym): más kilos que nunca en ese ejercicio,
+// o más repeticiones que nunca con ese peso o con más. La primera vez que haces un ejercicio no cuenta.
+function esRecord(prev, kg, reps) {
+  if (!prev.length) return false;
+  const maxKg = Math.max(...prev.map((x) => x.kg));
+  if (kg > maxKg) return true;
+  const conMas = prev.filter((x) => x.kg >= kg); return conMas.length ? reps > Math.max(...conMas.map((x) => x.reps)) : false;
+}
+// vuelve a marcar todos los récords del historial con la regla de arriba
+function recalcularRecords() {
+  const visto = new Map();
+  // cada serie se compara con lo que hiciste en DÍAS ANTERIORES (el primer día de un ejercicio nunca es récord)
+  for (const r of [...D.regs].sort((a, b) => a.fecha.localeCompare(b.fecha))) {
+    const prev = (visto.get(r.ej) || []).filter((y) => y.fecha < r.fecha);
+    for (const x of r.series) { if (esRecord(prev, x.kg, x.reps)) x.pr = true; else delete x.pr; }
+    visto.set(r.ej, [...(visto.get(r.ej) || []), ...r.series.map((x) => ({ kg: x.kg, reps: x.reps, fecha: r.fecha }))]);
+  }
+  for (const ss of D.sesiones) { const rs = D.regs.filter((r) => r.fecha === ss.fecha); ss.prs = [...new Set(rs.filter((r) => r.series.some((x) => x.pr)).map((r) => r.nombre))]; }
 }
 // Mejor marca de un ejercicio (sin contar la serie i de hoy, para detectar récords)
 function mejor(ej, excluir) {
@@ -635,7 +666,7 @@ function aEntreno() {
     const id = card.dataset.ej; const e = diaPorId(diaDeHoy()).ejercicios.find((x) => x.id === id);
     card.querySelectorAll('.fila input').forEach((inp) => inp.oninput = () => { const i = +inp.closest('.fila').dataset.i; (borr[id][i] ||= {})[inp.dataset.c] = inp.value; });
     card.querySelectorAll('[data-ok]').forEach((b) => b.onclick = () => confirmar(e, +b.dataset.ok, card));
-    card.querySelector('[data-mas]').onclick = () => { e._extra = true; const r = regHoy(id); const n = (r ? r.series.length : 0); if (n >= e.series) { apuntarVacia(e); } pintar(); };
+    card.querySelector('[data-mas]').onclick = () => { apuntarVacia(e); pintar(); toast('Serie extra solo para hoy'); };
     card.querySelector('[data-hist]').onclick = () => hojaEjercicio(id, e.nombre);
     const bj = card.querySelector('[data-bajada]'); if (bj) bj.onclick = () => { const r = regHoy(id); if (!r || !r.series.length) { toast('Primero haz la serie y luego la bajada'); return; } pendDrop[id] = (pendDrop[id] || 0) + 1; pintar(); };
     card.querySelector('[data-saltar]').onclick = () => { const h = hoy(); const l = new Set(D.saltados[h] || []); l.has(id) ? l.delete(id) : l.add(id); D.saltados = { [h]: [...l] }; guardar(); pintar(); };
@@ -646,9 +677,10 @@ function aEntreno() {
 }
 // "+ Serie" cuando ya están todas: añade una fila más pidiendo una serie extra
 const extras = {}, pendDrop = {};
-function apuntarVacia(e) { extras[e.id] = (extras[e.id] || 0) + 1; }
+const claveExtra = (id) => `${hoy()}|${diaDeHoy()}|${id}`;
+function apuntarVacia(e) { const k = claveExtra(e.id); extras[k] = (extras[k] || 0) + 1; }
 const _tarjeta = tarjeta;
-tarjeta = function (e, s) { const x = extras[e.id] || 0; return _tarjeta({ ...e, series: Math.max(e.series, (regHoy(e.id)?.series.length || 0) + (x ? 1 : 0)) }, s); };
+tarjeta = function (e, s) { const x = extras[claveExtra(e.id)] || 0, hechas = (regHoy(e.id)?.series || []).filter((y) => !y.drop).length; return _tarjeta({ ...e, series: Math.max(e.series + x, hechas) }, s); };
 
 function confirmar(e, i, card) {
   const h = hoy(); let r = regHoy(e.id);
@@ -661,27 +693,29 @@ function confirmar(e, i, card) {
   const kg = num(ik.value || ik.placeholder), reps = Math.round(num(ir.value || ir.placeholder) || 0);
   if (kg == null || kg < 0 || !reps || reps < 1) { toast('Pon los kilos y las reps'); (kg == null ? ik : ir).focus(); return; }
   if (!r) { r = { fecha: h, dia: diaDeHoy(), ej: e.id, nombre: e.nombre, series: [] }; D.regs.push(r); }
-  const antes = mejor(e.id); const maxAntes = Math.max(0, ...regsDe(e.id).flatMap((x) => x.series.map((y) => y.kg)));
+  const antes = mejor(e.id); const prevSeries = regsDe(e.id).filter((x) => x.fecha < h).flatMap((x) => x.series.map((y) => ({ kg: y.kg, reps: y.reps }))); const maxAntes = Math.max(0, ...prevSeries.map((y) => y.kg));
   const objetivo = sugerir(e, ultima(e.id)), nuevaSesion = !D.activa || D.activa.fecha !== h;
   const esDrop = fila.dataset.drop === '1';
   const serie = { kg, reps }; if (esDrop) serie.drop = true; r.series.push(serie);
   const v = e1rm(kg, reps);
-  const esPR = antes.e1 > 0 && v > antes.e1 + 0.01;
+  const esPR = esRecord(prevSeries, kg, reps);
   if (esPR) { serie.pr = true; toast(`Récord en ${e.nombre}: ${f(kg)} × ${reps}`); vibrar([30, 40, 30]); } else vibrar(15);
   if (!D.activa || D.activa.fecha !== h) D.activa = { fecha: h, dia: r.dia, inicio: Date.now() };
-  delete borr[e.id][i]; if (extras[e.id]) extras[e.id] = 0; if (esDrop && pendDrop[e.id]) pendDrop[e.id]--;
+  delete borr[e.id][i]; if (esDrop && pendDrop[e.id]) pendDrop[e.id]--;
   const lista = diaPorId(diaDeHoy())?.ejercicios || [], pos = lista.findIndex((x) => x.id === e.id), pareja = e.ss && lista[pos + 1];
   guardar(); pintar();
   if (esDrop) toast('Bajada apuntada');
   else if (pareja) { toast(`Ahora sin descanso: ${pareja.nombre}`); const c = document.querySelector(`.ej[data-ej="${CSS.escape(pareja.id)}"]`); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   else descanso(D.aj.descanso);
-  const grande = esPR && (v >= antes.e1 * 1.04 || kg > maxAntes);
+  const grande = esPR && maxAntes > 0 && kg > maxAntes;
   const superado = !esDrop && objetivo && objetivo.kg > 0 && (kg > objetivo.kg || (kg >= objetivo.kg && reps > objetivo.reps));
   if (nuevaSesion) avisarBicho('calentar');
+  if (superado) { D.objSuperados = (D.objSuperados || 0) + 1; guardar(); }
+  if (nuevaSesion && new Date().getHours() < 9) { D.madrugador = true; guardar(); }
   if (superado && !grande) { const extra = kg > objetivo.kg ? `${f(kg - objetivo.kg)} kg más` : `${reps - objetivo.reps} rep${reps - objetivo.reps > 1 ? 's' : ''} más`; avisarBicho('objetivo', `¡Genial! ${f(kg)} × ${reps}: ${extra} de lo que te tocaba.`); }
   else if (!esPR && !esDrop && Math.random() < 0.25) setTimeout(() => avisarBicho('toalla'), 1500);
   if (!(superado && !grande))
-  avisarBicho(grande ? 'pr-grande' : esPR ? 'pr' : 'serie', grande ? (kg > maxAntes ? `¡Brutal! ${f(kg)} kg, más que nunca en ${e.nombre.toLowerCase()}.` : `¡Bestia! Tu mejor ${e.nombre.toLowerCase()} hasta hoy.`) : undefined); setTimeout(revisarLogros, esPR ? 2600 : 600);
+  avisarBicho(grande ? 'pr-grande' : esPR ? 'pr' : 'serie', grande ? (kg > maxAntes ? `¡Brutal! ${f(kg)} kg, más que nunca en ${e.nombre.toLowerCase()}.` : `¡Bestia! Nunca habías hecho tantas reps así en ${e.nombre.toLowerCase()}.`) : undefined); setTimeout(revisarLogros, esPR ? 2600 : 600);
 }
 
 // --- crono de la sesión
@@ -772,7 +806,7 @@ function analisis() {
   for (const e of porEj.values()) {
     const ds = [...e.dias].sort((a, b) => a[0].localeCompare(b[0])).map(([fecha, x]) => ({ fecha, ...x })); if (ds.length < 2 || dias_(ds[0].fecha, ds[ds.length - 1].fecha) < 6) continue;
     if (/lastre|anadid|kg extra/.test(sinTilde(e.nombre))) continue; // solo cuenta el peso añadido: el % saldría inflado
-    const base = ds[0].v, ahora = Math.max(...ds.slice(-2).map((x) => x.v));
+    const base = ds.length >= 4 ? Math.max(ds[0].v, ds[1].v) : ds[0].v, ahora = Math.max(...ds.slice(-2).map((x) => x.v));
     ejs.push({ id: e.id, nombre: e.nombre, grupo: grupoDe(e.id, e.nombre), ds, base, ahora, sube: (ahora / base - 1) * 100, kg0: ds[0].kg, kgMax: Math.max(...ds.map((x) => x.kg)), desde: ds[0].fecha });
   }
   // índice semanal: media de (1RM de esa semana / 1RM del primer día) de los ejercicios ya empezados
@@ -931,8 +965,8 @@ function vMas() {
   <h2>Calcular 1RM</h2><div class="card"><div class="form"><div><label>Peso</label><input id="rk" inputmode="decimal" placeholder="kg"></div><div><label>Reps</label><input id="rr" inputmode="numeric" placeholder="reps"></div></div><div class="res" id="rres"><p class="texto">Pon un peso y las reps que te salen: te digo tu máximo a una repetición y los porcentajes.</p></div></div>
   <h2>Discos por lado</h2><div class="card"><div class="form"><div><label>Peso total</label><input id="dk" inputmode="decimal" placeholder="kg"></div><div><label>Barra</label><select id="db">${[20, 15, 10, 0].map((b) => `<option value="${b}" ${b === D.aj.barra ? 'selected' : ''}>${b ? b + ' kg' : 'Sin barra'}</option>`).join('')}</select></div></div><div id="dres"></div></div>
   <h2>Ajustes</h2><div class="card"><div class="form"><div><label>Descanso entre series</label><select id="adesc">${[0, 60, 90, 120, 150, 180, 240].map((s) => `<option value="${s}" ${s === D.aj.descanso ? 'selected' : ''}>${s ? `${Math.floor(s / 60)}:${pad(s % 60)} min` : 'Sin temporizador'}</option>`).join('')}</select></div>
-   <div><label>Subir peso de</label><select id="ainc">${[1, 1.25, 2, 2.5, 5].map((s) => `<option value="${s}" ${s === D.aj.inc ? 'selected' : ''}>${f(s, 2)} kg</option>`).join('')}</select></div></div>
-   <p class="texto" style="margin-top:10px">Cuando haces todas las series al tope de reps, la app te sugiere subir ese peso. Si no, el mismo peso y una rep más.</p></div>
+</div>
+   <p class="texto" style="margin-top:10px">Lo que te toca hoy: si la última vez llegaste al tope de reps, te sube el peso (un 5 % más o menos) y te calcula las reps; si no, el mismo peso y 2 reps más.</p></div>
   <h2>Tu bicho</h2><div class="card"><div class="form" style="grid-template-columns:1fr"><div><label>Nombre del bicho</label><input id="nomBicho" placeholder="Ponle nombre" value="${esc(D.aj.nombreBicho || '')}" maxlength="18" style="font-family:inherit"></div></div></div>
   <h2>Avisos</h2><div class="card stack"><p class="texto">Te aviso cuando consigues un logro y cuando acaba el descanso si estás en otra app. En iPhone solo funciona con la app <b>añadida a la pantalla de inicio</b>.</p><button class="btn" id="avisos">${'Notification' in window && Notification.permission === 'granted' ? 'Avisos activados ✓' : 'Activar avisos'}</button></div>
   <h2>Importar mi entrenamiento</h2><div class="card stack"><p class="texto">¿Llevas tiempo apuntando en notas o en un Excel? Pégalo o súbelo y la app te monta tu rutina y tu progreso.</p><button class="btn pri" id="impAbrir">Importar mis notas o Excel</button></div>
@@ -953,7 +987,6 @@ function aMas() {
      <p class="texto">${ds.length ? `Por lado: <b class="num">${ds.map((p) => f(p, 2)).join(' + ')}</b>` : 'Solo la barra.'}${lado > 0.01 ? ` · sobran ${f(lado * 2, 2)} kg que no se pueden poner` : ''}</p>`; };
   $('#dk').oninput = dc; $('#db').onchange = dc;
   $('#adesc').onchange = (e) => { D.aj.descanso = +e.target.value; D.aj.descansoElegido = true; guardar(); };
-  $('#ainc').onchange = (e) => { D.aj.inc = +e.target.value; guardar(); };
   $('#exp').onclick = () => { const b = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
   $('#impAbrir').onclick = hojaImportar;
   $('#nomBicho').onchange = (e) => { D.aj.nombreBicho = e.target.value.trim(); guardar(); toast(D.aj.nombreBicho ? `Ahora se llama ${D.aj.nombreBicho}` : 'Sin nombre'); };
@@ -981,28 +1014,40 @@ const LOGROS = [
   { id: 'e25', t: '25 entrenos', d: 'Constancia de verdad', i: 'cal', ok: (s) => s.entrenos >= 25 },
   { id: 'e50', t: '50 entrenos', d: 'Medio centenar', i: 'trofeo', ok: (s) => s.entrenos >= 50 },
   { id: 'e100', t: '100 entrenos', d: 'Nivel bestia', i: 'trofeo', ok: (s) => s.entrenos >= 100 },
-  { id: 'semana', t: 'Semana redonda', d: 'Cumple tu objetivo semanal', i: 'cal', ok: (s) => s.semMax >= s.obj },
-  { id: 'racha3', t: 'Tres semanas seguidas', d: 'Cumple el objetivo 3 semanas', i: 'fuego', ok: (s) => s.racha >= 3 },
-  { id: 'racha8', t: 'Dos meses on fire', d: 'Cumple el objetivo 8 semanas', i: 'fuego', ok: (s) => s.racha >= 8 },
-  { id: 'pr1', t: 'Primer récord', d: 'Bate una marca tuya', i: 'estrella', ok: (s) => s.prs >= 1 },
-  { id: 'pr10', t: '10 récords', d: 'Subiendo sin parar', i: 'estrella', ok: (s) => s.prs >= 10 },
-  { id: 'pr50', t: '50 récords', d: 'Esto ya es otra cosa', i: 'estrella', ok: (s) => s.prs >= 50 },
-  { id: 's100', t: 'Cien series', d: 'Apunta 100 series', i: 'rayo', ok: (s) => s.series >= 100 },
-  { id: 's500', t: 'Quinientas series', d: 'Apunta 500 series', i: 'rayo', ok: (s) => s.series >= 500 },
-  { id: 'club100', t: 'Club de los 100', d: '1RM estimado de 100 kg', i: 'trofeo', ok: (s) => s.maxE1 >= 100 },
+  { id: 'semana', t: 'Semana redonda', d: 'Haz todos los entrenos de una semana', i: 'cal', ok: (s) => s.semMax >= s.obj },
+  { id: 'racha4', t: 'Un mes sin fallar', d: '4 semanas seguidas cumpliendo', i: 'fuego', ok: (s) => s.racha >= 4 },
+  { id: 'racha12', t: 'Tres meses sin fallar', d: '12 semanas seguidas cumpliendo', i: 'fuego', ok: (s) => s.racha >= 12 },
+  { id: 'cumplidor', t: 'Cumplidor', d: 'Supera 10 veces lo que te tocaba', i: 'rayo', ok: (s) => s.objSup >= 10 },
+  { id: 'diarec', t: 'Día de récords', d: '5 récords en un solo entreno', i: 'estrella', ok: (s) => s.prDia >= 5 },
+  { id: 'pr25', t: '25 récords', d: '25 veces mejor que nunca', i: 'estrella', ok: (s) => s.prs >= 25 },
+  { id: 'pr100', t: '100 récords', d: 'Cien marcas batidas', i: 'estrella', ok: (s) => s.prs >= 100 },
+  { id: 'f10', t: '+10 % más fuerte', d: 'Tu fuerza media sube un 10 %', i: 'rayo', ok: (s) => s.sube >= 10 },
+  { id: 'f25', t: '+25 % más fuerte', d: 'Tu fuerza media sube un 25 %', i: 'rayo', ok: (s) => s.sube >= 25 },
+  { id: 'f50', t: '+50 % más fuerte', d: 'Medio cuerpo nuevo', i: 'trofeo', ok: (s) => s.sube >= 50 },
+  { id: 'doble', t: 'El doble', d: 'Mueve el doble que el primer día en un ejercicio', i: 'trofeo', ok: (s) => s.doble },
+  { id: 'kg100', t: 'Tres cifras', d: 'Una serie con 100 kg o más', i: 'pesa', ok: (s) => s.maxKg >= 100 },
+  { id: 'kg200', t: 'Doscientos', d: 'Una serie con 200 kg o más', i: 'pesa', ok: (s) => s.maxKg >= 200 },
+  { id: 'todo', t: 'Todo sube', d: 'Todos tus músculos suben a la vez', i: 'fuego', ok: (s) => s.todoSube },
+  { id: 'madruga', t: 'Madrugador', d: 'Entrena antes de las 9 de la mañana', i: 'cal', ok: (s) => s.madrugador },
   { id: 'peso', t: 'A la báscula', d: 'Apunta tu peso corporal', i: 'bascula', ok: (s) => s.pesos >= 1 },
 ];
 function statsLogros() {
-  const fechas = fechasEntreno(), obj = D.rutina.objetivo || 4, porSem = new Map(), porDia = new Map();
+  const fechas = fechasEntreno(), obj = D.rutina.objetivo || 4, porSem = new Map();
   for (const x of fechas) porSem.set(lunes(x), (porSem.get(lunes(x)) || 0) + 1);
   let racha = 0, mejorR = 0, prev = null;
   for (const [l, n] of [...porSem].sort()) {
     const seguida = prev && Math.round((new Date(l + 'T12:00') - new Date(prev + 'T12:00')) / 864e5) === 7;
     racha = n >= obj ? (seguida ? racha + 1 : 1) : 0; mejorR = Math.max(mejorR, racha); prev = l;
   }
-  let prs = 0, series = 0, maxE1 = 0;
-  for (const r of D.regs) for (const x of r.series) { if (x.pr) prs++; series++; maxE1 = Math.max(maxE1, e1rm(x.kg, x.reps)); }
-  return { entrenos: fechas.length, obj, semMax: Math.max(0, ...porSem.values()), racha: mejorR, prs, series, maxE1, pesos: D.peso.length };
+  let prs = 0, maxKg = 0; const prPorDia = new Map(), primero = new Map(), maxEj = new Map();
+  for (const r of [...D.regs].sort((a, b) => a.fecha.localeCompare(b.fecha))) for (const x of r.series) {
+    if (x.pr) { prs++; prPorDia.set(r.fecha, (prPorDia.get(r.fecha) || 0) + 1); }
+    maxKg = Math.max(maxKg, x.kg); if (x.kg > 0) { if (!primero.has(r.ej)) primero.set(r.ej, x.kg); maxEj.set(r.ej, Math.max(maxEj.get(r.ej) || 0, x.kg)); }
+  }
+  const A = analisis();
+  return { entrenos: fechas.length, obj, semMax: Math.max(0, ...porSem.values()), racha: mejorR, prs, prDia: Math.max(0, ...prPorDia.values()), maxKg,
+    doble: [...primero].some(([id, k]) => k >= 5 && (maxEj.get(id) || 0) >= 2 * k), sube: A.sube || 0, todoSube: A.grupos.length >= 4 && A.grupos.every((g) => g.sube > 0),
+    objSup: D.objSuperados || 0, madrugador: !!D.madrugador, pesos: D.peso.length };
 }
 const colaLogros = [];
 function revisarLogros(silencio = false) {
@@ -1161,7 +1206,7 @@ function responder(txt) {
   if (/(descanso|descansar|cuanto descanso|entre series)/.test(n)) return { t: `En lo pesado, 2-3 minutos. En aislamiento (bíceps, laterales…), 1-1:30. Tienes el temporizador en ${Math.round(D.aj.descanso / 60 * 10) / 10} min; cámbialo en Más si quieres.`, a: 'reloj' };
   if (/(proteina|comer|comida|dieta|creatina|batido)/.test(n)) return { t: 'Lo básico: 1,6-2 g de proteína por kilo al día, repartida en 3-4 comidas. La creatina (3-5 g al día) es de lo poco que funciona de verdad. Y no te saltes la comida después de entrenar.', a: 'batido' };
   if (/(dolor|duele|lesion|me he hecho dano|molestia)/.test(n)) return { t: 'Si es dolor de agujetas, tranquilo: se va en 2-3 días. Si es un dolor punzante, en una articulación o que no se va, para ese ejercicio y que te lo mire un fisio. Con eso no se juega.', a: 'pensar' };
-  if (/(cansado|ganas|no me apetece|pereza|motivacion|animo|animame|no puedo|desmotiv)/.test(n)) return { t: azar(['Las ganas vienen después de empezar, no antes. Haz el primer ejercicio y luego decides.', 'Nadie se arrepiente de haber entrenado. De no haber ido, sí.', `Llevas ${fechasEntreno().length} entrenos apuntados. No vas a tirar eso por un día de pereza, ¿no?`]), a: 'flexiones' };
+  if (/(cansad|ganas|no me apetece|pereza|motivacion|animo|animame|no puedo|desmotiv|flojo|floja|sin fuerza|reventad|agotad|bajon|mal dia|destrozad|muerto)/.test(n)) return { t: azar(['Las ganas vienen después de empezar, no antes. Haz el primer ejercicio y luego decides.', 'Nadie se arrepiente de haber entrenado. De no haber ido, sí.', `Llevas ${fechasEntreno().length} entrenos apuntados. No vas a tirar eso por un día de pereza, ¿no?`]), a: 'flexiones' };
   if (/(sueno|dormir|dormi|duerm)/.test(n)) return { t: 'Duerme 7-9 horas. Los músculos crecen mientras duermes, no mientras haces scroll.', a: 'bostezo' };
   const mus = MUSCULOS.find(([, re]) => re.test(n)); const ej = buscarEjercicio(n);
   if (ej && (!mus || sinTilde(ej.nombre).split(' ').length > 1 && /(press|curl|remo|jalon|prensa|femoral|extension|elevac|peck|fondos|sentadilla|hip|abductor|aductor|gemelo|aperturas|contractor|cruce|pullover|pajaros)/.test(n))) return { t: infoEjercicio(ej), a: 'pensar' };
@@ -1182,7 +1227,7 @@ function vBicho() {
   if (!D.chat.length) D.chat.push({ de: 'b', t: Date.now(), txt: `¡Buenas! Soy ${nombreBicho() === 'Bicho' ? 'tu bicho' : nombreBicho()}. Pregúntame lo que quieras del gym: qué toca hoy, cómo vas en pecho, tu récord en press… Yo me sé todos tus datos.` });
   const enf = D.enfado && D.enfado.nivel > 0.3;
   return `<div class="chat-vista">
-    <div class="chat-cab"><canvas id="bichoGrande" aria-hidden="true"></canvas><div class="chat-nom">${esc(nombreBicho())}</div><div class="chat-est ${enf ? 'rojo' : ''}" id="chatEst">${enf ? 'Enfadado contigo' : D.activa ? 'Entrenando contigo' : 'Esperándote'}</div></div>
+    <div class="chat-cab"><canvas id="bichoGrande" aria-hidden="true"></canvas><div class="chat-nom">${esc(nombreBicho())}</div><div class="chat-est ${enf ? 'rojo' : ''}" id="chatEst">${enf ? 'Enfadado contigo' : D.activa ? 'Entrenando contigo' : IA_URL ? 'Con IA · pregúntame lo que quieras' : 'Esperándote'}</div></div>
     <div class="chat-lista" id="chatLista">${D.chat.slice(-80).map(burbujaChat).join('')}</div>
     <form class="chat-caja" id="chatForm" autocomplete="off"><input id="chatIn" placeholder="Escríbele a ${esc(nombreBicho())}…" enterkeyhint="send"><button aria-label="Enviar"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
   </div>`;
@@ -1204,12 +1249,39 @@ function animGrande(a) {
   } catch {}
 }
 function anadirMsg(de, txt) { D.chat = D.chat || []; D.chat.push({ de, t: Date.now(), txt }); if (D.chat.length > 200) D.chat = D.chat.slice(-200); guardar(); const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', burbujaChat(D.chat[D.chat.length - 1])); l.scrollTop = l.scrollHeight; } }
+// IA: la app no guarda ninguna clave; pregunta a un puente (Cloudflare) que tiene la de Gemini.
+const IA_URL = '';
+function contextoIA() {
+  const fechas = fechasEntreno(), ult = fechas.slice(-4).reverse();
+  const nom = nombreBicho() === 'Bicho' ? 'el bicho' : nombreBicho();
+  return [
+    `Eres ${nom}, la mascota de una app de gimnasio: un bichito de neón amarillo, chulo, con gracia y con ego, pero que en el fondo anima y ayuda. Hablas en español de España, coloquial, tuteando, como un colega del gym.`,
+    'Respuestas CORTAS (2-5 frases como mucho, sin listas largas ni títulos, sin emojis). Si te preguntan por sus datos, usa SOLO los datos de abajo y no te inventes cifras. Si algo no está en los datos, dilo.',
+    'Si dice que está flojo, cansado o sin ganas, motívale de verdad y con cabeza (no hace falta que hoy rompa récords: que haga lo que toca). Si habla de dolor o lesión, prudencia: que pare ese ejercicio y lo mire un fisio o un médico. Nada de consejos médicos ni de dietas extremas.',
+    `Hoy es ${new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}.`,
+    '--- DATOS DEL USUARIO ---',
+    `Qué toca hoy: ${infoHoy()}`,
+    `Progreso general: ${infoGeneral()}`,
+    `Por músculo: ${analisis().grupos.map((g) => `${g.nombre} ${pct(g.sube)}`).join(', ') || 'aún sin datos'}`,
+    `Semana: ${infoSemana()}`,
+    `Récords recientes: ${infoRecords()}`,
+    `Estancado: ${infoEstancados()}`,
+    `Rutina: ${dias().map((d) => `${d.nombre} (${d.ejercicios.map((e) => e.nombre).join(', ')})`).join(' | ')}`,
+    `Últimos entrenos:\n${ult.map((f) => resumenDia(f)).join('\n\n') || 'ninguno'}`,
+  ].join('\n');
+}
+async function preguntarIA() {
+  const r = await fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contexto: contextoIA(), mensajes: (D.chat || []).slice(-12) }) });
+  const j = await r.json().catch(() => ({})); if (!r.ok || !j.texto) throw new Error(j.error || 'sin respuesta'); return j.texto;
+}
 function enviarChat(v) {
   anadirMsg('yo', v); D.ultHablado = Date.now(); calmarBicho(false);
   const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', '<div class="msg el escribiendo" id="escr"><div class="txt"><i></i><i></i><i></i></div></div>'); l.scrollTop = l.scrollHeight; }
   try { bichoGrande && bichoGrande.estado('pensar'); } catch {}
-  const r = responder(v);
-  setTimeout(() => { $('#escr')?.remove(); anadirMsg('b', r.t); animGrande(r.a); }, 650 + Math.min(1400, r.t.length * 6));
+  const local = () => { const r = responder(v); setTimeout(() => { $('#escr')?.remove(); anadirMsg('b', r.t); animGrande(r.a); }, 650 + Math.min(1400, r.t.length * 6)); };
+  if (!IA_URL || !navigator.onLine) { local(); return; }
+  preguntarIA().then((t) => { $('#escr')?.remove(); anadirMsg('b', t); animGrande(/(récord|brutal|bestia|genial|enhorabuena|bien hecho)/i.test(t) ? 'estrella' : /(dolor|lesión|para)/i.test(t) ? 'pensar' : 'feliz'); })
+    .catch(() => local());
 }
 
 // --- el bicho te escribe mientras entrenas, y se enfada si le ignoras 40 min
@@ -1440,7 +1512,7 @@ async function cargarCodigo(cod, manual = false) {
     // los nombres de los días que había (en el móvil y en el archivo) se guardan para que el historial no cambie de nombre
     const viejos = { ...(D.diasViejos || {}), ...Object.fromEntries((D.rutina.dias || []).map((d) => [d.id, d.nombre])), ...(o.diasViejos || {}) };
     for (const d of o.rutina.dias) for (const e of d.ejercicios) { if (Array.isArray(e.alt)) { const c = new Set(regs.map((x) => x.ej)); const id = [e.id, ...e.alt].find((x) => c.has(x)); if (id) e.id = id; delete e.alt; } }
-    D = { ...nuevo(), ...D, rutina: o.rutina, regs, sesiones, peso: pesos, cargado: cod, diasViejos: viejos, rutinaDesde: o.rutinaDesde || D.rutinaDesde || hoy(), hoyDia: null, rutinaCargada: o.rutinaCodigo || D.rutinaCargada }; revisarLogros(true); guardar(); pintar();
+    D = { ...nuevo(), ...D, logros: null, prVersion: 3, rutina: o.rutina, regs, sesiones, peso: pesos, cargado: cod, diasViejos: viejos, rutinaDesde: o.rutinaDesde || D.rutinaDesde || hoy(), hoyDia: null, rutinaCargada: o.rutinaCodigo || D.rutinaCargada }; recalcularRecords(); revisarLogros(true); guardar(); pintar();
     toast(`Cargados tus ${fechasEntreno().length} entrenos`); setTimeout(() => window.bichoDecir && window.bichoDecir('¡Ya tengo todo tu historial! Mira en Progreso cuánto has subido.', 7), 2500);
   } catch { limpiar(); toast('No he podido cargar los datos de este enlace'); }
 }
@@ -1457,6 +1529,7 @@ async function cargarRutina(cod) {
   } catch { toast('No he podido cargar la rutina de este enlace'); }
 }
 cargarRutina(new URLSearchParams(location.search).get('rutina'));
+if (D.prVersion !== 3) { recalcularRecords(); D.prVersion = 3; D.logros = null; guardar(); }
 if (!D.logros) revisarLogros(true);
 pintar();
 if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
