@@ -59,6 +59,11 @@ h3{font:600 21px/1.1 var(--cond);letter-spacing:.03em;text-transform:uppercase}
 
 /* ejercicio = hoja de libreta */
 .card.ej{padding:0 0 2px}
+.card.ej.toca{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.ahora{display:inline-block;font:600 10px var(--mono);letter-spacing:.12em;color:var(--ac-ink);background:var(--ac);padding:2px 6px 1px;border-radius:2px;margin-bottom:5px}
+.pasos{display:grid;gap:8px;margin:6px 0 2px;counter-reset:p}
+.pasos div{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;font-size:14px;color:var(--tx)}
+.pasos div::before{counter-increment:p;content:counter(p);font:600 12px var(--mono);color:var(--ac-ink);background:var(--ac);border-radius:2px;text-align:center;line-height:20px;height:20px}
 .ej-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 14px 8px;border-bottom:1px solid var(--line)}
 .meta{font:400 11px var(--mono);color:var(--mu);margin-top:3px}
 .cuenta{font:400 11px var(--mono);color:var(--mu);white-space:nowrap}
@@ -669,8 +674,12 @@ function tarjeta(e, saltado) {
   out += `</div><div class="acciones">${e.drop ? '<button data-bajada style="color:var(--ac)">+ Bajada</button>' : ''}<button data-mas>+ Serie</button><button data-hist>Historial</button><button data-saltar>${saltado ? 'Recuperar' : 'Saltar hoy'}</button></div></div>`;
   return out;
 }
+function marcarSiguiente() {
+  const c = [...document.querySelectorAll('#app .card.ej:not(.saltado)')].find((x) => !x.querySelector('.cuenta.hecho'));
+  if (!c) return null; c.classList.add('toca'); c.querySelector('.ej-h > div')?.insertAdjacentHTML('afterbegin', '<div class="ahora">AHORA</div>'); return c;
+}
 function aEntreno() {
-  const app = $('#app');
+  const app = $('#app'); marcarSiguiente();
   app.querySelectorAll('[data-dia]').forEach((b) => b.onclick = () => { D.hoyDia = { fecha: hoy(), dia: b.dataset.dia }; guardar(); pintar(); });
   app.querySelectorAll('.ej').forEach((card) => {
     const id = card.dataset.ej; const e = diaPorId(diaDeHoy()).ejercicios.find((x) => x.id === id);
@@ -717,6 +726,7 @@ function confirmar(e, i, card) {
   if (esDrop) toast('Bajada apuntada');
   else if (pareja) { toast(`Ahora sin descanso: ${pareja.nombre}`); const c = document.querySelector(`.ej[data-ej="${CSS.escape(pareja.id)}"]`); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   else descanso(D.aj.descanso);
+  if (!esDrop && !pareja && document.querySelector(`#app .card.ej[data-ej="${CSS.escape(e.id)}"] .cuenta.hecho`)) { const sig = document.querySelector('#app .card.ej.toca'); if (sig && sig.dataset.ej !== e.id) setTimeout(() => sig.scrollIntoView({ behavior: 'smooth', block: 'start' }), 500); }
   const grande = esPR && maxAntes > 0 && kg > maxAntes;
   const superado = !esDrop && objetivo && objetivo.kg > 0 && (kg > objetivo.kg || (kg >= objetivo.kg && reps > objetivo.reps));
   if (nuevaSesion) avisarBicho('calentar');
@@ -879,10 +889,10 @@ function analisis(rg = null) {
   return { ejs, grupos, general, sube, mes: sube / meses, desde };
 }
 function vProgresoFuerza(A) {
-  if (!A.ejs.length) return `<div class="card"><p class="texto">${progEtapa !== 'todo' ? 'Con esta rutina aún hay pocos entrenos: cuando repitas los ejercicios un par de semanas, aquí verás cuánto subes con ella.' : 'Cuando lleves un par de semanas apuntando, aquí verás cuánto subes en general, por músculo y por ejercicio.'}</p></div>`;
+  if (!A.ejs.length) return `<div class="card"><p class="texto">${progEtapa !== 'todo' ? (fechasEntreno().some((x) => enRango(x, rangoProg())) ? 'Con esta rutina aún hay pocos entrenos: cuando repitas los ejercicios un par de semanas, aquí verás cuánto subes con ella.' : `<b>${esc(etapas()[+progEtapa]?.nombre || '')} acaba de empezar.</b> Todavía no has entrenado con ella: en cuanto apuntes un par de semanas, aquí verás cuánto subes. Lo de antes lo tienes en las otras pestañas de arriba.`) : 'Cuando lleves un par de semanas apuntando, aquí verás cuánto subes en general, por músculo y por ejercicio.'}</p></div>`;
   const mx = Math.max(1, ...A.grupos.map((g) => Math.abs(g.sube))), top = A.grupos[0], bot = A.grupos[A.grupos.length - 1];
   const saltos = [...A.ejs].filter((e) => e.kgMax > e.kg0).sort((a, b) => (b.kgMax / b.kg0) - (a.kgMax / a.kg0)).slice(0, 3);
-  return `<div class="card heroe"><div class="eyebrow">${progEtapa !== 'todo' ? esc(etapas()[+progEtapa]?.nombre || '') + ' · ' : ''}Tu fuerza desde el ${fCorta(A.desde)}</div><div class="big"><div class="grande-p">${pct(A.sube)}</div><span>más fuerte<br>${progEtapa !== 'todo' ? 'con esta rutina' : 'que al empezar'}</span></div>
+  return `<div class="card heroe"><div class="eyebrow">${progEtapa !== 'todo' ? esc(etapas()[+progEtapa]?.nombre || '') + ' · ' : ''}Tu fuerza desde el ${fCorta(fechasEntreno().find((x) => enRango(x, rangoProg())) || A.desde)}</div><div class="big"><div class="grande-p">${pct(A.sube)}</div><span>más fuerte<br>${progEtapa !== 'todo' ? 'con esta rutina' : 'que al empezar'}</span></div>
      <p class="texto">De media, tus ejercicios han subido un <b>${pct(A.sube)}</b> en lo que puedes levantar (1RM estimado). A este ritmo, <b>${pct(A.mes)} al mes</b>.</p>
      ${A.general.length >= 2 ? `<div class="graf">${linea(A.general, 320, 150, true, (v) => pct(v))}</div>` : ''}</div>
    <h2>Por músculo</h2>
@@ -1003,12 +1013,14 @@ function hojaSesion(fecha) {
 function vRutina() {
   const l = etapas();
   return `<header class="top"><div><div class="eyebrow">Rutina · desde ${esc(fechaLarga(l.length === 1 ? (fechasEntreno()[0] || D.rutina.desde) : D.rutina.desde))}</div><h1>${esc(l[l.length - 1].nombre)}</h1></div></header>
-  <div class="card" style="margin-bottom:12px"><b>Tus rutinas</b><p class="texto" style="margin:4px 0 10px">Cada entreno cuenta para la rutina de su fecha. En Progreso ves cada una por separado y todo junto.</p>
+  ${l.length === 1 ? `<div class="card" style="margin-bottom:16px"><b>¿Cambias de rutina?</b><p class="texto" style="margin:4px 0 10px">Crea una nueva cuando cambies de ejercicios. La de ahora se guarda con todo su progreso y en Progreso podrás comparar las dos.</p>
+    <button class="btn" id="nuevaRut" style="width:100%">+ Nueva rutina</button></div>` : `<div class="card" style="margin-bottom:16px"><b>Tus rutinas</b><p class="texto" style="margin:4px 0 10px">Cada entreno cuenta para la rutina de su fecha. Toca una para cambiarle el nombre o ver su progreso.</p>
     <div class="lista">${l.map((e, i) => { const n = fechasEntreno().filter((x) => enRango(x, rangoEtapa(i))).length; return `<button class="item" data-etapa="${i}"><div class="c"><b>${esc(e.nombre)}</b><small>desde ${esc(fechaLarga(i === 0 ? (fechasEntreno()[0] || e.desde) : e.desde))} · ${n} entreno${n === 1 ? '' : 's'}</small></div><div class="d" style="${e.actual ? 'color:var(--ac)' : ''}">${e.actual ? 'Actual' : 'Ver'}</div></button>`; }).join('')}</div>
-    <button class="btn" id="nuevaRut" style="margin-top:10px;width:100%">+ Nueva rutina</button></div>
-  <p class="texto" style="margin-bottom:14px">Los días de tu rutina actual. Toca cualquier campo para cambiarlo; se guarda solo. Debajo de cada ejercicio, el músculo que trabaja (cámbialo si no es).</p>
-  <div class="card" style="margin-bottom:12px"><b>Tu semana</b><p class="texto" style="margin:4px 0 10px">Qué día toca cada día de la semana. La app te pone solo el de hoy.</p>
-    <div class="semana-ed">${[1, 2, 3, 4, 5, 6, 0].map((w) => `<label><span>${NOM_SEM[w].slice(0, 3)}</span><select data-w="${w}"><option value="">Descanso</option>${dias().map((d) => `<option value="${esc(d.id)}" ${(semanaRut() || [])[w] === d.id ? 'selected' : ''}>${esc(d.nombre)}</option>`).join('')}</select></label>`).join('')}</div></div>
+    <button class="btn" id="nuevaRut" style="margin-top:10px;width:100%">+ Nueva rutina</button></div>`}
+  ${!dias().length ? `<div class="card" style="margin-bottom:12px;border-color:var(--ac)"><b>Monta tu rutina en 3 pasos</b><div class="pasos"><div>Toca «+ Añadir día» y ponle nombre (Pierna, Pecho…).</div><div>Dentro de cada día, «+ Añadir ejercicio».</div><div>Arriba, elige qué día de la semana toca cada uno. Listo: en Entreno te sale solo.</div></div></div>` : `<h2>Tu semana</h2>`}
+  ${dias().length ? `<div class="card" style="margin-bottom:12px"><p class="texto" style="margin:0 0 10px">Qué toca cada día. En Entreno te sale solo el de hoy.</p>
+    <div class="semana-ed">${[1, 2, 3, 4, 5, 6, 0].map((w) => `<label><span>${NOM_SEM[w].slice(0, 3)}</span><select data-w="${w}"><option value="">Descanso</option>${dias().map((d) => `<option value="${esc(d.id)}" ${(semanaRut() || [])[w] === d.id ? 'selected' : ''}>${esc(d.nombre)}</option>`).join('')}</select></label>`).join('')}</div></div>` : ''}
+  ${dias().length ? `<h2>Tus días</h2><p class="texto" style="margin:-4px 0 10px">Toca cualquier cosa para cambiarla; se guarda sola. Debajo de cada ejercicio, el músculo que trabaja.</p>` : ''}
   <div class="stack">${dias().map((d, di) => `<div class="card edit-dia" data-di="${di}">
     <div class="cab"><input class="nom" value="${esc(d.nombre)}" data-f="nombre"><button class="x" data-bdia title="Borrar día">×</button></div>
     <div class="ex-cab"><span>Ejercicio</span><span style="text-align:center">Series</span><span style="text-align:center">Reps</span><span></span></div>
@@ -1196,7 +1208,7 @@ function consejo() {
   if (!fechas.length) return 'Apunta tu primera serie y yo te llevo las cuentas.';
   const dia = diaPorId(diaDeHoy()), ult = fechas[fechas.length - 1];
   const sin = Math.round((new Date(h + 'T12:00') - new Date(ult + 'T12:00')) / 864e5);
-  const top = [], gen = ['Descansa de 1:30 a 2 min en lo pesado. Las prisas no suman kilos.', 'Apunta también los días malos: cuentan igual.', 'Si la máquina está ocupada, cambia el orden. Lo importante es hacerlo.', 'Bebe agua entre series. Lo digo yo, que soy líquido.'];
+  const top = [], gen = ['Descansa tus 3 minutos en lo pesado. Las prisas no suman kilos.', 'Apunta también los días malos: cuentan igual.', 'Si la máquina está ocupada, cambia el orden. Lo importante es hacerlo.', 'Bebe agua entre series. Lo digo yo, que soy líquido.'];
   if (sin >= 4) top.push(`Llevas ${sin} días sin venir. Hoy toca ${dia ? dia.nombre.toLowerCase() : 'entrenar'}: a por ello.`);
   if (dia && !D.regs.some((r) => r.fecha === h)) {
     for (const e of dia.ejercicios) { const sg = sugerir(e, ultima(e.id)); if (sg && sg.subir) { top.push(`Hoy toca subir en ${e.nombre.toLowerCase()}: ${f(sg.kg)} kg. La última vez te sobró.`); break; } }
