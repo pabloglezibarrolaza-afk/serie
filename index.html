@@ -484,14 +484,31 @@ const RUTINA_BASE = { orden: ['BR1','PE1','BR2','PI','PE2'], objetivo: 5, semana
   { id:'BR2', nombre:'Brazo 2', ejercicios: BRAZO_EJ },
 ].map(d => ({ ...d, ejercicios: d.ejercicios.map(([id,nombre,series,reps,notas]) => ({ id, nombre, series, reps, notas })) })) };
 
+// para todo el mundo: la app empieza VACÍA y se elige una rutina de ejemplo, se monta a mano o se carga un enlace
+const RUTINA_VACIA = { orden: [], objetivo: 4, semana: null, dias: [] };
+const mkRut = (semana, dias) => ({ orden: dias.map((d) => d[0]), objetivo: semana.filter(Boolean).length, semana, dias: dias.map(([id, nombre, ejs]) => ({ id, nombre, ejercicios: ejs.map(([eid, n, se, re]) => ({ id: eid, nombre: n, series: se, reps: re, notas: '' })) })) });
+const PLANTILLAS = [
+  { id: 'cc', nombre: 'Cuerpo completo', sub: '3 días · lun, mié, vie · para empezar', r: mkRut(['', 'CA', '', 'CB', '', 'CA', ''], [
+    ['CA', 'Cuerpo completo A', [['sentadilla', 'Sentadilla', 3, '6-10'], ['press_banca', 'Press banca', 3, '6-10'], ['remo_barra', 'Remo con barra', 3, '8-12'], ['press_militar', 'Press militar', 2, '8-12'], ['curl_biceps', 'Curl de bíceps', 2, '10-12'], ['abdominales', 'Abdominales', 2, '12-15']]],
+    ['CB', 'Cuerpo completo B', [['peso_muerto_rumano', 'Peso muerto rumano', 3, '8-10'], ['press_inclinado_mancuernas', 'Press inclinado con mancuernas', 3, '8-12'], ['jalon_pecho', 'Jalón al pecho', 3, '8-12'], ['prensa', 'Prensa', 2, '10-12'], ['elevaciones_laterales', 'Elevaciones laterales', 2, '12-15'], ['extension_triceps_polea', 'Extensión de tríceps en polea', 2, '10-12']]]]) },
+  { id: 'tp', nombre: 'Torso / Pierna', sub: '4 días · lun, mar, jue, vie', r: mkRut(['', 'T1', 'P1', '', 'T2', 'P2', ''], [
+    ['T1', 'Torso 1', [['press_banca', 'Press banca', 3, '6-10'], ['remo_barra', 'Remo con barra', 3, '8-10'], ['press_militar', 'Press militar', 2, '8-12'], ['jalon_pecho', 'Jalón al pecho', 2, '8-12'], ['curl_biceps', 'Curl de bíceps', 2, '10-12'], ['extension_triceps_polea', 'Extensión de tríceps en polea', 2, '10-12']]],
+    ['P1', 'Pierna 1', [['sentadilla', 'Sentadilla', 3, '6-10'], ['peso_muerto_rumano', 'Peso muerto rumano', 3, '8-10'], ['extension_cuadriceps', 'Extensión de cuádriceps', 2, '10-15'], ['femoral_tumbado', 'Femoral tumbado', 2, '10-15'], ['gemelos', 'Gemelos', 3, '10-15']]],
+    ['T2', 'Torso 2', [['press_inclinado_mancuernas', 'Press inclinado con mancuernas', 3, '8-12'], ['remo_bajo', 'Remo bajo', 3, '8-12'], ['dominadas', 'Dominadas', 2, '6-10'], ['elevaciones_laterales', 'Elevaciones laterales', 3, '12-15'], ['pec_deck', 'Pec deck', 2, '10-15'], ['press_frances', 'Press francés', 2, '10-12']]],
+    ['P2', 'Pierna 2', [['prensa', 'Prensa', 3, '8-12'], ['hip_thrust', 'Hip thrust', 3, '8-12'], ['femoral_sentado', 'Femoral sentado', 2, '10-15'], ['zancadas', 'Zancadas', 2, '10-12'], ['abdominales', 'Abdominales', 3, '12-15']]]]) },
+  { id: 'etp', nombre: 'Empuje / Tirón / Pierna', sub: '3 días · lun, mié, vie', r: mkRut(['', 'EM', '', 'TI', '', 'PI', ''], [
+    ['EM', 'Empuje', [['press_banca', 'Press banca', 3, '6-10'], ['press_militar', 'Press militar', 3, '8-10'], ['press_inclinado_mancuernas', 'Press inclinado con mancuernas', 2, '8-12'], ['elevaciones_laterales', 'Elevaciones laterales', 3, '12-15'], ['extension_triceps_polea', 'Extensión de tríceps en polea', 3, '10-12']]],
+    ['TI', 'Tirón', [['jalon_pecho', 'Jalón al pecho', 3, '8-12'], ['remo_barra', 'Remo con barra', 3, '8-10'], ['remo_bajo', 'Remo bajo', 2, '10-12'], ['hombro_posterior', 'Hombro posterior', 2, '12-15'], ['curl_biceps', 'Curl de bíceps', 3, '10-12']]],
+    ['PI', 'Pierna', [['sentadilla', 'Sentadilla', 3, '6-10'], ['peso_muerto_rumano', 'Peso muerto rumano', 3, '8-10'], ['prensa', 'Prensa', 2, '10-12'], ['femoral_sentado', 'Femoral sentado', 2, '10-15'], ['gemelos', 'Gemelos', 3, '10-15']]]]) },
+];
 const CLAVE = 'serie.v1';
-const nuevo = () => ({ v:1, rutina: JSON.parse(JSON.stringify(RUTINA_BASE)), regs: [], sesiones: [], activa: null, peso: [], hoyDia: null, saltados: {}, aj: { descanso: 180, inc: 2.5, barra: 20 } });
+const nuevo = () => ({ v:1, rutina: JSON.parse(JSON.stringify(RUTINA_VACIA)), regs: [], sesiones: [], activa: null, peso: [], hoyDia: null, saltados: {}, aj: { descanso: 180, inc: 2.5, barra: 20 } });
 let D;
 try { D = JSON.parse(localStorage.getItem(CLAVE)) || nuevo(); } catch { D = nuevo(); }
 D = { ...nuevo(), ...D, aj: { ...nuevo().aj, ...(D.aj || {}) } };
 // descanso por defecto: 3 min (a quien tenía el 1:30 de antes sin haberlo tocado, se le pasa a 3 min)
 if (!D.aj.descansoElegido && D.aj.descanso !== 180) D.aj.descanso = 180;
-if (!D.regs.length && !D.rutinaCargada && D.rutina && D.rutina.dias && D.rutina.dias.some((d) => d.id === 'A1') && !D.rutina.semana) D.rutina = JSON.parse(JSON.stringify(RUTINA_BASE));
+if (!D.regs.length && !D.rutinaCargada && !D.cargado && !D.plantilla && D.rutina && D.rutina.dias && (D.rutina.dias.some((d) => d.id === 'A1') || D.rutina.dias.map((d) => d.id).join() === RUTINA_BASE.dias.map((d) => d.id).join())) { D.rutina = JSON.parse(JSON.stringify(RUTINA_VACIA)); D.etapasV = 0; }
 // app de formato fijo: nada de zoom con dos dedos ni con doble toque (iOS ignora user-scalable)
 ['gesturestart', 'gesturechange', 'gestureend'].forEach((ev) => document.addEventListener(ev, (e) => e.preventDefault(), { passive: false }));
 document.addEventListener('touchmove', (e) => { if (e.touches && e.touches.length > 1) e.preventDefault(); }, { passive: false });
@@ -618,9 +635,30 @@ const codigoDe = (v) => { const m = String(v || '').trim().match(/cargar=([a-z0-
 const atarCargar = () => { const i2 = $('#impAbrir2'); if (i2) i2.onclick = hojaImportar;
   const sc = $('#saltarCarga'); if (sc) sc.onclick = () => { D.saltarCarga = true; guardar(); pintar(); toast('Vale. Si algún día tienes un enlace, está en Más → Cargar mis datos'); };
   const pg = $('#codPegar'); if (pg) pg.onclick = async () => { try { const t = await navigator.clipboard.readText(); const c = codigoDe(t); if (!c) { toast('Lo que tienes copiado no es un enlace de la app'); return; } cargarCodigo(c, true); } catch { toast('No me deja leer lo copiado: pégalo abajo a mano'); $('#codIn2')?.focus(); } }; const c2 = $('#codOk2'); if (c2) c2.onclick = () => { const v = $('#codIn2').value.trim(); const m = v.match(/cargar=([a-z0-9]+)/) || v.match(/^([a-z0-9]{6,20})$/); cargarCodigo(m ? m[1] : '', true); }; };
+// ================= BIENVENIDA (app sin rutina) =================
+function vBienvenida() {
+  const conEntrenos = D.regs.length > 0;
+  return `<header class="top"><div><div class="eyebrow">${conEntrenos ? 'Sin rutina' : 'Bienvenido'}</div><h1>${conEntrenos ? 'Monta tu rutina' : 'Vamos a empezar'}</h1></div></header>
+  <p class="texto" style="margin-bottom:14px">${conEntrenos ? 'Tu rutina nueva está vacía. Elige una de ejemplo o móntala a tu manera; tus entrenos de antes siguen guardados.' : 'Apuntas kilos y reps, la app te dice qué levantar hoy y ves cuánto subes. Primero, elige tu rutina:'}</p>
+  <h2>Elige una rutina de ejemplo</h2>
+  <div class="lista" style="margin-bottom:6px">${PLANTILLAS.map((t) => `<button class="item" data-plant="${t.id}"><div class="c"><b>${esc(t.nombre)}</b><small>${esc(t.sub)}</small></div><div class="d" style="color:var(--ac)">Usar</div></button>`).join('')}</div>
+  <p class="texto" style="font-size:12px;margin-bottom:16px">Luego puedes cambiar ejercicios, series y días en Rutina.</p>
+  <div class="stack"><button class="btn" id="bienMontar">Montarla yo desde cero</button>
+  ${conEntrenos ? '' : `<button class="btn" id="bienImp">Ya apunto en notas o Excel: importarlo</button>`}</div>
+  ${conEntrenos ? '' : `<h2>¿Te han pasado un enlace?</h2><div class="card stack"><p class="texto">Si alguien te ha preparado un enlace con tus entrenos, cópialo y toca aquí.</p><button class="btn pri" id="codPegar">Pegar enlace y cargar</button>
+    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn2" placeholder="o pégalo aquí a mano" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq" id="codOk2">Cargar</button></div></div>`}`;
+}
+function aBienvenida() {
+  document.querySelectorAll('[data-plant]').forEach((b) => b.onclick = () => { const t = PLANTILLAS.find((x) => x.id === b.dataset.plant); if (!t) return;
+    D.rutina = { ...JSON.parse(JSON.stringify(t.r)), nombre: D.rutina.nombre || 'Rutina 1', desde: D.rutina.desde || hoy() }; D.plantilla = t.id; D.saltarCarga = true; D.hoyDia = null; guardar(); pintar(); window.scrollTo(0, 0);
+    toast(`Rutina «${t.nombre}» lista. Cámbiala cuando quieras en Rutina`); setTimeout(() => window.bichoDecir && window.bichoDecir(hoyDescanso() ? 'Hoy toca descansar. Mañana empezamos.' : 'Hoy empezamos. Elige un peso cómodo y dale al ✓.', 6), 1200); });
+  const m = $('#bienMontar'); if (m) m.onclick = () => { D.saltarCarga = true; guardar(); pestana = 'rutina'; pintar(); window.scrollTo(0, 0); };
+  const i = $('#bienImp'); if (i) i.onclick = hojaImportar;
+  atarCargar();
+}
 // ================= ENTRENO =================
 function vEntreno() {
-  if (!dias().length) return `<header class="top"><div><div class="eyebrow">Sin rutina</div><h1>Monta tu rutina</h1></div></header><button class="btn pri" onclick="pestana='rutina';pintar()">Ir a Rutina</button>`;
+  if (!dias().length) return vBienvenida();
   const id = diaDeHoy(), dia = diaPorId(id), h = hoy(); const salt = (D.saltados[h] || []);
   const fecha = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
   const hechas = D.regs.filter((r) => r.fecha === h && r.dia === id).reduce((a, r) => a + r.series.length, 0);
@@ -631,19 +669,20 @@ function vEntreno() {
     <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip" data-dia="${esc(d.id)}">${esc(d.nombre)}</button>`).join('')}</div>
     <div class="card stack"><b>Día de descanso</b><p class="texto">${pd ? `${px.k === 1 ? 'Mañana' : 'El ' + NOM_SEM[px.w]} toca <b>${esc(pd.nombre.toLowerCase())}</b>. ` : ''}Descansar también es entrenar: hoy creces.</p><p class="texto">Si aun así quieres entrenar, toca un día arriba.</p></div>
     ${D.regs.length ? '' : tarjetaCargar()}`; }
-  const totSer = dia.ejercicios.filter((x) => !salt.includes(x.id)).reduce((a, x) => a + x.series, 0);
+  const totSer = ejsHoy(dia).filter((x) => !salt.includes(x.id)).reduce((a, x) => a + seriesHoy(x), 0);
   const titulo = esc(dia.nombre).replace(/\s(\d+)$/, ' <b>$1</b>');
   let html = `<header class="top"><div><div class="eyebrow">${esc(fecha)}${(D.etapas || []).length ? ' · ' + esc(etapas().at(-1).nombre) : ''}</div><h1>${titulo}</h1></div><div class="marc"><small>Series</small><div>${hechas}<i>/${totSer}</i></div></div></header>
   <div class="dias" data-k="${esc(dias().map((d) => d.id + d.nombre).join('|'))}">${dias().map((d) => `<button class="chip ${d.id === id ? 'on' : ''}" data-dia="${esc(d.id)}">${esc(d.nombre)}</button>`).join('')}</div>`;
   if (cerrada && !hechas) html += `<div class="card guardado"><div class="ok-g"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Entreno de hoy guardado</b><small>${esc(diaPorId(cerrada.dia)?.nombre || cerrada.dia)} · ${cerrada.series} series${cerrada.prs.length ? ` · ${cerrada.prs.length} récord${cerrada.prs.length > 1 ? 's' : ''}` : ''}. Ya está en Progreso. ${semanaRut() ? 'Abajo tienes lo próximo que toca.' : 'Abajo tienes el siguiente día.'}</small></div></div>`;
   if (!D.regs.length) html += tarjetaCargar();
   if (ses) html += `<div class="card sesion"><div><div class="eyebrow"><span class="punto"></span>Entrenando</div></div><div class="t" id="crono">0:00</div></div>`;
-  let bloques = '', es = dia.ejercicios;
+  let bloques = '', es = ejsHoy(dia);
   for (let k = 0; k < es.length; k++) {
     if (es[k].ss && es[k + 1]) { bloques += `<div class="ss-grupo"><div class="ss-tag">Superserie · los dos seguidos, descansas al acabar el segundo</div>${tarjeta(es[k], salt.includes(es[k].id))}${tarjeta(es[k + 1], salt.includes(es[k + 1].id))}</div>`; k++; }
     else bloques += tarjeta(es[k], salt.includes(es[k].id));
   }
   html += `<div class="stack">` + bloques + `</div>`;
+  html += `<button class="btn" id="ejHoy" style="width:100%;margin-top:12px">+ Añadir ejercicio</button>`;
   html += `<div style="margin-top:18px">${hechas ? `<button class="btn pri" id="terminar">Terminar entreno · ${hechas} series</button>` : `<p class="texto" style="text-align:center">Apunta kilos y reps y dale al ✓. Si no escribes nada, se guarda lo que sale en gris.</p>`}</div>`;
   return html;
 }
@@ -653,7 +692,7 @@ function tarjeta(e, saltado) {
   const b = borr[e.id] || (borr[e.id] = {});
   const mj = mejor(e.id), pd = pendDrop[e.id] || 0, base = Math.max(filas, hechas.length);
   let out = `<div class="card ej ${saltado ? 'saltado' : ''}" data-ej="${esc(e.id)}">
-   <div class="ej-h"><div><h3>${esc(e.nombre)}${e.drop ? ' <span class="etq">Drop set</span>' : ''}</h3><div class="meta">${e.series} × ${esc(e.reps)} reps</div></div><span class="cuenta ${hechas.length >= e.series ? 'hecho' : ''}">${hechas.length}/${e.series}</span></div>
+   <div class="ej-h"><div><h3>${esc(e.nombre)}${e.soloHoy ? ' <span class="etq">Solo hoy</span>' : ''}${e.drop ? ' <span class="etq">Drop set</span>' : ''}</h3><div class="meta">${e.series} × ${esc(e.reps)} reps</div></div><span class="cuenta ${hechas.length >= e.series ? 'hecho' : ''}">${hechas.length}/${e.series}</span></div>
    <div class="info">${u ? `<span><span class="k">Última ${fCorta(u.fecha)}</span> <span class="num">${u.series.map((x) => `${f(x.kg)}×${x.reps}`).join(' · ')}</span></span>` : `<span class="k">Primera vez: elige un peso cómodo</span>`}
    ${s ? `<span class="sug num">${s.subir ? '↑ ' : ''}Hoy ${f(s.kg)} kg × ${s.reps}</span>` : ''}
    ${mj.e1 ? `<span><span class="k">1RM est.</span> <span class="num">${f(mj.e1, 0)} kg</span></span>` : ''}</div>
@@ -671,7 +710,7 @@ function tarjeta(e, saltado) {
       <div class="campo"><input inputmode="numeric" data-c="reps" value="${h ? h.reps : esc(b[i]?.reps ?? '')}" placeholder="${esc(phR)}" ${h ? 'readonly' : ''}><span>reps</span></div>
       <button class="ok" data-ok="${i}" aria-label="${h ? 'Deshacer serie' : 'Serie hecha'}"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>`;
   }
-  out += `</div><div class="acciones">${e.drop ? '<button data-bajada style="color:var(--ac)">+ Bajada</button>' : ''}<button data-mas>+ Serie</button><button data-hist>Historial</button><button data-saltar>${saltado ? 'Recuperar' : 'Saltar hoy'}</button></div></div>`;
+  out += `</div><div class="acciones">${e.drop ? '<button data-bajada style="color:var(--ac)">+ Bajada</button>' : ''}<button data-mas>+ Serie</button>${e.series > 1 && e.series > hechas.length ? '<button data-menos>− Serie</button>' : ''}${e.soloHoy ? '<button data-quitarhoy>Quitar</button>' : ''}<button data-hist>Historial</button><button data-saltar>${saltado ? 'Recuperar' : 'Saltar hoy'}</button></div></div>`;
   return out;
 }
 function marcarSiguiente() {
@@ -679,27 +718,54 @@ function marcarSiguiente() {
   if (!c) return null; c.classList.add('toca'); c.querySelector('.ej-h > div')?.insertAdjacentHTML('afterbegin', '<div class="ahora">AHORA</div>'); return c;
 }
 function aEntreno() {
+  if (!dias().length) { aBienvenida(); return; }
   const app = $('#app'); marcarSiguiente();
   app.querySelectorAll('[data-dia]').forEach((b) => b.onclick = () => { D.hoyDia = { fecha: hoy(), dia: b.dataset.dia }; guardar(); pintar(); });
   app.querySelectorAll('.ej').forEach((card) => {
-    const id = card.dataset.ej; const e = diaPorId(diaDeHoy()).ejercicios.find((x) => x.id === id);
+    const id = card.dataset.ej; const e = ejsHoy(diaPorId(diaDeHoy())).find((x) => x.id === id);
     card.querySelectorAll('.fila input').forEach((inp) => inp.oninput = () => { const i = +inp.closest('.fila').dataset.i; (borr[id][i] ||= {})[inp.dataset.c] = inp.value; });
     card.querySelectorAll('[data-ok]').forEach((b) => b.onclick = () => confirmar(e, +b.dataset.ok, card));
     card.querySelector('[data-mas]').onclick = () => { apuntarVacia(e); pintar(); toast('Serie extra solo para hoy'); };
+    const mn = card.querySelector('[data-menos]'); if (mn) mn.onclick = () => { const k = claveExtra(e.id); extrasO()[k] = (extrasO()[k] || 0) - 1; guardar(); pintar(); toast('Una serie menos, solo hoy'); };
+    const qx = card.querySelector('[data-quitarhoy]'); if (qx) qx.onclick = () => { if (regHoy(id)?.series.length) { toast('Primero deshaz sus series'); return; } D.extraHoy.ejercicios = D.extraHoy.ejercicios.filter((x) => x.id !== id); guardar(); pintar(); };
     card.querySelector('[data-hist]').onclick = () => hojaEjercicio(id, e.nombre);
     const bj = card.querySelector('[data-bajada]'); if (bj) bj.onclick = () => { const r = regHoy(id); if (!r || !r.series.length) { toast('Primero haz la serie y luego la bajada'); return; } pendDrop[id] = (pendDrop[id] || 0) + 1; pintar(); };
     card.querySelector('[data-saltar]').onclick = () => { const h = hoy(); const l = new Set(D.saltados[h] || []); l.has(id) ? l.delete(id) : l.add(id); D.saltados = { [h]: [...l] }; guardar(); pintar(); };
   });
   const t = $('#terminar'); if (t) t.onclick = terminar;
+  const eh = $('#ejHoy'); if (eh) eh.onclick = hojaEjHoy;
   atarCargar();
   reloj();
 }
 // "+ Serie" cuando ya están todas: añade una fila más pidiendo una serie extra
-const extras = {}, pendDrop = {};
+const pendDrop = {};
+D.extrasSer = Object.fromEntries(Object.entries(D.extrasSer || {}).filter(([k]) => k.startsWith(hoy())));
+const extrasO = () => (D.extrasSer ||= {});
+const seriesHoy = (e) => { const x = extrasO()[claveExtra(e.id)] || 0, hechas = (regHoy(e.id)?.series || []).filter((y) => !y.drop).length; return Math.max(1, e.series + x, hechas); };
+const ejsHoy = (dia) => { if (!dia) return []; const x = D.extraHoy && D.extraHoy.fecha === hoy() && D.extraHoy.dia === dia.id ? D.extraHoy.ejercicios : []; return [...dia.ejercicios, ...x.filter((y) => !dia.ejercicios.some((z) => z.id === y.id)).map((y) => ({ ...y, soloHoy: true }))]; };
+function hojaEjHoy() {
+  const dia = diaPorId(diaDeHoy()); if (!dia) return;
+  const con = ejerciciosConocidos().filter((x) => !ejsHoy(dia).some((y) => y.id === x.id));
+  abrirHoja(`<div class="eyebrow">${esc(dia.nombre)}</div><h1 style="margin-bottom:12px">Añadir ejercicio</h1>
+   <div class="card"><div class="form"><div><label>Ejercicio</label><input id="ehNom" list="ehLista" placeholder="Escribe o elige uno" autocomplete="off"><datalist id="ehLista">${con.map((x) => `<option value="${esc(x.nombre)}">`).join('')}</datalist></div>
+   <div><label>Series</label><input id="ehSer" inputmode="numeric" value="3"></div><div><label>Reps</label><input id="ehRep" value="8-12"></div></div></div>
+   <div class="stack" style="margin-top:12px"><button class="btn pri" id="ehHoy">Solo para hoy</button><button class="btn" id="ehSiempre">Añadirlo también a ${esc(dia.nombre)}</button></div>
+   ${con.length ? `<h2>Los que ya has hecho</h2><div class="lista">${con.slice(0, 30).map((x) => `<button class="item" data-ehp="${esc(x.nombre)}"><div class="c"><b>${esc(x.nombre)}</b></div><div class="d">+</div></button>`).join('')}</div>` : ''}`);
+  document.querySelectorAll('[data-ehp]').forEach((b) => b.onclick = () => { $('#ehNom').value = b.dataset.ehp; $('#hoja').scrollTop = 0; });
+  const crear = (siempre) => { const n = $('#ehNom').value.trim(); if (!n) { toast('Pon el nombre del ejercicio'); $('#ehNom').focus(); return; }
+    const ya = ejerciciosConocidos().find((x) => x.nombre.toLowerCase() === n.toLowerCase());
+    const e = { id: ya ? ya.id : slug(n), nombre: ya ? ya.nombre : n, series: Math.max(1, Math.min(10, parseInt($('#ehSer').value) || 3)), reps: $('#ehRep').value.trim() || '8-12', notas: '' };
+    if (ejsHoy(dia).some((x) => x.id === e.id)) { toast('Ya lo tienes hoy'); return; }
+    if (siempre) { dia.ejercicios.push(e); D.rutina.orden = dias().map((d) => d.id); }
+    else D.extraHoy = { fecha: hoy(), dia: dia.id, ejercicios: [...(D.extraHoy && D.extraHoy.fecha === hoy() && D.extraHoy.dia === dia.id ? D.extraHoy.ejercicios : []), e] };
+    guardar(); cerrarHoja(); pintar(); toast(siempre ? `${e.nombre} añadido a ${dia.nombre}` : `${e.nombre}, solo hoy`);
+    setTimeout(() => document.querySelector(`.ej[data-ej="${CSS.escape(e.id)}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200); };
+  $('#ehHoy').onclick = () => crear(false); $('#ehSiempre').onclick = () => crear(true);
+}
 const claveExtra = (id) => `${hoy()}|${diaDeHoy()}|${id}`;
-function apuntarVacia(e) { const k = claveExtra(e.id); extras[k] = (extras[k] || 0) + 1; }
+function apuntarVacia(e) { const k = claveExtra(e.id); extrasO()[k] = (extrasO()[k] || 0) + 1; guardar(); }
 const _tarjeta = tarjeta;
-tarjeta = function (e, s) { const x = extras[claveExtra(e.id)] || 0, hechas = (regHoy(e.id)?.series || []).filter((y) => !y.drop).length; return _tarjeta({ ...e, series: Math.max(e.series + x, hechas) }, s); };
+tarjeta = function (e, s) { return _tarjeta({ ...e, series: seriesHoy(e) }, s); };
 
 function confirmar(e, i, card) {
   const h = hoy(); let r = regHoy(e.id);
@@ -721,7 +787,7 @@ function confirmar(e, i, card) {
   if (esPR) { serie.pr = true; toast(`Récord en ${e.nombre}: ${f(kg)} × ${reps}`); vibrar([30, 40, 30]); } else vibrar(15);
   if (!D.activa || D.activa.fecha !== h) D.activa = { fecha: h, dia: r.dia, inicio: Date.now() };
   delete borr[e.id][i]; if (esDrop && pendDrop[e.id]) pendDrop[e.id]--;
-  const lista = diaPorId(diaDeHoy())?.ejercicios || [], pos = lista.findIndex((x) => x.id === e.id), pareja = e.ss && lista[pos + 1];
+  const lista = ejsHoy(diaPorId(diaDeHoy())), pos = lista.findIndex((x) => x.id === e.id), pareja = e.ss && lista[pos + 1];
   guardar(); pintar();
   if (esDrop) toast('Bajada apuntada');
   else if (pareja) { toast(`Ahora sin descanso: ${pareja.nombre}`); const c = document.querySelector(`.ej[data-ej="${CSS.escape(pareja.id)}"]`); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
@@ -1039,7 +1105,7 @@ function hojaEtapa(i) {
    ${i > 0 ? `<div><label>Empieza el</label><input id="etDesde" type="date" value="${esc(e.desde)}"></div>` : ''}</div>
    <button class="btn pri" id="etOk" style="margin-top:10px;width:100%">Guardar</button></div>
    ${!e.actual ? `<h2>Sus días</h2><div class="card etapa-dias">${(e.rutina?.dias || []).map((d) => `<div><b>${esc(d.nombre)}</b><p class="texto">${d.ejercicios.map((x) => esc(x.nombre)).join(' · ')}</p></div>`).join('') || '<p class="texto">Sin días guardados.</p>'}</div>` : ''}
-   <div class="stack" style="margin-top:14px"><button class="btn" id="etVer">Ver su progreso</button>
+   <div class="stack" style="margin-top:14px">${!e.actual ? `<button class="btn pri" id="etVolver">Volver a esta rutina</button>` : ''}<button class="btn" id="etVer">Ver su progreso</button>
    ${!e.actual ? `<button class="btn peligro" id="etQuitar">${i === 0 ? 'Juntarla con la siguiente' : 'Juntarla con la anterior'}</button><p class="texto" style="font-size:12px">No se borra ningún entreno: solo deja de ser una rutina aparte.</p>` : ''}</div>`);
   $('#etOk').onclick = () => {
     const nom = $('#etNom').value.trim() || e.nombre, de = $('#etDesde') ? $('#etDesde').value : e.desde;
@@ -1047,6 +1113,13 @@ function hojaEtapa(i) {
     if (e.actual) { D.rutina.nombre = nom; D.rutina.desde = de; } else { D.etapas[i].nombre = nom; D.etapas[i].desde = de; }
     guardar(); cerrarHoja(); pintar(); toast('Guardado');
   };
+  const vv = $('#etVolver'); if (vv) vv.onclick = () => {
+    if (!(e.rutina?.dias || []).length) { toast('Esta rutina no tiene días guardados'); return; }
+    const ult = l[l.length - 1], cp = JSON.parse(JSON.stringify(e.rutina)), nom = `${e.nombre.replace(/ \(vuelta( \d+)?\)$/, '')} (vuelta)`;
+    if (ult.desde >= hoy()) D.rutina = { ...cp, nombre: nom, desde: ult.desde }; // la actual empezó hoy: se cambia sin más
+    else { nuevaEtapa(nom, hoy(), false); D.rutina = { ...cp, nombre: nom, desde: hoy() }; }
+    D.hoyDia = null; guardar(); cerrarHoja(); pestana = 'entreno'; pintar(); window.scrollTo(0, 0);
+    toast(`Vuelves a ${e.nombre}. Tu progreso sigue contando`); };
   $('#etVer').onclick = () => { progEtapa = String(i); cerrarHoja(); pestana = 'progreso'; pintar(); window.scrollTo(0, 0); };
   const q = $('#etQuitar'); if (q) q.onclick = () => { if (!confirm(`¿Juntar «${e.nombre}» con la ${i === 0 ? 'siguiente' : 'anterior'}? Los entrenos no se borran.`)) return;
     if (i === 0) { const sig = l[1]; if (sig.actual) D.rutina.desde = e.desde; else D.etapas[1].desde = e.desde; }
@@ -1099,7 +1172,7 @@ function vMas() {
   <h2>Cargar mis datos</h2><div class="card stack"><p class="texto">Si te han pasado un enlace con tus entrenos y la app está vacía, pégalo aquí.</p>
    <div style="display:flex;gap:8px"><div class="campo" style="flex:1"><input id="codIn" placeholder="Pega aquí tu enlace" autocomplete="off" autocapitalize="off" style="padding-right:12px;font-size:14px"></div><button class="btn peq pri" id="codOk">Cargar</button></div></div>
   <h2>Copia de seguridad</h2><div class="card stack"><p class="texto">Todo se guarda <b>solo en este móvil</b>, sin cuentas. Si cambias de móvil o borras el navegador, se pierde: saca una copia de vez en cuando.</p>
-   <div class="fila-btn"><button class="btn" id="exp">Guardar copia</button><button class="btn" id="imp">Recuperar copia</button></div><input type="file" id="impf" accept="application/json,.json" hidden>
+   <div class="fila-btn"><button class="btn" id="exp">Guardar o enviar copia</button><button class="btn" id="imp">Recuperar copia</button></div><input type="file" id="impf" accept="application/json,.json" hidden>
    <button class="btn peligro" id="reset">Borrar todo y empezar de cero</button></div>
   <h2>Instalarla en el móvil</h2><div class="card"><p class="texto"><b>iPhone (Safari):</b> botón Compartir → «Añadir a pantalla de inicio».<br><b>Android (Chrome):</b> menú ⋮ → «Instalar aplicación».<br>Así se abre como una app, a pantalla completa y sin internet.</p></div>`;
 }
@@ -1113,7 +1186,9 @@ function aMas() {
      <p class="texto">${ds.length ? `Por lado: <b class="num">${ds.map((p) => f(p, 2)).join(' + ')}</b>` : 'Solo la barra.'}${lado > 0.01 ? ` · sobran ${f(lado * 2, 2)} kg que no se pueden poner` : ''}</p>`; };
   $('#dk').oninput = dc; $('#db').onchange = dc;
   $('#adesc').onchange = (e) => { D.aj.descanso = +e.target.value; D.aj.descansoElegido = true; guardar(); };
-  $('#exp').onclick = () => { const b = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
+  $('#exp').onclick = async () => { const txt = JSON.stringify(D, null, 1), nom = `gym-${hoy()}.json`;
+    try { const fl = new File([txt], nom, { type: 'application/json' }); if (navigator.canShare && navigator.canShare({ files: [fl] })) { await navigator.share({ files: [fl], title: 'Copia de mi Gym' }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+    const b = new Blob([txt], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `gym-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
   $('#impAbrir').onclick = hojaImportar;
   $('#nomBicho').onchange = (e) => { D.aj.nombreBicho = e.target.value.trim(); guardar(); toast(D.aj.nombreBicho ? `Ahora se llama ${D.aj.nombreBicho}` : 'Sin nombre'); };
   $('#avisos').onclick = async () => { if (!('Notification' in window)) { toast('En iPhone, añádela antes a la pantalla de inicio'); return; }
@@ -1398,7 +1473,8 @@ function contextoIA() {
   ].join('\n');
 }
 async function preguntarIA() {
-  const r = await fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contexto: contextoIA(), mensajes: (D.chat || []).slice(-12) }) });
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 30000); // si Gemini tarda, contesta el cerebro de siempre
+  const r = await fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contexto: contextoIA(), mensajes: (D.chat || []).slice(-12) }), signal: ctl.signal }).finally(() => clearTimeout(t));
   const j = await r.json().catch(() => ({})); if (!r.ok || !j.texto) throw new Error(j.error || 'sin respuesta'); return j.texto;
 }
 function enviarChat(v) {
@@ -1640,7 +1716,7 @@ async function cargarCodigo(cod, manual = false) {
     // los nombres de los días que había (en el móvil y en el archivo) se guardan para que el historial no cambie de nombre
     const viejos = { ...(D.diasViejos || {}), ...Object.fromEntries((D.rutina.dias || []).map((d) => [d.id, d.nombre])), ...(o.diasViejos || {}) };
     for (const d of o.rutina.dias) for (const e of d.ejercicios) { if (Array.isArray(e.alt)) { const c = new Set(regs.map((x) => x.ej)); const id = [e.id, ...e.alt].find((x) => c.has(x)); if (id) e.id = id; delete e.alt; } }
-    D = { ...nuevo(), ...D, logros: null, prVersion: 3, rutina: o.rutina, regs, sesiones, peso: pesos, cargado: cod, diasViejos: viejos, rutinaDesde: o.rutinaDesde || D.rutinaDesde || null, etapas: [], etapasV: 0, hoyDia: null, rutinaCargada: o.rutinaCodigo || D.rutinaCargada }; recalcularRecords(); revisarLogros(true); guardar(); pintar();
+    D = { ...nuevo(), ...D, logros: null, prVersion: 3, rutina: o.rutina, regs, sesiones, peso: pesos, cargado: cod, diasViejos: viejos, rutinaDesde: o.rutinaDesde || D.rutinaDesde || null, etapas: o.etapasV === 1 && Array.isArray(o.etapas) ? o.etapas : [], etapasV: o.etapasV === 1 ? 1 : 0, musculos: { ...(D.musculos || {}), ...(o.musculos || {}) }, hoyDia: null, rutinaCargada: o.rutinaCodigo || D.rutinaCargada }; recalcularRecords(); revisarLogros(true); guardar(); pintar();
     toast(`Cargados tus ${fechasEntreno().length} entrenos`); setTimeout(() => window.bichoDecir && window.bichoDecir('¡Ya tengo todo tu historial! Mira en Progreso cuánto has subido.', 7), 2500);
   } catch { limpiar(); toast('No he podido cargar los datos de este enlace'); }
 }
