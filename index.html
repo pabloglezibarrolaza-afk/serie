@@ -1463,7 +1463,7 @@ function contextoIA() {
     '--- DATOS DEL USUARIO ---',
     `Qué toca hoy: ${infoHoy()}`,
     `Último entreno: ${(() => { const u = fechasEntreno().at(-1); if (!u) return 'ninguno todavía'; const n = dias_(u, hoy()); return `${fCorta(u)} (hace ${n} día${n === 1 ? '' : 's'})`; })()}. Entrenos esta semana: ${semanaActual()} de ${D.rutina.objetivo || 4}.`,
-    'Contesta SIEMPRE a lo que te dice, aunque no sea una pregunta (si te cuenta algo, reacciona a eso usando sus datos). Nunca digas que no le entiendes. Escribe en español correcto y natural.',
+    'Contesta SIEMPRE a lo que te dice, aunque no sea una pregunta (si te cuenta algo, reacciona a eso usando sus datos). Nunca digas que no le entiendes. Escribe en español correcto y natural. Nada de tacos, palabrotas ni comentarios vulgares o sexuales: chulo y con gracia, pero limpio.',
     `Progreso general: ${infoGeneral()}`,
     `Por músculo: ${analisis().grupos.map((g) => `${g.nombre} ${pct(g.sube)}`).join(', ') || 'aún sin datos'}`,
     `Semana: ${infoSemana()}`,
