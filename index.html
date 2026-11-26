@@ -1417,7 +1417,7 @@ function responder(txt) {
   if (/(adios|hasta luego|me voy|chao|nos vemos|buenas noches)/.test(n)) return { t: azar(['Venga, a descansar. Mañana más.', 'Hasta luego. Y apunta las series, que te conozco.']), a: 'feliz' };
   if (/(como estas|que tal estas|como te encuentras)/.test(n)) return { t: azar(['Aquí, haciendo pesas mentalmente. ¿Y tú, has entrenado?', 'Fuerte. Como siempre.']), a: 'feliz' };
   if (/(ayuda|que sabes|que puedes|que te pregunto)/.test(n)) return { t: 'Pregúntame lo que quieras del gym: qué toca hoy, cómo vas, cómo vas en pecho (o el músculo que sea), tu récord en un ejercicio, qué hiciste el martes o el 12 de noviembre, si te estás estancando… También de descanso, comida o sueño.', a: 'feliz' };
-  return { t: azar(['Eso no lo pillo. Pregúntame por tu progreso, un músculo, un ejercicio o qué toca hoy.', 'Mmm, eso se me escapa. Yo de pesas sé mucho; de lo demás, regular.', 'No te he entendido. Prueba con «¿cómo voy en pecho?» o «¿qué toca hoy?».']), a: 'pensar' };
+  return { t: azar(['Eso no lo pillo. Pregúntame por tu progreso, un músculo, un ejercicio o qué toca hoy.', 'Mmm, eso se me escapa. Yo de pesas sé mucho; de lo demás, regular.', 'No te he entendido. Prueba con «¿cómo voy en pecho?» o «¿qué toca hoy?».']), a: 'pensar', def: true };
 }
 
 // --- vista de la pestaña
@@ -1428,8 +1428,8 @@ function vBicho() {
   if (!D.chat.length) D.chat.push({ de: 'b', t: Date.now(), txt: `¡Buenas! Soy ${nombreBicho() === 'Bicho' ? 'tu bicho' : nombreBicho()}. Pregúntame lo que quieras del gym: qué toca hoy, cómo vas en pecho, tu récord en press… Yo me sé todos tus datos.` });
   const enf = D.enfado && D.enfado.nivel > 0.3;
   return `<div class="chat-vista">
-    <div class="chat-cab"><canvas id="bichoGrande" aria-hidden="true"></canvas><div class="chat-nom">${esc(nombreBicho())}</div><div class="chat-est ${enf ? 'rojo' : ''}" id="chatEst">${enf ? 'Enfadado contigo' : D.activa ? 'Entrenando contigo' : IA_URL ? 'Con IA · pregúntame lo que quieras' : 'Esperándote'}</div></div>
-    <div class="chat-lista" id="chatLista">${D.chat.slice(-80).map(burbujaChat).join('')}</div>
+    <div class="chat-cab"><canvas id="bichoGrande" aria-hidden="true"></canvas><div class="chat-nom">${esc(nombreBicho())}</div><div class="chat-est ${enf ? 'rojo' : ''}" id="chatEst">${iaPendiente ? 'Pensando…' : enf ? 'Enfadado contigo' : D.activa ? 'Entrenando contigo' : IA_URL ? 'Con IA · pregúntame lo que quieras' : 'Esperándote'}</div></div>
+    <div class="chat-lista" id="chatLista">${D.chat.slice(-80).map(burbujaChat).join('')}${iaPendiente ? ESCR : ''}</div>
     <form class="chat-caja" id="chatForm" autocomplete="off"><input id="chatIn" placeholder="Escríbele a ${esc(nombreBicho())}…" enterkeyhint="send"><button aria-label="Enviar"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
   </div>`;
 }
@@ -1462,6 +1462,8 @@ function contextoIA() {
     `Hoy es ${new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}.`,
     '--- DATOS DEL USUARIO ---',
     `Qué toca hoy: ${infoHoy()}`,
+    `Último entreno: ${(() => { const u = fechasEntreno().at(-1); if (!u) return 'ninguno todavía'; const n = dias_(u, hoy()); return `${fCorta(u)} (hace ${n} día${n === 1 ? '' : 's'})`; })()}. Entrenos esta semana: ${semanaActual()} de ${D.rutina.objetivo || 4}.`,
+    'Contesta SIEMPRE a lo que te dice, aunque no sea una pregunta (si te cuenta algo, reacciona a eso usando sus datos). Nunca digas que no le entiendes. Escribe en español correcto y natural.',
     `Progreso general: ${infoGeneral()}`,
     `Por músculo: ${analisis().grupos.map((g) => `${g.nombre} ${pct(g.sube)}`).join(', ') || 'aún sin datos'}`,
     `Semana: ${infoSemana()}`,
@@ -1473,18 +1475,30 @@ function contextoIA() {
   ].join('\n');
 }
 async function preguntarIA() {
-  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 30000); // si Gemini tarda, contesta el cerebro de siempre
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 28000); // si Gemini tarda, contesta el cerebro de siempre
   const r = await fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contexto: contextoIA(), mensajes: (D.chat || []).slice(-12) }), signal: ctl.signal }).finally(() => clearTimeout(t));
   const j = await r.json().catch(() => ({})); if (!r.ok || !j.texto) throw new Error(j.error || 'sin respuesta'); return j.texto;
 }
+let iaPendiente = false;
+const ESCR = '<div class="msg el escribiendo" id="escr"><div class="txt"><i></i><i></i><i></i></div></div>';
+function respuestaBicho(t, a) {
+  iaPendiente = false; $('#escr')?.remove(); anadirMsg('b', t); animGrande(a);
+  const est = $('#chatEst'); if (est) est.textContent = 'Con IA · pregúntame lo que quieras';
+  if (pestana !== 'bicho') { D.chatNoLeido = (D.chatNoLeido || 0) + 1; guardar(); marcarNoLeido(); if (window.bichoDecir) window.bichoDecir('Te he contestado en el chat', 5); }
+}
 function enviarChat(v) {
-  anadirMsg('yo', v); D.ultHablado = Date.now(); calmarBicho(false);
-  const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', '<div class="msg el escribiendo" id="escr"><div class="txt"><i></i><i></i><i></i></div></div>'); l.scrollTop = l.scrollHeight; }
+  if (iaPendiente) { toast('Espera, que aún estoy pensando lo de antes'); return; }
+  anadirMsg('yo', v); D.ultHablado = Date.now(); calmarBicho(false); iaPendiente = true;
+  const l = $('#chatLista'); if (l) { l.insertAdjacentHTML('beforeend', ESCR); l.scrollTop = l.scrollHeight; }
+  const est = $('#chatEst'); if (est) est.textContent = 'Pensando…';
   try { bichoGrande && bichoGrande.estado('pensar'); } catch {}
-  const local = () => { const r = responder(v); setTimeout(() => { $('#escr')?.remove(); anadirMsg('b', r.t); animGrande(r.a); }, 650 + Math.min(1400, r.t.length * 6)); };
+  const local = () => { const r = responder(v);
+    const t = r.def ? 'Uf, se me ha cortado la conexión con mi cerebro y no te he podido contestar bien. Repítemelo en un momento.' : r.t;
+    setTimeout(() => respuestaBicho(t, r.def ? 'pensar' : r.a), 400); };
   if (!IA_URL || !navigator.onLine) { local(); return; }
-  preguntarIA().then((t) => { $('#escr')?.remove(); anadirMsg('b', t); animGrande(/(récord|brutal|bestia|genial|enhorabuena|bien hecho)/i.test(t) ? 'estrella' : /(dolor|lesión|para)/i.test(t) ? 'pensar' : 'feliz'); })
-    .catch(() => local());
+  const animDe = (t) => /(récord|brutal|bestia|genial|enhorabuena|bien hecho)/i.test(t) ? 'estrella' : /(dolor|lesión|para)/i.test(t) ? 'pensar' : 'feliz';
+  preguntarIA().catch(() => new Promise((ok) => setTimeout(ok, 1500)).then(() => preguntarIA())) // un segundo intento por si fue la cobertura
+    .then((t) => respuestaBicho(t, animDe(t))).catch(() => local());
 }
 
 // --- el bicho te escribe mientras entrenas, y se enfada si le ignoras 40 min
